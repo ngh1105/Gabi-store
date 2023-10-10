@@ -44,3 +44,7 @@ app.listen(PORT, () => {
 })
 
 // add new line code
+
+const newFunc = () => {
+    console.log("test");
+}
