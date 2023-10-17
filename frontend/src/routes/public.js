@@ -9,9 +9,5 @@ export const publicRoutes = {
             path: '/',
             element: <HomePage />,
         },
-        {
-            path: '/blog',
-            element: <BlogPage />,
-        },
     ]
 };
