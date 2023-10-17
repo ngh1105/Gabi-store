@@ -1,12 +1,12 @@
+import { Link, Outlet } from "react-router-dom"
 
 export const PublicLayout = () => {
     return (
         <>
-            PublicLayout
-
             {/* Header component */}
 
             {/* Pages */}
+            <Outlet />
 
             {/* Footer component */}
         </>
