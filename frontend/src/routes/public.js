@@ -1,9 +1,13 @@
 import { PublicLayout } from "layouts/public";
+import { HomePage } from "pages/public/home";
 
 export const publicRoutes = {
     path: '/',
     element: <PublicLayout />,
     children: [
-        // Others page here
+        {
+            path: '/',
+            element: <HomePage />,
+        },
     ]
 };
