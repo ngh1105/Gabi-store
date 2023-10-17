@@ -9,5 +9,9 @@ export const publicRoutes = {
             path: '/',
             element: <HomePage />,
         },
+        // {
+        //     path: '/product',
+        //     element: <ProductPage />,
+        // },
     ]
 };
