@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const fileUpload = require("express-fileupload");
 
+const initDatabase = require("./app/database");
 const initRoutes = require("./app/routes");
 
 dotenv.config();
@@ -34,7 +35,7 @@ app.use((err, req, res, next) => {
     next();
 });
 
-//initDatabase();
+initDatabase();
 
 initRoutes(app);
 
