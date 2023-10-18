@@ -1,8 +1,9 @@
 import { PublicLayout } from "layouts/public";
-import { HomePage } from "pages/public/home";
-import { Blog } from "pages/public/Blog";
+import { HomePage } from "pages/public/Home";
 
-
+import Cart from "pages/public/Cart";
+import Blog from "pages/public/Blog";
+ 
 export const publicRoutes = {
     path: '/',
     element: <PublicLayout />,
@@ -11,10 +12,7 @@ export const publicRoutes = {
             path: '/',
             element: <HomePage />,
         },
-        {
-            path: '/blog',
-            element: <Blog />,
-        },
-     
+        { path: '/cart', element: <Cart/> },
+        { path: '/blog', element: <Blog/> },
     ]
 };
