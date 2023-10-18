@@ -28,7 +28,7 @@ function BlogCard({ item }) {
 
             <div className={cx('content')}>
                 <h2>{item.title}</h2>
-                <p>{item.shortDescription}</p>
+                <p>{item.describe}</p>
                 <Button outline>Xem thêm</Button>
             </div>
         </div>
