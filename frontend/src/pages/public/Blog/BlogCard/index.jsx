@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import style from './BlogCard.module.scss';
 import { useNavigate } from 'react-router-dom';
+import Button from 'components/Button';
 
 const cx = classNames.bind(style);
 
