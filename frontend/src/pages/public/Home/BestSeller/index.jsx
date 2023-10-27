@@ -11,14 +11,36 @@ import { faCartArrowDown, faCartPlus, faCartShopping } from '@fortawesome/free-s
 const cx = classNames.bind(styles);
 
 function BestSeller() {
-    const [bestSeller, setBestSeller] = useState([]);
+    const [bestSeller, setBestSeller] = useState([
+        {
+            id: 0,
+            img: "https://iweb247.com/uploads/images/cach-toi-uu-hinh-anh-cho-blogspot1.png",
+            name: "Seller1",
+            price: 332,
+            buy: 453,
+        },
+        {
+            id: 1,
+            img: "https://iweb247.com/uploads/images/cach-toi-uu-hinh-anh-cho-blogspot1.png",
+            name: "Seller1",
+            price: 332,
+            buy: 453,
+        },
+        {
+            id: 2,
+            img: "https://iweb247.com/uploads/images/cach-toi-uu-hinh-anh-cho-blogspot1.png",
+            name: "Seller1",
+            price: 332,
+            buy: 453,
+        },
+    ]);
     console.log('bestSeller', bestSeller);
 
-    useEffect(() => {
-        fetch('http://localhost:8000/best_seller')
-            .then((res) => res.json())
-            .then((bests) => setBestSeller(bests));
-    }, []);
+    // useEffect(() => {
+    //     fetch('http://localhost:8000/best_seller')
+    //         .then((res) => res.json())
+    //         .then((bests) => setBestSeller(bests));
+    // }, []);
 
     useEffect(() => {
         Aos.init({

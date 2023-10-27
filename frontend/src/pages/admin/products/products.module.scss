@@ -1,0 +1,165 @@
+
+    // background: #f8f8f8;
+   
+    .main-home {
+        position: absolute;
+        width: calc(100% - 250px);
+        min-height: 100vh;
+        top: 60px;
+        left: 250px;
+        background: #fff;
+        border-radius: 1rem 0 0 1rem;
+        z-index: 1000;
+        overflow: hidden;
+        //
+       
+        //
+        .content {
+            display: flex;
+            align-items: center;
+            margin: 25px 0 0 0px;
+            margin-left: 110px;
+            width: 130px;
+            height: 40px;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+
+            .icon {
+                margin-right: 5px;
+                opacity: 0.7;
+            }
+            .name-title {
+                margin-left: 5px;
+            }
+            .name-title p {
+                display: flex;
+                align-items: center;
+                font-size: 14px;
+                opacity: 0.7;
+            }
+            .content-title {
+                display: flex;
+                align-items: center;
+                margin-left: 15px;
+            }
+        }
+        //code table
+        .content-table {
+            position: relative;
+            margin: 50px 0 0 110px;
+            width: 1065px;
+            height: 900px;
+            background-color: #f8f8f8;
+
+            .products {
+                position: absolute;
+                top: 145px;
+                left: 47px;
+                right: 0;
+                width: 970px;
+                border-collapse: collapse;
+                border: 3px solid #f4f3f8;
+                text-align: center;
+            }
+            .products td {
+                padding: 10px;
+            }
+            .products th {
+                border: 1px solid #f4f3f8;
+                padding: 15px;
+            }
+
+            .products th {
+                background-color: #f4f3f8;
+                font-weight: bold;
+            }
+
+            .products tr:nth-child(even) {
+                background-color: #eee;
+            }
+            i.ri-delete-bin-7-fill {
+                color: red;
+            }
+            .icon .icon-fix {
+                color: #983bba;
+                padding: 10px;
+            }
+            .icon .icon-fix i:hover {
+                transform: scale(2);
+            }
+            .icon .icon-delete {
+                color: #db1414;
+                padding: 5px;
+            }
+            .icon .icon-delete i:hover {
+                transform: scale(2);
+            }
+            //
+            .products tbody tr:hover {
+                color: #e2336b;
+            }
+            .products tbody tr:hover::after {
+                content: '';
+                position: absolute;
+                right: 0;
+                width: 2px;
+                height: 50px;
+                background: #e2336b;
+            }
+            .title_list{
+                display: flex;
+                align-items: center;
+                padding: 10px 10px;
+            }
+            .title_list h2{
+                margin: 0 0 0 30px;
+                height: 30px;
+                font-size:16px;
+            }
+            .add{
+                width: 140px;
+                height: 30px;
+                color:#fff;
+                font-weight:500;
+                background-color: #7168C5;
+                position: absolute;
+                right: 100px;
+                top:10px;
+                border-radius: 5px;
+                font-size:14px;
+            }
+            .ruler{
+                width: 95%;
+                border: 0.5px solid #000;
+            }
+            .search{
+                display: flex;
+                align-items: center;
+                position: absolute;
+                top: 70px;
+                right: 100px;
+                width: 170px;
+                height: 30px;
+                border: 1px  solid #ccc;
+                border-radius: 5px;
+                span{
+                    padding: 0 10px 0 10px;
+                }
+                        .list-input{
+                            background-color: #f8f8f8;
+                            width: 100px;
+                            padding: 1px;
+                        }
+            }
+            
+        }
+
+        .vinh {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+// :root {
+//     --gradient: linear-gradient(to right, #e2336b, #fcac46);
+// }
