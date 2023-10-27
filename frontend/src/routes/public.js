@@ -29,6 +29,7 @@ export const publicRoutes = {
         },
         { path: '/cart', element: <Cart/> },
         { path: '/blog', element: <Blog/> },
+        { path: '/blog/:id', element: <BlogDetail/> },
         { path: '/deliverInfo', element: <DeliverInfo/> },
         { path: '/story', element: <Story/> },
         { path: '/slider', element: <Slider/> },
