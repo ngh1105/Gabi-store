@@ -14,6 +14,7 @@ import NewProducts from "pages/public/Home/NewProducts";
 import Card from "pages/public/Home/NewProducts/Card";
 import ForgetPassword from "pages/public/ForgetPassword";
 import Product from "pages/public/Product"
+import BlogDetail from "pages/public/Blog/BlogDetail";
  
 export const publicRoutes = {
     path: '/',
@@ -25,6 +26,7 @@ export const publicRoutes = {
         },
         { path: '/cart', element: <Cart/> },
         { path: '/blog', element: <Blog/> },
+        { path: '/blog/:id', element: <BlogDetail/> },
         { path: '/deliverInfo', element: <DeliverInfo/> },
         { path: '/story', element: <Story/> },
         { path: '/slider', element: <Slider/> },
