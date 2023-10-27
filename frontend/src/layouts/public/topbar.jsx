@@ -3,7 +3,6 @@ import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faCartShopping,
@@ -77,7 +76,7 @@ export const Topbar = () => {
                             </li>
 
                             <li>
-                                <Link to="/blog">Blog</Link>
+                                <Link to= '/blog'>Blog</Link>
                             </li>
 
                             <li>
