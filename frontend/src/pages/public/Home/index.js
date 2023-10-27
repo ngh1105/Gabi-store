@@ -1,6 +1,10 @@
+import BestSeller from "./BestSeller"
 
 export const HomePage = () => {
     return (
-        <>HomePage</>
+        <>
+            <BestSeller />
+
+        </>
     )
 }
