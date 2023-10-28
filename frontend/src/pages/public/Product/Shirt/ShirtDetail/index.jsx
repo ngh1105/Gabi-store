@@ -5,7 +5,7 @@ import styles from './ShirtDetail.module.scss';
 import classNames from 'classnames/bind';
 
 import { Link, useParams } from 'react-router-dom';
-import Button from '../../../../components/Button';
+import Button from 'components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
