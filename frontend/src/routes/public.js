@@ -56,6 +56,7 @@ export const publicRoutes = {
         { path: '/contact', element: <Contact/> },
         { path: '/following', element: <Following/> },
         { path: '/confirmorder', element: <ConfirmOrder/> },
+        
 
         
      
