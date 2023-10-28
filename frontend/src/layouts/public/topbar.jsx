@@ -80,7 +80,7 @@ export const Topbar = () => {
                             </li>
 
                             <li>
-                                <Link to="/product/all">Sản phẩm</Link>
+                                <Link to="/product">Sản phẩm</Link>
                             </li>
 
                             <li>
