@@ -3,6 +3,7 @@ import { HomePage } from "pages/public/home";
 import { BlogPage } from "pages/public/Blog";
 import { BlogDetail } from "pages/public/Blog/blogDetail";
 import Cart from "pages/public/Cart";
+import About from "pages/public/About";
 export const publicRoutes = {
     path: '/',
     element: <PublicLayout />,
@@ -10,6 +11,11 @@ export const publicRoutes = {
         {
             path: '/',
             element: <HomePage />,
+        },
+
+        {
+            path: '/about',
+            element: <About />,
         },
         {
             path: '/blog',
