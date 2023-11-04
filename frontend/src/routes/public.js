@@ -1,5 +1,5 @@
 import { PublicLayout } from "layouts/public";
-import { HomePage } from "pages/public/home";
+import { HomePage } from "pages/public/Home";
 import { BlogPage } from "pages/public/blog";
 import { BlogDetail } from "pages/public/blog/blogDetail";
 export const publicRoutes = {
