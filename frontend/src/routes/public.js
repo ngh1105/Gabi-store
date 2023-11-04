@@ -21,6 +21,7 @@ import About from "pages/public/About";
 import Contact from "pages/public/Contact";
 import Following from "pages/public/Following";
 import ConfirmOrder from "pages/public/ConfirmOrder"
+import Policy from "pages/public/Policy";
 
 
  
@@ -56,6 +57,7 @@ export const publicRoutes = {
         { path: '/contact', element: <Contact/> },
         { path: '/following', element: <Following/> },
         { path: '/confirmorder', element: <ConfirmOrder/> },
+        { path: '/policy', element: <Policy/> },
         
 
         
