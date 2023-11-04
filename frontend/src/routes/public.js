@@ -1,9 +1,7 @@
 import { PublicLayout } from "layouts/public";
 import { HomePage } from "pages/public/home";
-import { BlogPage } from "pages/public/Blog";
-import { BlogDetail } from "pages/public/Blog/blogDetail";
-import Cart from "pages/public/Cart";
-import About from "pages/public/About";
+import { BlogPage } from "pages/public/blog";
+import { BlogDetail } from "pages/public/blog/blogDetail";
 export const publicRoutes = {
     path: '/',
     element: <PublicLayout />,
@@ -12,11 +10,6 @@ export const publicRoutes = {
             path: '/',
             element: <HomePage />,
         },
-
-        {
-            path: '/about',
-            element: <About />,
-        },
         {
             path: '/blog',
             element: <BlogPage />,
@@ -24,11 +17,6 @@ export const publicRoutes = {
         {
             path: '/blogDetail',
             element: <BlogDetail />,
-        },
-
-        {
-            path: '/cart',
-            element: <Cart />,
         },
     ]
 };

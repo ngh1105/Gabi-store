@@ -1,0 +1,56 @@
+// .wrapper {
+//     width: 100%;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+
+//     .inner {
+//         width: var(--default-layout-width);
+//     }
+
+//     .banner img {
+//         width: 100%;
+//         object-fit: cover;
+//     }
+//     .image {
+//         text-align: center;
+//     }
+// }
+// .wrapper > * {
+//     margin: 20px;
+// }
+
+
+
+
+.wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+    .inner {
+      width: var(--default-layout-width);
+      .contain {
+        .content img {
+            width: 70%;
+            object-fit: cover;
+        }
+        .content {
+          > * {
+            margin: 20px 0;
+          }
+  
+          .image {
+            text-align: center;
+            text-align: center;
+            /* Để căn giữa chiều ngang */
+           
+          }
+        }
+      }
+    }
+  }
+  
