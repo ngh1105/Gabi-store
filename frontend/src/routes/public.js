@@ -4,7 +4,7 @@ import { HomePage } from "pages/public/Home";
 import Cart from "pages/public/Cart";
 import Blog from "pages/public/Blog";
 import DeliverInfo from "pages/public/DeliverInfo";
-import Story from "pages/public/Home/Story";
+import Story from "pages/public/Story";
 import Slider from "pages/public/Home/Slider";
 import PostItem from "pages/public/Home/PostItem";
 import Description from "pages/public/Home/Description";
@@ -15,6 +15,7 @@ import Card from "pages/public/Home/NewProducts/Card";
 import ForgetPassword from "pages/public/ForgetPassword";
 import Product from "pages/public/Product"
 import BlogDetail from "pages/public/Blog/BlogDetail";
+import About from "pages/public/About";
  
 export const publicRoutes = {
     path: '/',
@@ -38,6 +39,7 @@ export const publicRoutes = {
         { path: '/card', element: <Card/> },
         { path: '/forgetPassword', element: <ForgetPassword/> },
         { path: '/product', element: <Product/> },
+        { path: '/about', element: <About/> },
      
      
     ]
