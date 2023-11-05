@@ -1,8 +1,17 @@
 import { Sequelize } from 'sequelize-typescript';
 import { Category } from 'src/category/entities/category.entity';
+import { Product } from 'src/product/entities/product.entity';
 
 const createRelationship = () => {
 
+    Category.hasMany(Product, {
+        onDelete: 'CASCADE',
+        foreignKey: 'categoryId',
+    });
+
+    Product.belongsTo(Category, {
+        foreignKey: 'categoryId',
+    });
 }
 
 export const databaseProviders = [
@@ -19,7 +28,7 @@ export const databaseProviders = [
             });
 
             // Add model here
-            sequelize.addModels([Category]);
+            sequelize.addModels([Category, Product]);
 
             createRelationship();
 

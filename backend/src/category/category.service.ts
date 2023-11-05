@@ -22,7 +22,7 @@ export class CategoryService {
 
     async findAll() {
         const data = await this.categoryRepository.findAll<Category>();
-        return data.map(scientist => new CategoryDto(scientist));
+        return data.map(obj => new CategoryDto(obj));
     }
 
     async findOne(id: number) {
@@ -64,5 +64,13 @@ export class CategoryService {
         await record.destroy();
 
         return "Deleted successfully";
+    }
+
+    async isExists(id: number) {
+        const category = await this.categoryRepository.findOne({ 
+            where: { id } 
+        });
+
+        return !!category;
     }
 }

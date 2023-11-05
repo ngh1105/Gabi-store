@@ -7,7 +7,9 @@ import { ApiTags } from '@nestjs/swagger';
 @ApiTags('category')
 @Controller('category')
 export class CategoryController {
-    constructor(private readonly categoryService: CategoryService) { }
+    constructor(private readonly categoryService: CategoryService) { 
+        
+    }
 
     @Post()
     create(@Body() createCategoryDto: CreateCategoryDto) {

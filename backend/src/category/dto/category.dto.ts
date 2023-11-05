@@ -13,8 +13,13 @@ export class CategoryDto {
     @MaxLength(255)
     name: string;
 
+    @ApiProperty()
+    @IsOptional()
+    imageUrl?: string = "";
+
     constructor(data: Category) {
         this.id = data.id;
         this.name = data.name;
+        this.imageUrl = data.imageUrl;
     }
 }
