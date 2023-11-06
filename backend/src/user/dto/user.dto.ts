@@ -26,7 +26,7 @@ export class UserDto {
     @ApiProperty()
     @IsEnum(UserRole)
     @IsOptional()
-    role: UserRole;
+    role: UserRole = UserRole.GUEST;
 
     @ApiProperty()
     @IsOptional()
