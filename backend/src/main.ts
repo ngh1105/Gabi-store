@@ -10,6 +10,15 @@ async function bootstrap() {
         .setTitle('Gabi Store Backend')
         .setDescription('Backend API for gabi store project')
         .setVersion('1.0')
+        .addBearerAuth(
+            {
+              type: 'http',
+              scheme: 'bearer',
+              bearerFormat: 'JWT',
+              in: 'header',
+            },
+            'JWT-Token', // This name here is important for matching up with @ApiBearerAuth() in your controller!
+          )
         .build();
 
     const document = SwaggerModule.createDocument(app, config);

@@ -91,7 +91,7 @@ export const databaseProviders = [
 
             createRelationship();
 
-            await sequelize.sync({ force: true });
+            await sequelize.sync({ alter: true });
             return sequelize;
         },
     },

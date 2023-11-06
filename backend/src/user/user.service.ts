@@ -1,4 +1,4 @@
-import { Injectable, Inject, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable, Inject, HttpException, HttpStatus, BadRequestException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
@@ -12,9 +12,22 @@ export class UserService {
         private userRepository: typeof User
     ) { }
 
-    async create(data: CreateUserDto) {
+    async hashPassword(password: string) {
         const salt = await genSalt(10);
-        const hashedPassword = await hash(data.password, salt);
+        return await hash(password, salt);
+    }
+
+    async comparePassword(password: string, hashed: string) {
+        return await compare(password, hashed);
+    }
+
+    async create(data: CreateUserDto) {
+        const isExists = await this.isExistsByEmail(data.email);
+        if (isExists) {
+            throw new BadRequestException('Email is already exist');
+        }
+
+        const hashedPassword = await this.hashPassword(data.password);
 
         const record = await this.userRepository.create({
             email: data.email,
@@ -32,9 +45,21 @@ export class UserService {
         return data.map(obj => new UserDto(obj));
     }
 
-    async findOne(id: number) {
+    async findOne(id: number): Promise<UserDto | undefined> {
         const record = await this.userRepository.findOne<User>({
             where: { id: id },
+        });
+
+        if (!record) {
+            throw new HttpException('No record found', HttpStatus.NOT_FOUND);
+        }
+
+        return new UserDto(record);
+    }
+
+    async findOneByEmail(email: string): Promise<UserDto | undefined> {
+        const record = await this.userRepository.findOne<User>({
+            where: { email: email },
         });
 
         if (!record) {
@@ -53,8 +78,7 @@ export class UserService {
             throw new HttpException('No record found', HttpStatus.NOT_FOUND);
         }
 
-        const salt = await genSalt(10);
-        const hashedPassword = await hash(data.password, salt);
+        const hashedPassword = await this.hashPassword(data.password);
 
         record.password = hashedPassword;
         record.fullName = data.fullName;
@@ -81,6 +105,14 @@ export class UserService {
     async isExists(id: number) {
         const record = await this.userRepository.findOne({ 
             where: { id } 
+        });
+
+        return !!record;
+    }
+
+    async isExistsByEmail(email: string) {
+        const record = await this.userRepository.findOne({ 
+            where: { email: email } 
         });
 
         return !!record;

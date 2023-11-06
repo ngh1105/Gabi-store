@@ -9,6 +9,7 @@ import { BlogModule } from './blog/blog.module';
 import { BillModule } from './bill/bill.module';
 import { BillDetailModule } from './bill-detail/bill-detail.module';
 import { CommentModule } from './comment/comment.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
     imports: [
@@ -20,6 +21,7 @@ import { CommentModule } from './comment/comment.module';
         BillModule,
         BillDetailModule,
         CommentModule,
+        AuthModule,
     ],
     controllers: [AppController],
     providers: [AppService],
