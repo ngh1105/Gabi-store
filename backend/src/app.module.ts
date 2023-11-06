@@ -6,6 +6,9 @@ import { CategoryModule } from './category/category.module';
 import { UserModule } from './user/user.module';
 import { ProductModule } from './product/product.module';
 import { BlogModule } from './blog/blog.module';
+import { BillModule } from './bill/bill.module';
+import { BillDetailModule } from './bill-detail/bill-detail.module';
+import { CommentModule } from './comment/comment.module';
 
 @Module({
     imports: [
@@ -14,6 +17,9 @@ import { BlogModule } from './blog/blog.module';
         UserModule,
         ProductModule,
         BlogModule,
+        BillModule,
+        BillDetailModule,
+        CommentModule,
     ],
     controllers: [AppController],
     providers: [AppService],
