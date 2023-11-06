@@ -14,7 +14,7 @@ async function bootstrap() {
             type: 'apiKey', 
             name: 'api-key',
             in: 'header',
-        }, 'access-key')
+        }, 'private-key')
         .build();
 
     const document = SwaggerModule.createDocument(app, config);

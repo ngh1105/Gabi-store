@@ -3,39 +3,43 @@ import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiSecurity, ApiTags } from '@nestjs/swagger';
-import { AuthGuard } from 'src/auth/auth.guard';
+import { AdminGuard } from 'src/auth/auth.guard';
 
 @ApiTags('user')
 @Controller('user')
 export class UserController {
     constructor(private readonly userService: UserService) { }
 
-    @ApiSecurity('access-key')
+    @ApiSecurity('private-key')
+    @UseGuards(AdminGuard)
     @Post()
     create(@Body() createUserDto: CreateUserDto) {
         return this.userService.create(createUserDto);
     }
 
-    @ApiSecurity('access-key')
-    @UseGuards(AuthGuard)
+    @ApiSecurity('private-key')
+    @UseGuards(AdminGuard)
     @Get()
     findAll() {
         return this.userService.findAll();
     }
 
-    @ApiSecurity('access-key')
+    @ApiSecurity('private-key')
+    @UseGuards(AdminGuard)
     @Get(':id')
     findOne(@Param('id') id: string) {
         return this.userService.findOne(+id);
     }
 
-    @ApiSecurity('access-key')
+    @ApiSecurity('private-key')
+    @UseGuards(AdminGuard)
     @Patch(':id')
     update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
         return this.userService.update(+id, updateUserDto);
     }
 
-    @ApiSecurity('access-key')
+    @ApiSecurity('private-key')
+    @UseGuards(AdminGuard)
     @Delete(':id')
     remove(@Param('id') id: string) {
         return this.userService.remove(+id);
