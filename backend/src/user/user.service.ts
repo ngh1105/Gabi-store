@@ -77,4 +77,12 @@ export class UserService {
 
         return "Deleted successfully";
     }
+
+    async isExists(id: number) {
+        const record = await this.userRepository.findOne({ 
+            where: { id } 
+        });
+
+        return !!record;
+    }
 }

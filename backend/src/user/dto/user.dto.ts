@@ -30,7 +30,7 @@ export class UserDto {
 
     @ApiProperty()
     @IsOptional()
-    avatarUrl?: string;
+    avatarUrl?: string = "";
 
     constructor(data: User) {
         this.id = data.id;

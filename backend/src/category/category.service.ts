@@ -67,10 +67,10 @@ export class CategoryService {
     }
 
     async isExists(id: number) {
-        const category = await this.categoryRepository.findOne({ 
+        const record = await this.categoryRepository.findOne({ 
             where: { id } 
         });
 
-        return !!category;
+        return !!record;
     }
 }
