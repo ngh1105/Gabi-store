@@ -93,3 +93,53 @@
         }
     }
 
+    @media (max-width: 1024px) {
+        .main-home {
+          width: 100%;
+          left: 0;
+          border-radius: 0;
+          overflow-x: scroll;
+        }
+      
+        .big-card {
+          flex-direction: column;
+          margin: 20px 0;
+        }
+      
+        .card-inner {
+          margin-bottom: 10px;
+        }
+      
+        h3 {
+          padding-right: 40px;
+        }
+      
+        .master-map {
+            display: flex;
+            flex-direction: column; /* New property to make elements stack vertically */
+            margin-top: 50px;
+            margin-bottom: 50px;
+          
+          .chart {
+           margin-left: 250px;
+          }
+          .charts1{
+            margin-left: 250px;
+           }
+        }      
+      }  
+      @media screen and (max-width: 768px) {
+        .master-map {      
+            display: flex;
+            margin-top: 50px;
+            margin-bottom: 50px;   
+            background-color: #FF6C22;             
+        }
+        .chart {
+            width: 300px;
+          
+          }
+          .charts1{
+            width: 300px;
+           }
+      }

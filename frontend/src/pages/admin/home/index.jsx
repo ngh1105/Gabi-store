@@ -69,7 +69,7 @@ export const HomeAdminPage = () => {
                         </span>
                         <p style={{ opacity: 0.5 }}>-</p>
                         <div className={cx('name-title')}>
-                            <p>Tài khoản</p>
+                            <p>Trang chủ</p>
                         </div>
                     </div>
                 </div>
@@ -112,8 +112,8 @@ export const HomeAdminPage = () => {
                 </div>
                 </div>
                 <div className={cx('master-map')}>
-                    <div className={cx('chart')}>
-                <LineChart
+                  <div className={cx('chart')}>
+                  <LineChart
                     width={500}
                     height={400}
                     data={data}
@@ -138,7 +138,7 @@ export const HomeAdminPage = () => {
       <             Line type="monotone" dataKey="uv" stroke="#82ca9d" />
                 </LineChart>
               </div>
-                <div className={('charts1')}>
+                <div className={cx('charts1')}>
                 <BarChart
       width={500}
       height={400}
