@@ -1,26 +1,80 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject, HttpException, HttpStatus } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { User } from './entities/user.entity';
+import { UserDto } from './dto/user.dto';
+import { genSalt, hash, compare } from 'bcrypt';
 
 @Injectable()
 export class UserService {
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
-  }
+    constructor(
+        @Inject('USER_REPOSITORY')
+        private userRepository: typeof User
+    ) { }
 
-  findAll() {
-    return `This action returns all user`;
-  }
+    async create(data: CreateUserDto) {
+        const salt = await genSalt(10);
+        const hashedPassword = await hash(data.password, salt);
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
-  }
+        const record = await this.userRepository.create({
+            email: data.email,
+            password: hashedPassword,
+            fullName: data.fullName,
+            role: data.role,
+        });
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
+        const retData = await record.save();
+        return new UserDto(retData);
+    }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
-  }
+    async findAll() {
+        const data = await this.userRepository.findAll<User>();
+        return data.map(obj => new UserDto(obj));
+    }
+
+    async findOne(id: number) {
+        const record = await this.userRepository.findOne<User>({
+            where: { id: id },
+        });
+
+        if (!record) {
+            throw new HttpException('No record found', HttpStatus.NOT_FOUND);
+        }
+
+        return new UserDto(record);
+    }
+
+    async update(id: number, data: UpdateUserDto) {
+        const record = await this.userRepository.findOne<User>({
+            where: { id: id },
+        });
+
+        if (!record) {
+            throw new HttpException('No record found', HttpStatus.NOT_FOUND);
+        }
+
+        const salt = await genSalt(10);
+        const hashedPassword = await hash(data.password, salt);
+
+        record.password = hashedPassword;
+        record.fullName = data.fullName;
+        record.role = data.role;
+
+        const retData = await record.save();
+        return new UserDto(retData);
+    }
+
+    async remove(id: number) {
+        const record = await this.userRepository.findOne<User>({
+            where: { id: id },
+        });
+
+        if (!record) {
+            throw new HttpException('No record found', HttpStatus.NOT_FOUND);
+        }
+
+        await record.destroy();
+
+        return "Deleted successfully";
+    }
 }
