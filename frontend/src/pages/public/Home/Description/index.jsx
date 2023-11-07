@@ -1,4 +1,4 @@
-import styles from './Description.module.scss';
+import styles from './description.module.scss';
 import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
