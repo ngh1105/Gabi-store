@@ -1,12 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
-import style from './about.module.scss';
+import style from './About.module.scss';
+import axios from 'axios';
 
 const cx = classNames.bind(style);
 
 function About() {
-  return (
-    <div className={cx('wrapper')}>
+    const [cate, setCate] = useState([])
+    console.log('cate',cate);
+
+    useEffect(() => {
+        axios('http://localhost:8000/cate')
+            .then(data => setCate(data.data))
+    },[])
+
+    return (
+        <div className={cx('wrapper')}>
             <img src="https://routine.vn/media/catalog/category/thoi-trang-nam-thuong-hieu-routine-dep-cao-cap-chinh-hang.jpg" />
             <div className={cx('inner')}>
                 <div className={cx('inner-left')}>
@@ -88,7 +97,7 @@ function About() {
 
 
         </div>
-  )
+    );
 }
 
-export default About
+export default About;
