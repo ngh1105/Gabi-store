@@ -114,7 +114,6 @@ export const Topbar = () => {
                         ) : (
                             <div className={cx('not-auth')}>
                                 <Link to="/">
-                                    {' '}
                                     <FontAwesomeIcon className={cx('home')} icon={faHome} />
                                 </Link>
 
@@ -122,10 +121,9 @@ export const Topbar = () => {
                                     <FontAwesomeIcon className={cx('user')} icon={faUser} />
                                 </Link>
 
-                                <Link to="/cart">
-                                    {' '}
+                                {/* <Link to="/cart">
                                     <FontAwesomeIcon className={cx('cart')} icon={faCartShopping} />
-                                </Link>
+                                </Link> */}
                             </div>
                         )}
                     </div>

@@ -6,13 +6,6 @@ import axios from 'axios';
 const cx = classNames.bind(style);
 
 function About() {
-    const [cate, setCate] = useState([])
-    console.log('cate',cate);
-
-    useEffect(() => {
-        axios('http://localhost:8000/cate')
-            .then(data => setCate(data.data))
-    },[])
 
     return (
         <div className={cx('wrapper')}>
