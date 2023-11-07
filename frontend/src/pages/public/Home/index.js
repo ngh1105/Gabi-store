@@ -1,14 +1,16 @@
+import BestSeller from "./BestSeller"
 import Category from "./Catelogory"
 import Description from "./Description"
+import Slider from "./Slider"
 import Story from "./Story"
 
 export const HomePage = () => {
     return (
         <>
-            <p>Slider</p>
+            <Slider />
             <p>Question</p>
             <Category />
-            <p>BestSeller</p>
+            <BestSeller />
             <p>NewProducts</p>
             <Description />
             <Story />
