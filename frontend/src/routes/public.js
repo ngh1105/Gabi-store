@@ -41,6 +41,5 @@ export const publicRoutes = {
         { path: '/product', element: <Product/> },
         { path: '/about', element: <About/> },
      
-     
     ]
 };
