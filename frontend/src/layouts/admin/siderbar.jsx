@@ -72,6 +72,22 @@ export const Siderbar = () =>  {
                 </div>
             </div>
         </div>
+        <div className={cx('header-mb')}>
+        <div class={cx('logo-mb')}>
+            <div id="logo" className={cx('search-mb')}>
+                            <p>vinh</p>
+            </div>
+            <div className={cx('search-mb')}>
+            <p>vinh</p>
+            </div>
+           
+            <div className={cx('search-mb')}>
+            <p>vinh</p>
+            </div>
+               
+               
+        </div>
+    </div>
     </div>
     );
 }
