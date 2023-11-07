@@ -4,22 +4,29 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;   
-    user-select: none;
     .btn {
         position: relative;
         text-decoration: none;
-        font-size: 14px;
-        margin: 10px ;
-        // color: #be6224;
-        // background-color: cyan;
-        background-color: #00a0c2;
-   
-    color: white;        
-    text-transform: uppercase;
-    font-weight: 300;
+        font-size: 18px;
        
+   
+        color: black;
+        &:after{
+            content: "";
+            position: absolute;
+            background-color: #ff3c78;
+            height: 2px;
+            width: 0;
+            left: 14px;
+            bottom: 3px;
+            transition: 0.3s;
+        }
         &:hover{
-            opacity: 0.9;
+            color: #ea1733;
+        }
+        &:hover::after {
+            width:92px;
+
         }
        
     }
