@@ -15,7 +15,7 @@ import Card from "pages/public/Home/NewProducts/Card";
 import ForgetPassword from "pages/public/ForgetPassword";
 import Product from "pages/public/Product"
 import BlogDetail from "pages/public/Blog/BlogDetail";
- 
+
 export const publicRoutes = {
     path: '/',
     element: <PublicLayout />,
@@ -38,7 +38,5 @@ export const publicRoutes = {
         { path: '/card', element: <Card/> },
         { path: '/forgetPassword', element: <ForgetPassword/> },
         { path: '/product', element: <Product/> },
-     
-     
     ]
 };
