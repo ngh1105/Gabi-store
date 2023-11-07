@@ -6,7 +6,7 @@
     background-color: #eee;
 
     .inner {
-        text-align: center;
+      
         // background-color: orange;
         justify-content: space-between;
         margin: 0 auto;
@@ -46,20 +46,19 @@
 // IPAD
 @media only screen and (min-width: 46.25em) and (max-width: 63.9375em){
     .wrapper{
-        width: 100%;
         text-align: center;  
+
     }  
     .inner{
         width: 94%;
+       
     }
-    }
-    .inner-content{
-        width: 100%;  
-    }
+}
+
 // PHONE
 @media screen and (min-width:376px) and (max-width:812px){
     .wrapper{
-        width: 90%;
+        width: 100%;
         text-align: center;  
         
     }  

@@ -13,9 +13,17 @@ import BestSeller from "pages/public/Home/BestSeller";
 import NewProducts from "pages/public/Home/NewProducts";
 import Card from "pages/public/Home/NewProducts/Card";
 import ForgetPassword from "pages/public/ForgetPassword";
-import Product from "pages/public/Product"
-import BlogDetail from "pages/public/Blog/BlogDetail";
+import Product, { Pants, Polo, Shirt } from "pages/public/Product"
+import PoloDetail from "pages/public/Product/Polo/PoloDetail";
+import ShirtDetail from "pages/public/Product/Shirt/ShirtDetail";
+import PantsDetail from "pages/public/Product/Pants/PantsDetail";
 import About from "pages/public/About";
+import Contact from "pages/public/Contact";
+import Following from "pages/public/Following";
+import ConfirmOrder from "pages/public/ConfirmOrder"
+import Policy from "pages/public/Policy";
+
+
  
 export const publicRoutes = {
     path: '/',
@@ -27,7 +35,7 @@ export const publicRoutes = {
         },
         { path: '/cart', element: <Cart/> },
         { path: '/blog', element: <Blog/> },
-        { path: '/blog/:id', element: <BlogDetail/> },
+       
         { path: '/deliverInfo', element: <DeliverInfo/> },
         { path: '/story', element: <Story/> },
         { path: '/slider', element: <Slider/> },
@@ -39,7 +47,21 @@ export const publicRoutes = {
         { path: '/card', element: <Card/> },
         { path: '/forgetPassword', element: <ForgetPassword/> },
         { path: '/product', element: <Product/> },
+        { path: '/product/polo', element: <Polo/> },
+        { path: '/product/polo/:id', element: <PoloDetail/> },
+        { path: '/product/shirt', element: <Shirt/> },
+        { path: '/product/shirt/:id', element: <ShirtDetail/> },
+        { path: '/product/pants', element:<Pants/> },
+        { path: '/product/pants/:id', element:<PantsDetail/> },
         { path: '/about', element: <About/> },
+        { path: '/contact', element: <Contact/> },
+        { path: '/following', element: <Following/> },
+        { path: '/confirmorder', element: <ConfirmOrder/> },
+        { path: '/policy', element: <Policy/> },
+        
+
+        
+     
      
     ]
 };
