@@ -132,3 +132,88 @@
         }
     }
 }
+
+
+/* Responsive cho màn hình 768px */
+@media screen and (max-width: 768px) {
+    .wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: #fff;
+
+        img {
+            width: 100%; /* Đảm bảo hình ảnh rộng bằng 100% của phần tử cha */
+            height: auto; /* Thay đổi chiều cao để ảnh tự điều chỉnh theo tỷ lệ */
+            object-fit: cover;
+        }
+
+        .inner {
+            width: 100%; /* Đảm bảo độ rộng tối đa trên thiết bị này */
+            padding: 0 5%;
+            display: flex;
+            flex-direction: column;
+
+            .inner-left {
+                flex: auto;
+                margin: 20px 0; /* Giảm khoảng cách */
+                text-align: center;
+
+                .brand {
+                    font-size: 1.8rem;
+                }
+
+                .title {
+                    font-size: 2.5rem;
+                }
+
+                .desc {
+                    font-size: 1.5rem;
+                    line-height: 1.5;
+                    padding: 20px;
+                }
+
+                .content {
+                    flex-direction: column;
+                    gap: 10px;
+                    text-align: center;
+                    font-size: 1.4rem;
+                }
+            }
+
+            .inner-right {
+                margin-left: 0;
+                flex: auto;
+               
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        .fashion {
+            margin-top: 0px;
+            gap: 0 15px;
+            .title{
+                font-size: 2rem;
+            }
+            width: 100%; /* Đảm bảo độ rộng tối đa trên thiết bị này */
+            padding: 0 5%;
+            flex-direction: column;
+
+       
+            .fashion-left img{
+                margin-bottom: 15px;
+                width: 100%;
+            }
+            .fashion-right .desc{
+                font-size: 1.4rem;
+            }
+            .fashion-right .logo{
+                font-size: 2rem;
+            }
+        }
+    }
+}
+
