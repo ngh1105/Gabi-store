@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom"
 import Topbar from "./topbar"
-import Footer from "./Footer/footer"
+import PublicFooter from "./footer"
 
 export const PublicLayout = () => {
     return (
@@ -12,7 +12,7 @@ export const PublicLayout = () => {
             <Outlet />
 
             {/* Footer component */}
-            <Footer/>
+            <PublicFooter />
         </>
     )
 }
