@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router-dom"
-import { Topbar } from "./Topbar/topbar"
+import Topbar from "./topbar"
 import Footer from "./Footer/footer"
 
 export const PublicLayout = () => {

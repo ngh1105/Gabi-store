@@ -15,12 +15,6 @@ function BestSeller() {
     console.log('bestSeller', bestSeller);
 
     useEffect(() => {
-        fetch('http://localhost:8000/best_seller')
-            .then((res) => res.json())
-            .then((bests) => setBestSeller(bests));
-    }, []);
-
-    useEffect(() => {
         Aos.init({
             duration: 400,
             delay: 200,
