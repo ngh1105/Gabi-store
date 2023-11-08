@@ -1,27 +1,18 @@
-import { AdminLayout } from "layouts/admin";
-import { HomeAdminPage } from "pages/admin/home";
-import {ProductsPage} from "pages/admin/products"
-import { FeelbackPage } from "pages/admin/feelback";
-import { AccountPage } from "pages/admin/account";
-export const AdminRoutes = {
+import AdminLayout from "layouts/admin";
+import OverviewPage from "pages/admin/overview";
+import CategoryPage from "pages/admin/category";
+
+export const adminRoutes = {
     path: '/admin',
     element: <AdminLayout/>,
     children: [
         {
-            path: '/admin',
-            element: <HomeAdminPage />,
+            path: '',
+            element: <OverviewPage />,
         },
         {
-            path: '/admin/products',
-            element: <ProductsPage/>,
+            path: 'category',
+            element: <CategoryPage />,
         },
-        {
-            path: "/admin/feelback",
-            element: <FeelbackPage/>,
-          },
-          {
-            path: "/admin/account",
-            element: <AccountPage/>,
-          }
     ]
 };

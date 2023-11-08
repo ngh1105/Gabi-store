@@ -16,29 +16,29 @@ function Policy() {
                     Và cũng không mấy dễ chịu khi đọc những trang "Chính sách đổi trả" dài ngoằng và đủ thứ điều ràng
                     buộc (thường là như thế)
                 </p>
-                <p>Do đó Coolmate sẽ viết ngắn gọn nhất có thể, cơ bản là:</p>
+                <p>Do đó GabiStore sẽ viết ngắn gọn nhất có thể, cơ bản là:</p>
                 <p>
                     - Khách hàng <span>được đổi hoặc trả MIỄN PH</span>Í sản phẩm trong vòng <span>60 ngày</span> kể từ
                     ngày nhận được sản phẩm.
                 </p>
                 <p>
-                    - Bất kỳ sản phẩm nào đặt mua tại Coolmate (ngoại trừ Outlet, sản phẩm Săn deal, sản phẩm đặt riêng
+                    - Bất kỳ sản phẩm nào đặt mua tại GabiStore (ngoại trừ Outlet, sản phẩm Săn deal, sản phẩm đặt riêng
                     theo yêu cầu và sản phẩm Pre-Order phiên bản số lượng giới hạn, không về thêm hàng) cũng được áp
                     dụng chính sách này, kể cả sản phẩm đã giặt hay cắt mác. (Ai mà chịu được một chiếc áo quá rộng hay
                     quần sịp quá chật chứ)
                 </p>
                 <p>
-                    - Trường hợp trả, Coolmate sẽ hoàn lại tiền hàng (không bao gồm tiền phí vận chuyển nếu có) cho
+                    - Trường hợp trả, GabiStore sẽ hoàn lại tiền hàng (không bao gồm tiền phí vận chuyển nếu có) cho
                     khách trong vòng 24h qua TÀI KHOẢN NGÂN HÀNG của khách (không tính Thứ 7, CN và ngày lễ). Đồng thời,
-                    Coolmate sẽ đến tận nơi lấy hàng trả và không thu thêm bất cứ phí gì (Khách hàng cũng có thể tự gởi
-                    lại hàng cho Coolmate)
+                    GabiStore sẽ đến tận nơi lấy hàng trả và không thu thêm bất cứ phí gì (Khách hàng cũng có thể tự gởi
+                    lại hàng cho GabiStore)
                 </p>
                 <h3>3 Bước nhanh chóng để đổi trả:</h3>
                 <p>
                     <span>Bước 1</span>: Điền thông tin Đổi/ Trả hàng ở đây, hoặc qua số hotline 1900272737.
                 </p>
                 <p>
-                    <span>Bước 2</span>: Nhận cuộc gọi xác nhận từ Coolmate về sản phẩm và thời gian nhận hàng
+                    <span>Bước 2</span>: Nhận cuộc gọi xác nhận từ GabiStore về sản phẩm và thời gian nhận hàng
                 </p>
                 <p>
                     <span>Bước 3</span>: Ngay khi xác nhận chúng tôi sẽ gởi bạn đơn hàng mới (hoặc lấy đơn hàng về), bạn
@@ -51,14 +51,14 @@ function Policy() {
                     xác nhận.
                 </p>
                 <h3>Lưu ý:</h3>
-                <p>- Coolmate hỗ trợ đổi tối đa 3 lần/1 khách hàng.</p>
+                <p>- GabiStore hỗ trợ đổi tối đa 3 lần/1 khách hàng.</p>
                 <p>
-                    - Coolmate có quyền quyết định dừng việc hỗ trợ đổi trả và trả lại tiền cho khách hàng nếu phát hiện
+                    - GabiStore có quyền quyết định dừng việc hỗ trợ đổi trả và trả lại tiền cho khách hàng nếu phát hiện
                     khách hàng sử dụng chính sách để trục lợi (như việc đổi quá nhiều lần).
                 </p>
                 <p>
                     - Với các đơn sàn TMĐT thì sẽ áp dụng chính sách trả hàng của sàn TMĐT. Tuy nhiên, trường hợp quá
-                    thời gian trả hàng của sàn TMĐT sẽ được áp dụng chính sách trả hàng của Coolmate
+                    thời gian trả hàng của sàn TMĐT sẽ được áp dụng chính sách trả hàng của GabiStore
                 </p>
                 <h3>Chúng tôi làm gì với hàng đổi trả:</h3>
                 <li>Áo thun, quần short: thu gom và gởi cho các chương trình từ thiện</li>
