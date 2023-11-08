@@ -52,7 +52,9 @@ export class GuestGuard implements CanActivate {
             request['user'] = payload;
 
         } catch {
-            throw new UnauthorizedException();
+            throw new UnauthorizedException({
+                invalidToken: true,
+            });
         }
 
         return true;
@@ -95,7 +97,9 @@ export class AdminGuard implements CanActivate {
             }
 
         } catch {
-            throw new UnauthorizedException();
+            throw new UnauthorizedException({
+                invalidToken: true,
+            });
         }
 
         return true;

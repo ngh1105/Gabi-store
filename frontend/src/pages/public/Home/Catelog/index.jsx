@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function Category() {
+function Catelog() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('inner-item')}>
@@ -46,4 +46,4 @@ function Category() {
     );
 }
 
-export default Category;
+export default Catelog;
