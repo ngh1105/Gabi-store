@@ -1,0 +1,145 @@
+  .main-home {
+        position: absolute;
+        width: calc(100% - 250px);
+        min-height: 100vh;
+        top: 60px;
+        left: 250px;
+        background: #fff;
+        border-radius: 1rem 0 0 1rem;
+        z-index: 1000;
+        overflow: hidden;
+        .content-home {
+            display: flex;
+            align-items: center;
+            margin: 25px 0 0 0px;
+            margin-left: 60px;
+            width: 130px;
+            height: 40px;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+
+            .icon {
+                margin-right: 5px;
+                opacity: 0.7;
+            }
+            .name-title {
+                margin-left: 5px;
+            }
+            .name-title p {
+                display: flex;
+                align-items: center;
+                font-size: 14px;
+                opacity: 0.7;
+            }
+            .content-title {
+                display: flex;
+                align-items: center;
+                margin-left: 18px;
+            }
+            
+        }
+       .big-card {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            margin: 20px 20px 20px 20px;
+        }
+        .card-inner{
+            display: flex;
+            align-items: center;               
+            margin-bottom: 5px;
+        }
+        .my-card{
+            padding: 30px 20px 30px 20px;
+            text-align: center;
+            background-color: #FFD099;
+            border-radius: 10px;
+        }
+        .my-card1{
+            padding: 30px 20px 30px 20px;
+            text-align: center;
+            background-color: #FF9209;
+            border-radius: 10px;
+        }
+        .my-card2{
+            padding: 30px 20px 30px 20px;
+            text-align: center;
+            background-color: #FF6C22;
+            border-radius: 10px;
+        }
+        .my-card3{
+            padding: 30px 20px 30px 20px;
+            text-align: center;
+            background-color: #2B3499;
+            border-radius: 10px;
+        }
+        h3{
+            padding-right: 90px;
+            font-size: 17px;
+            font-weight: 500;
+        }
+        h4{
+            float: left;
+            font-weight: 500;
+        }
+        .master-map{
+            display: flex;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        .chart{
+            margin-left: 80px;
+            margin-right: 100px;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .main-home {
+          width: 100%;
+          left: 0;
+          border-radius: 0;
+          overflow-x: scroll;
+        }
+      
+        .big-card {
+          flex-direction: column;
+          margin: 20px 0;
+        }
+      
+        .card-inner {
+          margin-bottom: 10px;
+        }
+      
+        h3 {
+          padding-right: 40px;
+        }
+      
+        .master-map {
+            display: flex;
+            flex-direction: column; /* New property to make elements stack vertically */
+            margin-top: 50px;
+            margin-bottom: 50px;
+          
+          .chart {
+           margin-left: 250px;
+          }
+          .charts1{
+            margin-left: 250px;
+           }
+        }      
+      }  
+      @media screen and (max-width: 768px) {
+        .master-map {      
+            display: flex;
+            margin-top: 50px;
+            margin-bottom: 50px;   
+            background-color: #FF6C22;             
+        }
+        .chart {
+            width: 300px;
+          
+          }
+          .charts1{
+            width: 300px;
+           }
+      }
