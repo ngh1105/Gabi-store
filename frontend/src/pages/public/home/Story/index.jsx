@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Button from 'components/Button';
-import styles from './Story.module.scss';
+import styles from './story.module.scss';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
