@@ -22,10 +22,10 @@ function Contact() {
         emailjs.sendForm('service_xpdxpxx', 'template_j9ogfcg', form.current, 'gCx_xfPO7xHTg5Y_Q').then(
             (result) => {
                 console.log(result.text);
-                if(result.text) { 
+                if (result.text) {
                     navigate('/thanks')
                 }
-                
+
             },
             (error) => {
                 console.log(error.text);
@@ -80,7 +80,7 @@ function Contact() {
                     <div className={cx('form-group')}>
                         <button className={cx('form-btn')} type="submit" >
                             Gửi 
-                            
+
                         </button>
                     </div>
                 </form>
@@ -140,6 +140,9 @@ function Contact() {
                 </div>
             </div>
         </div>
+
+
+
     );
 }
 
