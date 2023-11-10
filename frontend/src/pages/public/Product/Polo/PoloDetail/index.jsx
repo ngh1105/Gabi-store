@@ -272,12 +272,12 @@ function PoloDetail() {
                 </div>
                 <div className="flex flex-wrap items-center -mx-4 ">
                   <div className="w-full px-4 mb-4 lg:w-1/2 lg:mb-0">
-                    <button className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
+                    <button className="flex items-center justify-center w-full p-4 text-indigo-500 border border-indigo-500 rounded-md dark:text-gray-200 dark:border-indigo-600 hover:bg-indigo-700 hover:border-indigo-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
                       Thêm vào giỏ hàng
                     </button>
                   </div>
                   <div className="w-full px-4 mb-4 lg:mb-0 lg:w-1/2">
-                    <button className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
+                    <button className="flex items-center justify-center w-full p-4 text-indigo-500 border border-indigo-500 rounded-md dark:text-gray-200 dark:border-indigo-600 hover:bg-indigo-700 hover:border-indigo-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
                       Thêm vào  yêu thích
                     </button>
                   </div>

@@ -25,7 +25,7 @@ function ProductAll() {
     // </div>
 
     <div className="">
-      <Banner/>
+      <Banner />
       <section className="py-20 bg-gray-50 font-poppins dark:bg-gray-800  ">
         <div className="px-4 py-4 mx-auto max-w-7xl lg:py-6 md:px-6">
           {/* Breadcumb */}
@@ -35,7 +35,7 @@ function ProductAll() {
               <li className="inline-flex items-center">
                 <a
                   href="#"
-                  className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
+                  className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-white"
                 >
                   <svg
                     className="w-3 h-3 mr-2.5"
@@ -74,7 +74,6 @@ function ProductAll() {
                   </a>
                 </div>
               </li>
-             
             </ol>
           </nav>
 
@@ -266,7 +265,7 @@ function ProductAll() {
                         />
                         <button
                           type="submit"
-                          className="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                          className="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white bg-indigo-700 rounded-r-lg border border-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
                         >
                           <svg
                             className="w-4 h-4"
@@ -409,7 +408,7 @@ function ProductAll() {
 
                       <a
                         href="#"
-                        className="flex justify-center px-4 py-2 text-blue-600 border border-blue-300 rounded-full dark:border-gray-600 dark:text-gray-400 hover:bg-blue-700 hover:text-gray-100 dark:hover:bg-gray-800 dark:hover:border-gray-900"
+                        className="flex justify-center px-4 py-2 text-indigo-600 border border-indigo-300 rounded-full dark:border-gray-600 dark:text-gray-400 hover:bg-indigo-700 hover:text-gray-100 dark:hover:bg-gray-800 dark:hover:border-gray-900"
                       >
                         Thêm vào giỏ
                       </a>
@@ -458,7 +457,7 @@ function ProductAll() {
 
                       <a
                         href="#"
-                        className="flex justify-center px-4 py-2 text-blue-600 border border-blue-300 rounded-full dark:border-gray-600 dark:text-gray-400 hover:bg-blue-700 hover:text-gray-100 dark:hover:bg-gray-800 dark:hover:border-gray-900"
+                        className="flex justify-center px-4 py-2 text-indigo-600 border border-indigo-300 rounded-full dark:border-gray-600 dark:text-gray-400 hover:bg-indigo-700 hover:text-gray-100 dark:hover:bg-gray-800 dark:hover:border-gray-900"
                       >
                         Thêm vào giỏ
                       </a>
@@ -507,7 +506,7 @@ function ProductAll() {
 
                       <a
                         href="#"
-                        className="flex justify-center px-4 py-2 text-blue-600 border border-blue-300 rounded-full dark:border-gray-600 dark:text-gray-400 hover:bg-blue-700 hover:text-gray-100 dark:hover:bg-gray-800 dark:hover:border-gray-900"
+                        className="flex justify-center px-4 py-2 text-indigo-600 border border-indigo-300 rounded-full dark:border-gray-600 dark:text-gray-400 hover:bg-indigo-700 hover:text-gray-100 dark:hover:bg-gray-800 dark:hover:border-gray-900"
                       >
                         Thêm vào giỏ
                       </a>
@@ -556,7 +555,7 @@ function ProductAll() {
 
                       <a
                         href="#"
-                        className="flex justify-center px-4 py-2 text-blue-600 border border-blue-300 rounded-full dark:border-gray-600 dark:text-gray-400 hover:bg-blue-700 hover:text-gray-100 dark:hover:bg-gray-800 dark:hover:border-gray-900"
+                        className="flex justify-center px-4 py-2 text-indigo-600 border border-indigo-300 rounded-full dark:border-gray-600 dark:text-gray-400 hover:bg-indigo-700 hover:text-gray-100 dark:hover:bg-gray-800 dark:hover:border-gray-900"
                       >
                         Thêm vào giỏ
                       </a>
@@ -573,7 +572,7 @@ function ProductAll() {
                           className="object-cover w-full h-56 mx-auto "
                         />
                       </a>
-                      <div className="absolute top-0 right-0 z-10 m-2 flex items-center justify-center p-2 text-center bg-blue-600 ">
+                      <div className="absolute top-0 right-0 z-10 m-2 flex items-center justify-center p-2 text-center bg-indigo-600 ">
                         <span className="relative text-base font-normal text-gray-100 ">
                           {" "}
                           New
@@ -611,7 +610,7 @@ function ProductAll() {
 
                       <a
                         href="#"
-                        className="flex justify-center px-4 py-2 text-blue-600 border border-blue-300 rounded-full dark:border-gray-600 dark:text-gray-400 hover:bg-blue-700 hover:text-gray-100 dark:hover:bg-gray-800 dark:hover:border-gray-900"
+                        className="flex justify-center px-4 py-2 text-indigo-600 border border-indigo-300 rounded-full dark:border-gray-600 dark:text-gray-400 hover:bg-indigo-700 hover:text-gray-100 dark:hover:bg-gray-800 dark:hover:border-gray-900"
                       >
                         Thêm vào giỏ
                       </a>
@@ -660,7 +659,7 @@ function ProductAll() {
 
                       <a
                         href="#"
-                        className="flex justify-center px-4 py-2 text-blue-600 border border-blue-300 rounded-full dark:border-gray-600 dark:text-gray-400 hover:bg-blue-700 hover:text-gray-100 dark:hover:bg-gray-800 dark:hover:border-gray-900"
+                        className="flex justify-center px-4 py-2 text-indigo-600 border border-indigo-300 rounded-full dark:border-gray-600 dark:text-gray-400 hover:bg-indigo-700 hover:text-gray-100 dark:hover:bg-gray-800 dark:hover:border-gray-900"
                       >
                         Thêm vào giỏ
                       </a>
@@ -675,7 +674,7 @@ function ProductAll() {
                     <li className="page-item disabled ">
                       <a
                         href="#"
-                        className="relative block pointer-events-none px-3 py-1.5 mr-3 text-base text-gray-700 transition-all duration-300  rounded-md dark:text-gray-400 hover:text-gray-100 hover:bg-blue-600"
+                        className="relative block pointer-events-none px-3 py-1.5 mr-3 text-base text-gray-700 transition-all duration-300  rounded-md dark:text-gray-400 hover:text-gray-100 hover:bg-indigo-600"
                       >
                         Trước
                       </a>
@@ -683,7 +682,7 @@ function ProductAll() {
                     <li className="page-item ">
                       <a
                         href="#"
-                        className="relative block px-3 py-1.5 mr-3 text-base hover:text-blue-700 transition-all duration-300 hover:bg-blue-200 dark:hover:text-gray-400 dark:hover:bg-gray-700 rounded-md text-gray-100 bg-blue-600"
+                        className="relative block px-3 py-1.5 mr-3 text-base hover:text-indigo-700 transition-all duration-300 hover:bg-indigo-200 dark:hover:text-gray-400 dark:hover:bg-gray-700 rounded-md text-gray-100 bg-indigo-600"
                       >
                         1
                       </a>
@@ -691,7 +690,7 @@ function ProductAll() {
                     <li className="page-item ">
                       <a
                         href="#"
-                        className="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-blue-100 rounded-md mr-3  "
+                        className="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-indigo-100 rounded-md mr-3  "
                       >
                         2
                       </a>
@@ -699,7 +698,7 @@ function ProductAll() {
                     <li className="page-item ">
                       <a
                         href="#"
-                        className="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-blue-100 rounded-md mr-3 "
+                        className="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-indigo-100 rounded-md mr-3 "
                       >
                         3
                       </a>
@@ -707,7 +706,7 @@ function ProductAll() {
                     <li className="page-item ">
                       <a
                         href="#"
-                        className="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-blue-100 rounded-md "
+                        className="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-indigo-100 rounded-md "
                       >
                         Sau
                       </a>
