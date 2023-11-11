@@ -52,8 +52,8 @@ export default function Sidebar() {
                                 const activeClass = "flex items-center p-2 text-base font-medium text-white bg-indigo-700 rounded-lg hover:bg-indigo-800 group";
                                 const inactiveClass = "flex items-center p-2 text-base font-medium text-gray-900 rounded-lg hover:bg-gray-100 group";
 
-                                const iconActiveClass = "w-[22px] h-[22px] text-gray-200 transition duration-75 group-hover:text-white";
-                                const iconInactiveClass = "w-[22px] h-[22px] text-gray-500 transition duration-75 group-hover:text-gray-900";
+                                const iconActiveClass = "w-[20px] h-[20px] text-gray-200 transition duration-75 group-hover:text-white";
+                                const iconInactiveClass = "w-[20px] h-[20px] text-gray-500 transition duration-75 group-hover:text-gray-900";
 
                                 const isActive = selectedIndex === index;
 

@@ -22,6 +22,9 @@ import Contact from "pages/public/Contact";
 import Following from "pages/public/Following";
 import ConfirmOrder from "pages/public/ConfirmOrder"
 import Policy from "pages/public/Policy";
+import BlogDetail from "pages/public/Blog/BlogDetail";
+import Rules from "pages/public/Rules";
+import Information from "pages/public/Information";
 
 export const publicRoutes = {
     path: '/',
@@ -33,6 +36,8 @@ export const publicRoutes = {
         },
         { path: '/cart', element: <Cart /> },
         { path: '/blog', element: <Blog /> },
+        { path: '/blogdetail', element: <BlogDetail /> },
+
         { path: '/deliverInfo', element: <DeliverInfo /> },
         { path: '/story', element: <Story /> },
         { path: '/slider', element: <Slider /> },
@@ -55,5 +60,8 @@ export const publicRoutes = {
         { path: '/following', element: <Following /> },
         { path: '/confirmorder', element: <ConfirmOrder /> },
         { path: '/policy', element: <Policy /> },
+        { path: '/rules', element: <Rules /> },
+        { path: '/Information', element: <Information /> },
+        
     ]
 };

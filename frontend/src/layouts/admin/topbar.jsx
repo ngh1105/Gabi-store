@@ -1,3 +1,4 @@
+import { Avatar, Dropdown } from "flowbite-react";
 
 export default function Topbar() {
     return (
@@ -232,30 +233,26 @@ export default function Topbar() {
                                 </a>
                             </div>
                         </div>
-                        <button type="button" className="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="dropdown">
-                            <span className="sr-only">Open user menu</span>
-                            <img className="w-8 h-8 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png" alt="user photo" />
-                        </button>
                         {/* Dropdown menu */}
-                        <div className="hidden z-50 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 rounded-xl" id="dropdown">
-                            <div className="py-3 px-4">
-                                <span className="block text-sm font-semibold text-gray-900 dark:text-white">Huy Ngoc</span>
-                                <span className="block text-sm text-gray-900 truncate dark:text-white">huy@gmail.com</span>
-                            </div>
-                            <ul className="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
-                                <li>
-                                    <a href="#" className="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Hồ sơ của tôi</a>
-                                </li>
-                                <li>
-                                    <a href="#" className="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Cài đặt</a>
-                                </li>
-                            </ul>
-                            <ul className="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
-                                <li>
-                                    <a href="#" className="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Đăng xuất</a>
-                                </li>
-                            </ul>
+                        <div
+                            className="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                        >
+                            <Dropdown
+                                label={<Avatar alt="User settings" size="sm" img="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png" rounded />}
+                                arrowIcon={false}
+                                inline
+                            >
+                                <Dropdown.Header>
+                                    <span className="block text-sm">Huy Ngoc</span>
+                                    <span className="block truncate text-sm font-medium">huy@gmail.com</span>
+                                </Dropdown.Header>
+                                <Dropdown.Item>Hồ sơ của tôi</Dropdown.Item>
+                                <Dropdown.Item>Cài đặt</Dropdown.Item>
+                                <Dropdown.Divider />
+                                <Dropdown.Item>Đăng xuất</Dropdown.Item>
+                            </Dropdown>
                         </div>
+
                     </div>
                 </div>
             </nav>
