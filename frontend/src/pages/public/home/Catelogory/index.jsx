@@ -74,52 +74,60 @@ function Category() {
       <section className="bg-white dark:bg-gray-900">
         <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
           <div className="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+             <Link to="/product">
             <div className="text-center text-gray-500 dark:text-gray-400">
-              <img
-                className="mx-auto mb-4 w-36 h-36 rounded-full"
-                // src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/helene-engels.png"
-                src={
-                  "https://i.pinimg.com/564x/9d/7a/57/9d7a5788f72acb9fe0da2631f4253ac6.jpg"
-                }
-                alt="Helene Avatar"
-              />
+                <img
+                  className="mx-auto mb-4 w-36 h-36 rounded-full"
+                  src={
+                    "https://i.pinimg.com/564x/9d/7a/57/9d7a5788f72acb9fe0da2631f4253ac6.jpg"
+                  }
+                  alt="Helene Avatar"
+                />
               <p className="capitalize">Tất cả sản phẩm</p>
             </div>
-            <div className="text-center text-gray-500 dark:text-gray-400">
-              <img
-                className="mx-auto mb-4 w-36 h-36 rounded-full"
-                // src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
-                src={
-                  "https://i.pinimg.com/564x/fa/25/2a/fa252a1c5863779537a87a2f67c30108.jpg"
-                }
-                alt="Jese Avatar"
-              />
-              <p>Áo Polo</p>
-            </div>
-            <div className="text-center text-gray-500 dark:text-gray-400">
-              <img
-                className="mx-auto mb-4 w-36 h-36 rounded-full"
-                // src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/joseph-mcfall.png"
-                src={
-                  "https://i.pinimg.com/564x/c6/c5/bc/c6c5bcf8e9b4f95f274aa0734e6cbde3.jpg"
-                }
-                alt="Joseph Avatar"
-              />
+             </Link>
 
-              <p className="capitalize">Áo thun thể thao</p>
-            </div>
+           <Link to="/product/polo">
+              <div className="text-center text-gray-500 dark:text-gray-400">
+                <img
+                  className="mx-auto mb-4 w-36 h-36 rounded-full"
+                  // src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
+                  src={
+                    "https://i.pinimg.com/564x/fa/25/2a/fa252a1c5863779537a87a2f67c30108.jpg"
+                  }
+                  alt="Jese Avatar"
+                />
+                <p>Áo Polo</p>
+              </div>
+           </Link>
 
-            <div className="text-center text-gray-500 dark:text-gray-400">
-              <img
-                className="mx-auto mb-4 w-36 h-36 rounded-full"
-                src={
-                  "https://i.pinimg.com/564x/b7/79/50/b779506abb38f0ecbd7696b5ae52b33e.jpg"
-                }
-                alt="Bonnie Avatar"
-              />
+           <Link to="/product/shirt">
+              <div className="text-center text-gray-500 dark:text-gray-400">
+                <img
+                  className="mx-auto mb-4 w-36 h-36 rounded-full"
+                  src={
+                    "https://i.pinimg.com/564x/c6/c5/bc/c6c5bcf8e9b4f95f274aa0734e6cbde3.jpg"
+                  }
+                  alt="Joseph Avatar"
+                />
+  
+                <p className="capitalize">Áo thun thể thao</p>
+              </div>
+           </Link>
 
-              <p>Quần Short Nam</p>
-            </div>
+            <Link to="/product/pants">
+              <div className="text-center text-gray-500 dark:text-gray-400">
+                <img
+                  className="mx-auto mb-4 w-36 h-36 rounded-full"
+                  src={
+                    "https://i.pinimg.com/564x/b7/79/50/b779506abb38f0ecbd7696b5ae52b33e.jpg"
+                  }
+                  alt="Bonnie Avatar"
+                />
+  
+                <p>Quần Short Nam</p>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
