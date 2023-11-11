@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import classNames from 'classnames/bind';
-import style from './about.module.scss';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import classNames from "classnames/bind";
+import style from "./about.module.scss";
+import axios from "axios";
 
 const cx = classNames.bind(style);
 
