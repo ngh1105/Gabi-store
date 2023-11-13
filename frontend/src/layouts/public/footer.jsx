@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <div className="mt-[-400px]">
+    <div>
       <section className="flex flex-col h-screen lg:justify-end font-poppins">
         <div
           className="relative py-10 bg-center bg-no-repeat bg-cover"
