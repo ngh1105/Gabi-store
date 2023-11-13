@@ -48,11 +48,8 @@ function Blog() {
               content7v1: "Bạn có thể thêm các phụ kiện như giày thể thao hoặc nón và bạn sẽ trông rất thời trang và sành điệu trong trang phục này.",
               content7v2: null,
               img7: "https://file.hstatic.net/1000184601/file/_o_polo_qu_n_jogger.png"
-            }
-            
-    
-          
-        
+            },
+   
     ]);
 
     const navigate = useNavigate();
