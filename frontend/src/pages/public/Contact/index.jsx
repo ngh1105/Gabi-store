@@ -125,18 +125,18 @@ function Contact() {
 
 
 
-        <div class="container my-24 mx-auto md:px-6">
+        <div class="pr-10">
 
-            <section class="mb-32 text-center">
+            <section class="">
                 <div class="py-12 md:px-12">
                     <div class="container w- mx-auto xl:px-32">
                         <div class="grid items-center lg:grid-cols-2">
-                            <div class="mb-12 md:mt-12 lg:mt-0 lg:mb-0">
+                        <div class="">
                                 <div
-                                    class="relative z-[1] block rounded-lg bg-[hsla(0,0%,100%,0.55)] px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] backdrop-blur-[30px] dark:bg-[hsla(0,0%,5%,0.7)] dark:shadow-black/20 md:px-12 lg:-mr-14">
-                                    <h2 class="mb-12 text-3xl font-bold">Liên hệ</h2>
+                                    class="pr-10">
+                                    <h2 class="mb-7 text-3xl font-bold">Liên hệ với chúng tôi</h2>
                                     <form action="https://formbold.com/s/FORM_ID" method="POST">
-                                        <div class="mb-5">
+                                        <div class="mb-3">
                                             <label
                                                 for="name"
                                                 class="mb-3 block text-base font-medium text-[#07074D]"
@@ -147,11 +147,11 @@ function Contact() {
                                                 type="text"
                                                 name="name"
                                                 id="name"
-                                                placeholder="Full Name"
+                                                placeholder="Tên đầy đủ"
                                                 class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                             />
                                         </div>
-                                        <div class="mb-5">
+                                        <div class="mb-3">
                                             <label
                                                 for="email"
                                                 class="mb-3 block text-base font-medium text-[#07074D]"
@@ -162,12 +162,12 @@ function Contact() {
                                                 type="email"
                                                 name="email"
                                                 id="email"
-                                                placeholder="example@domain.com"
+                                                placeholder="abcdef@gmail.com"
                                                 class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                             />
                                         </div>
 
-                                        <div class="mb-5">
+                                        <div class="mb-3">
                                             <label
                                                 for="message"
                                                 class="mb-3 block text-base font-medium text-[#07074D]"
@@ -178,7 +178,7 @@ function Contact() {
                                                 rows="2"
                                                 name="message"
                                                 id="message"
-                                                placeholder="Type your message"
+                                                placeholder="Shop này uy tín"
                                                 class="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                             ></textarea>
                                         </div>
@@ -194,10 +194,10 @@ function Contact() {
                             </div>
                             <div class="md:mb-12 lg:mb-0">
                                 <div
-                                    class="relative h-[750px] rounded-lg shadow-lg dark:shadow-black/20">
+                                    class="relative w-[600px] h-[600px] rounded-lg shadow-lg dark:shadow-black/20">
                                     <iframe
                                         src="https://maps.google.com/maps?q=manhatan&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                                        class="absolute left-0 top-0 h-full w-full rounded-lg"
+                                        class="absolute w-[600px] h-[600px] "
                                         frameborder="0"
                                         allowfullscreen></iframe>
                                 </div>
