@@ -1,10 +1,7 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import styles from './Story.module.scss';
 import { Button } from 'bootstrap';
 import { Link } from 'react-router-dom';
-
-const cx = classNames.bind(styles);
 
 function Story() {
     return (
