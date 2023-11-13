@@ -1,23 +1,21 @@
 import BestSeller from "./BestSeller"
-import Catelog from "./Catelog"
+import Category from "./Catelogory"
 import Description from "./Description"
 import NewProducts from "./NewProducts"
-import PostItem from "./PostItem"
-
+import Question from "./Question"
 import Slider from "./Slider"
 import Story from "./Story"
 
 export const HomePage = () => {
     return (
-        <>
-             <Slider  />
-            <Catelog />
-            {/* <PostItem/> */}
+        <div>
+            <Slider />
+            <Question/>
+            <Category />
             <BestSeller />
-            <NewProducts type="GABI Xuân Hè"/>
+            <NewProducts type="GabiStore mùa hè"/>
             <Description />
             <Story />
-            
-        </>
+        </div>
     )
 }
