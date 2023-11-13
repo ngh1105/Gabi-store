@@ -1,54 +1,173 @@
-
 export default function Footer() {
-    return (
-        <>
-            <footer className="p-4 bg-white md:p-8 lg:p-10 dark:bg-gray-800">
-                <div className="mx-auto max-w-screen-xl text-center">
-                    <a href="#" className="flex justify-center items-center text-2xl font-semibold text-gray-900 dark:text-white">
-                        <svg className="mr-2 h-8" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M25.2696 13.126C25.1955 13.6364 24.8589 14.3299 24.4728 14.9328C23.9856 15.6936 23.2125 16.2264 22.3276 16.4114L18.43 17.2265C17.8035 17.3575 17.2355 17.6853 16.8089 18.1621L14.2533 21.0188C13.773 21.5556 13.4373 21.4276 13.4373 20.7075C13.4315 20.7342 12.1689 23.9903 15.5149 25.9202C16.8005 26.6618 18.6511 26.3953 19.9367 25.6538L26.7486 21.7247C29.2961 20.2553 31.0948 17.7695 31.6926 14.892C31.7163 14.7781 31.7345 14.6639 31.7542 14.5498L25.2696 13.126Z" fill="url(#paint0_linear_11430_22515)" /><path d="M23.5028 9.20133C24.7884 9.94288 25.3137 11.0469 25.3137 12.53C25.3137 12.7313 25.2979 12.9302 25.2694 13.1261L28.0141 14.3051L31.754 14.5499C32.2329 11.7784 31.2944 8.92561 29.612 6.65804C28.3459 4.9516 26.7167 3.47073 24.7581 2.34097C23.167 1.42325 21.5136 0.818599 19.8525 0.486816L17.9861 2.90382L17.3965 5.67918L23.5028 9.20133Z" fill="url(#paint1_linear_11430_22515)" /><path d="M1.5336 11.2352C1.5329 11.2373 1.53483 11.238 1.53556 11.2358C1.67958 10.8038 1.86018 10.3219 2.08564 9.80704C3.26334 7.11765 5.53286 5.32397 8.32492 4.40943C11.117 3.49491 14.1655 3.81547 16.7101 5.28323L17.3965 5.67913L19.8525 0.486761C12.041 -1.07341 4.05728 3.51588 1.54353 11.2051C1.54233 11.2087 1.53796 11.2216 1.5336 11.2352Z" fill="url(#paint2_linear_11430_22515)" /><path d="M19.6699 25.6538C18.3843 26.3953 16.8003 26.3953 15.5147 25.6538C15.3402 25.5531 15.1757 25.4399 15.0201 25.3174L12.7591 26.8719L10.8103 30.0209C12.9733 31.821 15.7821 32.3997 18.589 32.0779C20.7013 31.8357 22.7995 31.1665 24.7582 30.0368C26.3492 29.1191 27.7 27.9909 28.8182 26.7195L27.6563 23.8962L25.7762 22.1316L19.6699 25.6538Z" fill="url(#paint3_linear_11430_22515)" /><path d="M15.0201 25.3175C14.0296 24.5373 13.4371 23.3406 13.4371 22.0588V21.931V11.2558C13.4371 10.6521 13.615 10.5494 14.1384 10.8513C13.3323 10.3864 11.4703 8.79036 9.17118 10.1165C7.88557 10.858 6.8269 12.4949 6.8269 13.978V21.8362C6.8269 24.775 8.34906 27.8406 10.5445 29.7966C10.6313 29.874 10.7212 29.9469 10.8103 30.0211L15.0201 25.3175Z" fill="url(#paint4_linear_11430_22515)" /><path d="M28.6604 5.49565C28.6589 5.49395 28.6573 5.49532 28.6589 5.49703C28.9613 5.83763 29.2888 6.23485 29.6223 6.68734C31.3648 9.05099 32.0158 12.0447 31.4126 14.9176C30.8093 17.7906 29.0071 20.2679 26.4625 21.7357L25.7761 22.1316L28.8181 26.7195C34.0764 20.741 34.09 11.5388 28.6815 5.51929C28.6789 5.51641 28.67 5.50622 28.6604 5.49565Z" fill="url(#paint5_linear_11430_22515)" /><path d="M7.09355 13.978C7.09354 12.4949 7.88551 11.1244 9.17113 10.3829C9.34564 10.2822 9.52601 10.1965 9.71002 10.1231L9.49304 7.38962L7.96861 4.26221C5.32671 5.23364 3.1897 7.24125 2.06528 9.83067C1.2191 11.7793 0.75001 13.9294 0.75 16.1888C0.75 18.0243 1.05255 19.7571 1.59553 21.3603L4.62391 21.7666L7.09355 21.0223V13.978Z" fill="url(#paint6_linear_11430_22515)" /><path d="M9.71016 10.1231C10.8817 9.65623 12.2153 9.74199 13.3264 10.3829L13.4372 10.4468L22.3326 15.5777C22.9566 15.9376 22.8999 16.2918 22.1946 16.4392L22.7078 16.332C23.383 16.1908 23.9999 15.8457 24.4717 15.3428C25.2828 14.4782 25.5806 13.4351 25.5806 12.5299C25.5806 11.0468 24.7886 9.67634 23.503 8.93479L16.6911 5.00568C14.1436 3.53627 11.0895 3.22294 8.29622 4.14442C8.18572 4.18087 8.07756 4.2222 7.96875 4.26221L9.71016 10.1231Z" fill="url(#paint7_linear_11430_22515)" /><path d="M20.0721 31.8357C20.0744 31.8352 20.0739 31.8332 20.0717 31.8337C19.6252 31.925 19.1172 32.0097 18.5581 32.0721C15.638 32.3978 12.7174 31.4643 10.5286 29.5059C8.33986 27.5474 7.09347 24.7495 7.09348 21.814L7.09347 21.0222L1.59546 21.3602C4.1488 28.8989 12.1189 33.5118 20.0411 31.8421C20.0449 31.8413 20.0582 31.8387 20.0721 31.8357Z" fill="url(#paint8_linear_11430_22515)" />
-                            <defs>
-                                <linearGradient id="paint0_linear_11430_22515" x1="20.8102" y1="23.9532" x2="23.9577" y2="12.9901" gradientUnits="userSpaceOnUse"><stop stopColor="#1724C9" /><stop offset={1} stopColor="#1C64F2" /></linearGradient>
-                                <linearGradient id="paint1_linear_11430_22515" x1="28.0593" y1="10.5837" x2="19.7797" y2="2.33321" gradientUnits="userSpaceOnUse"><stop stopColor="#1C64F2" /><stop offset={1} stopColor="#0092FF" /></linearGradient>
-                                <linearGradient id="paint2_linear_11430_22515" x1="16.9145" y1="5.2045" x2="4.42432" y2="5.99375" gradientUnits="userSpaceOnUse"><stop stopColor="#0092FF" /><stop offset={1} stopColor="#45B2FF" /></linearGradient>
-                                <linearGradient id="paint3_linear_11430_22515" x1="16.0698" y1="28.846" x2="27.2866" y2="25.8192" gradientUnits="userSpaceOnUse"><stop stopColor="#1C64F2" /><stop offset={1} stopColor="#0092FF" /></linearGradient>
-                                <linearGradient id="paint4_linear_11430_22515" x1="8.01881" y1="15.8661" x2="15.9825" y2="24.1181" gradientUnits="userSpaceOnUse"><stop stopColor="#1724C9" /><stop offset={1} stopColor="#1C64F2" /></linearGradient>
-                                <linearGradient id="paint5_linear_11430_22515" x1="26.2004" y1="21.8189" x2="31.7569" y2="10.6178" gradientUnits="userSpaceOnUse"><stop stopColor="#0092FF" /><stop offset={1} stopColor="#45B2FF" /></linearGradient>
-                                <linearGradient id="paint6_linear_11430_22515" x1="6.11387" y1="9.31427" x2="3.14054" y2="20.4898" gradientUnits="userSpaceOnUse"><stop stopColor="#1C64F2" /><stop offset={1} stopColor="#0092FF" /></linearGradient>
-                                <linearGradient id="paint7_linear_11430_22515" x1="21.2932" y1="8.78271" x2="10.4278" y2="11.488" gradientUnits="userSpaceOnUse"><stop stopColor="#1724C9" /><stop offset={1} stopColor="#1C64F2" /></linearGradient>
-                                <linearGradient id="paint8_linear_11430_22515" x1="7.15667" y1="21.5399" x2="14.0824" y2="31.9579" gradientUnits="userSpaceOnUse"><stop stopColor="#0092FF" /><stop offset={1} stopColor="#45B2FF" /></linearGradient>
-                            </defs>
-                        </svg>
-                        Gabi Store
+  return (
+    <div className="mt-[-400px]">
+      <section className="flex flex-col h-screen lg:justify-end font-poppins">
+        <div
+          className="relative py-10 bg-center bg-no-repeat bg-cover"
+          style={{
+            backgroundImage: 'url("https://i.postimg.cc/DwppyZZP/mypic3.jpg")',
+          }}
+        >
+          <div className="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-60 " />
+          <div className="relative z-10 justify-center flex-1 max-w-6xl px-4 py-4 mx-auto lg:py-0">
+            <div className="flex flex-wrap pb-10 -mx-3">
+              <div className="w-full px-4 mb-11 md:w-1/2 lg:w-4/12 lg:mb-0">
+                <a
+                  href="#"
+                  className="inline-block pb-2 text-lg font-bold text-gray-300"
+                >
+                  Thông tin công ty
+                </a>
+                <div className="w-16 mb-4 border-b-2 border-gray-300 " />
+                <p className="text-base font-normal leading-6 text-gray-400 lg:w-64">
+                  Công ty cổ phần thương mại dịch vụ Thời Trang VN
+                  <p>
+                    © 2014-2022 Công ty cổ phần thương mại dịch vụ Trà Cà Phê VN
+                    mọi quyền bảo lưu
+                  </p>
+                </p>
+              </div>
+              <div className="w-full px-4 md:w-1/4 lg:w-2/12 mb-11 lg:mb-0">
+                <h2 className="pb-2 text-lg font-bold text-gray-300 ">
+                  Đường dẫn nhanh
+                </h2>
+                <div className="w-16 mb-4 border-b-2 border-gray-300 " />
+                <ul>
+                  <li className="mb-4">
+                    <a
+                      href="#"
+                      className="inline-block text-base font-normal text-gray-400 "
+                    >
+                      Trang chủ
                     </a>
-                    <p className="my-6 text-gray-500 dark:text-gray-400">Open-source library of over 400+ web components and interactive elements built for better web.</p>
-                    <ul className="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
-                        <li>
-                            <a href="#" className="mr-4 hover:underline md:mr-6 ">About</a>
-                        </li>
-                        <li>
-                            <a href="#" className="mr-4 hover:underline md:mr-6">Premium</a>
-                        </li>
-                        <li>
-                            <a href="#" className="mr-4 hover:underline md:mr-6 ">Campaigns</a>
-                        </li>
-                        <li>
-                            <a href="#" className="mr-4 hover:underline md:mr-6">Blog</a>
-                        </li>
-                        <li>
-                            <a href="#" className="mr-4 hover:underline md:mr-6">Affiliate Program</a>
-                        </li>
-                        <li>
-                            <a href="#" className="mr-4 hover:underline md:mr-6">FAQs</a>
-                        </li>
-                        <li>
-                            <a href="#" className="mr-4 hover:underline md:mr-6">Contact</a>
-                        </li>
-                    </ul>
-                    <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2021-2022 <a href="#" className="hover:underline">Flowbite™</a>. All Rights Reserved.</span>
-                </div>
-            </footer>
+                  </li>
+                  <li className="mb-4">
+                    <a
+                      href="#"
+                      className="inline-block text-base font-normal text-gray-400 "
+                    >
+                      Về chúng tôi
+                    </a>
+                  </li>
+                  <li className="mb-4">
+                    <a
+                      href="#"
+                      className="inline-block text-base font-normal text-gray-400 dark:text-gray-400"
+                    >
+                      Sản phẩm
+                    </a>
+                  </li>
 
-        </>
-    )
+                  <li className="mb-4">
+                    <a
+                      href="#"
+                      className="inline-block text-base font-normal text-gray-400 dark:text-gray-400"
+                    >
+                      Chuyện cái áo
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div className="w-full px-4 mb-11 lg:mb-0 md:w-1/4 lg:w-2/12">
+                <h2 className="pb-2 text-lg font-bold text-gray-300">
+                  Điều khoản{" "}
+                </h2>
+                <div className="w-16 mb-4 border-b-2 border-gray-300 " />
+                <ul>
+                  <li className="mb-4">
+                    <a
+                      href="#"
+                      className="inline-block text-base font-normal text-gray-400"
+                    >
+                      Điều khoản sử dụng
+                    </a>
+                  </li>
+                  <li className="mb-4">
+                    <a
+                      href="#"
+                      className="inline-block text-base font-normal text-gray-400"
+                    >
+                      Chính sách bảo mật thông tin
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div className="w-full px-4 mb-11 lg:mb-0 md:w-1/3 lg:w-3/12">
+                <h2 className="pb-2 text-lg font-bold text-gray-300 ">
+                  Kết nối với chúng tôi
+                </h2>
+                <div className="w-16 mb-4 border-b-2 border-gray-300 " />
+                <div className="flex justify-start mt-4 ">
+                  <a
+                    href="#"
+                    type="button"
+                    className="m-1 leading-normal text-gray-300 uppercase transition duration-150 ease-in-out border-2 border-gray-400 rounded-full dark:border-gray-400 dark:hover:bg-gray-800 hover:border-blue-600 hover:bg-blue-800 w-9 h-9"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={16}
+                      height={16}
+                      fill="currentColor"
+                      className="w-4 h-full mx-auto text-gray-300 dark:text-gray-400 bi bi-facebook"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
+                    </svg>
+                  </a>
+                  <a
+                    href="#"
+                    type="button"
+                    className="m-1 leading-normal text-gray-300 uppercase transition duration-150 ease-in-out border-2 border-gray-400 rounded-full dark:border-gray-400 dark:text-gray-400 dark:hover:bg-gray-800 hover:border-blue-600 hover:bg-blue-600 w-9 h-9"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={16}
+                      height={16}
+                      fill="currentColor"
+                      className="w-4 h-full mx-auto text-gray-300 dark:text-gray-400 bi bi-twitter"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+                    </svg>
+                  </a>
+                  <a
+                    href="#"
+                    type="button"
+                    className="m-1 leading-normal text-gray-300 uppercase transition duration-150 ease-in-out border-2 border-gray-400 rounded-full dark:border-gray-400 dark:text-gray-400 dark:hover:bg-gray-800 hover:border-blue-600 text-text-gray-50 hover:bg-blue-600 w-9 h-9"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={16}
+                      height={16}
+                      fill="currentColor"
+                      className="w-4 h-full mx-auto text-gray-100 dark:text-gray-400 bi bi-google"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z" />
+                    </svg>
+                  </a>
+                  <a
+                    href="#"
+                    type="button"
+                    className="m-1 leading-normal text-gray-400 uppercase transition duration-150 ease-in-out border-2 border-gray-400 rounded-full dark:border-gray-400 dark:text-gray-400 dark:hover:bg-gray-800 hover:border-blue-600 hover:bg-blue-600 w-9 h-9"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={16}
+                      height={16}
+                      fill="currentColor"
+                      className="w-4 h-full mx-auto text-gray-300 dark:text-gray-400 bi bi-linkedin"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 }
