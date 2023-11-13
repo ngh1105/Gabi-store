@@ -1,4 +1,7 @@
 import AddPage from "../category/add"
+import AddUserPage from "./add";
+import UpdateUserPage from "./update";
+import DeleteUserPage from "./delete";
 import { useMemo } from "react"
 import { Link } from "react-router-dom";
 export default function UserPage(){
@@ -99,7 +102,7 @@ export default function UserPage(){
                   </form>
                 </div>
                 <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                    <AddPage/>
+                    <AddUserPage/>
                   <div className="flex items-center space-x-3 w-full md:w-auto">
                     <button id="filterDropdownButton" data-dropdown-toggle="filterDropdown" className="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" type="button">
                       <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" className="h-4 w-4 mr-2 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
@@ -148,6 +151,7 @@ export default function UserPage(){
                       <th scope="col" className="px-4 py-3">Email</th> 
                       <th scope="col" className="px-4 py-3">Phone</th>
                       <th scope="col" className="px-4 py-3">Role</th>
+                      <th scope="col" className="px-4 py-3">Chức năng</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -161,26 +165,12 @@ export default function UserPage(){
                                                 <td className="px-4 py-3">{obj.email}</td>
                                                 <td className="px-4 py-3">{obj.phone}</td>
                                                 <td className="px-4 py-3">{obj.role}</td>
-                                                <td className="px-4 py-3 flex items-center justify-end">
-                                                  <button id="apple-imac-27-dropdown-button" data-dropdown-toggle="apple-imac-27-dropdown" className="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100" type="button">
-                                                    <svg className="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                      <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                                    </svg>
-                                                  </button>
-                                                  <div id="apple-imac-27-dropdown" className="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                                                    <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="apple-imac-27-dropdown-button">
-                                                      <li>
-                                                        <Link to="addproduct" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</Link>
-                                                      </li>
-                                                      <li>
-                                                        <Link to="#" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</Link>
-                                                      </li>
-                                                    </ul>
-                                                    <div className="py-1">
-                                                      <Link to="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</Link>
-                                                    </div>
-                                                  </div>
+                                               
+                                                <td className="pl-1 py-3">
+                                                  <button className="px-3"><UpdateUserPage/></button>
+                                                  <button><DeleteUserPage/></button>
                                                 </td>
+                                              
                                             </tr>
                                         )
                                     })

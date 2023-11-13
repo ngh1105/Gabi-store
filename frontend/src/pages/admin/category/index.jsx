@@ -1,6 +1,8 @@
 import { useMemo } from "react"
 import AddPage from "./add";
+import UpdatePage from "./update";
 import { Link } from "react-router-dom";
+import DeletePage from "./delete";
 export default function CategoryPage() {
   const category = useMemo(() => [
     {
@@ -92,27 +94,27 @@ export default function CategoryPage() {
                       </svg>
                     </button>
                     <div id="filterDropdown" className="z-10 hidden w-48 p-3 bg-white rounded-lg shadow ">
-                      <h6 className="mb-3 text-sm font-medium text-gray-900 ">Choose brand</h6>
+                      <h6 className="mb-3 text-sm font-medium text-gray-900 ">Chọn loại hàng</h6>
                       <ul className="space-y-2 text-sm" aria-labelledby="filterDropdownButton">
                         <li className="flex items-center">
                           <input id="apple" type="checkbox" defaultValue className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 " />
-                          <label htmlFor="apple" className="ml-2 text-sm font-medium text-gray-900 ">Apple (56)</label>
+                          <label htmlFor="apple" className="ml-2 text-sm font-medium text-gray-900 ">Quần (56)</label>
                         </li>
                         <li className="flex items-center">
                           <input id="fitbit" type="checkbox" defaultValue className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 " />
-                          <label htmlFor="fitbit" className="ml-2 text-sm font-medium text-gray-900 ">Microsoft (16)</label>
+                          <label htmlFor="fitbit" className="ml-2 text-sm font-medium text-gray-900 ">Áo (16)</label>
                         </li>
                         <li className="flex items-center">
                           <input id="razor" type="checkbox" defaultValue className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 " />
-                          <label htmlFor="razor" className="ml-2 text-sm font-medium text-gray-900 ">Razor (49)</label>
+                          <label htmlFor="razor" className="ml-2 text-sm font-medium text-gray-900 ">Dép (49)</label>
                         </li>
                         <li className="flex items-center">
                           <input id="nikon" type="checkbox" defaultValue className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 " />
-                          <label htmlFor="nikon" className="ml-2 text-sm font-medium text-gray-900 ">Nikon (12)</label>
+                          <label htmlFor="nikon" className="ml-2 text-sm font-medium text-gray-900 ">Giày (12)</label>
                         </li>
                         <li className="flex items-center">
                           <input id="benq" type="checkbox" defaultValue className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 " />
-                          <label htmlFor="benq" className="ml-2 text-sm font-medium text-gray-900 ">BenQ (74)</label>
+                          <label htmlFor="benq" className="ml-2 text-sm font-medium text-gray-900 ">Nón (74)</label>
                         </li>
                       </ul>
                     </div>
@@ -134,9 +136,9 @@ export default function CategoryPage() {
                     </th>
                     <th scope="col" className="px-4 py-3">
                     Ngày tạo
-                    </th>
-                    <th scope="col" className="px-4 py-3">
-                      <span className="sr-only">Edit</span>
+                    </th>               
+                    <th scope="col" className=" px-4 py-3">
+                    Chức năng
                     </th>
                   </tr>
                 </thead>
@@ -149,27 +151,11 @@ export default function CategoryPage() {
                                                 <td className="px-4 py-3">{obj.name}</td>
                                                 <td className="px-4 py-3">{obj.description}</td>
                                                 <td className="px-4 py-3">{obj.created_at}</td>
-                                              
-                                                <td className="px-4 py-3 flex items-center justify-end">
-                                                  <button id="apple-imac-27-dropdown-button" data-dropdown-toggle="apple-imac-27-dropdown" className="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none " type="button">
-                                                    <svg className="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                      <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                                    </svg>
-                                                  </button>
-                                                  <div id="apple-imac-27-dropdown" className="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow ">
-                                                    <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="apple-imac-27-dropdown-button">
-                                                      <li>
-                                                        <Link to="addproduct" className="block py-2 px-4 hover:bg-gray-100 ">Show</Link>
-                                                      </li>
-                                                      <li>                                                     
-                                                        <Link to="updateproduct" className="block py-2 px-4 hover:bg-gray-100 ">Edit</Link>
-                                                      </li>
-                                                    </ul>
-                                                    <div className="py-1">
-                                                      <Link to="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 ">Delete</Link>
-                                                    </div>
-                                                  </div>
+                                                <td className="pl-1 py-3">
+                                                  <button className="px-3"><UpdatePage/></button>
+                                                  <button><DeletePage/></button>
                                                 </td>
+                                              
                                             </tr>
                                         )
                                     })
@@ -177,7 +163,7 @@ export default function CategoryPage() {
                 </tbody>
               </table>
             </div>
-                                    {/* dsdsds */}
+                                  
               <nav className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4" aria-label="Table navigation">
                 <span className="text-sm font-normal text-gray-500 ">
                 Hiển thị

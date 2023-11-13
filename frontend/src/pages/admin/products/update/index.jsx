@@ -1,4 +1,4 @@
-export default function UpdatePage() {
+export default function UpdateProductsPage() {
     return (
         <>
             <div>
