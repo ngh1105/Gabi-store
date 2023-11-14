@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
-
-import Banner from "./Banner";
+import Slider from "./slider";
 
 function ProductPage() {
     return (
 
         <div className="">
-            <Banner />
+            <Slider />
             <section className="py-20 bg-gray-50 font-poppins dark:bg-gray-800  ">
                 <div className="px-4 py-4 mx-auto max-w-7xl lg:py-6 md:px-6">
                     {/* Breadcumb */}
