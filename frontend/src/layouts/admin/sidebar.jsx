@@ -61,7 +61,6 @@ export default function Sidebar() {
                                     <li key={index} onClick={() => setSelectedIndex(index)}>
                                         <Link to={obj.href} className={isActive ? activeClass : inactiveClass}>
                                             <svg
-                                                aria-hidden="true"
                                                 className={isActive ? iconActiveClass : iconInactiveClass}
                                                 fill="currentColor"
                                                 viewBox="0 0 20 20"
