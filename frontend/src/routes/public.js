@@ -14,7 +14,7 @@ import BestSeller from "pages/public/Home/BestSeller";
 import NewProducts from "pages/public/Home/NewProducts";
 import Card from "pages/public/Home/NewProducts/Card";
 import ForgetPassword from "pages/public/ForgetPassword";
-import ProductPage, { Pants, Polo, Shirt } from "pages/public/Product"
+import ProductPage from "pages/public/product"
 import About from "pages/public/About";
 import Contact from "pages/public/Contact";
 import Following from "pages/public/Following";
@@ -31,9 +31,10 @@ export const publicRoutes = {
             path: '/',
             element: <HomePage />,
         },
+        { path: '/product', element: <ProductPage /> },
+
         { path: '/cart', element: <Cart /> },
         { path: '/blog', element: <Blog /> },
-        { path: '/product', element: <ProductPage /> },
         { path: '/about', element: <About /> },
         { path: '/contact', element: <Contact /> },
         { path: '/following', element: <Following /> },
