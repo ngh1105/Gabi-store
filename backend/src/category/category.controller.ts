@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, BadRequestException, Req } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
@@ -9,6 +9,7 @@ import { extname, join } from 'path';
 import * as fs from 'fs';
 import * as fsExtra from 'fs-extra';
 import * as path from 'path';
+import { Request, Response } from 'express';
 
 @ApiTags('category')
 @Controller('category')
@@ -43,19 +44,17 @@ export class CategoryController {
     }
 
     @Post('upload-image/:id')
-    @UseInterceptors(FileInterceptor('image', {
-        storage: diskStorage({
-            destination: (req, file, cb) => {
-                const dir = `./upload/category/${req.params.id}`;
-                fsExtra.ensureDir(dir, error => cb(error, dir));
-            },
-            filename: (req, file, cb) => {
-                return cb(null, file.originalname);
-            }
-        })
-    }))
-    uploadFile(@Param('id') id: string, @UploadedFile() file: Express.Multer.File) {
-        const dir = `/upload/category/${id}`;
-        return this.categoryService.updateImage(+id, dir);
+    uploadFile(@Param('id') id: string, @Req() request: Request) {
+    
+        if (!request.files) {
+            throw new BadRequestException("Invalid file");
+        }
+
+        const image = request.files["image"];
+        if (!image) {
+            throw new BadRequestException("Invalid image");
+        }
+
+        return this.categoryService.updateImage(+id, image);
     }
 }

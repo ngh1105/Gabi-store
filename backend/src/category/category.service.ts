@@ -3,6 +3,7 @@ import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { Category } from './entities/category.entity';
 import { CategoryDto } from './dto/category.dto';
+import * as fs from "fs";
 
 @Injectable()
 export class CategoryService {
@@ -66,7 +67,7 @@ export class CategoryService {
         return "Deleted successfully";
     }
 
-    async updateImage(id: number, imageUrl: string) {
+    async updateImage(id: number, image: any) {
         const record = await this.categoryRepository.findOne<Category>({
             where: { id: id },
         });
@@ -75,10 +76,21 @@ export class CategoryService {
             throw new HttpException('No record found', HttpStatus.NOT_FOUND);
         }
 
-        record.imageUrl = imageUrl;
+        const fileName = `/upload/category/${record.id}/${image.md5}/${image.name}`;
+        if (fileName === record.imageUrl) {
+            return "File is already exist";
+        }
 
-        const retData = await record.save();
-        return new CategoryDto(retData);
+        if (record.imageUrl && record.imageUrl !== "") {
+            fs.unlinkSync(`./public${record.imageUrl}`);
+        }
+
+        image.mv(`./public${fileName}`);
+
+        record.imageUrl = fileName;
+        await record.save();
+
+        return "Uploaded successfully";
     }
 
     async isExists(id: number) {
