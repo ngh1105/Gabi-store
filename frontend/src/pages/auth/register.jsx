@@ -91,7 +91,7 @@ export default function RegisterPage() {
                         onChange={formik.handleChange}
                     />
                     {formik.errors.email && formik.touched.email && (
-                        <p className="italic mt-1 ml-1 text-red-500 text-sm">
+                        <p className="mt-1 ml-1 text-sm text-red-600">
                             {formik.errors.email}
                         </p>
                     )}
@@ -109,7 +109,7 @@ export default function RegisterPage() {
                         onChange={formik.handleChange}
                     />
                     {formik.errors.fullName && formik.touched.fullName && (
-                        <p className="italic mt-1 ml-1 text-red-500 text-sm">
+                        <p className="mt-1 ml-1 text-red-600 text-sm">
                             {formik.errors.fullName}
                         </p>
                     )}
@@ -127,7 +127,7 @@ export default function RegisterPage() {
                         onChange={formik.handleChange}
                     />
                     {formik.errors.password && formik.touched.password && (
-                        <p className="italic mt-1 ml-1 text-red-500 text-sm">
+                        <p className="mt-1 ml-1 text-red-600 text-sm">
                             {formik.errors.password}
                         </p>
                     )}
@@ -144,7 +144,7 @@ export default function RegisterPage() {
                         onChange={formik.handleChange}
                     />
                     {formik.errors.confirmPassword && formik.touched.confirmPassword && (
-                        <p className="italic mt-1 ml-1 text-red-500 text-sm">
+                        <p className="mt-1 ml-1 text-red-600 text-sm">
                             {formik.errors.confirmPassword}
                         </p>
                     )}
@@ -167,7 +167,7 @@ export default function RegisterPage() {
                 {
                     status.errorMessage !== "" && status.isError
                         ? (
-                            <p className="italic ml-1 text-red-500 text-sm" style={{
+                            <p className="ml-1 text-red-600 text-sm" style={{
                                 marginTop: '0.25rem',
                             }}>
                                 {status.errorMessage}

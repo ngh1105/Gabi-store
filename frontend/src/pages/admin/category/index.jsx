@@ -4,7 +4,9 @@ import UpdatePage from "./update";
 import { Link } from "react-router-dom";
 import DeletePage from "./delete";
 import { Table } from "flowbite-react";
+
 export default function CategoryPage() {
+
     const category = useMemo(() => [
         {
             id: "12322",
@@ -62,6 +64,9 @@ export default function CategoryPage() {
         }
 
     ])
+
+
+
     return (
         <>
             <section className="bg-gray-50  p-3 sm:p-5">
@@ -93,7 +98,7 @@ export default function CategoryPage() {
                                 <Table.HeadCell>Tên loại hàng</Table.HeadCell>
                                 <Table.HeadCell>Mô tả của loại hàng</Table.HeadCell>
                                 <Table.HeadCell>Ngày tạo</Table.HeadCell>
-                                <Table.HeadCell>Chức năng</Table.HeadCell>
+                                <Table.HeadCell>Thao tác</Table.HeadCell>
                             </Table.Head>
 
                             <Table.Body className="divide-y">
@@ -113,13 +118,19 @@ export default function CategoryPage() {
                                                 <Table.Cell>
                                                     {obj.created_at}
                                                 </Table.Cell>
+                                                <Table.Cell>
+                                                    <div className="flex items-center gap-2">
+                                                        <div><UpdatePage /></div>
+                                                        <div><DeletePage /></div>
+                                                    </div>
+                                                </Table.Cell>
                                             </Table.Row>
                                         )
                                     })
                                 }
                             </Table.Body>
                         </Table>
-                        
+
                         <nav className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4" aria-label="Table navigation">
                             <span className="text-sm font-normal text-gray-500 ">
                                 Hiển thị

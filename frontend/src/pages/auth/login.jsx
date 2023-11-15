@@ -89,7 +89,7 @@ export default function LoginPage() {
                         onChange={formik.handleChange}
                     />
                     {formik.errors.email && formik.touched.email && (
-                        <p className="italic mt-1 ml-1 text-red-500 text-sm">
+                        <p className="mt-1 ml-1 text-red-600 text-sm">
                             {formik.errors.email}
                         </p>
                     )}
@@ -107,7 +107,7 @@ export default function LoginPage() {
                         onChange={formik.handleChange}
                     />
                     {formik.errors.password && formik.touched.password && (
-                        <p className="italic mt-1 ml-1 text-red-500 text-sm">
+                        <p className="mt-1 ml-1  text-sm text-red-600">
                             {formik.errors.password}
                         </p>
                     )}
@@ -132,7 +132,7 @@ export default function LoginPage() {
                 {
                     status.errorMessage !== "" && status.isError
                         ? (
-                            <p className="italic ml-1 text-red-500 text-sm" style={{
+                            <p className="ml-1 text-sm text-red-600" style={{
                                 marginTop: '0.25rem',
                             }}>
                                 {status.errorMessage}
