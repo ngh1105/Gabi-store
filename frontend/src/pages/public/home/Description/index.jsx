@@ -22,40 +22,40 @@ function Description() {
         <div className="px-4 py-20 mx-auto max-w-7xl">
           <div className="flex flex-wrap">
             <div className="relative w-full mb-10 lg:mb-0 lg:mr-20 lg:w-2/5">
-              <div className="absolute z-10 hidden w-full h-full bg-blue-400 rounded -top-6 left-6 lg:block"></div>
+              <div className="absolute z-10 hidden w-full h-[500px] bg-indigo-400 rounded -top-6 left-6 lg:block"></div>
               <img
-                className="relative z-20 object-cover w-full h-full rounded"
+                className="relative z-20 object-cover w-full h-[500px] rounded"
                 src="https://i.pinimg.com/564x/56/53/19/565319df58e19953437f14b894ab9609.jpg"
                 alt
               />
             </div>
-            <div className="flex-1 pl-0 lg:pl-4">
+            <div className="flex-1 pl-0 lg:pl-4 h-[600px]">
               <div className="mb-12">
                 <div className="relative">
                   <h1 className="absolute -top-14 -left-44 text-[120px] font-bold opacity-5">
                     {" "}
                     FEATURE
                   </h1>
-                  <h1 className="text-5xl font-bold dark:text-white">
+                  <h1 className="text-3xl font-bold dark:text-white">
                     {" "}
-                    Đặc điểm <span className="text-blue-500">
+                    Đặc điểm <span className="text-indigo-500">
                       GABISTORE
                     </span>{" "}
                   </h1>
                   <div className="flex w-24 mt-1 mb-10 overflow-hidden rounded">
-                    <div className="flex-1 h-2 bg-blue-200"></div>
-                    <div className="flex-1 h-2 bg-blue-400"></div>
-                    <div className="flex-1 h-2 bg-blue-600"></div>
+                    <div className="flex-1 h-2 bg-indigo-200"></div>
+                    <div className="flex-1 h-2 bg-indigo-400"></div>
+                    <div className="flex-1 h-2 bg-indigo-600"></div>
                   </div>
                 </div>
-                <p className="mb-16 text-base text-gray-500">
+                <p className="text-lg text-base text-gray-500">
                   Chúng tôi luôn cam kết đem lại cho bạn những trải nghiệm tuyệt
                   vời cùng với sản phẩm luôn đảm bảo tính thẫm mỹ, bền và giá cả
                   phải chăng. Bạn sẽ luôn yên tâm khi sử dụng sản phẩm và dịch
                   vụ bên chúng tôi
                 </p>
               </div>
-              <div className="grid flex-1 grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2">
+              <div className="mb-[100px] grid flex-1 grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2">
                 <div className="w-full p-8 text-center transition-all bg-white rounded shadow dark:bg-gray-700 hover:shadow-lg">
                   <div className="inline-block p-4 mb-4 bg-blue-400 rounded-full">
                     <svg
