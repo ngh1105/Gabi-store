@@ -62,6 +62,8 @@ export class CategoryService {
             throw new HttpException('No record found', HttpStatus.NOT_FOUND);
         }
 
+        this.deleteImage(record);
+
         await record.destroy();
 
         return "Deleted successfully";
@@ -81,9 +83,7 @@ export class CategoryService {
             return "File is already exist";
         }
 
-        if (record.imageUrl && record.imageUrl !== "") {
-            fs.unlinkSync(`./public${record.imageUrl}`);
-        }
+       this.deleteImage(record);
 
         image.mv(`./public${fileName}`);
 
@@ -99,5 +99,11 @@ export class CategoryService {
         });
 
         return !!record;
+    }
+
+    deleteImage(record: Category) {
+        if (record.imageUrl && record.imageUrl !== "") {
+            fs.unlinkSync(`./public${record.imageUrl}`);
+        }
     }
 }
