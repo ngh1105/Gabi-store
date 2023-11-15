@@ -1,220 +1,214 @@
-import styles from './DeliverInfo.module.scss';
-import classNames from 'classnames/bind';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
-
-const cx = classNames.bind(styles);
-
-const checkboxList = [
-    {
-        id: 1,
-        name: 'COD',
-    },
-
-    {
-        id: 2,
-        name: 'Ví điện tử ShopeePay',
-    },
-
-    {
-        id: 3,
-        name: 'Thanh toán Momo',
-    },
-
-    {
-        id: 4,
-        name: 'Ví điện tử ZaloPay',
-    },
-];
+import classNames from "classnames/bind";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 function DeliverInfo() {
-    const [quanity, setQuanity] = useState(1);
-    const [name, setName] = useState('');
-    console.log(name);
-    const [phone, setPhone] = useState('');
-    const [email, setEmail] = useState('');
-    const [address, setAddress] = useState('');
-    const [note, setNote] = useState('');
-    const [checked, setChecked] = useState(1);
-
-    const handlePay = () => {
-        console.log({
-            name,
-            phone,
-            email,
-            address,
-            note,
-            checked,
-        });
-    };
-
-    return (
-        <div className={cx('wrapper')}>
-            <div className={cx('wrapper-title')}>
-                <h3>Thông tin vận chuyển</h3>
-                <p>
-                    Bạn đã có tài khoản?{' '}
-                    <Link to="/login">
-                        <span>Đăng nhập ngay</span>
-                    </Link>
-                </p>
-            </div>
-            <div className={cx('form-field')}>
-                <div className={cx('form-field-total')}>
-                    <div className={cx('form-field-1')}>
-                        <div className={cx('twice')}>
-                            <div className={cx('twice-1')}>
-                                <input
-                                    className={cx('form-input')}
-                                    placeholder="Họ tên của bạn"
-                                    onChange={(e) => setName(e.target.value)}
-                                />
-                            </div>
-                            <div>
-                                <input
-                                    className={cx('form-input')}
-                                    placeholder="SDT của bạn"
-                                    onChange={(e) => setPhone(e.target.value)}
-                                />
-                            </div>
-                        </div>
-                        <input
-                            className={cx('form-input')}
-                            placeholder="Email của bạn"
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-
-                        <input
-                            className={cx('form-input')}
-                            placeholder="Địa chỉ của bạn"
-                            onChange={(e) => setAddress(e.target.value)}
-                        />
-
-                        <input
-                            className={cx('form-input')}
-                            placeholder="Ghi chú thêm (nếu cần)"
-                            onChange={(e) => setNote(e.target.value)}
-                        />
-                        <div className={cx('method')}>
-                            <h3>Phương thức thanh toán</h3>
-                            {checkboxList.map((checkbox) => (
-                                <div className={cx('method-cod')}>
-                                    <div key={checkbox.id}>
-                                        <input
-                                            className={cx('method-cod__radio')}
-                                            type="radio"
-                                            onChange={() => setChecked(checkbox.id)}
-                                            checked={checked === checkbox.id}
-                                        />
-                                        <label className={cx('method-cod__name')}>{checkbox.name}</label>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                        <p>
-                            Nếu bạn không hài lòng với sản phẩm của chúng tôi? Bạn hoàn toàn có thể trả lại sản phẩm.
-                            Tìm hiểu thêm{' '}
-                            <Link to="/policy">
-                                <span>tại đây</span>
-                            </Link>
-                        </p>
-                        <Link to="/confirm_order">
-                            <button className={cx('btn-pay')} onClick={handlePay}>
-                                Thanh toán 596k{' '}
-                            </button>
-                        </Link>
-                    </div>
-                    <div className={cx('form-field-2')}>
-                        <div className={cx('name')}>Giỏ hàng</div>
-                        <div className={cx('form-field-total')}>
-                            <div className={cx('form-field-total-1')}>
-                                <img src="https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/July2023/HN-TU_HAO-3.jpg" />
-                            </div>
-                            <div className={cx('form-field-total-2')}>
-                                <div className={cx('form-field-total-2-1')}>
-                                    <p> Áo thun nam Cotton Coolmate Basics 200gsm </p>
-                                </div>
-                                <div className={cx('form-field-total-2-2')}>Màu/Size</div>
-                                <div className={cx('form-field-total-2-3')}>
-                                    <div className={cx('form-field-total-2-31')}>
-                                        <div className={cx('form-field-total-2-select1')}>
-                                            <select>
-                                                <option value="">Đen</option>
-                                                <option>Trắng</option>
-                                            </select>
-                                        </div>
-                                        <div className={cx('form-field-total-2-select')}>
-                                            <select>
-                                                <option value="">M</option>
-                                                <option>L</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className={cx('form-field-total-2-4')}>
-                                    <button onClick={() => setQuanity((prev) => (prev === 1 ? 1 : prev - 1))}>-</button>
-                                    {quanity}
-                                    <button onClick={() => setQuanity((prev) => prev + 1)}>+</button>
-                                </div>
-                            </div>
-                            <div className={cx('form-field-total-3')}>
-                                <div className={cx('form-field-total-3-1')}>
-                                    <button>
-                                        <FontAwesomeIcon icon={faXmark} size="xl" />
-                                    </button>
-                                </div>
-                                <div className={cx('form-field-total-3-2')}>149.000đ</div>
-                                <div className={cx('form-field-total-3-3')}>
-                                    <del>300.000đ</del>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={cx('form-field-disc')}>
-                            <input
-                                className={cx('form-disc')}
-                                placeholder="Nhập mã giảm giá"
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                            <button className={cx('form-button')}> Áp dụng </button>
-                        </div>
-                        <hr className={cx('hr-end')} />
-                        <div className={cx('form-field-pay')}>
-                            <div className={cx('form-field-pay-left')}>
-                                <ul>
-                                    <li>Tạm tính</li>
-                                    <li className={cx('form-field-pay-left-2')}>Giảm giá</li>
-                                    <li>Phí giao hàng</li>
-                                </ul>
-                            </div>
-                            <div className={cx('form-field-pay-right')}>
-                                <ul>
-                                    <li>495.000đ</li>
-                                    <li className={cx('form-field-pay-left-2')}>0đ</li>
-                                    <li>Miễn phí</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <hr className={cx('hr-end')} />
-                        <div className={cx('form-field-pay')}>
-                            <div className={cx('form-field-pay-left')}>
-                                <ul>
-                                    <li className={cx('form-field-pay-left-2')}>Tổng</li>
-                                </ul>
-                            </div>
-                            <div className={cx('form-field-pay-right')}>
-                                <ul>
-                                    <li className={cx('form-field-pay-left-2-2')}>495.000đ</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+  return (
+    <section className=" h-full  xl:h-screen font-poppins dark:bg-gray-700 ">
+      <div className="justify-center h-full flex-1 px-1 py-6 mx-auto max-w-7xl lg:py-4 md:px-6">
+        <div className="flex flex-wrap bg-gray-100 border-solid border-2 border-gray-200 rounded-xl h-full">
+          <div className="w-full lg:w-7/12">
+            <div className="px-5">
+              <p className="mb-1 mt-3 ml-2 text-base font-bold dark:text-gray-400">
+                Thông tin vận chuyển
+              </p>
+              <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                <div>
+                  <div className="mt-2.5">
+                    <input
+                      placeholder="Họ và tên"
+                      type="text"
+                      name="full-name"
+                      id="full-name"
+                      autoComplete="given-name"
+                      className="block w-full rounded-xl border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-200 sm:text-sm sm:leading-6"
+                    />
+                  </div>
                 </div>
-                {/* method paying */}
+                <div>
+                  <div className="mt-2.5">
+                    <input
+                      placeholder="Số điện thoại"
+                      type="text"
+                      name="sdt"
+                      id="sdt"
+                      autoComplete="family-name"
+                      className="block w-full rounded-xl border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-200 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="sm:col-span-2">
+                <div className="mt-3">
+                  <input
+                    placeholder="Email"
+                    type="text"
+                    name="=email"
+                    id="=email"
+                    autoComplete="organization"
+                    className="block w-full rounded-xl border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-200 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div className="sm:col-span-2">
+                <div className="mt-3">
+                  <input
+                    placeholder="Địa chỉ"
+                    type="text"
+                    name="=adress"
+                    id="=adress"
+                    autoComplete="organization"
+                    className="block w-full rounded-xl border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-200 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div className="sm:col-span-2">
+                <div className="mt-3">
+                  <input
+                    placeholder="Ghi chú"
+                    type="text"
+                    name="=adress"
+                    id="=adress"
+                    autoComplete="organization"
+                    className="block w-full h-auto rounded-xl border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-200 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <p className="mb-3 mt-3 ml-1 text-base font-bold dark:text-gray-400">
+                Phương thức thanh toán
+              </p>
+
+              <ul className="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                <div className="w-full border-b border-gray-200 dark:border-gray-600">
+                  <div className="flex items-center ps-3">
+                    <input
+                      name="check"
+                      id="cod-checkbox"
+                      type="radio"
+                      defaultValue
+                      className="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 rounded-full focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                    />
+                    <label
+                      htmlFor="cod-checkbox"
+                      className="w-full ml-5 py-3 ms-2 text-sm text-gray-900 dark:text-gray-300"
+                    >
+                      COD
+                    </label>
+                  </div>
+                  </div>
+                <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                  <div className="flex items-center ps-3">
+                    <input
+                    name="check"
+                      id="bank-checkbox"
+                      type="radio"
+                      defaultValue
+                      className="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 rounded-full focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                    />
+                    <label
+                      htmlFor="bank-checkbox"
+                      className="w-full ml-5 py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >
+                      Ngân hàng
+                    </label>
+                  </div>
+                </li>
+                <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                  <div className="flex items-center ps-3">
+                    <input
+                    name="check"
+                      id="Ví điện tử Momo-checkbox"
+                      type="radio"
+                      defaultValue
+                      className="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 rounded-full focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                    />
+                    <label
+                      htmlFor="Ví điện tử Momo-checkbox"
+                      className="w-full ml-5 py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >
+                      Ví điện tử Momo
+                    </label>
+                  </div>
+                </li>
+                <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                  <div className="flex items-center ps-3">
+                    <input
+                    name="check"
+                      id="Ví điện tử ZaloPay-checkbox"
+                      type="radio"
+                      defaultValue
+                      className="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 rounded-full focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                    />
+                    <label
+                      htmlFor="Ví điện tử ZaloPay-checkbox"
+                      className="w-full ml-5 py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >
+                      Ví điện tử ZaloPay
+                    </label>
+                  </div>
+                </li>
+              </ul>
             </div>
+          </div>
+          <div className="w-full lg:w-5/12">
+            <div className="px-6 mb-14">
+              <div className="mb-10">
+                <span className="mb-6 text-sm font-bold text-gray-700 dark:text-gray-400">
+                  Apply Coupon
+                </span>
+                <input
+                  type="text"
+                  className="flex-1 w-full px-8 py-2 mt-4 font-normal placeholder-gray-400 border dark:bg-gray-800 rounded-xl dark:border-gray-700 dark:placeholder-gray-500 md:flex-none md:mr-6 dark:text-gray-400"
+                  placeholder="x304k45"
+                  required
+                />
+                <a
+                  className="inline-block w-full px-40 py-1.5 mt-4 text-lg font-medium leading-6 tracking-tighter text-center text-white bg-blue-500 lg:w-full lg:px-28 hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded-xl"
+                  href="#"
+                >
+                  Apply
+                </a>
+              </div>
+              <div>
+                <h2 className="mb-6 text-xl font-bold dark:text-gray-400">
+                  Cart totals
+                </h2>
+                <div className="flex items-center justify-between px-10 py-1 mb-3 font-medium leading-8 bg-gray-100 bg-opacity-50 border dark:text-gray-400 dark:bg-gray-800 dark:border-gray-800 rounded-xl">
+                  <span>Subtotal</span>
+                  <span className="flex items-center text-xl">
+                    <span className="text-lg">710,70</span>
+                    <span className=" text-sm">đ</span>
+                  </span>
+                </div>
+                <div className="flex items-center justify-between px-10 py-1 mb-3 font-medium leading-8 bg-gray-100 bg-opacity-50 border dark:text-gray-400 dark:bg-gray-800 dark:border-gray-800 rounded-xl">
+                  <span>Shipping</span>
+                  <span className="flex items-center text-xl">
+                    <span className="text-lg">10,00</span>
+                    <span className=" text-sm">đ</span>
+                  </span>
+                </div>
+                <div className="flex items-center justify-between px-10 py-1 mb-6 font-medium leading-8 bg-gray-100 border dark:text-gray-400 dark:bg-gray-800 dark:border-gray-800 rounded-xl">
+                  <span>Total</span>
+                  <span className="flex items-center text-xl text-blue-500 dark:text-blue-400">
+                    <span className="text-lg">720,70</span>
+                    <span className=" text-sm">đ</span>
+                  </span>
+                </div>
+                <a
+                  className="inline-block w-full px-40 py-1.5 text-lg font-medium leading-6 tracking-tighter text-center text-white bg-blue-500 lg:w-full lg:px-28 hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded-xl"
+                  href="#"
+                >
+                  Thanh Toán
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-    );
+      </div>
+    </section>
+  );
 }
 
 export default DeliverInfo;
