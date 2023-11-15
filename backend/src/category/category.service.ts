@@ -66,6 +66,21 @@ export class CategoryService {
         return "Deleted successfully";
     }
 
+    async updateImage(id: number, imageUrl: string) {
+        const record = await this.categoryRepository.findOne<Category>({
+            where: { id: id },
+        });
+
+        if (!record) {
+            throw new HttpException('No record found', HttpStatus.NOT_FOUND);
+        }
+
+        record.imageUrl = imageUrl;
+
+        const retData = await record.save();
+        return new CategoryDto(retData);
+    }
+
     async isExists(id: number) {
         const record = await this.categoryRepository.findOne({ 
             where: { id } 

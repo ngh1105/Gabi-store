@@ -20,6 +20,27 @@ export default function AddPage() {
     const navigate = useNavigate();
     const { image, previewUrl, handleImageChange } = useImageUpload();
 
+    const uploadImage = async (id) => {
+
+        if (!image) {
+            return false;
+        }
+
+        const formData = new FormData();
+        formData.append('image', image);
+
+        const resData = await Api.Post(`/category/upload-image/${id}`, formData, {
+            headers: { "Content-Type": "multipart/form-data" }
+        });
+
+        if (!resData.isSuccess) {
+            toast.error("Đã có lỗi xảy ra");
+            return false;
+        }
+
+        return true;
+    }
+
     const formik = useFormik({
         initialValues: {
             name: "",
@@ -54,7 +75,7 @@ export default function AddPage() {
                 return;
             }
 
-            //await uploadImage(resData.response.insertedId);
+            await uploadImage(resData.response.id);
 
             setStatus(prevState => ({
                 isError: false,
@@ -107,6 +128,7 @@ export default function AddPage() {
                                     <input
                                         type="file"
                                         name="image"
+                                        onChange={handleImageChange}
                                     />
                                 </div>
                             </div>
