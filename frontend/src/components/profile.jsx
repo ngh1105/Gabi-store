@@ -28,7 +28,7 @@ export default function Profile() {
                     <span className="block truncate text-sm font-medium">huy@gmail.com</span>
                 </Dropdown.Header>
                 {
-                    user ? (
+                    (user && user.role == "ADMIN") ? (
                         <>
                             <Dropdown.Item>
                                 <Link to="/admin" >Trang quản trị</Link>

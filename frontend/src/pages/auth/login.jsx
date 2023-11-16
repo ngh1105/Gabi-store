@@ -45,7 +45,7 @@ export default function LoginPage() {
                 password: values.password,
             }
 
-            const loginData = await Api.Post("auth/login", data, {
+            const loginData = await Api.Post("/auth/login", data, {
                 withCredentials: true,
             });
             //console.log(loginData);
