@@ -6,6 +6,7 @@ import DeletePage from "./delete";
 import { useFlexLayout, useGlobalFilter, usePagination, useTable } from "react-table";
 import Api from "app/api";
 import { API_URL } from "app/config";
+import PageLayout from "components/page-layout";
 
 export default function CategoryPage() {
 
@@ -104,8 +105,8 @@ export default function CategoryPage() {
     const { globalFilter, pageIndex, pageSize } = state;
 
     return (
-        <>
-            <section className="bg-gray-50  p-3 sm:p-5">
+        <PageLayout title="Loại hàng" >
+            <section className="bg-gray-50 p-3 sm:p-5">
                 <div className="mx-auto max-w-screen-xl px-4 lg:px-12">
                     {/* Start coding here */}
                     <div className="bg-white relative shadow-md sm:rounded-lg overflow-hidden">
@@ -214,6 +215,6 @@ export default function CategoryPage() {
                     </div>
                 </div>
             </section>
-        </>
+        </PageLayout>
     )
 }
