@@ -1,15 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, BadRequestException, Req } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, BadRequestException, Req, UseGuards } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
-import { ApiTags } from '@nestjs/swagger';
-import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import { extname, join } from 'path';
-import * as fs from 'fs';
-import * as fsExtra from 'fs-extra';
-import * as path from 'path';
-import { Request, Response } from 'express';
+import { ApiSecurity, ApiTags } from '@nestjs/swagger';
+import { Request } from 'express';
+import { AdminGuard } from 'src/auth/auth.guard';
 
 @ApiTags('category')
 @Controller('category')
@@ -18,6 +13,8 @@ export class CategoryController {
 
     }
 
+    @ApiSecurity('private-key')
+    @UseGuards(AdminGuard)
     @Post()
     create(@Body() createCategoryDto: CreateCategoryDto) {
         return this.categoryService.create(createCategoryDto);
@@ -33,16 +30,22 @@ export class CategoryController {
         return this.categoryService.findOne(+id);
     }
 
+    @ApiSecurity('private-key')
+    @UseGuards(AdminGuard)
     @Patch(':id')
     update(@Param('id') id: string, @Body() updateCategoryDto: UpdateCategoryDto) {
         return this.categoryService.update(+id, updateCategoryDto);
     }
 
+    @ApiSecurity('private-key')
+    @UseGuards(AdminGuard)
     @Delete(':id')
     remove(@Param('id') id: string) {
         return this.categoryService.remove(+id);
     }
 
+    @ApiSecurity('private-key')
+    @UseGuards(AdminGuard)
     @Post('upload-image/:id')
     uploadFile(@Param('id') id: string, @Req() request: Request) {
     
