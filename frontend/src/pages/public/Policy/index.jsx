@@ -117,7 +117,7 @@ function Policy() {
                     <h2 class="mb-4 text-4xl tracking-tight font-bold text-gray-900 dark:text-white">CHÚNG TÔI LÀM GÌ VỚI HÀNG ĐỔI TRẢ:</h2>
                     <p class="mb-4 font-light text-[18px]">Áo thun, quần short: thu gom và gởi cho các chương trình từ thiện</p>
                     <p class="mb-4 font-light text-[18px]">Bít tất, boxer: huỷ bỏ 100%</p>
-                    <Link to="/deliverInfo"> <Button primary className={cx('return')}>Tiếp tục thanh toán</Button></Link>
+                    <Link to="/deliverInfo"> Tiếp tục thanh toán</Link>
 
                 </div>
             </div>
