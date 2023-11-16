@@ -7,12 +7,15 @@ import { Provider } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import "index.css";
+import TokenGuard from 'components/token-guard';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <Provider store={store}>
         <BrowserRouter>
-            <AppRoutes />
+            <TokenGuard>
+                <AppRoutes />
+            </TokenGuard>
         </BrowserRouter>
         <ToastContainer pauseOnHover={false} />
     </Provider>

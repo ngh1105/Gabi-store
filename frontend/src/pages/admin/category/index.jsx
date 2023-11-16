@@ -5,19 +5,11 @@ import { Link } from "react-router-dom";
 import DeletePage from "./delete";
 import { useFlexLayout, useGlobalFilter, usePagination, useTable } from "react-table";
 import Api from "app/api";
+import { API_URL } from "app/config";
 
 export default function CategoryPage() {
 
-    const [categories, setCategories] = useState([{
-        name: "Sfdsf",
-        imageUrl: <img className="w-10 h-10 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png" alt="." />,
-        actions: (
-            <div className="w-full flex justify-end items-center gap-2 text-right">
-                <div><UpdatePage /></div>
-                <div><DeletePage /></div>
-            </div>
-        )
-    }]);
+    const [categories, setCategories] = useState([]);
 
     const deleteCategory = async (id) => {
         try {
@@ -37,12 +29,12 @@ export default function CategoryPage() {
             async function fetchData() {
                 const res = await Api.Get("/category");
 
-                const newData = res.data.map((obj, index) => {
+                const newData = res.response.map((obj, index) => {
                     return {
                         name: obj.name,
-                        imageUrl: obj.imageUrl,
+                        imageUrl: <img className="w-10 h-10 rounded-full" src={`${API_URL}${obj.imageUrl}`} alt="." />,
                         actions: (
-                            <div className="flex justify-end items-center gap-2 text-right">
+                            <div className="w-full flex justify-end items-center gap-2 text-right">
                                 <div><UpdatePage /></div>
                                 <div><DeletePage /></div>
                             </div>
@@ -53,7 +45,7 @@ export default function CategoryPage() {
                 setCategories(newData);
             }
 
-            //fetchData();
+            fetchData();
         }
         catch (err) {
             console.log(err);
