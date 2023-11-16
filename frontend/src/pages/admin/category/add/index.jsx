@@ -96,7 +96,7 @@ export default function AddPage() {
                 <div className="flex justify-center m-5">
                     <button
                         onClick={() => setOpenModal(true)}
-                        className="block text-white w-24 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                        className="w-full md:w-auto block text-white w-24 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                     >
                         Thêm
                     </button>

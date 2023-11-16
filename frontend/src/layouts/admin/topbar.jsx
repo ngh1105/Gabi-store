@@ -1,4 +1,4 @@
-import Profile from "common/profile";
+import Profile from "components/profile";
 import Logo from "images/logo.png";
 import { Link } from "react-router-dom";
 

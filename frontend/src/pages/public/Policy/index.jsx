@@ -1,4 +1,3 @@
-import Button from "components/Button";
 import styles from "./Policy.module.scss";
 import classNames from "classnames/bind";
 import { useState } from "react";

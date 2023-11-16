@@ -18,7 +18,6 @@ import ProductPage from "pages/public/product"
 import About from "pages/public/About";
 import Contact from "pages/public/Contact";
 import Following from "pages/public/Following";
-import ConfirmOrder from "pages/public/ConfirmOrder"
 import Policy from "pages/public/Policy";
 import Rules from "pages/public/Rules";
 import Information from "pages/public/Information";
@@ -38,7 +37,6 @@ export const publicRoutes = {
         { path: '/about', element: <About /> },
         { path: '/contact', element: <Contact /> },
         { path: '/following', element: <Following /> },
-        { path: '/confirmorder', element: <ConfirmOrder /> },
         { path: '/policy', element: <Policy /> },
         { path: '/rules', element: <Rules /> },
         { path: '/info', element: <Information /> },
