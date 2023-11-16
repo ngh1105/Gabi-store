@@ -76,7 +76,7 @@ export default function CategoryPage() {
         columns,
         data,
         initialState: {
-            pageSize: 10
+            pageSize: 5
         }
     },
         useFlexLayout,
