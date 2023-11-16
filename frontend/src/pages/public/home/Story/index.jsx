@@ -17,7 +17,8 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 //     }, []);
 function Story() {
     const tabs = useMemo(() => [
-        {
+        { 
+            img1:"https://file.hstatic.net/1000184601/file/profile-new-2_c3d71ea46248436699cc8b296fc2aeea.jpg",
             name: "BỨT PHÁT NỔ LỰC KHÔNG NGỪNG",
             title: "Thời trang nam Gabi Store phong cách hiện đại, nam tính và sành điệu, mang đến cho khách hàng chuỗi giá trị cung ứng sản phẩm, dịch vụ khác biệt và thân thiện với môi trường.",
             btn: "Xem thêm",
