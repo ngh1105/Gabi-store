@@ -14,7 +14,7 @@ export const HomePage = () => {
             <Catelog />
             {/* <PostItem/> */}
             <BestSeller />
-            <NewProducts type="GABI Xuân Hè"/>
+           
             <Description />
             <Story />
             

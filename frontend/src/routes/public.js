@@ -23,6 +23,8 @@ import Contact from "pages/public/Contact";
 import Following from "pages/public/Following";
 import ConfirmOrder from "pages/public/ConfirmOrder"
 import Policy from "pages/public/Policy";
+import Information from "pages/public/Information";
+import Rules from "pages/public/Rules";
 
 export const publicRoutes = {
     path: '/',
@@ -33,6 +35,8 @@ export const publicRoutes = {
             element: <HomePage />,
         },
         { path: '/cart', element: <Cart /> },
+        { path: '/rules', element: <Rules /> },
+        { path: '/information', element: <Information /> },
         { path: '/blog', element: <Blog /> },
         { path: '/deliverInfo', element: <DeliverInfo /> },
         { path: '/story', element: <Story /> },
