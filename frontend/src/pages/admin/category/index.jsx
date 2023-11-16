@@ -8,7 +8,16 @@ import Api from "app/api";
 
 export default function CategoryPage() {
 
-    const [categories, setCategories] = useState([]);
+    const [categories, setCategories] = useState([{
+        name: "Sfdsf",
+        imageUrl: <img className="w-10 h-10 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png" alt="." />,
+        actions: (
+            <div className="w-full flex justify-end items-center gap-2 text-right">
+                <div><UpdatePage /></div>
+                <div><DeletePage /></div>
+            </div>
+        )
+    }]);
 
     const deleteCategory = async (id) => {
         try {
@@ -33,7 +42,7 @@ export default function CategoryPage() {
                         name: obj.name,
                         imageUrl: obj.imageUrl,
                         actions: (
-                            <div className="flex items-center gap-2">
+                            <div className="flex justify-end items-center gap-2 text-right">
                                 <div><UpdatePage /></div>
                                 <div><DeletePage /></div>
                             </div>
@@ -159,24 +168,22 @@ export default function CategoryPage() {
                                 </thead>
                                 <tbody {...getTableBodyProps()}>
                                     {
-                                        // category.map((obj, index) => {
-                                        //     return (
-                                        //         <tr className="border-b hover:bg-gray-50" key={index} >
-                                        //             <th scope="row" className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{obj.id}</th>
-                                        //             <td className="px-4 py-3">{obj.name}</td>
-                                        //             <td className="px-4 py-3">{obj.category}</td>
-                                        //             <td className="px-4 py-3">{obj.brand}</td>
-                                        //             <td className="px-4 py-3">{obj.quantity}</td>
-                                        //             <td className="px-4 py-3">{obj.price}</td>
-                                        //             <td className="pl-1 py-3">
-                                        //                 <div className="flex items-center gap-2">
-                                        //                     <div><UpdatePage /></div>
-                                        //                     <div><DeletePage /></div>
-                                        //                 </div>
-                                        //             </td>
-                                        //         </tr>
-                                        //     )
-                                        // })
+                                        page.map(row => {
+                                            prepareRow(row);
+                                            return (
+                                                <tr {...row.getRowProps()}
+                                                    className="border-b hover:bg-gray-50">
+                                                    {
+                                                        row.cells.map(cell => (
+                                                            <td {...cell.getCellProps()}
+                                                                className="px-6 py-3 flex items-center" >
+                                                                {cell.render("Cell")}
+                                                            </td>
+                                                        ))
+                                                    }
+                                                </tr>
+                                            )
+                                        })
                                     }
                                 </tbody>
                             </table>
