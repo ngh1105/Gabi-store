@@ -11,8 +11,8 @@ export const PublicLayout = () => {
             {/* Pages */}
             <Outlet />
 
-            {/* Footer component
-            <Footer /> */}
+            {/* Footer component */}
+            <Footer />
         </>
     )
 }

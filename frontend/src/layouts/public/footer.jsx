@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <div>
-      <section className="flex flex-col h-screen lg:justify-end font-poppins">
+      <section className="flex flex-col h-full lg:justify-end font-poppins">
         <div
           className="relative py-10 bg-center bg-no-repeat bg-cover"
           style={{
