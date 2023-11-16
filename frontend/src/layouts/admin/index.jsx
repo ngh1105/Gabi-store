@@ -1,8 +1,20 @@
+import { useAuth } from "auth/use-auth";
 import Sidebar from "./sidebar"
 import Topbar from "./topbar"
-import { Outlet } from "react-router-dom"
+import { Outlet, useNavigate } from "react-router-dom"
+import { useEffect } from "react";
 
 export default function AdminLayout() {
+
+    const navigate = useNavigate();
+    const { user } = useAuth();
+
+    useEffect(() => {
+        if (!user) {
+            navigate("/");
+        }
+    }, [user]);
+
     return (
         <>
             <div className="antialiased bg-gray-50 dark:bg-gray-900">

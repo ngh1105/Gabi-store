@@ -88,8 +88,7 @@ export class AdminGuard implements CanActivate {
                     secret: JWT_SECRET
                 }
             );
-            // 💡 We're assigning the payload to the request object here
-            // so that we can access it in our route handlers
+
             request['user'] = payload;
 
             if (payload.role !== UserRole.ADMIN) {

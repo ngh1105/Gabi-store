@@ -49,10 +49,10 @@ export default function Sidebar() {
                     <ul className="space-y-2">
                         {
                             tabs.map((obj, index) => {
-                                const activeClass = "flex items-center p-2 text-base font-medium text-white bg-indigo-700 rounded-lg hover:bg-indigo-800 group";
+                                const activeClass = "flex items-center p-2 text-base font-medium text-gray-900 bg-gray-100 rounded-lg hover:bg-gray-200 group";
                                 const inactiveClass = "flex items-center p-2 text-base font-medium text-gray-900 rounded-lg hover:bg-gray-100 group";
 
-                                const iconActiveClass = "w-[20px] h-[20px] text-gray-200 transition duration-75 group-hover:text-white";
+                                const iconActiveClass = "w-[20px] h-[20px] text-gray-900 transition duration-75";
                                 const iconInactiveClass = "w-[20px] h-[20px] text-gray-500 transition duration-75 group-hover:text-gray-900";
 
                                 const isActive = selectedIndex === index;
@@ -61,7 +61,6 @@ export default function Sidebar() {
                                     <li key={index} onClick={() => setSelectedIndex(index)}>
                                         <Link to={obj.href} className={isActive ? activeClass : inactiveClass}>
                                             <svg
-                                                aria-hidden="true"
                                                 className={isActive ? iconActiveClass : iconInactiveClass}
                                                 fill="currentColor"
                                                 viewBox="0 0 20 20"

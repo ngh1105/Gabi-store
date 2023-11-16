@@ -5,7 +5,7 @@ import { UserLoginDto } from './dto/user-login.dto';
 import { JwtService } from '@nestjs/jwt';
 import { UserRegisterDto } from './dto/user-register.dto';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
-import { JWT_SECRET } from './auth.constants';
+import { ACCESS_KEY_EXPIRATION, JWT_SECRET, REFRESH_KEY_EXPIRATION } from './auth.constants';
 
 @Injectable()
 export class AuthService {
@@ -29,8 +29,8 @@ export class AuthService {
             role: user.role,
         };
 
-        const accessToken = await this.jwtService.signAsync(payload, { expiresIn: '60s', });
-        const refreshToken = await this.jwtService.signAsync(payload, { expiresIn: '1d', });
+        const accessToken = await this.jwtService.signAsync(payload, { expiresIn: ACCESS_KEY_EXPIRATION, });
+        const refreshToken = await this.jwtService.signAsync(payload, { expiresIn: REFRESH_KEY_EXPIRATION, });
 
         res.cookie("refreshToken", refreshToken, {
             httpOnly: false,
@@ -58,20 +58,26 @@ export class AuthService {
         }
 
         try {
-            const payload = await this.jwtService.verifyAsync(
+            const tokenData = await this.jwtService.verifyAsync(
                 refreshToken,
                 {
                     secret: JWT_SECRET
                 }
             );
+
+            const payload = {
+                userId: tokenData.userId,
+                email: tokenData.email,
+                role: tokenData.role,
+            };
            
-            const accessToken = await this.jwtService.signAsync(payload, { expiresIn: '60s', });
+            const accessToken = await this.jwtService.signAsync(payload, { expiresIn: ACCESS_KEY_EXPIRATION, });
 
             return {
                 ...payload,
                 accessToken: accessToken,
             };
-        } catch {
+        } catch (err) {
             throw new UnauthorizedException();
         }
     }

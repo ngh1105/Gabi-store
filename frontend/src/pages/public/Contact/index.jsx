@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import emailjs from '@emailjs/browser';
 import { useNavigate } from 'react-router-dom';
-import Button from 'components/Button';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLocation, faPhone } from '@fortawesome/free-solid-svg-icons';

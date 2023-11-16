@@ -32,21 +32,21 @@ function BestSeller() {
                         <img
                             className="h-auto max-w-full rounded-lg"
                             src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg"
-                            alt
+                            alt=""
                         />
                     </div>
                     <div>
                         <img
                             className="h-auto max-w-full rounded-lg"
                             src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg"
-                            alt
+                            alt=""
                         />
                     </div>
                     <div>
                         <img
                             className="h-auto max-w-full rounded-lg"
                             src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg"
-                            alt
+                            alt=""
                         />
                     </div>
                 </div>
@@ -55,21 +55,21 @@ function BestSeller() {
                         <img
                             className="h-auto max-w-full rounded-lg"
                             src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg"
-                            alt
+                            alt=""
                         />
                     </div>
                     <div>
                         <img
                             className="h-auto max-w-full rounded-lg"
                             src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg"
-                            alt
+                            alt=""
                         />
                     </div>
                     <div>
                         <img
                             className="h-auto max-w-full rounded-lg"
                             src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg"
-                            alt
+                            alt=""
                         />
                     </div>
                 </div>
@@ -78,21 +78,21 @@ function BestSeller() {
                         <img
                             className="h-auto max-w-full rounded-lg"
                             src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg"
-                            alt
+                            alt=""
                         />
                     </div>
                     <div>
                         <img
                             className="h-auto max-w-full rounded-lg"
                             src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg"
-                            alt
+                            alt=""
                         />
                     </div>
                     <div>
                         <img
                             className="h-auto max-w-full rounded-lg"
                             src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg"
-                            alt
+                            alt=""
                         />
                     </div>
                 </div>
@@ -101,21 +101,21 @@ function BestSeller() {
                         <img
                             className="h-auto max-w-full rounded-lg"
                             src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg"
-                            alt
+                            alt=""
                         />
                     </div>
                     <div>
                         <img
                             className="h-auto max-w-full rounded-lg"
                             src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg"
-                            alt
+                            alt=""
                         />
                     </div>
                     <div>
                         <img
                             className="h-auto max-w-full rounded-lg"
                             src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg"
-                            alt
+                            alt=""
                         />
                     </div>
                 </div>

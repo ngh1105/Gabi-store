@@ -4,6 +4,7 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { Product } from './entities/product.entity';
 import { ProductDto } from './dto/product.dto';
 import { CategoryService } from 'src/category/category.service';
+import * as fs from "fs";
 
 @Injectable()
 export class ProductService {
@@ -12,7 +13,7 @@ export class ProductService {
         private productRepository: typeof Product,
 
         private categoryService: CategoryService
-    ) {}
+    ) { }
 
     async create(data: CreateProductDto) {
         const isExists = await this.categoryService.isExists(data.categoryId);
@@ -75,8 +76,48 @@ export class ProductService {
             throw new HttpException('No record found', HttpStatus.NOT_FOUND);
         }
 
+        this.deleteImage(record);
+
         await record.destroy();
 
         return "Deleted successfully";
+    }
+
+    async updateImage(id: number, image: any) {
+        const record = await this.productRepository.findOne<Product>({
+            where: { id: id },
+        });
+
+        if (!record) {
+            throw new HttpException('No record found', HttpStatus.NOT_FOUND);
+        }
+
+        const fileName = `/upload/product/${record.id}/${image.md5}/${image.name}`;
+        if (fileName === record.imageUrl) {
+            return "File is already exist";
+        }
+
+        this.deleteImage(record);
+
+        image.mv(`./public${fileName}`);
+
+        record.imageUrl = fileName;
+        await record.save();
+
+        return "Uploaded successfully";
+    }
+
+    async isExists(id: number) {
+        const record = await this.productRepository.findOne({
+            where: { id }
+        });
+
+        return !!record;
+    }
+
+    deleteImage(record: Product) {
+        if (record.imageUrl && record.imageUrl !== "") {
+            fs.unlinkSync(`./public${record.imageUrl}`);
+        }
     }
 }
