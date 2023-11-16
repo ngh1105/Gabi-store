@@ -12,40 +12,27 @@ export default function CategoryPage() {
 
     const [categories, setCategories] = useState([]);
 
-    const deleteCategory = async (id) => {
-        try {
-            const res = await Api.Delete(`/category/delete/${id}`);
+    async function fetchData() {
+        const res = await Api.Get("/category");
 
-            setCategories((prevObj) => {
-                return prevObj.filter((obj) => obj.id !== id);
-            });
-        }
-        catch (err) {
-            console.log(err);
-        }
+        const newData = res.response.map((obj, index) => {
+            return {
+                name: obj.name,
+                imageUrl: <img className="w-10 h-10 rounded-full" src={`${API_URL}${obj.imageUrl}`} alt="." />,
+                actions: (
+                    <div className="w-full flex justify-end items-center gap-2 text-right">
+                        <div><UpdatePage id={obj.id} fetchData={fetchData} /></div>
+                        <div><DeletePage id={obj.id} fetchData={fetchData} /></div>
+                    </div>
+                )
+            }
+        })
+
+        setCategories(newData);
     }
 
     useEffect(() => {
         try {
-            async function fetchData() {
-                const res = await Api.Get("/category");
-
-                const newData = res.response.map((obj, index) => {
-                    return {
-                        name: obj.name,
-                        imageUrl: <img className="w-10 h-10 rounded-full" src={`${API_URL}${obj.imageUrl}`} alt="." />,
-                        actions: (
-                            <div className="w-full flex justify-end items-center gap-2 text-right">
-                                <div><UpdatePage /></div>
-                                <div><DeletePage /></div>
-                            </div>
-                        )
-                    }
-                })
-
-                setCategories(newData);
-            }
-
             fetchData();
         }
         catch (err) {
@@ -131,7 +118,7 @@ export default function CategoryPage() {
                                 </form>
                             </div>
                             <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                                <AddPage />
+                                <AddPage fetchData={fetchData} />
                             </div>
                         </div>
 

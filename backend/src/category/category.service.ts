@@ -22,7 +22,12 @@ export class CategoryService {
     }
 
     async findAll() {
-        const data = await this.categoryRepository.findAll<Category>();
+        const data = await this.categoryRepository.findAll<Category>({
+            order: [
+                ['id', 'DESC']
+            ]
+        });
+        
         return data.map(obj => new CategoryDto(obj));
     }
 

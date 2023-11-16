@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useImageUpload } from "hooks/use-image-upload";
 import { toast } from "react-toastify";
 
-export default function AddPage() {
+export default function AddPage({ fetchData }) {
 
     const [openModal, setOpenModal] = useState(false);
 
@@ -83,65 +83,64 @@ export default function AddPage() {
                 isSubmit: false,
             }));
 
+            fetchData();
+
             toast.success("Thêm thành công");
             setOpenModal(false);
         },
     })
 
-
     return (
-        <>
-            <div>
-                {/* Modal toggle */}
-                <div className="flex justify-center m-5">
-                    <button
-                        onClick={() => setOpenModal(true)}
-                        className="w-full md:w-auto block text-white w-24 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                    >
-                        Thêm
-                    </button>
-                </div>
-                <Modal show={openModal} onClose={() => setOpenModal(false)}>
-                    <Modal.Header className="pb-4">Thêm loại hàng</Modal.Header>
-                    <Modal.Body className="pt-2">
-                        <form onSubmit={formik.handleSubmit}>
-                            <div className="grid gap-4 mb-6 sm:grid-cols-2">
-                                <div>
-                                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tên loại hàng</label>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                        autoComplete="off"
-                                        spellCheck="false"
-                                        value={formik.values.name || ''}
-                                        onChange={formik.handleChange}
-                                    />
-                                    {formik.errors.name && formik.touched.name && (
-                                        <p className="mt-1 ml-1 text-red-600 text-sm">
-                                            {formik.errors.name}
-                                        </p>
-                                    )}
-                                </div>
-                                <div>
-                                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hình ảnh</label>
-                                    <input
-                                        type="file"
-                                        name="image"
-                                        onChange={handleImageChange}
-                                    />
-                                </div>
-                            </div>
-                            <button
-                                disabled={status.isSubmit}
-                                type="submit"
-                                className="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
-                                Xác nhận
-                            </button>
-                        </form>
-                    </Modal.Body>
-                </Modal>
+        <div>
+            {/* Modal toggle */}
+            <div className="flex justify-center m-5">
+                <button
+                    onClick={() => setOpenModal(true)}
+                    className="w-full md:w-auto block text-white w-24 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                >
+                    Thêm
+                </button>
             </div>
-        </>
+            <Modal show={openModal} onClose={() => setOpenModal(false)}>
+                <Modal.Header className="pb-4">Thêm loại hàng</Modal.Header>
+                <Modal.Body className="pt-2">
+                    <form onSubmit={formik.handleSubmit}>
+                        <div className="grid gap-4 mb-6 sm:grid-cols-2">
+                            <div>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tên loại hàng</label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                    autoComplete="off"
+                                    spellCheck="false"
+                                    value={formik.values.name || ''}
+                                    onChange={formik.handleChange}
+                                />
+                                {formik.errors.name && formik.touched.name && (
+                                    <p className="mt-1 ml-1 text-red-600 text-sm">
+                                        {formik.errors.name}
+                                    </p>
+                                )}
+                            </div>
+                            <div>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hình ảnh</label>
+                                <input
+                                    type="file"
+                                    name="image"
+                                    onChange={handleImageChange}
+                                />
+                            </div>
+                        </div>
+                        <button
+                            disabled={status.isSubmit}
+                            type="submit"
+                            className="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+                            Xác nhận
+                        </button>
+                    </form>
+                </Modal.Body>
+            </Modal>
+        </div>
     )
 }

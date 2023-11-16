@@ -33,7 +33,12 @@ export class ProductService {
     }
 
     async findAll() {
-        const data = await this.productRepository.findAll<Product>();
+        const data = await this.productRepository.findAll<Product>({
+            order: [
+                ['id', 'DESC']
+            ]
+        });
+        
         return data.map(obj => new ProductDto(obj));
     }
 

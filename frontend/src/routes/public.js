@@ -14,13 +14,10 @@ import BestSeller from "pages/public/Home/BestSeller";
 import NewProducts from "pages/public/Home/NewProducts";
 import Card from "pages/public/Home/NewProducts/Card";
 import ForgetPassword from "pages/public/ForgetPassword";
-import ProductPage from "pages/public/product"
 import About from "pages/public/About";
 import Contact from "pages/public/Contact";
 import Following from "pages/public/Following";
 import Policy from "pages/public/Policy";
-import Rules from "pages/public/Rules";
-import Information from "pages/public/Information";
 
 export const publicRoutes = {
     path: '/',
@@ -30,16 +27,24 @@ export const publicRoutes = {
             path: '/',
             element: <HomePage />,
         },
-        { path: '/product', element: <ProductPage /> },
-
         { path: '/cart', element: <Cart /> },
         { path: '/blog', element: <Blog /> },
+
+        { path: '/deliverInfo', element: <DeliverInfo /> },
+        { path: '/story', element: <Story /> },
+        { path: '/slider', element: <Slider /> },
+        { path: '/postitem', element: <PostItem /> },
+        { path: '/description', element: <Description /> },
+        { path: '/catelog', element: <Catelog /> },
+        { path: '/bestSeller', element: <BestSeller /> },
+        { path: '/newproducts', element: <NewProducts /> },
+        { path: '/card', element: <Card /> },
+        { path: '/forgetPassword', element: <ForgetPassword /> },
+
         { path: '/about', element: <About /> },
         { path: '/contact', element: <Contact /> },
         { path: '/following', element: <Following /> },
         { path: '/policy', element: <Policy /> },
-        { path: '/rules', element: <Rules /> },
-        { path: '/info', element: <Information /> },
         
     ]
 };

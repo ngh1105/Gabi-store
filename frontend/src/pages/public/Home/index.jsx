@@ -10,7 +10,7 @@ export const HomePage = () => {
     return (
         <div>
             <Slider />
-            <Question/>
+            {/* <Question/> */}
             <Category />
             <BestSeller />
             <NewProducts type="GabiStore mùa hè"/>
