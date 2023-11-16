@@ -80,7 +80,7 @@ axiosInstance.interceptors.response.use((response) => {
         return Promise.reject(error);
     }
 
-    if ((error.response.status === 401 && error.response.data.requireRefresh)
+    if ((error.response.status === 401 && error.response.data.invalidToken)
         && !originalRequest._retry) {
 
         const resData = await refreshToken();
