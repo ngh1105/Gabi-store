@@ -20,7 +20,7 @@ import PantsDetail from "pages/public/Product/Pants/PantsDetail";
 import About from "pages/public/About";
 import Contact from "pages/public/Contact";
 import Following from "pages/public/Following";
-import ConfirmOrder from "pages/public/ConfirmOrder"
+import BillDetail from "pages/public/BillDetail"
 import Policy from "pages/public/Policy";
 
 export const publicRoutes = {
@@ -54,7 +54,7 @@ export const publicRoutes = {
         { path: '/about', element: <About /> },
         { path: '/contact', element: <Contact /> },
         { path: '/following', element: <Following /> },
-        { path: '/confirmorder', element: <ConfirmOrder /> },
+        { path: '/BillDetail', element: <BillDetail /> },
         { path: '/policy', element: <Policy /> },
     ]
 };

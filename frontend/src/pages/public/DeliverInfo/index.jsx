@@ -181,8 +181,6 @@ function DeliverInfo() {
             </div>
           </div>
           <div className="w-full lg:w-5/12">
-            
-
             <div className="px-6 mb-14">
               <div className="mb-10 mt-3">
                 <span className="mb-6 text-sm font-bold text-gray-700 dark:text-gray-400">
@@ -195,7 +193,7 @@ function DeliverInfo() {
                   required
                 />
                 <a
-                  className="inline-block w-full px-40 py-1.5 mt-4 text-lg font-medium leading-6 tracking-tighter text-center text-white bg-indigo-700 lg:w-full lg:px-28 hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded-xl"
+                  className="inline-block w-full px-20 py-1.5 mt-4 text-lg font-medium leading-6 tracking-tighter text-center text-white bg-indigo-700 lg:w-full lg:px-28 hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded-xl"
                   href="#"
                 >
                   Apply
@@ -227,7 +225,7 @@ function DeliverInfo() {
                   </span>
                 </div>
                 <a
-                  className="inline-block w-full px-40 py-1.5 text-lg font-medium leading-6 tracking-tighter text-center text-white bg-indigo-700 lg:w-full lg:px-28 hover:bg-indigo-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded-xl"
+                  className="inline-block w-full px-20 py-1.5 text-lg font-medium leading-6 tracking-tighter text-center text-white bg-indigo-700 lg:w-full lg:px-28 hover:bg-indigo-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded-xl"
                   href="#"
                 >
                   Thanh Toán
