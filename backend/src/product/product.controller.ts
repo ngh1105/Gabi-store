@@ -1,4 +1,5 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, BadRequestException, Req } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param,
+     Delete, UseGuards, BadRequestException, Req, InternalServerErrorException } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
@@ -15,47 +16,76 @@ export class ProductController {
     @UseGuards(AdminGuard)
     @Post()
     create(@Body() createProductDto: CreateProductDto) {
-        return this.productService.create(createProductDto);
+        try {
+            return this.productService.create(createProductDto);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
     }
 
     @Get()
     findAll() {
-        return this.productService.findAll();
+        try {
+            return this.productService.findAll();
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
     }
 
     @Get(':id')
     findOne(@Param('id') id: string) {
-        return this.productService.findOne(+id);
+        try {
+            return this.productService.findOne(+id);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
     }
 
     @ApiSecurity('private-key')
     @UseGuards(AdminGuard)
     @Patch(':id')
     update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
-        return this.productService.update(+id, updateProductDto);
+        try {
+            return this.productService.update(+id, updateProductDto);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
     }
 
     @ApiSecurity('private-key')
     @UseGuards(AdminGuard)
     @Delete(':id')
     remove(@Param('id') id: string) {
-        return this.productService.remove(+id);
+        try {
+            return this.productService.remove(+id);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
     }
 
     @ApiSecurity('private-key')
     @UseGuards(AdminGuard)
     @Post('upload-image/:id')
     uploadFile(@Param('id') id: string, @Req() request: Request) {
-
-        if (!request.files) {
-            throw new BadRequestException("Invalid file");
+        try {
+            if (!request.files) {
+                throw new BadRequestException("Invalid file");
+            }
+    
+            const image = request.files["image"];
+            if (!image) {
+                throw new BadRequestException("Invalid image");
+            }
+    
+            return this.productService.updateImage(+id, image);
         }
-
-        const image = request.files["image"];
-        if (!image) {
-            throw new BadRequestException("Invalid image");
+        catch (err) {
+            throw new InternalServerErrorException();
         }
-
-        return this.productService.updateImage(+id, image);
     }
 }

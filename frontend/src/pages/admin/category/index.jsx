@@ -42,7 +42,7 @@ export default function CategoryPage() {
 
     const columns = useMemo(() => [
         {
-            Header: "Tên loại hàng",
+            Header: "Tên",
             accessor: "name",
         },
         {
