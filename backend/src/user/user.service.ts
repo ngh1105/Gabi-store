@@ -4,6 +4,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { UserDto } from './dto/user.dto';
 import { genSalt, hash, compare } from 'bcrypt';
+import * as fs from "fs";
 
 @Injectable()
 export class UserService {
@@ -41,7 +42,12 @@ export class UserService {
     }
 
     async findAll() {
-        const data = await this.userRepository.findAll<User>();
+        const data = await this.userRepository.findAll<User>({
+            order: [
+                ['id', 'DESC']
+            ]
+        });
+
         return data.map(obj => new UserDto(obj));
     }
 
@@ -97,22 +103,54 @@ export class UserService {
             throw new HttpException('No record found', HttpStatus.NOT_FOUND);
         }
 
+        this.deleteAvatar(record);
+
         await record.destroy();
 
         return "Deleted successfully";
     }
 
+    async updateAvatar(id: number, image: any) {
+        const record = await this.userRepository.findOne<User>({
+            where: { id: id },
+        });
+
+        if (!record) {
+            throw new HttpException('No record found', HttpStatus.NOT_FOUND);
+        }
+
+        const fileName = `/upload/user/${record.id}/${image.md5}/${image.name}`;
+        if (fileName === record.avatarUrl) {
+            return "File is already exist";
+        }
+
+        this.deleteAvatar(record);
+
+        image.mv(`./public${fileName}`);
+
+        record.avatarUrl = fileName;
+        await record.save();
+
+        return "Uploaded successfully";
+    }
+
+    deleteAvatar(record: User) {
+        if (record.avatarUrl && record.avatarUrl !== "") {
+            fs.unlinkSync(`./public${record.avatarUrl}`);
+        }
+    }
+
     async isExists(id: number) {
-        const record = await this.userRepository.findOne({ 
-            where: { id } 
+        const record = await this.userRepository.findOne({
+            where: { id }
         });
 
         return !!record;
     }
 
     async isExistsByEmail(email: string) {
-        const record = await this.userRepository.findOne({ 
-            where: { email: email } 
+        const record = await this.userRepository.findOne({
+            where: { email: email }
         });
 
         return !!record;
