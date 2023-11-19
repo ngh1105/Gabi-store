@@ -101,25 +101,25 @@ function Policy() {
                         GabiStore sẽ đến tận nơi lấy hàng trả và không thu thêm bất cứ phí gì (Khách hàng cũng có thể tự gởi
                         lại hàng cho GabiStore)</p>
 
-                    <h2 class="mb-4 text-4xl tracking-tight font-bold text-gray-900 dark:text-white">3 Bước nhanh chóng để đổi trả:</h2>
+                    <h2 class="mb-4 text-[20px] tracking-tight font-bold text-gray-900 dark:text-white">3 BƯỚC NHANH CHÓNG ĐỂ ĐỔI TRẢ:</h2>
                     <p class="mb-4 font-light text-[18px]">Bước 1: Điền thông tin Đổi/ Trả hàng ở đây, hoặc qua số hotline 1900272737.</p>
                     <p class="mb-4 font-light text-[18px]">Bước 1: Điền thông tin Đổi/ Trả hàng ở đây, hoặc qua số hotline 1900272737.</p>
                     <p class="mb-4 font-light text-[18px]">Bước 3: Ngay khi xác nhận chúng tôi sẽ gởi bạn đơn hàng mới (hoặc lấy đơn hàng về), bạn
                         chỉ cần gởi hàng cần đổi/trả cho shipper là được.</p>
 
-                    <h2 class="mb-4 text-4xl tracking-tight font-bold text-gray-900 dark:text-white">ĐỐI VỚI VIỆC TRẢ HÀNG:</h2>
+                    <h2 class="mb-4 text-[20px] tracking-tight font-bold text-gray-900 dark:text-white">ĐỐI VỚI VIỆC TRẢ HÀNG:</h2>
                     <p class="mb-4 font-light text-[18px]">Chúng tôi sẽ hoàn lại số tiền hàng (sau khi đã trừ 25.000 VNĐ phí ship hàng) vào tài khoản mà bạn
                         cung cấp tối đa trong 24h làm việc (không tính thứ 7 & Chủ Nhật) sau khi yêu cầu hoàn tiền được CSKH
                         xác nhận.</p>
 
-                    <h2 class="mb-4 text-4xl tracking-tight font-bold text-gray-900 dark:text-white">LƯU Ý:</h2>
+                    <h2 class="mb-4 text-[20px] tracking-tight font-bold text-gray-900 dark:text-white">LƯU Ý:</h2>
                     <p class="mb-4 font-light text-[18px]">- GabiStore hỗ trợ đổi tối đa 3 lần/1 khách hàng.</p>
                     <p class="mb-4 font-light text-[18px]"> - GabiStore có quyền quyết định dừng việc hỗ trợ đổi trả và trả lại tiền cho khách hàng nếu phát hiện
                         khách hàng sử dụng chính sách để trục lợi (như việc đổi quá nhiều lần).</p>
                     <p class="mb-4 font-light text-[18px]"> - Với các đơn sàn TMĐT thì sẽ áp dụng chính sách trả hàng của sàn TMĐT. Tuy nhiên, trường hợp quá
                         thời gian trả hàng của sàn TMĐT sẽ được áp dụng chính sách trả hàng của GabiStore</p>
 
-                    <h2 class="mb-4 text-4xl tracking-tight font-bold text-gray-900 dark:text-white">CHÚNG TÔI LÀM GÌ VỚI HÀNG ĐỔI TRẢ:</h2>
+                    <h2 class="mb-4 text-[20px] tracking-tight font-bold text-gray-900 dark:text-white">CHÚNG TÔI LÀM GÌ VỚI HÀNG ĐỔI TRẢ:</h2>
                     <p class="mb-4 font-light text-[18px]">Áo thun, quần short: thu gom và gởi cho các chương trình từ thiện</p>
                     <p class="mb-4 font-light text-[18px]">Bít tất, boxer: huỷ bỏ 100%</p>
                     <Link to="/deliverInfo"> <Button primary className={cx('return')}>Tiếp tục thanh toán</Button></Link>
