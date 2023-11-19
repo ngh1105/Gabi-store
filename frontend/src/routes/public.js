@@ -17,6 +17,7 @@ import ForgetPassword from "pages/public/ForgetPassword";
 import About from "pages/public/About";
 import Contact from "pages/public/Contact";
 import Following from "pages/public/Following";
+import BillDetail from "pages/public/BillDetail"
 import Policy from "pages/public/Policy";
 import Information from "pages/public/Information";
 import Rules from "pages/public/Rules";
@@ -48,6 +49,7 @@ export const publicRoutes = {
         { path: '/about', element: <About /> },
         { path: '/contact', element: <Contact /> },
         { path: '/following', element: <Following /> },
+        { path: '/BillDetail', element: <BillDetail /> },
         { path: '/policy', element: <Policy /> },
         
     ]
