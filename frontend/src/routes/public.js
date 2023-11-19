@@ -3,6 +3,7 @@ import { HomePage } from "pages/public/Home";
 
 import Cart from "pages/public/Cart";
 import Blog from "pages/public/Blog";
+import BlogDetail from "pages/public/Blog/BlogDetail";
 import DeliverInfo from "pages/public/DeliverInfo";
 import Story from "pages/public/Story";
 import StoryDetail from "pages/public/Home/Story/StoryDetail";
@@ -19,8 +20,8 @@ import Contact from "pages/public/Contact";
 import Following from "pages/public/Following";
 import BillDetail from "pages/public/BillDetail"
 import Policy from "pages/public/Policy";
-import Information from "pages/public/Information";
 import Rules from "pages/public/Rules";
+import Information from "pages/public/Information";
 
 export const publicRoutes = {
     path: '/',
@@ -34,6 +35,7 @@ export const publicRoutes = {
         { path: '/rules', element: <Rules /> },
         { path: '/information', element: <Information /> },
         { path: '/blog', element: <Blog /> },
+        { path: '/blog/:id', element: <BlogDetail /> },
 
         { path: '/deliverInfo', element: <DeliverInfo /> },
         { path: '/story', element: <Story /> },
