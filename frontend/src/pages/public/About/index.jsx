@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
-import classNames from "classnames/bind";
-import style from "./About.module.scss";
 import axios from "axios";
-
-const cx = classNames.bind(style);
 
 function About() {
   return (
