@@ -98,17 +98,17 @@ export class CategoryService {
         return "Uploaded successfully";
     }
 
+    deleteImage(record: Category) {
+        if (record.imageUrl && record.imageUrl !== "") {
+            fs.unlinkSync(`./public${record.imageUrl}`);
+        }
+    }
+
     async isExists(id: number) {
         const record = await this.categoryRepository.findOne({ 
             where: { id } 
         });
 
         return !!record;
-    }
-
-    deleteImage(record: Category) {
-        if (record.imageUrl && record.imageUrl !== "") {
-            fs.unlinkSync(`./public${record.imageUrl}`);
-        }
     }
 }

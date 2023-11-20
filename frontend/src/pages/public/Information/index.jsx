@@ -172,7 +172,7 @@ function Information() {
                 <div className="flex items-center justify-center w-full h-full bg-blue-800 bg-opacity-50 ">
                     <div className="text-center">
                         <h1 className="text-2xl font-semibold text-white uppercase lg:text-3xl">
-                            LIÊN HỆ{" "}
+                        CHÍNH SÁCH BẢO MẬT THÔNG TIN{" "}
                         </h1>
                     </div>
                 </div>

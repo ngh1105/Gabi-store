@@ -10,7 +10,7 @@ export default function AdminLayout() {
     const { user } = useAuth();
 
     useEffect(() => {
-        if (!user) {
+        if (!user || user.role !== "ADMIN") {
             navigate("/");
         }
     }, [user]);

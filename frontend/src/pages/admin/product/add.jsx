@@ -1,5 +1,5 @@
 import { Modal } from "flowbite-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Api from "app/api";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -8,6 +8,30 @@ import { useImageUpload } from "hooks/use-image-upload";
 import { toast } from "react-toastify";
 
 export default function AddPage({ fetchData }) {
+
+    const [categories, setCategories] = useState([]);
+
+    async function fetchCategories() {
+        const res = await Api.Get("/category");
+
+        const newData = res.response.map((obj, index) => {
+            return {
+                id: obj.id,
+                name: obj.name,
+            }
+        })
+
+        setCategories(newData);
+    }
+
+    useEffect(() => {
+        try {
+            fetchCategories();
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }, []);
 
     const [openModal, setOpenModal] = useState(false);
 
@@ -29,7 +53,7 @@ export default function AddPage({ fetchData }) {
         const formData = new FormData();
         formData.append('image', image);
 
-        const resData = await Api.Post(`/category/upload-image/${id}`, formData, {
+        const resData = await Api.Post(`/product/upload-image/${id}`, formData, {
             headers: { "Content-Type": "multipart/form-data" }
         });
 
@@ -42,14 +66,25 @@ export default function AddPage({ fetchData }) {
     }
 
     const formik = useFormik({
+        enableReinitialize: true,
         initialValues: {
+            categoryId: categories[0] ? categories[0].id : 0,
             name: "",
+            price: 0,
+            description: "",
         },
         validationSchema: Yup.object({
+            categoryId: Yup.string()
+                .required("Đây là dữ liệu bắt buộc"),
             name: Yup.string()
                 .required("Đây là dữ liệu bắt buộc")
                 .min(6, `Cần ít nhất 6 ký tự`)
                 .max(255, `Không thể vượt quá 255 ký tự`),
+            price: Yup.number()
+                .required("Đây là dữ liệu bắt buộc")
+                .typeError("Dữ liệu phải là một số"),
+            description: Yup.string()
+                .required("Đây là dữ liệu bắt buộc"),
         }),
         onSubmit: async (values) => {
             setStatus(prevState => ({
@@ -58,10 +93,15 @@ export default function AddPage({ fetchData }) {
             }));
 
             const data = {
+                categoryId: parseInt(values.categoryId),
                 name: values.name,
+                price: parseInt(values.price),
+                description: values.description,
             }
 
-            const resData = await Api.Post("/category", data);
+            console.log(data);
+
+            const resData = await Api.Post("/product", data);
             if (!resData.isSuccess) {
                 setStatus(prevState => ({
                     isError: true,
@@ -69,6 +109,7 @@ export default function AddPage({ fetchData }) {
                     isSubmit: false,
                 }));
 
+                console.log(status);
                 toast.error("Đã có lỗi xảy ra");
                 setOpenModal(false);
 
@@ -102,10 +143,32 @@ export default function AddPage({ fetchData }) {
                 </button>
             </div>
             <Modal show={openModal} onClose={() => setOpenModal(false)}>
-                <Modal.Header className="pb-4">Thêm loại hàng</Modal.Header>
+                <Modal.Header className="pb-4">Thêm sản phẩm</Modal.Header>
                 <Modal.Body className="pt-2">
                     <form onSubmit={formik.handleSubmit}>
                         <div className="grid gap-4 mb-6 sm:grid-cols-2">
+                            <div>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Loại hàng</label>
+                                <select 
+                                    name="categoryId"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                    value={formik.values.categoryId || 0}
+                                    onChange={formik.handleChange}
+                                >
+                                    {
+                                        categories.map((obj, index) => (
+                                            <option key={index} value={obj.id}>
+                                                {obj.name}
+                                            </option>
+                                        ))
+                                    }
+                                </select>
+                                {formik.errors.categoryId && formik.touched.categoryId && (
+                                    <p className="mt-1 ml-1 text-red-600 text-sm">
+                                        {formik.errors.categoryId}
+                                    </p>
+                                )}
+                            </div>
                             <div>
                                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tên</label>
                                 <input
@@ -130,6 +193,40 @@ export default function AddPage({ fetchData }) {
                                     name="image"
                                     onChange={handleImageChange}
                                 />
+                            </div>
+                            <div>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Giá</label>
+                                <input
+                                    type="text"
+                                    name="price"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                    autoComplete="off"
+                                    spellCheck="false"
+                                    value={formik.values.price || ''}
+                                    onChange={formik.handleChange}
+                                />
+                                {formik.errors.price && formik.touched.price && (
+                                    <p className="mt-1 ml-1 text-red-600 text-sm">
+                                        {formik.errors.price}
+                                    </p>
+                                )}
+                            </div>
+                            <div>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mô tả</label>
+                                <input
+                                    type="text"
+                                    name="description"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                    autoComplete="off"
+                                    spellCheck="false"
+                                    value={formik.values.description || ''}
+                                    onChange={formik.handleChange}
+                                />
+                                {formik.errors.description && formik.touched.description && (
+                                    <p className="mt-1 ml-1 text-red-600 text-sm">
+                                        {formik.errors.description}
+                                    </p>
+                                )}
                             </div>
                         </div>
                         <button

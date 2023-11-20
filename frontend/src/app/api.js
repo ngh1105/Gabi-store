@@ -196,14 +196,14 @@ const Api = {
             }
         }
         catch (err) {
+            console.log(err);
+
             if (err.response) {
                 return {
                     isSuccess: false,
                     response: err.response.data
                 }
             }
-    
-            console.log(err);
     
             return {
                 isSuccess: false,
