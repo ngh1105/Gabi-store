@@ -17,7 +17,7 @@ function StoryDetail() {
             img4: "https://img.freepik.com/free-photo/workshop-is-full-work-by-tailors_329181-14375.jpg?size=626&ext=jpg&ga=GA1.1.544104556.1700111454&semt=ais",
             img5: "https://img.freepik.com/free-photo/colorful-equality-lettering-with-pencils_23-2148415302.jpg?size=626&ext=jpg&ga=GA1.1.544104556.1700111454&semt=ais",
             title1: "HƯỚNG ĐẾN THỜI TRANG BỀN VỮNG",
-            title2:"Theo tiêu chí 3E, một doanh nghiệp, tổ chức hay quốc gia muốn theo đuổi tính bền vững cần phải đảm bảo tiêu chí sau:",
+            title2: "Theo tiêu chí 3E, một doanh nghiệp, tổ chức hay quốc gia muốn theo đuổi tính bền vững cần phải đảm bảo tiêu chí sau:",
             title3: "1. Ecology – Hệ sinh thái:",
             title4: "2. Economics – Sự phát triển kinh tế:",
             title5: "3. Social Equity – Công bằng xã hội:",
@@ -28,84 +28,15 @@ function StoryDetail() {
             content1v5: "Tìm kiếm đối tác vận chuyển chi phí thấp, và tìm kiếm thị trường mới để xuất khẩu sản phẩm.",
             content2v1: "Tiêu chí liên quan đến việc bảo vệ các hệ thống và chức năng tự nhiên của Trái Đất. Tiêu chí này có thể hiểu đơn giản là các hoạt động nhằm bảo vệ môi trường sống và giảm lượng chất thải độc hại ra môi trường tự nhiên. Các hoạt động này vừa giúp bảo vệ môi trường sống trong hiện tại, vừa tạo một môi trường đáng sống hơn cho các thế hệ tương lai.",
             content3v1: "Tiêu chí này đảm bảo rằng mọi người đều có thể tiếp cận với các nguồn tài nguyên để đảm bảo mức sống chất lượng cao và đầy đủ nhất. Ngoài ra, tiêu chí này đòi hỏi các hoạt động giúp phát triển kinh tế nhưng không làm ảnh hưởng đến môi trường hoặc các thế hệ tương lai..",
-            content4v1:"Công bằng xã hội giải quyết vấn đề phân bổ không đồng đều về mọi phương diện giữa các cá nhân với nhau.",
-            content4v2:"Nếu bạn quan tâm đến thời trang bền vững, hãy tham khảo bài viết của GabiStore. Bài viết này cung cấp thông tin về xu hướng thời trang bền vững, nguồn gốc của thuật ngữ Sustainability, tiêu chí của tính bền vững, và nhiều hơn nữa.",
+            content4v1: "Công bằng xã hội giải quyết vấn đề phân bổ không đồng đều về mọi phương diện giữa các cá nhân với nhau.",
+            content4v2: "Nếu bạn quan tâm đến thời trang bền vững, hãy tham khảo bài viết của GabiStore. Bài viết này cung cấp thông tin về xu hướng thời trang bền vững, nguồn gốc của thuật ngữ Sustainability, tiêu chí của tính bền vững, và nhiều hơn nữa.",
+            date:"Mon 2, 2023",
         },
     ])
     return (
         tabs.map((bnm, index) => {
             return (
-                // <div key={index}>
-                //     <div
-                //         className="object-cover w-full bg-center bg-cover h-[15rem] "
-                //         style={{
-                //             backgroundImage:
-                //                 "url(https://images.unsplash.com/photo-1525130413817-d45c1d127c42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&q=60&&sat=-100",
-                //         }}
-                //     >
-                //         <div className="flex items-center justify-center w-full h-full bg-blue-800 bg-opacity-50 ">
-                //             <div className="text-center">
-                //                 <h1 className="text-2xl font-semibold text-white uppercase lg:text-3xl">
-                //                     CÂU CHUYỆN CỦA CHÚNG TÔI{" "}
-                //                 </h1>
-                //             </div>
-                //         </div>
-                //     </div>
-                //     {/*  End Banner */}
 
-                //     {/* Content 1 */}
-                //     <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
-                //         <div className="grid grid-cols-2 gap-4 mt-8">
-                //             <img className="w-full rounded-lg" src={bnm.img1} alt="office content 1" />
-                //             <img className="mt-4 w-full lg:mt-10 rounded-lg" src={bnm.img2} alt="office content 2" />
-                //         </div>
-                //         <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-                //             <h2 className="mb-4 text-2xl tracking-tight font-medium text-gray-900 dark:text-white">{bnm.title1}</h2>
-                //             <p className="mb-4 text-[18px]">{bnm.content1v1}</p>
-                //             <p className='mb-4 text-[18px]'>{bnm.content1v2}</p>
-                //             <p className='mb-4 text-[18px]'>{bnm.content1v3}</p>
-                //             <p className='mb-4 text-[18px]'>{bnm.content1v4}</p>
-                //             <p className='mb-4 text-[18px]'>{bnm.content1v5}</p>
-                //         </div>
-
-                //     </div>
-                //     {/* End Content 1 */}
-
-                //     {/* Content 2 */}
-                //     <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
-                //         <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-                //             <h2 className="mb-4 text-2xl tracking-tight font-medium text-gray-900 dark:text-white">{bnm.title2}</h2>
-                //             <p className="mb-4 text-[18px]">{bnm.content2v1}</p>
-                //             <p className='mb-4 text-[18px]'>{bnm.content2v2}</p>
-                //             <p className='mb-4 text-[18px]'>{bnm.content2v3}</p>
-                //             <p className='mb-4 text-[18px]'>{bnm.content2v4}</p>
-                //             <p className='mb-4 text-[18px]'>{bnm.content2v5}</p>
-                //         </div>
-                //         <div className="grid grid-cols-2 gap-4 mt-8">
-                //             <img className="w-full rounded-lg" src={bnm.img1} alt="office content 2" />
-                //             <img className="mt-4 w-full lg:mt-10 rounded-lg" src={bnm.img2} alt="office content 2" />
-                //         </div>
-                //     </div>
-                //     {/* End Content 2 */}
-
-                //     {/* Content 3 */}
-                //     <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
-                //         <div className="grid grid-cols-2 gap-4 mt-8">
-                //             <img className="w-full rounded-lg" src={bnm.img1} alt="office content 2" />
-                //             <img className="mt-4 w-full lg:mt-10 rounded-lg" src={bnm.img2} alt="office content 2" />
-                //         </div>
-                //         <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-                //             <h2 className="mb-4 text-2xl tracking-tight font-medium text-gray-900 dark:text-white">{bnm.title3}</h2>
-                //             <p className="mb-4 text-[18px]">{bnm.content3v1}</p>
-                //             <p className='mb-4 text-[18px]'>{bnm.content3v2}</p>
-                //             <p className='mb-4 text-[18px]'>{bnm.content3v3}</p>
-                //             <p className='mb-4 text-[18px]'>{bnm.content3v4}</p>
-                //             <p className='mb-4 text-[18px]'>{bnm.content3v5}</p>
-                //         </div>
-
-                //     </div>
-                //     {/* End Content 3 */}
-                // </div>        
                 <section className="pb-11 dark:bg-gray-900">
 
                     <div className="max-w-screen-xl mx-auto">
@@ -131,6 +62,7 @@ function StoryDetail() {
                                             >
                                                 <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
                                             </svg>
+                                            {bnm.date}
                                         </a>
                                         <a
                                             href="#"
@@ -149,10 +81,10 @@ function StoryDetail() {
                                             </svg>
                                         </a>
                                     </div>
-                                    
+
                                     <div className=" font-poppins dark:text-gray-400">
                                         <h2 className="mb-4 text-2xl font-semibold font-poppins dark:text-gray-300">
-                                        {bnm.title1}
+                                            {bnm.title1}
                                         </h2>
                                         <p className='font-light'>{bnm.content1v1}</p>
                                         <p className='font-light'>{bnm.content1v2}</p>
@@ -167,11 +99,11 @@ function StoryDetail() {
                                     </div>
 
                                     <div className=" pt-3 font-poppins dark:text-gray-400">
-                                    <h2 className="mb-3 text-2xl font-semibold font-poppins dark:text-gray-300">
-                                        {bnm.title2}
+                                        <h2 className="mb-3 text-2xl font-semibold font-poppins dark:text-gray-300">
+                                            {bnm.title2}
                                         </h2>
                                         <h2 className="mb-3 text-2xl font-semibold font-poppins dark:text-gray-300">
-                                        {bnm.title3}
+                                            {bnm.title3}
                                         </h2>
                                         <p className='font-light'>{bnm.content2v1}</p>
                                         <p className="pb-4"></p>
@@ -183,7 +115,7 @@ function StoryDetail() {
 
                                     <div className=" pt-3 font-poppins dark:text-gray-400">
                                         <h2 className="mb-3 text-2xl font-semibold font-poppins dark:text-gray-300">
-                                        {bnm.title4}
+                                            {bnm.title4}
                                         </h2>
                                         <p className='font-light'>{bnm.content3v1}</p>
                                         <p className="pb-4"></p>
@@ -192,10 +124,10 @@ function StoryDetail() {
                                             className="object-cover w-full rounded-md h-96"
                                         />
                                     </div>
-                                   
+
                                     <div className=" pt-3 font-poppins dark:text-gray-400">
                                         <h2 className="mb-3 text-2xl font-semibold font-poppins dark:text-gray-300">
-                                        {bnm.title5}
+                                            {bnm.title5}
                                         </h2>
                                         <p className='font-light'>{bnm.content4v1}</p>
                                         <p className="pb-4"></p>
@@ -656,9 +588,9 @@ function StoryDetail() {
                                 <div className="mb-4  rounded-md dark:border-gray-800 dark:bg-gray-800">
                                     <Link to="/product">
                                         <img
-                                            src="https://bizweb.dktcdn.net/100/438/408/themes/930060/assets/article_banner_1.jpg?1700022409557"
+                                            src="https://img.freepik.com/free-photo/barded-man-suit-holding-cane_155003-2311.jpg?w=740&t=st=1700472772~exp=1700473372~hmac=58dbbc11034e668e94cc2b6d26b8cdb6e04914b45dbda3813e822b89ef3ce520"
                                             alt
-                                            className="object-cover w-full rounded-md h-96"
+                                            className="object-cover w-full rounded-md h-[490]"
                                         />
                                     </Link>
                                 </div>
@@ -682,6 +614,15 @@ function StoryDetail() {
                                         Đăng kí để nhận thông tin khuyển mãi, sản phẩm mới từ GABI
                                         Store
                                     </p>
+                                </div>
+                                <div className="mb-4  rounded-md dark:border-gray-800 dark:bg-gray-800">
+                                    <Link to="/product">
+                                        <img
+                                            src="https://img.freepik.com/free-photo/young-pretty-woman-modern-glasses-fashion-hat-brown-coat-is-posing-city-centre_231208-3109.jpg?size=626&ext=jpg&ga=GA1.1.544104556.1700111454&semt=ais"
+                                            alt
+                                            className="object-cover w-full rounded-md h-[490]"
+                                        />
+                                    </Link>
                                 </div>
                             </div>
                         </div>
