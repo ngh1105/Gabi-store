@@ -7,53 +7,27 @@ import { API_URL } from "app/config";
 function ProductPage() {
     return (
         <PageLayout title="Sản phẩm">
-           <Slider />
+            <Slider />
             <section className="py-20 bg-gray-50 font-poppins dark:bg-gray-800  ">
                 <div className="px-4 py-4 mx-auto max-w-7xl lg:py-6 md:px-6">
                     {/* Breadcumb */}
 
-                    <nav className="flex mb-2" aria-label="Breadcrumb">
-                        <ol className="inline-flex items-center space-x-1 md:space-x-3">
+                    <nav className="flex" aria-label="Breadcrumb">
+                        <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                             <li className="inline-flex items-center">
-                                <a
-                                    href="#"
-                                    className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-white"
-                                >
-                                    <svg
-                                        className="w-3 h-3 mr-2.5"
-                                        aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="currentColor"
-                                        viewBox="0 0 20 20"
-                                    >
+                                <a href="#" className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-white">
+                                    <svg className="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
                                     </svg>
                                     Trang chủ
                                 </a>
                             </li>
-                            <li>
+                            <li aria-current="page">
                                 <div className="flex items-center">
-                                    <svg
-                                        className="w-3 h-3 text-gray-400 mx-1"
-                                        aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 6 10"
-                                    >
-                                        <path
-                                            stroke="currentColor"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="m1 9 4-4-4-4"
-                                        />
+                                    <svg className="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m1 9 4-4-4-4" />
                                     </svg>
-                                    <a
-                                        href="#"
-                                        className="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"
-                                    >
-                                        Sản phẩm
-                                    </a>
+                                    <span className="ms-1 text-sm font-medium text-gray-500 md:ms-2 hover:text-indigo-600">Sản phẩm</span>
                                 </div>
                             </li>
                         </ol>
@@ -63,21 +37,11 @@ function ProductPage() {
                         <div className="w-full pr-4 lg:w-1/4 lg:block  ">
                             <div className="p-4 mb-5 bg-white border border-gray-200 dark:border-gray-900 dark:bg-gray-900">
                                 <h2 className="text-2xl font-bold dark:text-gray-400">
-                                    Loại sản phẩm
+                                    Loại hàng
                                 </h2>
                                 <div className="w-16 pb-2 mb-6 border-b border-rose-600 dark:border-gray-400" />
-                                <ul>
-                                    <li className="mb-4">
-                                        <label
-                                            htmlFor
-                                            className="flex items-center dark:text-gray-400"
-                                        >
-                                            <input type="checkbox" className="w-4 h-4 mr-2" />
-                                            <span className="text-lg">Tất cả sản phẩm</span>
-                                        </label>
-                                    </li>
-
-                                    <li className="mb-4">
+                                <ul> 
+                                   <li className="mb-4">
                                         <label
                                             htmlFor
                                             className="flex items-center dark:text-gray-400 "
@@ -172,37 +136,10 @@ function ProductPage() {
                         <div className="w-full px-3 lg:w-3/4 ">
                             <div className="px-3 ">
                                 <div className=" items-center justify-between hidden px-4 py-2 mb-4 bg-gray-100 md:flex dark:bg-gray-900 ">
-                                    {/* <h2 className="text-2xl dark:text-gray-400">
-                    Search Results for items
-                  </h2> */}
-
                                     {/* input search */}
 
                                     <form>
                                         <div className="flex items-center">
-                                            <button
-                                                id="dropdown-button"
-                                                data-dropdown-toggle="dropdown"
-                                                className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
-                                                type="button"
-                                            >
-                                                Tất cả sản phẩm
-                                                <svg
-                                                    className="w-2.5 h-2.5 ml-2.5"
-                                                    aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    fill="none"
-                                                    viewBox="0 0 10 6"
-                                                >
-                                                    <path
-                                                        stroke="currentColor"
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={2}
-                                                        d="m1 1 4 4 4-4"
-                                                    />
-                                                </svg>
-                                            </button>
                                             <div
                                                 id="dropdown"
                                                 className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"

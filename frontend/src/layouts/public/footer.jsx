@@ -5,7 +5,7 @@ import Logo from "images/logo.png";
 
 export default function Footer() {
     return (
-        <div className="bg-slate-50">
+        <div className="bg-slate-50 border-t border-gray-200">
             <footer className="mx-auto max-w-screen-xl">
                 <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
                     <div className="md:flex md:justify-between">
@@ -90,7 +90,6 @@ export default function Footer() {
                     </div>
                 </div>
             </footer>
-
         </div>
     );
 }
