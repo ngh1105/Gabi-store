@@ -48,10 +48,9 @@ export default function AddPage({ fetchData }) {
         validationSchema: Yup.object({
             name: Yup.string()
                 .required("Đây là dữ liệu bắt buộc")
-                .min(6, `Cần ít nhất 6 ký tự`)
                 .max(255, `Không thể vượt quá 255 ký tự`),
         }),
-        onSubmit: async (values) => {
+        onSubmit: async (values, { resetForm }) => {
             setStatus(prevState => ({
                 ...prevState,
                 isSubmit: true
@@ -86,6 +85,7 @@ export default function AddPage({ fetchData }) {
             fetchData();
 
             toast.success("Thêm thành công");
+            resetForm();
             setOpenModal(false);
         },
     })

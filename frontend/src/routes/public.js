@@ -22,6 +22,7 @@ import BillDetail from "pages/public/BillDetail"
 import Policy from "pages/public/Policy";
 import Rules from "pages/public/Rules";
 import Information from "pages/public/Information";
+import ProductPage from "pages/public/product";
 
 export const publicRoutes = {
     path: '/',
@@ -31,6 +32,8 @@ export const publicRoutes = {
             path: '/',
             element: <HomePage />,
         },
+        { path: '/product', element: <ProductPage /> },
+
         { path: '/cart', element: <Cart /> },
         { path: '/rules', element: <Rules /> },
         { path: '/information', element: <Information /> },

@@ -86,7 +86,7 @@ export default function AddPage({ fetchData }) {
             description: Yup.string()
                 .required("Đây là dữ liệu bắt buộc"),
         }),
-        onSubmit: async (values) => {
+        onSubmit: async (values, { resetForm }) => {
             setStatus(prevState => ({
                 ...prevState,
                 isSubmit: true
@@ -127,6 +127,7 @@ export default function AddPage({ fetchData }) {
             fetchData();
 
             toast.success("Thêm thành công");
+            resetForm();
             setOpenModal(false);
         },
     })
