@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from "react"
 import AddPage from "./add";
 import UpdatePage from "./update";
-import { Link } from "react-router-dom";
 import DeletePage from "./delete";
 import { useFlexLayout, useGlobalFilter, usePagination, useTable } from "react-table";
 import Api from "app/api";
@@ -10,15 +9,16 @@ import PageLayout from "components/page-layout";
 
 export default function UserPage() {
 
-    const [categories, setCategories] = useState([]);
+    const [users, setUsers] = useState([]);
 
     async function fetchData() {
-        const res = await Api.Get("/category");
+        const res = await Api.Get("/user");
 
         const newData = res.response.map((obj, index) => {
             return {
-                name: obj.name,
-                imageUrl: <img className="w-10 h-10 rounded-full" src={`${API_URL}${obj.imageUrl}`} alt="." />,
+                email: obj.email,
+                avatarUrl: <img className="w-10 h-10 rounded-full" src={`${API_URL}${obj.avatarUrl}`} alt="." />,
+                role: obj.role,
                 actions: (
                     <div className="w-full flex justify-end items-center gap-2 text-right">
                         <div><UpdatePage id={obj.id} fetchData={fetchData} /></div>
@@ -28,7 +28,7 @@ export default function UserPage() {
             }
         })
 
-        setCategories(newData);
+        setUsers(newData);
     }
 
     useEffect(() => {
@@ -42,12 +42,16 @@ export default function UserPage() {
 
     const columns = useMemo(() => [
         {
-            Header: "Tên",
-            accessor: "name",
+            Header: "Email",
+            accessor: "email",
         },
         {
-            Header: "Hình ảnh",
-            accessor: "imageUrl",
+            Header: "Ảnh đại diện",
+            accessor: "avatarUrl",
+        },
+        {
+            Header: "Vai trò",
+            accessor: "role",
         },
         {
             Header: () => <div className="text-right">Thao tác</div>,
@@ -57,7 +61,7 @@ export default function UserPage() {
         }
     ], []);
 
-    const data = useMemo(() => categories, [categories]);
+    const data = useMemo(() => users, [users]);
 
     const tableInstance = useTable({
         columns,
@@ -92,7 +96,7 @@ export default function UserPage() {
     const { globalFilter, pageIndex, pageSize } = state;
 
     return (
-        <PageLayout title="Loại hàng" >
+        <PageLayout title="Người dùng" >
             <section className="bg-gray-50 p-3 sm:p-5">
                 <div className="mx-auto max-w-screen-xl px-4 lg:px-12">
                     {/* Start coding here */}

@@ -1,9 +1,11 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, InternalServerErrorException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, 
+    BadRequestException, Req, UseGuards, InternalServerErrorException } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { AdminGuard } from 'src/auth/auth.guard';
+import { Request } from 'express';
 
 @ApiTags('user')
 @Controller('user')
@@ -61,9 +63,30 @@ export class UserController {
     @ApiSecurity('private-key')
     @UseGuards(AdminGuard)
     @Delete(':id')
-    remove(@Param('id') id: string) {
+    remove(@Param('id') id: string, @Req() request: Request) {
         try {
-            return this.userService.remove(+id);
+            return this.userService.remove(+id, request['user']);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
+
+    @ApiSecurity('private-key')
+    @UseGuards(AdminGuard)
+    @Post('upload-avatar/:id')
+    uploadFile(@Param('id') id: string, @Req() request: Request) {
+        try {
+            if (!request.files) {
+                throw new BadRequestException("Invalid file");
+            }
+    
+            const image = request.files["image"];
+            if (!image) {
+                throw new BadRequestException("Invalid image");
+            }
+    
+            return this.userService.updateAvatar(+id, image);
         }
         catch (err) {
             throw new InternalServerErrorException();
