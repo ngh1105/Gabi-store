@@ -1,20 +1,5 @@
-import { Link } from "react-router-dom";
-import React, { Component } from 'react';
-import { useMemo, useState } from "react"
+import { useMemo } from "react";
 
-import { useNavigate } from "react-router-dom";
-import Button from 'components/Button';
-import styles from './story.module.scss';
-import classNames from 'classnames/bind';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
-
-// const cx = classNames.bind(styles);
-// const [blog, setBlog] = useState([]);
-//     const navigate = useNavigate();
-//     useEffect(() => {
-//         axios.get('http://localhost:8000/blog').then((data) => setBlog(data.data));
-//     }, []);
 function Story() {
     const tabs = useMemo(() => [
         { 

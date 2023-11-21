@@ -1,11 +1,6 @@
 import React from 'react';
-import classNames from 'classnames/bind';
-import styles from './StoryDetail.module.scss';
-import { Button } from 'bootstrap';
 import { Link } from 'react-router-dom';
 import { useMemo, useState } from "react"
-
-const cx = classNames.bind(styles);
 
 function StoryDetail() {
     const tabs = useMemo(() => [

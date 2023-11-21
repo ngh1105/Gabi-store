@@ -1,8 +1,6 @@
-import React from 'react';
-import classNames from 'classnames/bind';
-import styles from './Rules.module.scss';
-
-const cx = classNames.bind(styles);
+import React from "react";
+import classNames from "classnames/bind";
+import styles from "./Rules.module.scss";
 
 function Rules() {
     return (

@@ -2,6 +2,7 @@ import { useRoutes } from "react-router-dom";
 import { publicRoutes } from "./public";
 import { adminRoutes } from "./admin";
 import { NotFound } from "pages/public/not-found";
+import { authRoutes } from "./auth";
 
 // We have to create own not found component
 const errorRoutes = {
@@ -10,5 +11,5 @@ const errorRoutes = {
 };
 
 export const AppRoutes = () => {
-    return useRoutes([publicRoutes, adminRoutes, errorRoutes]);
+    return useRoutes([publicRoutes, authRoutes, adminRoutes, errorRoutes]);
 }
