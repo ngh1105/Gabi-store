@@ -8,7 +8,7 @@ function ProductPage() {
     return (
         <PageLayout title="Sản phẩm">
             <Slider />
-            <section className="py-20 bg-gray-50 font-poppins dark:bg-gray-800  ">
+            <section className="py-5 bg-gray-50 font-poppins dark:bg-gray-800">
                 <div className="px-4 py-4 mx-auto max-w-7xl lg:py-6 md:px-6">
                     {/* Breadcumb */}
 
@@ -40,8 +40,8 @@ function ProductPage() {
                                     Loại hàng
                                 </h2>
                                 <div className="w-16 pb-2 mb-6 border-b border-rose-600 dark:border-gray-400" />
-                                <ul> 
-                                   <li className="mb-4">
+                                <ul>
+                                    <li className="mb-4">
                                         <label
                                             htmlFor
                                             className="flex items-center dark:text-gray-400 "
@@ -141,7 +141,6 @@ function ProductPage() {
                                     <form>
                                         <div className="flex items-center">
                                             <div
-                                                id="dropdown"
                                                 className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
                                             >
                                                 <ul
@@ -175,107 +174,28 @@ function ProductPage() {
                                                 </ul>
                                             </div>
                                             <div className="relative w-full">
-                                                <input
-                                                    type="search"
-                                                    id="search-dropdown"
-                                                    className=" w-[300px]  block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
-                                                    placeholder="Bạn đang muốn tìm..."
-                                                    required
-                                                />
-                                                <button
-                                                    type="submit"
-                                                    className="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white bg-indigo-700 rounded-r-lg border border-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
-                                                >
-                                                    <svg
-                                                        className="w-4 h-4"
-                                                        aria-hidden="true"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        fill="none"
-                                                        viewBox="0 0 20 20"
-                                                    >
-                                                        <path
-                                                            stroke="currentColor"
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                            strokeWidth={2}
-                                                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                                                        />
+                                                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                                    <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5v10M3 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0V6a3 3 0 0 0-3-3H9m1.5-2-2 2 2 2" />
                                                     </svg>
-                                                    <span className="sr-only">Search</span>
-                                                </button>
+                                                </div>
+                                                <input type="text" id="simple-search" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    placeholder="Tìm kiếm sản phẩm" required />
                                             </div>
                                         </div>
                                     </form>
 
                                     <div className="flex items-center justify-between">
-                                        <div className="flex">
-                                            <a
-                                                href="#"
-                                                className="inline-block h-full p-2 mr-3 border rounded-md bg-gray-50 dark:text-gray-400 dark:bg-gray-700 dark:border-gray-700"
-                                            >
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    width={16}
-                                                    height={16}
-                                                    fill="currentColor"
-                                                    className="w-5 h-5 bi bi-list"
-                                                    viewBox="0 0 16 16"
-                                                >
-                                                    <path
-                                                        fillRule="evenodd"
-                                                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
-                                                    />
-                                                </svg>
-                                            </a>
-                                            <a
-                                                href="#"
-                                                className="inline-block h-full p-2 mr-3 border rounded-md bg-gray-50 dark:text-gray-400 dark:bg-gray-700 dark:border-gray-700"
-                                            >
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    width={16}
-                                                    height={16}
-                                                    fill="currentColor"
-                                                    className="w-5 h-5 bi bi-grid-fill"
-                                                    viewBox="0 0 16 16"
-                                                >
-                                                    <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3z" />
-                                                </svg>
-                                            </a>
-                                            <a
-                                                href="#"
-                                                className="inline-block h-full p-2 mr-6 border rounded-md bg-gray-50 dark:text-gray-400 dark:bg-gray-700 dark:border-gray-700"
-                                            >
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    width={16}
-                                                    height={16}
-                                                    fill="currentColor"
-                                                    className="w-5 h-5 bi bi-grid-3x3-gap-fill"
-                                                    viewBox="0 0 16 16"
-                                                >
-                                                    <path d="M1 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2zM1 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V7zM1 12a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2z" />
-                                                </svg>
-                                            </a>
-                                        </div>
-                                        <div>
-                                            <select
-                                                name
-                                                id
-                                                className="block w-40 text-base bg-gray-100 dark:text-gray-400 dark:bg-gray-900"
-                                            >
-                                                <option value>Mới nhất</option>
-                                                <option value>Phổ biến nhất</option>
-                                                <option value>Giá thấp nhất</option>
-                                            </select>
-                                        </div>
+
+                                        <select className="block w-40 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            <option value selected>Mới nhất</option>
+                                            <option value>Phổ biến nhất</option>
+                                            <option value>Giá thấp nhất</option>
+                                        </select>
+
                                     </div>
                                 </div>
                             </div>
-
-                            <h1 className="text-[30px] my-[20px] font-semibold">
-                                Tất cả sản phẩm
-                            </h1>
 
                             {/* All product */}
                             <div className="flex flex-wrap items-center ">
