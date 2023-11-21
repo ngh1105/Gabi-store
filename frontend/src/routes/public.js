@@ -1,5 +1,7 @@
 import { PublicLayout } from "layouts/public";
 import { HomePage } from "pages/public/Home";
+import ProductPage from "pages/public/product";
+import ContactPage from "pages/public/contact";
 
 import Cart from "pages/public/Cart";
 import Blog from "pages/public/Blog";
@@ -16,13 +18,13 @@ import NewProducts from "pages/public/Home/NewProducts";
 import Card from "pages/public/Home/NewProducts/Card";
 import ForgetPassword from "pages/public/ForgetPassword";
 import About from "pages/public/About";
-import Contact from "pages/public/Contact";
+
 import Following from "pages/public/Following";
 import BillDetail from "pages/public/BillDetail"
 import Policy from "pages/public/Policy";
 import Rules from "pages/public/Rules";
 import Information from "pages/public/Information";
-import ProductPage from "pages/public/product";
+
 
 export const publicRoutes = {
     path: '/',
@@ -33,6 +35,7 @@ export const publicRoutes = {
             element: <HomePage />,
         },
         { path: '/product', element: <ProductPage /> },
+        { path: '/contact', element: <ContactPage /> },
 
         { path: '/cart', element: <Cart /> },
         { path: '/rules', element: <Rules /> },
@@ -52,7 +55,6 @@ export const publicRoutes = {
         { path: '/forgetPassword', element: <ForgetPassword /> },
 
         { path: '/about', element: <About /> },
-        { path: '/contact', element: <Contact /> },
         { path: '/following', element: <Following /> },
         { path: '/BillDetail', element: <BillDetail /> },
         { path: '/policy', element: <Policy /> },
