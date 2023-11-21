@@ -16,14 +16,13 @@ function BestSeller() {
     const [bestSeller, setBestSeller] = useState([]);
 
     return (
-        <div className="w-[1320px]  m-auto">
+        <div className="x-auto max-w-screen-xl">
             <section className="flex items-center   py-16  dark:bg-gray-800 font-poppins">
                 <div className="p-4 mx-auto max-w-6xl">
                     <h2 className="pb-4  font-bold text-center text-gray-800 text-[24px] dark:text-gray-400 uppercase">
                         Bán chạy nhất
                     </h2>
                     <div className="mx-auto mb-10 border-b border-red-700 w-44 dark:border-gray-400" />
-
 
 
                     <div className="flex flex-wrap items-center ">
@@ -37,7 +36,6 @@ function BestSeller() {
                                             className="object-cover w-full h-56 mx-auto "
                                         />
                                     </a>
-
                                 </div>
                                 <div className="p-5 bg-gray-50 dark:bg-gray-900">
                                     <div className="flex items-center justify-between mb-4">
@@ -87,7 +85,6 @@ function BestSeller() {
                                             className="object-cover w-full h-56 mx-auto "
                                         />
                                     </a>
-
                                 </div>
                                 <div className="p-5 bg-gray-50 dark:bg-gray-900">
                                     <div className="flex items-center justify-between mb-4">
@@ -137,7 +134,6 @@ function BestSeller() {
                                             className="object-cover w-full h-56 mx-auto "
                                         />
                                     </a>
-
                                 </div>
                                 <div className="p-5 bg-gray-50 dark:bg-gray-900">
                                     <div className="flex items-center justify-between mb-4">
@@ -187,7 +183,6 @@ function BestSeller() {
                                             className="object-cover w-full h-56 mx-auto "
                                         />
                                     </a>
-
                                 </div>
                                 <div className="p-5 bg-gray-50 dark:bg-gray-900">
                                     <div className="flex items-center justify-between mb-4">
@@ -237,7 +232,6 @@ function BestSeller() {
                                             className="object-cover w-full h-56 mx-auto "
                                         />
                                     </a>
-
                                 </div>
                                 <div className="p-5 bg-gray-50 dark:bg-gray-900">
                                     <div className="flex items-center justify-between mb-4">
@@ -287,7 +281,6 @@ function BestSeller() {
                                             className="object-cover w-full h-56 mx-auto "
                                         />
                                     </a>
-
                                 </div>
                                 <div className="p-5 bg-gray-50 dark:bg-gray-900">
                                     <div className="flex items-center justify-between mb-4">
@@ -330,7 +323,7 @@ function BestSeller() {
                 </div>
             </section>
         </div>
-    )
+    );
 }
 
 export default BestSeller;
