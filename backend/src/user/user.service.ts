@@ -94,7 +94,11 @@ export class UserService {
         return new UserDto(retData);
     }
 
-    async remove(id: number) {
+    async remove(id: number, user: any) {
+        if (id == user.userId) {
+            throw new BadRequestException("You cannot delete yourself");   
+        }
+
         const record = await this.userRepository.findOne<User>({
             where: { id: id },
         });

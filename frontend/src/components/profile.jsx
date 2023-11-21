@@ -1,4 +1,4 @@
-import { useAuth } from "auth/use-auth";
+import { useAuth } from "hooks/use-auth";
 import { Avatar, Dropdown } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
 

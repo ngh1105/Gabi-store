@@ -1,6 +1,6 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import Logo from "images/logo.png";
-import { useAuth } from "auth/use-auth";
+import { useAuth } from "hooks/use-auth";
 import { useEffect } from "react";
 
 export default function AuthLayout() {

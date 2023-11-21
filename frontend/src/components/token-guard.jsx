@@ -1,5 +1,5 @@
-import { setUser } from "auth/auth.slice";
-import { useAuth } from "auth/use-auth";
+import { setUser } from "redux/auth.slice";
+import { useAuth } from "hooks/use-auth";
 import { useEffect } from "react"
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
