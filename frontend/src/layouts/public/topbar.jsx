@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import Logo from "images/logo.png";
 import { useMemo, useState } from "react";
-import { useAuth } from "auth/use-auth";
+import { useAuth } from "hooks/use-auth";
 import Profile from "components/profile";
 
 export default function Topbar() {

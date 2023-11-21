@@ -1,5 +1,5 @@
 import Api from "app/api";
-import { useAuth } from "auth/use-auth";
+import { useAuth } from "hooks/use-auth";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
