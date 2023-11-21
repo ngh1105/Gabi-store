@@ -11,7 +11,7 @@ export default function Footer() {
                     <div className="md:flex md:justify-between">
                         <div className="mb-6 md:mb-0">
                             <Link to="/" className="flex items-center">
-                                <img src={Logo} className="h-8 me-3" alt="Logo" />
+                                <img src={Logo} className="w-auto h-8 me-3" alt="Logo" />
                                 <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Gabi Store</span>
                             </Link>
                         </div>

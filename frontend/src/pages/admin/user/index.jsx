@@ -31,9 +31,9 @@ export default function UserPage() {
         setUsers(newData);
     }
 
-    useEffect(() => {
+    useEffect(async () => {
         try {
-            fetchData();
+            await fetchData();
         }
         catch (err) {
             console.log(err);

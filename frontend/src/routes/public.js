@@ -24,6 +24,7 @@ import BillDetail from "pages/public/BillDetail"
 import Policy from "pages/public/Policy";
 import Rules from "pages/public/Rules";
 import Information from "pages/public/Information";
+import ProductDetailPage from "pages/public/product-detail";
 
 
 export const publicRoutes = {
@@ -36,6 +37,7 @@ export const publicRoutes = {
         },
         { path: '/product', element: <ProductPage /> },
         { path: '/contact', element: <ContactPage /> },
+        { path: '/product-detail/:id', element: <ProductDetailPage /> },
 
         { path: '/cart', element: <Cart /> },
         { path: '/rules', element: <Rules /> },
@@ -58,6 +60,6 @@ export const publicRoutes = {
         { path: '/following', element: <Following /> },
         { path: '/BillDetail', element: <BillDetail /> },
         { path: '/policy', element: <Policy /> },
-        
+        { path: '/storydetail', element: <StoryDetail /> },
     ]
 };
