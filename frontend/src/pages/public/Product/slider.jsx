@@ -4,7 +4,7 @@ import { Carousel } from 'flowbite-react';
 const Slider = () => {
     return (
         <>
-            <div className="relative w-full h-56 sm:h-64 xl:h-80 2xl:h-96">
+            <div className="relative w-full h-[15rem]">
                 <Carousel>
                     <img src="https://file.hstatic.net/200000260587/file/1920x1000_a28bdd3fa115470ab2bd38946d030bc3.jpg" alt="..." />
                     <img src="https://images.unsplash.com/photo-1603252109303-2751441dd157?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="..." />

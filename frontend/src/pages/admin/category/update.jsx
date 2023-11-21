@@ -26,24 +26,27 @@ export default function UpdatePage({ id, fetchData }) {
         name: "",
     });
 
-    useEffect(() => {
-        (async () => {
-            const res = await Api.Get(`/category/${id}`);
+    const updateData = async () => {
+        const res = await Api.Get(`/category/${id}`);
 
-            if (!res.isSuccess) {
-                toast.error("ID không tồn tại");
-                setOpenModal(false);
-            }
+        if (!res.isSuccess) {
+            toast.error("ID không tồn tại");
+            setOpenModal(false);
+        }
 
-            setCurrCategory({
-                id: res.response.id,
-                name: res.response.name,
-                imageUrl: res.response.imageUrl,
-            });
+        setCurrCategory({
+            id: res.response.id,
+            name: res.response.name,
+            imageUrl: res.response.imageUrl,
+        });
 
-            setImageFromUrl(`${API_URL}${res.response.imageUrl}`);
-        })()
-    }, [])
+        setImageFromUrl(`${API_URL}${res.response.imageUrl}`);
+    }
+
+    const handleOpenButton = async () => {
+        setOpenModal(true);
+        await updateData();
+    }
 
     const uploadImage = async (id) => {
 
@@ -78,7 +81,7 @@ export default function UpdatePage({ id, fetchData }) {
                 .min(6, `Cần ít nhất 6 ký tự`)
                 .max(255, `Không thể vượt quá 255 ký tự`),
         }),
-        onSubmit: async (values) => {
+        onSubmit: async (values, { resetForm }) => {
             setStatus(prevState => ({
                 ...prevState,
                 isSubmit: true
@@ -113,6 +116,7 @@ export default function UpdatePage({ id, fetchData }) {
             fetchData();
 
             toast.success("Sửa thành công");
+            resetForm();
             setOpenModal(false);
         },
     })
@@ -122,7 +126,7 @@ export default function UpdatePage({ id, fetchData }) {
             {/* Modal toggle */}
             <div className="flex">
                 <button
-                    onClick={() => setOpenModal(true)}
+                    onClick={() => handleOpenButton()}
                     className="block text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-2 py-2 text-center " type="button">
                     Sửa
                 </button>

@@ -3,6 +3,7 @@ import Logo from "images/logo.png";
 import { useMemo, useState } from "react";
 import { useAuth } from "hooks/use-auth";
 import Profile from "components/profile";
+import { useSelector } from "react-redux";
 
 export default function Topbar() {
 
@@ -32,6 +33,8 @@ export default function Topbar() {
     const location = useLocation();
 
     const { user } = useAuth();
+
+    const cart = useSelector((state) => state.cart.cart);
 
     return (
         <header className="sticky top-0 z-50">
@@ -64,11 +67,23 @@ export default function Topbar() {
                                     <>
                                         <div className="flex items-center lg:order-2">
                                             {/* Cart */}
-                                            <button className="p-2 mr-1 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
-                                                <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-                                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1" />
-                                                </svg>
-                                            </button>
+                                            <Link to="/cart">
+                                                <button className="relative p-2 mr-1 rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-100 hover:ring-4 hover:ring-gray-300">
+                                                    <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1" />
+                                                    </svg>
+                                                    {
+                                                        cart.length > 0
+                                                            ? (
+                                                                <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
+                                                                    {cart.length}
+                                                                </div>
+                                                            )
+                                                            : null
+                                                    }
+
+                                                </button>
+                                            </Link>
                                             {/* Dropdown menu */}
                                             <Profile />
                                         </div>

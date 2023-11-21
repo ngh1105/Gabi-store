@@ -29,9 +29,8 @@ export default function UpdatePage({ id, fetchData }) {
         avatarUrl: "",
     });
 
-    useEffect(() => {
-        (async () => {
-            const res = await Api.Get(`/user/${id}`);
+    const updateData = async () => {
+        const res = await Api.Get(`/user/${id}`);
 
             if (!res.isSuccess) {
                 toast.error("ID không tồn tại");
@@ -47,8 +46,12 @@ export default function UpdatePage({ id, fetchData }) {
             });
 
             setImageFromUrl(`${API_URL}${res.response.imageUrl}`);
-        })()
-    }, [])
+    }
+
+    const handleOpenButton = async () => {
+        setOpenModal(true);
+        await updateData();
+    }
 
     const uploadAvatar = async (id) => {
 
@@ -94,7 +97,7 @@ export default function UpdatePage({ id, fetchData }) {
             role: Yup.string()
                 .required("Đây là dữ liệu bắt buộc"),
         }),
-        onSubmit: async (values) => {
+        onSubmit: async (values, { resetForm }) => {
             setStatus(prevState => ({
                 ...prevState,
                 isSubmit: true
@@ -131,7 +134,8 @@ export default function UpdatePage({ id, fetchData }) {
 
             fetchData();
 
-            toast.success("Thêm thành công");
+            toast.success("Sửa thành công");
+            resetForm();
             setOpenModal(false);
         },
     })
@@ -141,7 +145,7 @@ export default function UpdatePage({ id, fetchData }) {
             {/* Modal toggle */}
             <div className="flex">
                 <button
-                    onClick={() => setOpenModal(true)}
+                    onClick={() => updateData()}
                     className="block text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-2 py-2 text-center " type="button">
                     Sửa
                 </button>
@@ -212,14 +216,14 @@ export default function UpdatePage({ id, fetchData }) {
                             </div>
                             <div>
                                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vai trò</label>
-                                <select 
+                                <select
                                     name="role"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                     value={formik.values.role || 0}
                                     onChange={formik.handleChange}
                                 >
-                                   <option value="GUEST">Guest</option>
-                                   <option value="ADMIN">Admin</option>
+                                    <option value="GUEST">Guest</option>
+                                    <option value="ADMIN">Admin</option>
                                 </select>
                                 {formik.errors.role && formik.touched.role && (
                                     <p className="mt-1 ml-1 text-red-600 text-sm">

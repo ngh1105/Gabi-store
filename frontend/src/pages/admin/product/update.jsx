@@ -74,27 +74,32 @@ export default function UpdatePage({ id, fetchData }) {
         description: "",
     });
 
-    useEffect(() => {
-        (async () => {
-            const res = await Api.Get(`/product/${id}`);
+    const updateData = async () => {
+        const res = await Api.Get(`/product/${id}`);
 
-            if (!res.isSuccess) {
-                toast.error("ID không tồn tại");
-                setOpenModal(false);
-            }
+        if (!res.isSuccess) {
+            toast.error("ID không tồn tại");
+            setOpenModal(false);
+        }
 
-            setCurrProduct({
-                id: res.response.id,
-                name: res.response.name,
-                imageUrl: res.response.imageUrl,
-                price: res.response.price,
-                description: res.response.description,
-                categoryId: res.response.categoryId,
-            });
+        setCurrProduct({
+            id: res.response.id,
+            name: res.response.name,
+            imageUrl: res.response.imageUrl,
+            price: res.response.price,
+            description: res.response.description,
+            categoryId: res.response.categoryId,
+        });
 
-            setImageFromUrl(`${API_URL}${res.response.imageUrl}`);
-        })()
-    }, [])
+        console.log(currProduct);
+
+        setImageFromUrl(`${API_URL}${res.response.imageUrl}`);
+    }
+
+    const handleOpenButton = async () => {
+        setOpenModal(true);
+        await updateData();
+    }
 
     const formik = useFormik({
         enableReinitialize: true,
@@ -117,7 +122,7 @@ export default function UpdatePage({ id, fetchData }) {
             description: Yup.string()
                 .required("Đây là dữ liệu bắt buộc"),
         }),
-        onSubmit: async (values) => {
+        onSubmit: async (values, {resetForm}) => {
             setStatus(prevState => ({
                 ...prevState,
                 isSubmit: true
@@ -158,6 +163,7 @@ export default function UpdatePage({ id, fetchData }) {
             fetchData();
 
             toast.success("Sửa thành công");
+            resetForm();
             setOpenModal(false);
         },
     })
@@ -167,7 +173,7 @@ export default function UpdatePage({ id, fetchData }) {
             {/* Modal toggle */}
             <div className="flex">
                 <button
-                    onClick={() => setOpenModal(true)}
+                    onClick={() => handleOpenButton()}
                     className="block text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-2 py-2 text-center " type="button">
                     Sửa
                 </button>

@@ -72,6 +72,18 @@ export class CategoryController {
 
     @ApiSecurity('private-key')
     @UseGuards(AdminGuard)
+    @Delete('remove-all')
+    removeAll() {
+        try {
+            return this.categoryService.removeAll();
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
+
+    @ApiSecurity('private-key')
+    @UseGuards(AdminGuard)
     @Post('upload-image/:id')
     uploadFile(@Param('id') id: string, @Req() request: Request) {
         try {

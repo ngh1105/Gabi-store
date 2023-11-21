@@ -31,9 +31,9 @@ export default function CategoryPage() {
         setCategories(newData);
     }
 
-    useEffect(() => {
+    useEffect(async () => {
         try {
-            fetchData();
+            await fetchData();
         }
         catch (err) {
             console.log(err);

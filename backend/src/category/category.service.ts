@@ -74,6 +74,19 @@ export class CategoryService {
         return "Deleted successfully";
     }
 
+    async removeAll() {
+        // Find all records in the category table
+        const data = await this.categoryRepository.findAll<Category>();
+    
+        // Loop through each record and delete it
+        for (const record of data) {
+            this.deleteImage(record);
+            await record.destroy();
+        }
+    
+        return "All records deleted successfully";
+    }
+
     async updateImage(id: number, image: any) {
         const record = await this.categoryRepository.findOne<Category>({
             where: { id: id },

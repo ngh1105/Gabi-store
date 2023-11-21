@@ -1,3 +1,4 @@
+import PageLayout from "components/page-layout"
 import BestSeller from "./BestSeller"
 import Category from "./Catelogory"
 import Description from "./Description"
@@ -8,7 +9,7 @@ import Story from "./Story"
 
 export const HomePage = () => {
     return (
-        <div>
+        <PageLayout title="Trang chủ">
             <Slider />
             {/* <Question/> */}
             <Category />
@@ -16,6 +17,6 @@ export const HomePage = () => {
             <NewProducts type="GabiStore mùa hè"/>
             <Description />
             <Story />
-        </div>
+        </PageLayout>
     )
 }
