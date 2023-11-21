@@ -63,7 +63,7 @@ function Description() {
                                             viewBox="0 0 16 16"
                                         >
                                             <svg
-                                                class="w-6 h-6 text-gray-800 dark:text-white"
+                                                className="w-6 h-6 text-gray-800 dark:text-white"
                                                 aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 fill="currentColor"
@@ -98,13 +98,9 @@ function Description() {
                                                 fill="none"
                                                 viewBox="0 0 20 20"
                                             >
-                                                <path
-                                                    stroke="currentColor"
-                                                    stroke-linejoin="round"
-                                                    stroke-width="2"
-                                                    d="M10 6v4l3.276 3.276M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                                                    className="text-white"
-                                                />
+                                                <path stroke="currentColor" strokeLinejoin="round" strokeWidth={2} d="M10 6v4l3.276 3.276M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" classname="text-white">
+                                                </path>
+
                                             </svg>
                                         </svg>
                                     </div>
@@ -159,14 +155,9 @@ function Description() {
                                                 fill="none"
                                                 viewBox="0 0 20 20"
                                             >
-                                                <path
-                                                    stroke="currentColor"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    stroke-width="2"
-                                                    d="M13.408 7.5h.01m-6.876 0h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM4.6 11a5.5 5.5 0 0 0 10.81 0H4.6Z"
-                                                    className="text-white"
-                                                />
+                                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.408 7.5h.01m-6.876 0h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM4.6 11a5.5 5.5 0 0 0 10.81 0H4.6Z" classname="text-white">
+</path>
+
                                             </svg>
                                         </svg>
                                     </div>

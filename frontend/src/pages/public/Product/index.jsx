@@ -3,16 +3,62 @@ import Slider from "./slider";
 import PageLayout from "components/page-layout";
 import PageTitle from "components/page-title";
 import { API_URL } from "app/config";
+import { useEffect, useState } from "react";
+import Api from "app/api";
+import utils from "utils";
+import { useDispatch } from "react-redux";
+import { addToCart } from "redux/cart.slice";
 
 function ProductPage() {
+
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        try {
+            (async () => {
+                const res = await Api.Get("/category");
+                setCategories(res.response);
+            })();
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }, []);
+
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        try {
+            (async () => {
+                const res = await Api.Get("/product");
+                setProducts(res.response);
+            })();
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }, []);
+
+    const dispatch = useDispatch();
+
+    const handleAddToCart = (obj) => {
+        dispatch(addToCart({
+            idProduct: obj.id,
+            name: obj.name,
+            imageUrl: obj.imageUrl,
+            price: obj.price,
+            amount: 1,
+        }));
+    }
+
     return (
         <PageLayout title="Sản phẩm">
             <Slider />
-            <section className="py-5 bg-gray-50 font-poppins dark:bg-gray-800">
+            <section className="py-5 bg-gray-50 dark:bg-gray-800">
                 <div className="px-4 py-4 mx-auto max-w-7xl lg:py-6 md:px-6">
                     {/* Breadcumb */}
 
-                    <nav className="flex" aria-label="Breadcrumb">
+                    <nav className="flex mb-3" aria-label="Breadcrumb">
                         <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                             <li className="inline-flex items-center">
                                 <a href="#" className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-white">
@@ -41,35 +87,21 @@ function ProductPage() {
                                 </h2>
                                 <div className="w-16 pb-2 mb-6 border-b border-rose-600 dark:border-gray-400" />
                                 <ul>
-                                    <li className="mb-4">
-                                        <label
-                                            htmlFor
-                                            className="flex items-center dark:text-gray-400 "
-                                        >
-                                            <input type="checkbox" className="w-4 h-4 mr-2" />
-                                            <span className="text-lg">Áo Polo</span>
-                                        </label>
-                                    </li>
-                                    <li className="mb-4">
-                                        <label
-                                            htmlFor
-                                            className="flex items-center dark:text-gray-400 "
-                                        >
-                                            <input type="checkbox" className="w-4 h-4 mr-2 " />
-                                            <span className="text-lg capitalize">
-                                                Áo thun thể thao
-                                            </span>
-                                        </label>
-                                    </li>
-                                    <li className="mb-4">
-                                        <label
-                                            htmlFor
-                                            className="flex items-center dark:text-gray-400"
-                                        >
-                                            <input type="checkbox" className="w-4 h-4 mr-2" />
-                                            <span className="text-lg capitalize">Quần short nam</span>
-                                        </label>
-                                    </li>
+                                    {
+                                        categories.map((obj, index) => {
+                                            return (
+                                                <li className="mb-4" key={index}>
+                                                    <label
+                                                        htmlFor
+                                                        className="flex items-center dark:text-gray-400 "
+                                                    >
+                                                        <input type="checkbox" className="w-4 h-4 mr-2" />
+                                                        <span className="text-lg">{obj.name}</span>
+                                                    </label>
+                                                </li>
+                                            )
+                                        })
+                                    }
                                 </ul>
                             </div>
                             <div className="p-4 mb-5 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-900">
@@ -138,52 +170,50 @@ function ProductPage() {
                                 <div className=" items-center justify-between hidden px-4 py-2 mb-4 bg-gray-100 md:flex dark:bg-gray-900 ">
                                     {/* input search */}
 
-                                    <form>
-                                        <div className="flex items-center">
-                                            <div
-                                                className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+                                    <div className="flex items-center">
+                                        <div
+                                            className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+                                        >
+                                            <ul
+                                                className="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                                aria-labelledby="dropdown-button"
                                             >
-                                                <ul
-                                                    className="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                                    aria-labelledby="dropdown-button"
-                                                >
-                                                    <li>
-                                                        <button
-                                                            type="button"
-                                                            className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                                        >
-                                                            Áo Polo
-                                                        </button>
-                                                    </li>
-                                                    <li>
-                                                        <button
-                                                            type="button"
-                                                            className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white capitalize"
-                                                        >
-                                                            Áo thun thể thao
-                                                        </button>
-                                                    </li>
-                                                    <li>
-                                                        <button
-                                                            type="button"
-                                                            className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white capitalize"
-                                                        >
-                                                            quần short nam
-                                                        </button>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div className="relative w-full">
-                                                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                                    <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-                                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5v10M3 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0V6a3 3 0 0 0-3-3H9m1.5-2-2 2 2 2" />
-                                                    </svg>
-                                                </div>
-                                                <input type="text" id="simple-search" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="Tìm kiếm sản phẩm" required />
-                                            </div>
+                                                <li>
+                                                    <button
+                                                        type="button"
+                                                        className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                                    >
+                                                        Áo Polo
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <button
+                                                        type="button"
+                                                        className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white capitalize"
+                                                    >
+                                                        Áo thun thể thao
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <button
+                                                        type="button"
+                                                        className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white capitalize"
+                                                    >
+                                                        Quần short nam
+                                                    </button>
+                                                </li>
+                                            </ul>
                                         </div>
-                                    </form>
+                                        <div className="relative w-full">
+                                            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                                <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5v10M3 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0V6a3 3 0 0 0-3-3H9m1.5-2-2 2 2 2" />
+                                                </svg>
+                                            </div>
+                                            <input type="text" id="simple-search" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Tìm kiếm sản phẩm" required />
+                                        </div>
+                                    </div>
 
                                     <div className="flex items-center justify-between">
 
@@ -198,611 +228,71 @@ function ProductPage() {
                             </div>
 
                             {/* All product */}
-                            <div className="flex flex-wrap items-center ">
-                                <div className="w-full px-3 mb-6 sm:w-1/2 md:w-1/3">
-                                    <div className="border border-gray-200 rounded-md dark:border-gray-800 shadow p-2 ">
-                                        <div className="relative bg-gray-200">
-                                            <a href="#" className>
-                                                <img
-                                                    src="https://i.postimg.cc/NGCTCW70/pexels-mike-250288.jpg"
-                                                    alt
-                                                    className="object-cover w-full h-56 mx-auto "
-                                                />
-                                            </a>
-                                            <div className="absolute top-0 right-0 z-10 m-2 flex items-center justify-center p-2 text-center bg-red-600 ">
-                                                <span className="relative text-base font-normal text-gray-100 ">
-                                                    {" "}
-                                                    New
-                                                </span>
+                            <div className="grid grid-cols-3 gap-4">
+                                {
+                                    products.map((obj, index) => {
+                                        return (
+                                            <div key={index} className="border border-gray-200 rounded-md dark:border-gray-800 shadow p-2 ">
+                                                <div className="relative bg-gray-200">
+                                                    <a href="#" className>
+                                                        <img
+                                                            src={`${API_URL}${obj.imageUrl}`}
+                                                            alt
+                                                            className="object-cover w-full h-56 mx-auto "
+                                                        />
+                                                    </a>
+                                                    {
+                                                        obj.isNew
+                                                            ? (
+                                                                <div className="absolute top-0 right-0 z-10 m-2 flex items-center justify-center p-2 text-center bg-red-600 ">
+                                                                    <span className="relative text-base font-normal text-gray-100 ">
+                                                                        {" "}
+                                                                        New
+                                                                    </span>
+                                                                </div>
+                                                            )
+                                                            : null
+                                                    }
+                                                </div>
+                                                <div className="p-5 bg-gray-50 dark:bg-gray-900">
+                                                    <div className="flex items-center justify-between mb-4">
+                                                        <h3 className="w-full text-xl font-medium dark:text-gray-400">
+                                                            {obj.name}
+                                                        </h3>
+                                                    </div>
+                                                    <div className="mb-4 ">
+                                                        <p className="text-lg flex justify-between">
+                                                            <span className="text-red-400 dark:text-gray-400">
+                                                                {utils.formatVND(obj.price)}
+                                                            </span>
+                                                            <span className="ml-2 text-gray-400  dark:text-gray-400">
+                                                                <a href="#" className>
+                                                                    <svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        width={16}
+                                                                        height={16}
+                                                                        fill="currentColor"
+                                                                        className="text-red-500 dark:text-gray-400 bi bi-heart"
+                                                                        viewBox="0 0 16 16"
+                                                                    >
+                                                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                                                    </svg>
+                                                                </a>
+                                                            </span>
+                                                        </p>
+                                                    </div>
+
+                                                    <button
+                                                         onClick={() => handleAddToCart(obj)}
+                                                        className="flex justify-center px-4 py-2 bg-indigo-700 text-gray-100 border border-indigo-300 rounded-full hover:opacity-[0.9]"
+                                                    >
+                                                        Thêm vào giỏ
+                                                    </button>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="p-5 bg-gray-50 dark:bg-gray-900">
-                                            <div className="flex items-center justify-between mb-4">
-                                                <h3 className="w-full text-xl font-medium dark:text-gray-400">
-                                                    Product name
-                                                </h3>
-                                            </div>
-                                            <div className="mb-4 ">
-                                                <p className="text-lg flex justify-between">
-                                                    <span className="text-red-400 dark:text-gray-400">
-                                                        $800.00
-                                                    </span>
-                                                    <span className="ml-2 text-gray-400  dark:text-gray-400">
-                                                        <a href="#" className>
-                                                            <svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                width={16}
-                                                                height={16}
-                                                                fill="currentColor"
-                                                                className="text-red-500 dark:text-gray-400 bi bi-heart"
-                                                                viewBox="0 0 16 16"
-                                                            >
-                                                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                            </svg>
-                                                        </a>
-                                                    </span>
-                                                </p>
-                                            </div>
-
-                                            <a
-                                                href="#"
-                                                className="flex justify-center px-4 py-2 bg-indigo-700 text-gray-100 border border-indigo-300 rounded-full hover:opacity-[0.9]"
-                                            >
-                                                Thêm vào giỏ
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="w-full px-3 mb-6 sm:w-1/2 md:w-1/3">
-                                    <div className="border border-gray-200 rounded-md dark:border-gray-800 shadow p-2 ">
-                                        <div className="relative bg-gray-200">
-                                            <a href="#" className>
-                                                <img
-                                                    src="https://i.postimg.cc/NGCTCW70/pexels-mike-250288.jpg"
-                                                    alt
-                                                    className="object-cover w-full h-56 mx-auto "
-                                                />
-                                            </a>
-
-                                        </div>
-                                        <div className="p-5 bg-gray-50 dark:bg-gray-900">
-                                            <div className="flex items-center justify-between mb-4">
-                                                <h3 className="w-full text-xl font-medium dark:text-gray-400">
-                                                    Product name
-                                                </h3>
-                                            </div>
-                                            <div className="mb-4 ">
-                                                <p className="text-lg flex justify-between">
-                                                    <span className="text-red-400 dark:text-gray-400">
-                                                        $800.00
-                                                    </span>
-                                                    <span className="ml-2 text-gray-400  dark:text-gray-400">
-                                                        <a href="#" className>
-                                                            <svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                width={16}
-                                                                height={16}
-                                                                fill="currentColor"
-                                                                className="text-red-500 dark:text-gray-400 bi bi-heart"
-                                                                viewBox="0 0 16 16"
-                                                            >
-                                                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                            </svg>
-                                                        </a>
-                                                    </span>
-                                                </p>
-                                            </div>
-
-                                            <a
-                                                href="#"
-                                                className="flex justify-center px-4 py-2 bg-indigo-700 text-gray-100 border border-indigo-300 rounded-full hover:opacity-[0.9]"
-                                            >
-                                                Thêm vào giỏ
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="w-full px-3 mb-6 sm:w-1/2 md:w-1/3">
-                                    <div className="border border-gray-200 rounded-md dark:border-gray-800 shadow p-2 ">
-                                        <div className="relative bg-gray-200">
-                                            <a href="#" className>
-                                                <img
-                                                    src="https://i.postimg.cc/NGCTCW70/pexels-mike-250288.jpg"
-                                                    alt
-                                                    className="object-cover w-full h-56 mx-auto "
-                                                />
-                                            </a>
-
-                                        </div>
-                                        <div className="p-5 bg-gray-50 dark:bg-gray-900">
-                                            <div className="flex items-center justify-between mb-4">
-                                                <h3 className="w-full text-xl font-medium dark:text-gray-400">
-                                                    Product name
-                                                </h3>
-                                            </div>
-                                            <div className="mb-4 ">
-                                                <p className="text-lg flex justify-between">
-                                                    <span className="text-red-400 dark:text-gray-400">
-                                                        $800.00
-                                                    </span>
-                                                    <span className="ml-2 text-gray-400  dark:text-gray-400">
-                                                        <a href="#" className>
-                                                            <svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                width={16}
-                                                                height={16}
-                                                                fill="currentColor"
-                                                                className="text-red-500 dark:text-gray-400 bi bi-heart"
-                                                                viewBox="0 0 16 16"
-                                                            >
-                                                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                            </svg>
-                                                        </a>
-                                                    </span>
-                                                </p>
-                                            </div>
-
-                                            <a
-                                                href="#"
-                                                className="flex justify-center px-4 py-2 bg-indigo-700 text-gray-100 border border-indigo-300 rounded-full hover:opacity-[0.9]"
-                                            >
-                                                Thêm vào giỏ
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div className="w-full px-3 mb-6 sm:w-1/2 md:w-1/3">
-                                    <div className="border border-gray-200 rounded-md dark:border-gray-800 shadow p-2 ">
-                                        <div className="relative bg-gray-200">
-                                            <a href="#" className>
-                                                <img
-                                                    src="https://i.postimg.cc/NGCTCW70/pexels-mike-250288.jpg"
-                                                    alt
-                                                    className="object-cover w-full h-56 mx-auto "
-                                                />
-                                            </a>
-
-                                        </div>
-                                        <div className="p-5 bg-gray-50 dark:bg-gray-900">
-                                            <div className="flex items-center justify-between mb-4">
-                                                <h3 className="w-full text-xl font-medium dark:text-gray-400">
-                                                    Product name
-                                                </h3>
-                                            </div>
-                                            <div className="mb-4 ">
-                                                <p className="text-lg flex justify-between">
-                                                    <span className="text-red-400 dark:text-gray-400">
-                                                        $800.00
-                                                    </span>
-                                                    <span className="ml-2 text-gray-400  dark:text-gray-400">
-                                                        <a href="#" className>
-                                                            <svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                width={16}
-                                                                height={16}
-                                                                fill="currentColor"
-                                                                className="text-red-500 dark:text-gray-400 bi bi-heart"
-                                                                viewBox="0 0 16 16"
-                                                            >
-                                                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                            </svg>
-                                                        </a>
-                                                    </span>
-                                                </p>
-                                            </div>
-
-                                            <a
-                                                href="#"
-                                                className="flex justify-center px-4 py-2 bg-indigo-700 text-gray-100 border border-indigo-300 rounded-full hover:opacity-[0.9]"
-                                            >
-                                                Thêm vào giỏ
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="w-full px-3 mb-6 sm:w-1/2 md:w-1/3">
-                                    <div className="border border-gray-200 rounded-md dark:border-gray-800 shadow p-2 ">
-                                        <div className="relative bg-gray-200">
-                                            <a href="#" className>
-                                                <img
-                                                    src="https://i.postimg.cc/NGCTCW70/pexels-mike-250288.jpg"
-                                                    alt
-                                                    className="object-cover w-full h-56 mx-auto "
-                                                />
-                                            </a>
-
-                                        </div>
-                                        <div className="p-5 bg-gray-50 dark:bg-gray-900">
-                                            <div className="flex items-center justify-between mb-4">
-                                                <h3 className="w-full text-xl font-medium dark:text-gray-400">
-                                                    Product name
-                                                </h3>
-                                            </div>
-                                            <div className="mb-4 ">
-                                                <p className="text-lg flex justify-between">
-                                                    <span className="text-red-400 dark:text-gray-400">
-                                                        $800.00
-                                                    </span>
-                                                    <span className="ml-2 text-gray-400  dark:text-gray-400">
-                                                        <a href="#" className>
-                                                            <svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                width={16}
-                                                                height={16}
-                                                                fill="currentColor"
-                                                                className="text-red-500 dark:text-gray-400 bi bi-heart"
-                                                                viewBox="0 0 16 16"
-                                                            >
-                                                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                            </svg>
-                                                        </a>
-                                                    </span>
-                                                </p>
-                                            </div>
-
-                                            <a
-                                                href="#"
-                                                className="flex justify-center px-4 py-2 bg-indigo-700 text-gray-100 border border-indigo-300 rounded-full hover:opacity-[0.9]"
-                                            >
-                                                Thêm vào giỏ
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="w-full px-3 mb-6 sm:w-1/2 md:w-1/3">
-                                    <div className="border border-gray-200 rounded-md dark:border-gray-800 shadow p-2 ">
-                                        <div className="relative bg-gray-200">
-                                            <a href="#" className>
-                                                <img
-                                                    src="https://i.postimg.cc/NGCTCW70/pexels-mike-250288.jpg"
-                                                    alt
-                                                    className="object-cover w-full h-56 mx-auto "
-                                                />
-                                            </a>
-
-                                        </div>
-                                        <div className="p-5 bg-gray-50 dark:bg-gray-900">
-                                            <div className="flex items-center justify-between mb-4">
-                                                <h3 className="w-full text-xl font-medium dark:text-gray-400">
-                                                    Product name
-                                                </h3>
-                                            </div>
-                                            <div className="mb-4 ">
-                                                <p className="text-lg flex justify-between">
-                                                    <span className="text-red-400 dark:text-gray-400">
-                                                        $800.00
-                                                    </span>
-                                                    <span className="ml-2 text-gray-400  dark:text-gray-400">
-                                                        <a href="#" className>
-                                                            <svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                width={16}
-                                                                height={16}
-                                                                fill="currentColor"
-                                                                className="text-red-500 dark:text-gray-400 bi bi-heart"
-                                                                viewBox="0 0 16 16"
-                                                            >
-                                                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                            </svg>
-                                                        </a>
-                                                    </span>
-                                                </p>
-                                            </div>
-
-                                            <a
-                                                href="#"
-                                                className="flex justify-center px-4 py-2 bg-indigo-700 text-gray-100 border border-indigo-300 rounded-full hover:opacity-[0.9]"
-                                            >
-                                                Thêm vào giỏ
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="w-full px-3 mb-6 sm:w-1/2 md:w-1/3">
-                                    <div className="border border-gray-200 rounded-md dark:border-gray-800 shadow p-2 ">
-                                        <div className="relative bg-gray-200">
-                                            <a href="#" className>
-                                                <img
-                                                    src="https://i.postimg.cc/NGCTCW70/pexels-mike-250288.jpg"
-                                                    alt
-                                                    className="object-cover w-full h-56 mx-auto "
-                                                />
-                                            </a>
-
-                                        </div>
-                                        <div className="p-5 bg-gray-50 dark:bg-gray-900">
-                                            <div className="flex items-center justify-between mb-4">
-                                                <h3 className="w-full text-xl font-medium dark:text-gray-400">
-                                                    Product name
-                                                </h3>
-                                            </div>
-                                            <div className="mb-4 ">
-                                                <p className="text-lg flex justify-between">
-                                                    <span className="text-red-400 dark:text-gray-400">
-                                                        $800.00
-                                                    </span>
-                                                    <span className="ml-2 text-gray-400  dark:text-gray-400">
-                                                        <a href="#" className>
-                                                            <svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                width={16}
-                                                                height={16}
-                                                                fill="currentColor"
-                                                                className="text-red-500 dark:text-gray-400 bi bi-heart"
-                                                                viewBox="0 0 16 16"
-                                                            >
-                                                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                            </svg>
-                                                        </a>
-                                                    </span>
-                                                </p>
-                                            </div>
-
-                                            <a
-                                                href="#"
-                                                className="flex justify-center px-4 py-2 bg-indigo-700 text-gray-100 border border-indigo-300 rounded-full hover:opacity-[0.9]"
-                                            >
-                                                Thêm vào giỏ
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="w-full px-3 mb-6 sm:w-1/2 md:w-1/3">
-                                    <div className="border border-gray-200 rounded-md dark:border-gray-800 shadow p-2 ">
-                                        <div className="relative bg-gray-200">
-                                            <a href="#" className>
-                                                <img
-                                                    src="https://i.postimg.cc/NGCTCW70/pexels-mike-250288.jpg"
-                                                    alt
-                                                    className="object-cover w-full h-56 mx-auto "
-                                                />
-                                            </a>
-
-                                        </div>
-                                        <div className="p-5 bg-gray-50 dark:bg-gray-900">
-                                            <div className="flex items-center justify-between mb-4">
-                                                <h3 className="w-full text-xl font-medium dark:text-gray-400">
-                                                    Product name
-                                                </h3>
-                                            </div>
-                                            <div className="mb-4 ">
-                                                <p className="text-lg flex justify-between">
-                                                    <span className="text-red-400 dark:text-gray-400">
-                                                        $800.00
-                                                    </span>
-                                                    <span className="ml-2 text-gray-400  dark:text-gray-400">
-                                                        <a href="#" className>
-                                                            <svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                width={16}
-                                                                height={16}
-                                                                fill="currentColor"
-                                                                className="text-red-500 dark:text-gray-400 bi bi-heart"
-                                                                viewBox="0 0 16 16"
-                                                            >
-                                                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                            </svg>
-                                                        </a>
-                                                    </span>
-                                                </p>
-                                            </div>
-
-                                            <a
-                                                href="#"
-                                                className="flex justify-center px-4 py-2 bg-indigo-700 text-gray-100 border border-indigo-300 rounded-full hover:opacity-[0.9]"
-                                            >
-                                                Thêm vào giỏ
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="w-full px-3 mb-6 sm:w-1/2 md:w-1/3">
-                                    <div className="border border-gray-200 rounded-md dark:border-gray-800 shadow p-2 ">
-                                        <div className="relative bg-gray-200">
-                                            <a href="#" className>
-                                                <img
-                                                    src="https://i.postimg.cc/NGCTCW70/pexels-mike-250288.jpg"
-                                                    alt
-                                                    className="object-cover w-full h-56 mx-auto "
-                                                />
-                                            </a>
-
-                                        </div>
-                                        <div className="p-5 bg-gray-50 dark:bg-gray-900">
-                                            <div className="flex items-center justify-between mb-4">
-                                                <h3 className="w-full text-xl font-medium dark:text-gray-400">
-                                                    Product name
-                                                </h3>
-                                            </div>
-                                            <div className="mb-4 ">
-                                                <p className="text-lg flex justify-between">
-                                                    <span className="text-red-400 dark:text-gray-400">
-                                                        $800.00
-                                                    </span>
-                                                    <span className="ml-2 text-gray-400  dark:text-gray-400">
-                                                        <a href="#" className>
-                                                            <svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                width={16}
-                                                                height={16}
-                                                                fill="currentColor"
-                                                                className="text-red-500 dark:text-gray-400 bi bi-heart"
-                                                                viewBox="0 0 16 16"
-                                                            >
-                                                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                            </svg>
-                                                        </a>
-                                                    </span>
-                                                </p>
-                                            </div>
-
-                                            <a
-                                                href="#"
-                                                className="flex justify-center px-4 py-2 bg-indigo-700 text-gray-100 border border-indigo-300 rounded-full hover:opacity-[0.9]"
-                                            >
-                                                Thêm vào giỏ
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="w-full px-3 mb-6 sm:w-1/2 md:w-1/3">
-                                    <div className="border border-gray-200 rounded-md dark:border-gray-800 shadow p-2 ">
-                                        <div className="relative bg-gray-200">
-                                            <a href="#" className>
-                                                <img
-                                                    src="https://i.postimg.cc/NGCTCW70/pexels-mike-250288.jpg"
-                                                    alt
-                                                    className="object-cover w-full h-56 mx-auto "
-                                                />
-                                            </a>
-
-                                        </div>
-                                        <div className="p-5 bg-gray-50 dark:bg-gray-900">
-                                            <div className="flex items-center justify-between mb-4">
-                                                <h3 className="w-full text-xl font-medium dark:text-gray-400">
-                                                    Product name
-                                                </h3>
-                                            </div>
-                                            <div className="mb-4 ">
-                                                <p className="text-lg flex justify-between">
-                                                    <span className="text-red-400 dark:text-gray-400">
-                                                        $800.00
-                                                    </span>
-                                                    <span className="ml-2 text-gray-400  dark:text-gray-400">
-                                                        <a href="#" className>
-                                                            <svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                width={16}
-                                                                height={16}
-                                                                fill="currentColor"
-                                                                className="text-red-500 dark:text-gray-400 bi bi-heart"
-                                                                viewBox="0 0 16 16"
-                                                            >
-                                                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                            </svg>
-                                                        </a>
-                                                    </span>
-                                                </p>
-                                            </div>
-
-                                            <a
-                                                href="#"
-                                                className="flex justify-center px-4 py-2 bg-indigo-700 text-gray-100 border border-indigo-300 rounded-full hover:opacity-[0.9]"
-                                            >
-                                                Thêm vào giỏ
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="w-full px-3 mb-6 sm:w-1/2 md:w-1/3">
-                                    <div className="border border-gray-200 rounded-md dark:border-gray-800 shadow p-2 ">
-                                        <div className="relative bg-gray-200">
-                                            <a href="#" className>
-                                                <img
-                                                    src="https://i.postimg.cc/NGCTCW70/pexels-mike-250288.jpg"
-                                                    alt
-                                                    className="object-cover w-full h-56 mx-auto "
-                                                />
-                                            </a>
-
-                                        </div>
-                                        <div className="p-5 bg-gray-50 dark:bg-gray-900">
-                                            <div className="flex items-center justify-between mb-4">
-                                                <h3 className="w-full text-xl font-medium dark:text-gray-400">
-                                                    Product name
-                                                </h3>
-                                            </div>
-                                            <div className="mb-4 ">
-                                                <p className="text-lg flex justify-between">
-                                                    <span className="text-red-400 dark:text-gray-400">
-                                                        $800.00
-                                                    </span>
-                                                    <span className="ml-2 text-gray-400  dark:text-gray-400">
-                                                        <a href="#" className>
-                                                            <svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                width={16}
-                                                                height={16}
-                                                                fill="currentColor"
-                                                                className="text-red-500 dark:text-gray-400 bi bi-heart"
-                                                                viewBox="0 0 16 16"
-                                                            >
-                                                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                            </svg>
-                                                        </a>
-                                                    </span>
-                                                </p>
-                                            </div>
-
-                                            <a
-                                                href="#"
-                                                className="flex justify-center px-4 py-2 bg-indigo-700 text-gray-100 border border-indigo-300 rounded-full hover:opacity-[0.9]"
-                                            >
-                                                Thêm vào giỏ
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="w-full px-3 mb-6 sm:w-1/2 md:w-1/3">
-                                    <div className="border border-gray-200 rounded-md dark:border-gray-800 shadow p-2 ">
-                                        <div className="relative bg-gray-200">
-                                            <a href="#" className>
-                                                <img
-                                                    src="https://i.postimg.cc/NGCTCW70/pexels-mike-250288.jpg"
-                                                    alt
-                                                    className="object-cover w-full h-56 mx-auto "
-                                                />
-                                            </a>
-
-                                        </div>
-                                        <div className="p-5 bg-gray-50 dark:bg-gray-900">
-                                            <div className="flex items-center justify-between mb-4">
-                                                <h3 className="w-full text-xl font-medium dark:text-gray-400">
-                                                    Product name
-                                                </h3>
-                                            </div>
-                                            <div className="mb-4 ">
-                                                <p className="text-lg flex justify-between">
-                                                    <span className="text-red-400 dark:text-gray-400">
-                                                        $800.00
-                                                    </span>
-                                                    <span className="ml-2 text-gray-400  dark:text-gray-400">
-                                                        <a href="#" className>
-                                                            <svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                width={16}
-                                                                height={16}
-                                                                fill="currentColor"
-                                                                className="text-red-500 dark:text-gray-400 bi bi-heart"
-                                                                viewBox="0 0 16 16"
-                                                            >
-                                                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                            </svg>
-                                                        </a>
-                                                    </span>
-                                                </p>
-                                            </div>
-
-                                            <a
-                                                href="#"
-                                                className="flex justify-center px-4 py-2 bg-indigo-700 text-gray-100 border border-indigo-300 rounded-full hover:opacity-[0.9]"
-                                            >
-                                                Thêm vào giỏ
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                                        )
+                                    })
+                                }
                             </div>
 
                             <div className="flex justify-end mt-6">

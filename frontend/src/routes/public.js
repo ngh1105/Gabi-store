@@ -3,7 +3,7 @@ import { HomePage } from "pages/public/Home";
 import ProductPage from "pages/public/product";
 import ContactPage from "pages/public/contact";
 
-import Cart from "pages/public/Cart";
+import Cart from "pages/public/cart";
 import Blog from "pages/public/Blog";
 import BlogDetail from "pages/public/Blog/BlogDetail";
 import DeliverInfo from "pages/public/DeliverInfo";
