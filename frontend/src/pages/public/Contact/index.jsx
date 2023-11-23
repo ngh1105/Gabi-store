@@ -53,19 +53,19 @@ export default function ContactPage() {
                                                 <label htmlFor="name" className="mb-3 block text-base font-medium text-[#07074D]">
                                                     Họ và tên
                                                 </label>
-                                                <input type="text" name="name" id="name" placeholder="Tên đầy đủ" className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                                                <input type="text" name="name" id="name" placeholder="Tên đầy đủ" className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                                             </div>
                                             <div className="mb-3">
                                                 <label htmlFor="email" className="mb-3 block text-base font-medium text-[#07074D]">
                                                     Địa chỉ Email
                                                 </label>
-                                                <input type="email" name="email" id="email" placeholder="abcdef@gmail.com" className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                                                <input type="email" name="email" id="email" placeholder="abcdef@gmail.com" className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                                             </div>
                                             <div className="mb-3">
                                                 <label htmlFor="message" className="mb-3 block text-base font-medium text-[#07074D]">
-                                                    Lợi nhắn
+                                                    Lời nhắn
                                                 </label>
-                                                <textarea rows={2} name="message" id="message" placeholder="Shop này uy tín" className="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" defaultValue={""} />
+                                                <textarea rows={2} name="message" id="message" placeholder="Shop này uy tín" className="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" defaultValue={""} />
                                             </div>
                                             <div>
                                                 <button className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none">
