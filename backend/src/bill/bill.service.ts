@@ -48,15 +48,38 @@ export class BillService {
         return `This action returns all bill`;
     }
 
-    findOne(id: number) {
-        return `This action returns a #${id} bill`;
+    async findOne(id: number) {
+        const record = await this.billRepository.findOne<Bill>({
+            where: { id: id },
+        });
+
+        if (!record) {
+            throw new HttpException('No record found', HttpStatus.NOT_FOUND);
+        }
+
+        const retData = new BillDto(record);
+
+        retData.details = await this.billDetailService.findByBillId(record.id);
+
+        return retData;
     }
 
-    update(id: number, updateBillDto: UpdateBillDto) {
-        return `This action updates a #${id} bill`;
-    }
+    async findOneByUser(idUser: number, idBill: number) {
+        const record = await this.billRepository.findOne<Bill>({
+            where: { 
+                id: idBill,
+                userId: idUser,
+            },
+        });
 
-    remove(id: number) {
-        return `This action removes a #${id} bill`;
+        if (!record) {
+            throw new HttpException('No record found', HttpStatus.NOT_FOUND);
+        }
+
+        const retData = new BillDto(record);
+
+        retData.details = await this.billDetailService.findByBillId(record.id);
+
+        return retData;
     }
 }

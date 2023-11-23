@@ -26,19 +26,13 @@ export class BillDetailService {
         return billData;
     }
 
-    findAll() {
-        return `This action returns all billDetail`;
-    }
-
-    findOne(id: number) {
-        return `This action returns a #${id} billDetail`;
-    }
-
-    update(id: number, updateBillDetailDto: UpdateBillDetailDto) {
-        return `This action updates a #${id} billDetail`;
-    }
-
-    remove(id: number) {
-        return `This action removes a #${id} billDetail`;
+    async findByBillId(id: number) {
+        const data = await this.billDetailRepository.findAll<BillDetail>({
+            where: { billId: id },
+        });
+        
+        return data.map(obj => new BillDetailDto(
+            obj.billId, obj.productId, obj.quantity, obj.price, obj.imageUrl
+        ));
     }
 }

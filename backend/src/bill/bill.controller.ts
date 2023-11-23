@@ -4,7 +4,7 @@ import { BillService } from './bill.service';
 import { CreateBillDto } from './dto/create-bill.dto';
 import { UpdateBillDto } from './dto/update-bill.dto';
 import { ApiSecurity, ApiTags } from '@nestjs/swagger';
-import { GuestGuard } from 'src/auth/auth.guard';
+import { AdminGuard, GuestGuard } from 'src/auth/auth.guard';
 
 @ApiTags('bill')
 @Controller('bill')
@@ -23,6 +23,8 @@ export class BillController {
         }
     }
 
+    @ApiSecurity('private-key')
+    @UseGuards(AdminGuard)
     @Get()
     findAll() {
         try {
@@ -33,6 +35,8 @@ export class BillController {
         }
     }
 
+    @ApiSecurity('private-key')
+    @UseGuards(AdminGuard)
     @Get(':id')
     findOne(@Param('id') id: string) {
         try {
@@ -43,20 +47,12 @@ export class BillController {
         }
     }
 
-    @Patch(':id')
-    update(@Param('id') id: string, @Body() updateBillDto: UpdateBillDto) {
+    @ApiSecurity('private-key')
+    @UseGuards(GuestGuard)
+    @Get(':idUser/:idBill')
+    findOneByUser(@Param('idUser') idUser: string, @Param('idBill') idBill: string) {
         try {
-            return this.billService.update(+id, updateBillDto);
-        }
-        catch (err) {
-            throw new InternalServerErrorException();
-        }
-    }
-
-    @Delete(':id')
-    remove(@Param('id') id: string) {
-        try {
-            return this.billService.remove(+id);
+            return this.billService.findOneByUser(+idUser, +idBill);
         }
         catch (err) {
             throw new InternalServerErrorException();

@@ -1,3 +1,5 @@
+import { BillDetail } from "../entities/bill-detail.entity";
+
 export class BillDetailDto {
     
     billId: number;
