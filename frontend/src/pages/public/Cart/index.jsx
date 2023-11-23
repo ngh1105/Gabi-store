@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 import { decreaseAmountInCart, increaseAmountInCart, removeFromCart } from "redux/cart.slice";
 import utils from "utils";
 
-function Cart() {
+export default function CartPage() {
     const cart = useSelector(state => state.cart.cart);
     const dispatch = useDispatch();
 
@@ -66,7 +66,7 @@ function Cart() {
                                     {
                                         cart.map((obj, index) => {
                                             return (
-                                                <tr>
+                                                <tr key={index}>
                                                     <td className="py-4 w-80">
                                                         <div className="flex items-center">
                                                             <img
@@ -161,6 +161,7 @@ function Cart() {
                                 <span className="font-semibold">{utils.formatVND(totalPrice)}</span>
                             </div>
                             <button
+                                disabled={cart.length === 0}
                                 onClick={handleCheckoutButton}
                                 className="bg-indigo-700 text-white py-2 px-4 rounded-lg mt-4 w-full">
                                 Thanh toán
@@ -172,5 +173,3 @@ function Cart() {
         </PageLayout>
     );
 }
-
-export default Cart;

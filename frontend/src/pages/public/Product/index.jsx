@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "redux/cart.slice";
 import ProductItem from "components/product-item";
 
-function ProductPage() {
+export default function ProductPage() {
 
     const [categories, setCategories] = useState([]);
 
@@ -291,5 +291,3 @@ function ProductPage() {
         </PageLayout>
     );
 }
-
-export default ProductPage;

@@ -35,4 +35,10 @@ export class BillDetail extends Model {
         allowNull: false,
     })
     price: number;
+
+    @Column({
+        type: DataType.STRING,
+        allowNull: false,
+    })
+    imageUrl: string;
 }
