@@ -2,8 +2,10 @@ import { PublicLayout } from "layouts/public";
 import { HomePage } from "pages/public/Home";
 import ProductPage from "pages/public/product";
 import ContactPage from "pages/public/contact";
+import CartPage from "pages/public/cart";
+import CheckoutPage from "pages/public/checkout";
+import BillDetailPage from "pages/public/bill-detail"
 
-import Cart from "pages/public/cart";
 import Blog from "pages/public/Blog";
 import BlogDetail from "pages/public/Blog/BlogDetail";
 import Story from "pages/public/Story";
@@ -19,12 +21,11 @@ import ForgetPassword from "pages/public/ForgetPassword";
 import About from "pages/public/About";
 
 import Following from "pages/public/Following";
-import BillDetail from "pages/public/BillDetail"
+
 import Policy from "pages/public/Policy";
 import Rules from "pages/public/Rules";
 import Information from "pages/public/Information";
 import ProductDetailPage from "pages/public/product-detail";
-import CheckoutPage from "pages/public/checkout";
 
 
 export const publicRoutes = {
@@ -36,11 +37,14 @@ export const publicRoutes = {
             element: <HomePage />,
         },
         { path: '/product', element: <ProductPage /> },
-        { path: '/contact', element: <ContactPage /> },
         { path: '/product-detail/:id', element: <ProductDetailPage /> },
 
-        { path: '/cart', element: <Cart /> },
+        { path: '/contact', element: <ContactPage /> },
+
+        { path: '/cart', element: <CartPage /> },
         { path: '/checkout', element: <CheckoutPage /> },
+
+        { path: '/bill-detail/:id', element: <BillDetailPage /> },
 
         { path: '/rules', element: <Rules /> },
         { path: '/information', element: <Information /> },
@@ -59,7 +63,6 @@ export const publicRoutes = {
 
         { path: '/about', element: <About /> },
         { path: '/following', element: <Following /> },
-        { path: '/BillDetail', element: <BillDetail /> },
         { path: '/policy', element: <Policy /> },
         { path: '/storydetail', element: <StoryDetail /> },
     ]

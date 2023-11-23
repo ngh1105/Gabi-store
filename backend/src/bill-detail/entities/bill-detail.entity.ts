@@ -25,6 +25,12 @@ export class BillDetail extends Model {
     productId: number;
 
     @Column({
+        type: DataType.STRING,
+        allowNull: false,
+    })
+    name: string;
+
+    @Column({
         type: DataType.INTEGER,
         defaultValue: 0,
     })

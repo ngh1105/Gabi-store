@@ -54,6 +54,8 @@ export class BillDto {
     @IsNotEmpty()
     details: BillDetailDto[];
 
+    createdAt: string;
+
     constructor(data: Bill) {
         this.id = data.id;
         this.fullName = data.fullName;
@@ -64,5 +66,6 @@ export class BillDto {
         this.paymentMethod = data.paymentMethod;
         this.status = data.status;
         this.userId = data.userId;
+        this.createdAt = data.createdAt;
     }
 }

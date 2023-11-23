@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { decreaseAmountInCart, increaseAmountInCart, removeFromCart } from "redux/cart.slice";
 import utils from "utils";
+import EmptyCart from "./empty-cart";
 
 export default function CartPage() {
     const cart = useSelector(state => state.cart.cart);
@@ -50,7 +51,7 @@ export default function CartPage() {
                     Giỏ hàng
                 </h1>
                 <div className="flex flex-col md:flex-row gap-4">
-                    <div className="md:w-3/4">
+                    <div className="lg:w-3/4">
                         <div className="bg-white rounded-lg shadow-md p-6 mb-4">
                             <table className="w-full">
                                 <thead>
@@ -68,52 +69,25 @@ export default function CartPage() {
                                             return (
                                                 <tr key={index}>
                                                     <td className="py-4 w-80">
-                                                        <div className="flex items-center">
-                                                            <img
-                                                                className="h-16 w-16 mr-4"
+                                                        <div className="flex gap-2">
+                                                        <img
+                                                                className="w-16 h-16 rounded mt-1"
                                                                 src={`${API_URL}${obj.imageUrl}`}
-                                                                alt="Product image"
-                                                            />
-                                                            <div className="pt-1 -mb-3" >
-                                                                <span className="font-semibold w-52 -ml-2  ">
+                                                                alt="Default avatar" />
+                                                            <div className="">
+                                                                <p className="font-semibold">
                                                                     {obj.name}
-                                                                </span>
-                                                                <div className="flex flex-wrap">
-                                                                    <div class="flex items-center w-44">
-                                                                        <h2 class=" mr-2 text-sm dark:text-gray-400 opacity-80">
-                                                                            Màu sắc
+                                                                </p>
+                                                                <div>
+                                                                    <div className="flex items-center gap-2 mt-1">
+                                                                        <h2 className="text-sm dark:text-gray-400 opacity-80">
+                                                                            Màu sắc:
                                                                         </h2>
-                                                                        <div class="flex flex-wrap -mx-1 -mb-2">
-                                                                            <button class="p-1 mb-2 mr-2 border border-transparent hover:border-blue-400 dark:border-gray-800 dark:hover:border-gray-400 ">
-                                                                                <div class="w-4 h-4 bg-cyan-300"></div>
-                                                                            </button>
-                                                                            <button class="p-1 mb-2 mr-2 border border-transparent hover:border-blue-400 dark:border-gray-800 dark:hover:border-gray-400">
-                                                                                <div class="w-4 h-4 bg-green-300 "></div>
-                                                                            </button>
-                                                                            <button class="p-1 mb-2 border border-transparent hover:border-blue-400 dark:border-gray-800 dark:hover:border-gray-400">
-                                                                                <div class="w-4 h-4 bg-red-200 "></div>
-                                                                            </button>
-                                                                        </div>
+                                                                        <div className="w-4 h-4 bg-cyan-300" />
                                                                     </div>
-                                                                    <div class="flex items-center w-52 mb-2 ">
-                                                                        <h2 class="mr-2 text-sm dark:text-gray-400 opacity-80">
-                                                                            Size:
-                                                                        </h2>
-                                                                        <div class="flex flex-wrap mx-2 -mb-2">
-                                                                            <button class="py-1 mb-2 mr-1 border w-5 h-8 hover:border-blue-400 dark:border-gray-400 hover:text-blue-600 dark:hover:border-gray-300 dark:text-gray-400">
-                                                                                XL
-                                                                            </button>
-                                                                            <button class="py-1 mb-2 mr-1 border w-5 h-8 hover:border-blue-400 hover:text-blue-600 dark:border-gray-400 dark:hover:border-gray-300 dark:text-gray-400">
-                                                                                S
-                                                                            </button>
-                                                                            <button class="py-1 mb-2 mr-1 border w-5 h-8 hover:border-blue-400 hover:text-blue-600 dark:border-gray-400 dark:hover:border-gray-300 dark:text-gray-400">
-                                                                                M
-                                                                            </button>
-                                                                            <button class="py-1 mb-2 mr-1 border w-5 h-8 hover:border-blue-400 hover:text-blue-600 dark:border-gray-400 dark:hover:border-gray-300 dark:text-gray-400">
-                                                                                XS
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
+                                                                    <h2 className="text-sm mt-1 opacity-80">
+                                                                        Kích cỡ: <span className="text-bold">XL</span>
+                                                                    </h2>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -143,8 +117,9 @@ export default function CartPage() {
                                 </tbody>
                             </table>
                         </div>
+                        {cart.length <= 0 ? <EmptyCart /> : null}
                     </div>
-                    <div className="md:w-1/4">
+                    <div className="lg:w-1/4">
                         <div className="bg-white rounded-lg shadow-md p-6">
                             <h2 className="text-lg font-semibold mb-4">Thành tiền</h2>
                             <div className="flex justify-between mb-2">

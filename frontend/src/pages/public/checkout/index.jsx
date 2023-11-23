@@ -64,6 +64,7 @@ export default function CheckoutPage() {
                     return {
                         billId: 0,
                         productId: obj.idProduct,
+                        name: obj.name,
                         quantity: obj.amount,
                         price: obj.price,
                         imageUrl: obj.imageUrl,
@@ -177,74 +178,75 @@ export default function CheckoutPage() {
                         </div>
                     </div>
                     <div className="md:w-2/4">
-                        <ul className="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                            <div className="w-full border-b border-gray-200 dark:border-gray-600">
-                                <div className="flex items-center ps-3">
-                                    <input
-                                        name="check"
-                                        id="cod-checkbox"
-                                        type="radio"
-                                        defaultValue
-                                        className="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 rounded-full focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                                    />
-                                    <label
-                                        htmlFor="cod-checkbox"
-                                        className="w-full ml-5 py-3 ms-2 items-center text-sm font-medium text-gray-900 flex dark:text-gray-300"
-                                    >
-                                        <img
-                                            src="https://www.multiwnetrza.pl/images/promotion/17/pngtree-free-delivery-icon-png-image_1922196.jpg"
-                                            className="w-12 mr-2"
-                                            alt=""
+                    <ul className="shadow-md w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                <div className="w-full border-b border-gray-200 dark:border-gray-600">
+                                    <div className="flex items-center ps-3">
+                                        <input
+                                            name="check"
+                                            id="cod-checkbox"
+                                            type="radio"
+                                            defaultValue
+                                            className="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 rounded-full focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                         />
-                                        COD
-                                    </label>
+                                        <label
+                                            htmlFor="cod-checkbox"
+                                            className="w-full ml-5 py-3 ms-2 items-center text-sm font-medium text-gray-900 flex dark:text-gray-300"
+                                        >
+                                            <img
+                                                src="https://www.multiwnetrza.pl/images/promotion/17/pngtree-free-delivery-icon-png-image_1922196.jpg"
+                                                className="w-12 mr-2"
+                                                alt=""
+                                            />
+                                            COD
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
-                            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                <div className="flex items-center ps-3">
-                                    <input
-                                        name="check"
-                                        id="bank-checkbox"
-                                        type="radio"
-                                        defaultValue
-                                        className="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 rounded-full focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                                    />
-                                    <label
-                                        htmlFor="bank-checkbox"
-                                        className="w-full ml-5 py-3 ms-2 items-center text-sm font-medium text-gray-900 flex dark:text-gray-300"
-                                    >
-                                        <img
-                                            src="https://upload.wikimedia.org/wikipedia/vi/f/fe/MoMo_Logo.png"
-                                            className=" w-9 mr-2"
-                                            alt=""
+                                <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                    <div className="flex items-center ps-3">
+                                        <input
+                                            name="check"
+                                            id="bank-checkbox"
+                                            type="radio"
+                                            defaultValue
+                                            className="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 rounded-full focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                         />
-                                        Ví điện tử Momo
-                                    </label>
-                                </div>
-                            </li>
-                            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                <div className="flex items-center ps-3">
-                                    <input
-                                        name="check"
-                                        id="Ví điện tử ZaloPay-checkbox"
-                                        type="radio"
-                                        defaultValue
-                                        className="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 rounded-full focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                                    />
-                                    <label
-                                        htmlFor="Ví điện tử ZaloPay-checkbox"
-                                        className="w-full ml-5 py-3 ms-2 items-center text-sm font-medium text-gray-900 flex dark:text-gray-300"
-                                    >
-                                        <img
-                                            src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-ZaloPay-Square.png"
-                                            className="w-9 mr-2"
-                                            alt=""
+                                        <label
+                                            htmlFor="bank-checkbox"
+                                            className="w-full ml-5 py-3 ms-2 items-center text-sm font-medium text-gray-900 flex dark:text-gray-300"
+                                        >
+                                            <img
+                                                src="https://upload.wikimedia.org/wikipedia/vi/f/fe/MoMo_Logo.png"
+                                                className=" w-9 mr-2"
+                                                alt=""
+                                            />
+                                            Ví điện tử Momo
+                                        </label>
+                                    </div>
+                                </li>
+                                <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                    <div className="flex items-center ps-3">
+                                        <input
+                                            name="check"
+                                            id="Ví điện tử ZaloPay-checkbox"
+                                            type="radio"
+                                            defaultValue
+                                            className="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 rounded-full focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                         />
-                                        Ví điện tử ZaloPay
-                                    </label>
-                                </div>
-                            </li>
-                        </ul>
+                                        <label
+                                            htmlFor="Ví điện tử ZaloPay-checkbox"
+                                            className="w-full ml-5 py-3 ms-2 items-center text-sm font-medium text-gray-900 flex dark:text-gray-300"
+                                        >
+                                            <img
+                                                src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-ZaloPay-Square.png"
+                                                className="w-9 mr-2"
+                                                alt=""
+                                            />
+                                            Ví điện tử ZaloPay
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+
                         <div className="bg-white rounded-lg shadow-md p-6 mt-2">
                             <div className="flex justify-between mb-2">
                                 <span>Tổng đơn hàng</span>

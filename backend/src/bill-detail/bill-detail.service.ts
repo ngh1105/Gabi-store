@@ -9,13 +9,14 @@ export class BillDetailService {
     constructor(
         @Inject('BILL_DETAIL_REPOSITORY')
         private billDetailRepository: typeof BillDetail
-    ) {}
+    ) { }
 
     async create(data: BillDetailDto) {
 
         const record = await this.billDetailRepository.create({
             billId: data.billId,
             productId: data.productId,
+            name: data.name,
             quantity: data.quantity,
             price: data.price,
             imageUrl: data.imageUrl,
@@ -30,9 +31,10 @@ export class BillDetailService {
         const data = await this.billDetailRepository.findAll<BillDetail>({
             where: { billId: id },
         });
-        
+
         return data.map(obj => new BillDetailDto(
-            obj.billId, obj.productId, obj.quantity, obj.price, obj.imageUrl
+            obj.billId, obj.name, obj.productId,
+            obj.quantity, obj.price, obj.imageUrl
         ));
     }
 }

@@ -1,4 +1,4 @@
-import { Injectable, Inject, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable, Inject, HttpException, HttpStatus, UnauthorizedException } from '@nestjs/common';
 import { CreateBillDto } from './dto/create-bill.dto';
 import { UpdateBillDto } from './dto/update-bill.dto';
 import { Bill } from './entities/bill.entity';
@@ -81,5 +81,20 @@ export class BillService {
         retData.details = await this.billDetailService.findByBillId(record.id);
 
         return retData;
+    }
+
+    async findAllByUser(idUser: number, user: any) {
+        if (idUser !== user.userId) {
+            throw new UnauthorizedException("You cannot not view others bill list");
+        }
+
+        const data = await this.billRepository.findAll<Bill>({
+            where: { userId: idUser },
+            order: [
+                ['id', 'DESC']
+            ]
+        });
+
+        return data.map(obj => new BillDto(obj));
     }
 }
