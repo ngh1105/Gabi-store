@@ -3,6 +3,7 @@ import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { Category } from './entities/category.entity';
 import { CategoryDto } from './dto/category.dto';
+import * as fs from "fs";
 
 @Injectable()
 export class CategoryService {
@@ -21,7 +22,12 @@ export class CategoryService {
     }
 
     async findAll() {
-        const data = await this.categoryRepository.findAll<Category>();
+        const data = await this.categoryRepository.findAll<Category>({
+            order: [
+                ['id', 'DESC']
+            ]
+        });
+        
         return data.map(obj => new CategoryDto(obj));
     }
 
@@ -61,9 +67,54 @@ export class CategoryService {
             throw new HttpException('No record found', HttpStatus.NOT_FOUND);
         }
 
+        this.deleteImage(record);
+
         await record.destroy();
 
         return "Deleted successfully";
+    }
+
+    async removeAll() {
+        // Find all records in the category table
+        const data = await this.categoryRepository.findAll<Category>();
+    
+        // Loop through each record and delete it
+        for (const record of data) {
+            this.deleteImage(record);
+            await record.destroy();
+        }
+    
+        return "All records deleted successfully";
+    }
+
+    async updateImage(id: number, image: any) {
+        const record = await this.categoryRepository.findOne<Category>({
+            where: { id: id },
+        });
+
+        if (!record) {
+            throw new HttpException('No record found', HttpStatus.NOT_FOUND);
+        }
+
+        const fileName = `/upload/category/${record.id}/${image.md5}/${image.name}`;
+        if (fileName === record.imageUrl) {
+            return "File is already exist";
+        }
+
+       this.deleteImage(record);
+
+        image.mv(`./public${fileName}`);
+
+        record.imageUrl = fileName;
+        await record.save();
+
+        return "Uploaded successfully";
+    }
+
+    deleteImage(record: Category) {
+        if (record.imageUrl && record.imageUrl !== "") {
+            fs.unlinkSync(`./public${record.imageUrl}`);
+        }
     }
 
     async isExists(id: number) {

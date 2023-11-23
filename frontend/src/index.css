@@ -9,3 +9,12 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+:root {
+    --toastify-color-light: #fff;
+    --toastify-color-dark: #121212;
+    --toastify-color-info: #3b82f6;
+    --toastify-color-success: #22c55e;
+    --toastify-color-warning: #eab308;
+    --toastify-color-error: #ef4444;
+}

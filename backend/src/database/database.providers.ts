@@ -46,7 +46,7 @@ const createRelationship = () => {
     });
 
     Product.hasMany(BillDetail, {
-        onDelete: 'CASCADE',
+        //onDelete: 'CASCADE',
         foreignKey: 'productId',
     });
 
