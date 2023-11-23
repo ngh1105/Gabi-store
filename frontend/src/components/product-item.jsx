@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { addToCart } from "redux/cart.slice";
 import utils from "utils";
+import { toast } from "react-toastify";
 
 export default function ProductItem({ product }) {
     const dispatch = useDispatch();
@@ -15,6 +16,8 @@ export default function ProductItem({ product }) {
             price: obj.price,
             amount: 1,
         }));
+
+        toast.success("Đã thêm vào giỏ hàng");
     }
 
     return (
