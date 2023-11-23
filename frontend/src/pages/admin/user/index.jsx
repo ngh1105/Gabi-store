@@ -31,13 +31,8 @@ export default function UserPage() {
         setUsers(newData);
     }
 
-    useEffect(async () => {
-        try {
-            await fetchData();
-        }
-        catch (err) {
-            console.log(err);
-        }
+    useEffect(() => {
+        fetchData();
     }, []);
 
     const columns = useMemo(() => [
