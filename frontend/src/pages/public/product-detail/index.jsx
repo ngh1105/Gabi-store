@@ -26,7 +26,7 @@ export default function ProductDetailPage() {
             const res = await Api.Get(`/product/${id}`);
 
             if (!res.isSuccess) {
-                toast.error("ID không tồn tại");
+                toast.error("Có lỗi khi xem trang");
                 navigate("/product");
                 return;
             }

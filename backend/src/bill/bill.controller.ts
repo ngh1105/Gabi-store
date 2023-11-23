@@ -1,36 +1,74 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Req,
+     Param, Delete, InternalServerErrorException, UseGuards } from '@nestjs/common';
 import { BillService } from './bill.service';
 import { CreateBillDto } from './dto/create-bill.dto';
 import { UpdateBillDto } from './dto/update-bill.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiSecurity, ApiTags } from '@nestjs/swagger';
+import { AdminGuard, GuestGuard } from 'src/auth/auth.guard';
+import { Request } from 'express';
 
 @ApiTags('bill')
 @Controller('bill')
 export class BillController {
-  constructor(private readonly billService: BillService) {}
+    constructor(private readonly billService: BillService) { }
 
-  @Post()
-  create(@Body() createBillDto: CreateBillDto) {
-    return this.billService.create(createBillDto);
-  }
+    @ApiSecurity('private-key')
+    @UseGuards(GuestGuard)
+    @Post()
+    create(@Body() createBillDto: CreateBillDto) {
+        try {
+            return this.billService.create(createBillDto);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
 
-  @Get()
-  findAll() {
-    return this.billService.findAll();
-  }
+    @ApiSecurity('private-key')
+    @UseGuards(AdminGuard)
+    @Get()
+    findAll() {
+        try {
+            return this.billService.findAll();
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.billService.findOne(+id);
-  }
+    @ApiSecurity('private-key')
+    @UseGuards(AdminGuard)
+    @Get(':id')
+    findOne(@Param('id') id: string) {
+        try {
+            return this.billService.findOne(+id);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBillDto: UpdateBillDto) {
-    return this.billService.update(+id, updateBillDto);
-  }
+    @ApiSecurity('private-key')
+    @UseGuards(GuestGuard)
+    @Get('find-one/:idUser/:idBill')
+    findOneByUser(@Param('idUser') idUser: string, @Param('idBill') idBill: string) {
+        try {
+            return this.billService.findOneByUser(+idUser, +idBill);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.billService.remove(+id);
-  }
+    @ApiSecurity('private-key')
+    @UseGuards(GuestGuard)
+    @Get('find-all/:idUser')
+    findAllByUser(@Param('idUser') idUser: string, @Req() request: Request) {
+        try {
+            return this.billService.findAllByUser(+idUser, request['user']);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
 }

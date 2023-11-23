@@ -11,5 +11,6 @@ import { billDetailProviders } from './bill-detail.providers';
         BillDetailService,
         ...billDetailProviders
     ],
+    exports: [BillDetailService],
 })
 export class BillDetailModule { }

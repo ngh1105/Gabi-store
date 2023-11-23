@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "redux/cart.slice";
 import ProductItem from "components/product-item";
 
-function ProductPage() {
+export default function ProductPage() {
 
     const [categories, setCategories] = useState([]);
 
@@ -84,7 +84,7 @@ function ProductPage() {
                         <div className="w-full pr-4 lg:w-1/4 lg:block  ">
                             <div className="p-4 mb-5 bg-white border border-gray-200 dark:border-gray-900 dark:bg-gray-900">
                                 <h2 className="text-2xl font-bold dark:text-gray-400">
-                                    Loại hàng
+                                    Danh mục
                                 </h2>
                                 <div className="w-16 pb-2 mb-6 border-b border-rose-600 dark:border-gray-400" />
                                 <ul>
@@ -291,5 +291,3 @@ function ProductPage() {
         </PageLayout>
     );
 }
-
-export default ProductPage;

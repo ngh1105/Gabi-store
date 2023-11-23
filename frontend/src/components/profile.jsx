@@ -38,7 +38,7 @@ export default function Profile() {
                     : null
                 }
                 <Dropdown.Item>Hồ sơ của tôi</Dropdown.Item>
-                <Dropdown.Item>Cài đặt</Dropdown.Item>
+                <Dropdown.Item>Đơn hàng</Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item onClick={() => handleLogout()}>Đăng xuất</Dropdown.Item>
             </Dropdown>

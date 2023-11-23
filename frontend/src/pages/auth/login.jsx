@@ -5,17 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import PageLayout from "components/page-layout";
+import { useApiStatus } from "hooks/use-api-status";
 
 export default function LoginPage() {
 
     const navigate = useNavigate();
 
-    const [status, setStatus] = useState({
-        isError: false,
-        errorMessage: "",
-        isSubmit: false,
-    });
-
+    const { status, setStatus } = useApiStatus();
+    
     const { user, setLocalUser } = useAuth();
 
     const formik = useFormik({
