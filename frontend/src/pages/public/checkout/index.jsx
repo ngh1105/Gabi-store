@@ -9,8 +9,27 @@ import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import utils from "utils";
 import { toast } from "react-toastify";
+import { API_URL } from "app/config";
 
 export default function CheckoutPage() {
+
+    const paymentOptions = useMemo(() => [
+        {
+            id: "cod-checkbox",
+            name: "COD",
+            image: `${API_URL}/upload/payment/cod.jpg`,
+        },
+        {
+            id: "momo-checkbox",
+            name: "Ví điện tử Momo",
+            image: `${API_URL}/upload/payment/momo.png`,
+        },
+        {
+            id: "zalo-checkbox",
+            name: "Ví điện tử ZaloPay",
+            image: `${API_URL}/upload/payment/zalo.webp`,
+        },
+    ], []);
 
     const navigate = useNavigate();
 
@@ -178,74 +197,36 @@ export default function CheckoutPage() {
                         </div>
                     </div>
                     <div className="md:w-2/4">
-                    <ul className="shadow-md w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                                <div className="w-full border-b border-gray-200 dark:border-gray-600">
-                                    <div className="flex items-center ps-3">
-                                        <input
-                                            name="check"
-                                            id="cod-checkbox"
-                                            type="radio"
-                                            defaultValue
-                                            className="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 rounded-full focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                                        />
-                                        <label
-                                            htmlFor="cod-checkbox"
-                                            className="w-full ml-5 py-3 ms-2 items-center text-sm font-medium text-gray-900 flex dark:text-gray-300"
-                                        >
-                                            <img
-                                                src="https://www.multiwnetrza.pl/images/promotion/17/pngtree-free-delivery-icon-png-image_1922196.jpg"
-                                                className="w-12 mr-2"
-                                                alt=""
-                                            />
-                                            COD
-                                        </label>
-                                    </div>
-                                </div>
-                                <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                    <div className="flex items-center ps-3">
-                                        <input
-                                            name="check"
-                                            id="bank-checkbox"
-                                            type="radio"
-                                            defaultValue
-                                            className="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 rounded-full focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                                        />
-                                        <label
-                                            htmlFor="bank-checkbox"
-                                            className="w-full ml-5 py-3 ms-2 items-center text-sm font-medium text-gray-900 flex dark:text-gray-300"
-                                        >
-                                            <img
-                                                src="https://upload.wikimedia.org/wikipedia/vi/f/fe/MoMo_Logo.png"
-                                                className=" w-9 mr-2"
-                                                alt=""
-                                            />
-                                            Ví điện tử Momo
-                                        </label>
-                                    </div>
-                                </li>
-                                <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                    <div className="flex items-center ps-3">
-                                        <input
-                                            name="check"
-                                            id="Ví điện tử ZaloPay-checkbox"
-                                            type="radio"
-                                            defaultValue
-                                            className="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 rounded-full focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                                        />
-                                        <label
-                                            htmlFor="Ví điện tử ZaloPay-checkbox"
-                                            className="w-full ml-5 py-3 ms-2 items-center text-sm font-medium text-gray-900 flex dark:text-gray-300"
-                                        >
-                                            <img
-                                                src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-ZaloPay-Square.png"
-                                                className="w-9 mr-2"
-                                                alt=""
-                                            />
-                                            Ví điện tử ZaloPay
-                                        </label>
-                                    </div>
-                                </li>
-                            </ul>
+                        <ul className="shadow-md w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                            {
+                                paymentOptions.map((obj, index) => {
+                                    return (
+                                        <li key={index} className="w-full border-b border-gray-200 dark:border-gray-600">
+                                            <div className="flex items-center ps-3">
+                                                <input
+                                                    name="check"
+                                                    id={obj.id}
+                                                    type="radio"
+                                                    defaultValue
+                                                    className="w-4 h-4 text-indigo-600 bg-gray-100 border-indigo-300 rounded-full focus:ring-indigo-500 focus:ring-2"
+                                                />
+                                                <label
+                                                    htmlFor={obj.id}
+                                                    className="w-full ml-5 py-3 ms-2 items-center text-sm font-medium text-gray-900 flex dark:text-gray-300"
+                                                >
+                                                    <img
+                                                        src={obj.image}
+                                                        className="w-12 mr-2"
+                                                        alt=""
+                                                    />
+                                                    {obj.name}
+                                                </label>
+                                            </div>
+                                        </li>
+                                    )
+                                })
+                            }
+                        </ul>
 
                         <div className="bg-white rounded-lg shadow-md p-6 mt-2">
                             <div className="flex justify-between mb-2">
