@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-function About() {
+export default function AboutPage() {
   return (
     <section className="flex items-center py-10 bg-stone-100 xl:min-h-screen font-poppins dark:bg-gray-800  ">
       <div className="justify-center flex-1 max-w-screen-xl py-4 mx-auto lg:py-6 md:px-6">
@@ -137,5 +137,3 @@ function About() {
     </section>
   );
 }
-
-export default About;
