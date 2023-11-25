@@ -20,6 +20,7 @@ import Card from "pages/public/Home/NewProducts/Card";
 import ForgetPassword from "pages/public/ForgetPassword";
 import About from "pages/public/About";
 
+
 import Following from "pages/public/Following";
 
 import Policy from "pages/public/Policy";
