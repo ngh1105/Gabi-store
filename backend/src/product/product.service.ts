@@ -1,4 +1,4 @@
-import { Injectable, Inject, HttpStatus, HttpException } from '@nestjs/common';
+import { Injectable, Inject, HttpStatus, HttpException, BadRequestException } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Product } from './entities/product.entity';
@@ -95,6 +95,10 @@ export class ProductService {
 
         if (!record) {
             throw new HttpException('No record found', HttpStatus.NOT_FOUND);
+        }
+
+        if (image.name.length > 155) {
+            throw new BadRequestException("File name too long");
         }
 
         const fileName = `/upload/product/${record.id}/${image.md5}/${image.name}`;

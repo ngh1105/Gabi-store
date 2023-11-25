@@ -1,4 +1,4 @@
-import { Injectable, Inject, HttpStatus, HttpException } from '@nestjs/common';
+import { Injectable, Inject, HttpStatus, HttpException, BadRequestException } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { Category } from './entities/category.entity';
@@ -94,6 +94,10 @@ export class CategoryService {
 
         if (!record) {
             throw new HttpException('No record found', HttpStatus.NOT_FOUND);
+        }
+
+        if (image.name.length > 155) {
+            throw new BadRequestException("File name too long");
         }
 
         const fileName = `/upload/category/${record.id}/${image.md5}/${image.name}`;
