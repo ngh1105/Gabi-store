@@ -3,76 +3,96 @@ import Slider from "./slider";
 import PageLayout from "components/page-layout";
 import PageTitle from "components/page-title";
 import { API_URL } from "app/config";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Api from "app/api";
 import utils from "utils";
 import { useDispatch } from "react-redux";
 import { addToCart } from "redux/cart.slice";
 import ProductItem from "components/product-item";
 
-const usePaginate = () => {
+const usePaginate = (itemPerPage) => {
 
-    const [items, setItems] = useState([]);
+    const [totalItems, setTotalItems] = useState([]);
+    const [filteredItems, setFilteredItems] = useState(totalItems);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
 
-    
-}
+    const startIndex = (currentPage - 1) * itemPerPage;
+    const endIndex = startIndex + itemPerPage;
+    const items = useMemo(() => filteredItems.slice(startIndex, endIndex), [filteredItems, currentPage]);
 
-function Pagination({ totalPages, currentPage, onPageChange }) {
+    const onSearchItems = (keyword) => {
+        const newFilteredItems = totalItems.filter(item => item.name.includes(keyword));
+        setCurrentPage(1);
+        setTotalPages(Math.ceil(newFilteredItems.length / itemPerPage));
+        setFilteredItems(newFilteredItems);
 
-    const handleClick = (page) => {
-        if (page >= 1 && page <= totalPages) {
-            onPageChange(page);
-        }
-    };
+        //console.log(items);
+        //console.log(filteredItems);
+    }
 
-    return (
-        <nav aria-label="page-navigation">
-            <ul className="flex list-style-none">
-                {/* Previous Button */}
-                <li
-                    className='page-item'
-                    disabled={currentPage === 1}
-                >
-                    <button
-                        onClick={() => handleClick(currentPage - 1)}
-                        className="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-indigo-100 rounded-md mr-3 "
+    const setItems = (data) => {
+        setTotalItems(data);
+        setFilteredItems(data);
+    }
+
+    const Pagination = () => {
+
+        const handleClick = (page) => {
+            if (page >= 1 && page <= totalPages) {
+                setCurrentPage(page);
+            }
+        };
+
+        return (
+            <nav aria-label="page-navigation">
+                <ul className="flex list-style-none">
+                    {/* Previous Button */}
+                    <li
+                        className='page-item'
+                        disabled={currentPage === 1}
                     >
-                        Trước
-                    </button>
-                </li>
-
-                {/* Page Buttons */}
-                {Array.from({ length: totalPages }).map((_, index) => (
-                    <li key={index} className="page-item">
                         <button
-                            onClick={() => handleClick(index + 1)}
-                            className={`relative block px-3 py-1.5 text-base ${currentPage === index + 1
-                                ? 'text-gray-100 bg-indigo-600'
-                                : 'text-gray-700 hover:text-indigo-700 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-indigo-100'
-                                } transition-all duration-300 rounded-md mr-3`}
+                            onClick={() => handleClick(currentPage - 1)}
+                            className="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-indigo-100 rounded-md mr-3 "
                         >
-                            {index + 1}
+                            Trước
                         </button>
                     </li>
-                ))}
 
-                {/* Next Button */}
-                <li
-                    className='page-item'
-                    disabled={currentPage === totalPages}
-                >
-                    <button
-                        onClick={() => handleClick(currentPage + 1)}
-                        className="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-indigo-100 rounded-md mr-3 "
+                    {/* Page Buttons */}
+                    {Array.from({ length: totalPages }).map((_, index) => (
+                        <li key={index} className="page-item">
+                            <button
+                                onClick={() => handleClick(index + 1)}
+                                className={`relative block px-3 py-1.5 text-base ${currentPage === index + 1
+                                    ? 'text-gray-100 bg-indigo-600'
+                                    : 'text-gray-700 hover:text-indigo-700 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-indigo-100'
+                                    } transition-all duration-300 rounded-md mr-3`}
+                            >
+                                {index + 1}
+                            </button>
+                        </li>
+                    ))}
+
+                    {/* Next Button */}
+                    <li
+                        className='page-item'
+                        disabled={currentPage === totalPages}
                     >
-                        Sau
-                    </button>
-                </li>
-            </ul>
-        </nav>
-    );
+                        <button
+                            onClick={() => handleClick(currentPage + 1)}
+                            className="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-indigo-100 rounded-md mr-3 "
+                        >
+                            Sau
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        );
+    }
+
+    return { items, setItems, setTotalPages, onSearchItems, Pagination };
 }
 
 export default function ProductPage() {
@@ -91,25 +111,14 @@ export default function ProductPage() {
         }
     }, []);
 
-    const [products, setProducts] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
-    const productsPerPage = 9;
+    const PRODUCTS_PER_PAGE = 9;
+    const { items, setItems, setTotalPages, onSearchItems, Pagination } = usePaginate(PRODUCTS_PER_PAGE);
 
     const fetchProducts = async () => {
         const res = await Api.Get(`/product`);
-        setProducts(res.response);
-        setTotalPages(Math.ceil(res.response.length / productsPerPage));
+        setItems(res.response);
+        setTotalPages(Math.ceil(res.response.length / PRODUCTS_PER_PAGE));
     }
-
-    const handlePageChage = async (page) => {
-        setCurrentPage(page);
-    }
-
-    // Calculate the range of products to display for the current page
-    const startIndex = (currentPage - 1) * productsPerPage;
-    const endIndex = startIndex + productsPerPage;
-    const currentProducts = products.slice(startIndex, endIndex);
 
     useEffect(() => {
         try {
@@ -141,7 +150,7 @@ export default function ProductPage() {
                 <div className="px-4 py-4 mx-auto max-w-7xl lg:py-6 md:px-6">
                     {/* Breadcumb */}
 
-                    <nav className="flex mb-3" aria-label="Breadcrumb">
+                    <nav className="flex mb-3" >
                         <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                             <li className="inline-flex items-center">
                                 <a href="#" className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-white">
@@ -175,7 +184,6 @@ export default function ProductPage() {
                                             return (
                                                 <li className="mb-4" key={index}>
                                                     <label
-                                                        htmlFor
                                                         className="flex items-center dark:text-gray-400 "
                                                     >
                                                         <input type="checkbox" className="w-4 h-4 mr-2" />
@@ -187,65 +195,6 @@ export default function ProductPage() {
                                     }
                                 </ul>
                             </div>
-                            <div className="p-4 mb-5 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-900">
-                                <h2 className="text-2xl font-bold dark:text-gray-400 ">
-                                    Kích thước
-                                </h2>
-                                <div className="w-16 pb-2 mb-6 border-b border-rose-600 dark:border-gray-400" />
-                                <div className="flex flex-wrap -mx-2 -mb-2">
-                                    <button className="py-1 mb-2 mr-1 border w-11 hover:border-blue-400 dark:border-gray-400 hover:text-blue-600 dark:hover:border-gray-300 dark:text-gray-400">
-                                        XL
-                                    </button>
-                                    <button className="py-1 mb-2 mr-1 border w-11 hover:border-blue-400 hover:text-blue-600 dark:border-gray-400 dark:hover:border-gray-300 dark:text-gray-400">
-                                        S
-                                    </button>
-                                    <button className="py-1 mb-2 mr-1 border w-11 hover:border-blue-400 hover:text-blue-600 dark:border-gray-400 dark:hover:border-gray-300 dark:text-gray-400">
-                                        M
-                                    </button>
-                                    <button className="py-1 mb-2 mr-1 border w-11 hover:border-blue-400 hover:text-blue-600 dark:border-gray-400 dark:hover:border-gray-300 dark:text-gray-400">
-                                        XS
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="p-4 mb-5 bg-white border border-gray-200 dark:border-gray-900 dark:bg-gray-900">
-                                <h2 className="text-2xl font-bold dark:text-gray-400">
-                                    Màu sắc
-                                </h2>
-                                <div className="w-16 pb-2 mb-6 border-b border-rose-600 dark:border-gray-400" />
-                                <div className="flex flex-wrap -mx-2 -mb-2">
-                                    <button className="p-1 mb-2 mr-4 ">
-                                        <div className="w-5 h-5 bg-emerald-400" />
-                                    </button>
-                                    <button className="p-1 mb-2 mr-4 ">
-                                        <div className="w-5 h-5 bg-blue-700" />
-                                    </button>
-                                    <button className="p-1 mb-2 mr-4 ">
-                                        <div className="w-5 h-5 bg-rose-600" />
-                                    </button>
-                                    <button className="p-1 mb-2 mr-4 ">
-                                        <div className="w-5 h-5 bg-amber-700" />
-                                    </button>
-                                    <button className="p-1 mb-2 mr-4 ">
-                                        <div className="w-5 h-5 bg-green-700" />
-                                    </button>
-                                    <button className="p-1 mb-2 mr-4 ">
-                                        <div className="w-5 h-5 bg-pink-400" />
-                                    </button>
-                                    <button className="p-1 mb-2 mr-4 ">
-                                        <div className="w-5 h-5 bg-indigo-400" />
-                                    </button>
-                                    <button className="p-1 mb-2 mr-4 ">
-                                        <div className="w-5 h-5 bg-cyan-600" />
-                                    </button>
-                                    <button className="p-1 mb-2 mr-4 ">
-                                        <div className="w-5 h-5 bg-stone-400" />
-                                    </button>
-                                    <button className="p-1 mb-2 mr-4 ">
-                                        <div className="w-5 h-5 bg-yellow-400" />
-                                    </button>
-                                </div>
-                            </div>
-
                             {/* Box */}
                         </div>
                         <div className="w-full px-3 lg:w-3/4 ">
@@ -253,59 +202,27 @@ export default function ProductPage() {
                                 <div className=" items-center justify-between hidden px-4 py-2 mb-4 bg-gray-100 md:flex dark:bg-gray-900 ">
                                     {/* input search */}
 
-                                    <div className="flex items-center">
-                                        <div
-                                            className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
-                                        >
-                                            <ul
-                                                className="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                                aria-labelledby="dropdown-button"
-                                            >
-                                                <li>
-                                                    <button
-                                                        type="button"
-                                                        className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                                    >
-                                                        Áo Polo
-                                                    </button>
-                                                </li>
-                                                <li>
-                                                    <button
-                                                        type="button"
-                                                        className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white capitalize"
-                                                    >
-                                                        Áo thun thể thao
-                                                    </button>
-                                                </li>
-                                                <li>
-                                                    <button
-                                                        type="button"
-                                                        className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white capitalize"
-                                                    >
-                                                        Quần short nam
-                                                    </button>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                    <div className="">
                                         <div className="relative w-full">
                                             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                                                 <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
                                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5v10M3 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0V6a3 3 0 0 0-3-3H9m1.5-2-2 2 2 2" />
                                                 </svg>
                                             </div>
-                                            <input type="text" id="simple-search" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            <input
+                                                onChange={(e) => onSearchItems(e.target.value)}
+                                                type="text"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 placeholder="Tìm kiếm sản phẩm" required />
                                         </div>
                                     </div>
 
                                     <div className="flex items-center justify-between">
-
                                         <select className="block w-40 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                             <option value selected>Mới nhất</option>
                                             <option value>Phổ biến nhất</option>
                                             <option value>Giá thấp nhất</option>
                                         </select>
-
                                     </div>
                                 </div>
                             </div>
@@ -313,19 +230,15 @@ export default function ProductPage() {
                             {/* All product */}
                             <div className="grid grid-cols-3 auto-cols-max gap-4">
                                 {
-                                    currentProducts.map((obj, index) => {
+                                    items.map((obj, index) => {
                                         return (
                                             <ProductItem key={index} product={obj} />
                                         )
                                     })
                                 }
                             </div>
-                            <div className="flex justify-end mt-6">
-                                <Pagination
-                                    totalPages={totalPages}
-                                    currentPage={currentPage}
-                                    onPageChange={handlePageChage}
-                                />
+                            <div className="flex justify-center mt-6">
+                                <Pagination />
                             </div>
                         </div>
                     </div>
