@@ -62,6 +62,7 @@ export class ProductController {
     @Get(':id')
     findOne(@Param('id') id: string) {
         try {
+            this.productService.increaseView(+id, 1);
             return this.productService.findOne(+id);
         }
         catch (err) {

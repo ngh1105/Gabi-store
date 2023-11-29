@@ -66,6 +66,20 @@ export class ProductService {
         return new ProductDto(record);
     }
 
+    async increaseView(id: number, value: number) {
+        const record = await this.productRepository.findOne<Product>({
+            where: { id: id },
+        });
+
+        if (!record) {
+            throw new HttpException('No record found', HttpStatus.NOT_FOUND);
+        }
+
+        await record.increment('viewCount', { by: value });
+
+        return "Increased successfully";
+    }
+
     async update(id: number, data: UpdateProductDto) {
         const record = await this.productRepository.findOne<Product>({
             where: { id: id },
