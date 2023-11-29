@@ -12,6 +12,7 @@ import ProductItem from "components/product-item";
 
 const usePaginate = (itemPerPage) => {
 
+    const [selectedCategories, setSelectedCategories] = useState([]);
     const [totalItems, setTotalItems] = useState([]);
     const [filteredItems, setFilteredItems] = useState(totalItems);
     const [currentPage, setCurrentPage] = useState(1);
@@ -23,14 +24,23 @@ const usePaginate = (itemPerPage) => {
     const items = useMemo(() => filteredItems.slice(startIndex, endIndex), [filteredItems, currentPage]);
 
     const onSearchItems = (kw) => {
-        setKeyword(kw);
-        const newFilteredItems = totalItems.filter(item => item.name.includes(kw));
-        setCurrentPage(1);
-        setTotalPages(Math.ceil(newFilteredItems.length / itemPerPage));
-        setFilteredItems(newFilteredItems);
 
-        //console.log(items);
-        //console.log(filteredItems);
+        const data = totalItems;
+
+        // If there are selected categories, filter by them
+        let filteredByCategory = data;
+        if (selectedCategories.length > 0) {
+            filteredByCategory = data.filter(item => selectedCategories.includes(item.categoryId));
+        }
+    
+        // Filter by keyword
+        const filteredByKeyword = filteredByCategory.filter(item => item.name.includes(kw));
+    
+        // Update state
+        setKeyword(kw);
+        setCurrentPage(1);
+        setTotalPages(Math.ceil(filteredByKeyword.length / itemPerPage));
+        setFilteredItems(filteredByKeyword);
     }
 
     const onSortItems = (callback) => {
@@ -38,7 +48,15 @@ const usePaginate = (itemPerPage) => {
         const data = callback(totalItems);
         setTotalItems(data);
 
-        const newFilteredItems = data.filter(item => item.name.includes(keyword));
+        // If there are selected categories, filter by them
+        let filteredByCategory = data;
+        if (selectedCategories.length > 0) {
+            filteredByCategory = data.filter(item => selectedCategories.includes(item.categoryId));
+        }
+
+        const newFilteredItems = filteredByCategory.filter(item => item.name.includes(keyword));
+
+         // Update state
         setCurrentPage(1);
         setTotalPages(Math.ceil(newFilteredItems.length / itemPerPage));
         setFilteredItems(newFilteredItems);
@@ -105,7 +123,12 @@ const usePaginate = (itemPerPage) => {
         );
     }
 
-    return { items, setItems, totalItems, onSortItems, setTotalPages, onSearchItems, Pagination };
+    return {
+        items, setItems, totalItems,
+        selectedCategories, setSelectedCategories,
+        onSortItems, setTotalPages,
+        onSearchItems, Pagination
+    };
 }
 
 export default function ProductPage() {
@@ -124,13 +147,12 @@ export default function ProductPage() {
         }
     }, []);
 
-    const [sortOption, setSortOption] = useState("latest");
-    const { sortedItems, setSortedItems } = useState([]);
-
     const PRODUCTS_PER_PAGE = 9;
     const {
-        items, setItems, totalItems, onSortItems,
-        setTotalPages, onSearchItems, Pagination
+        items, setItems, totalItems,
+        selectedCategories, setSelectedCategories,
+        onSortItems, setTotalPages,
+        onSearchItems, Pagination
     } = usePaginate(PRODUCTS_PER_PAGE);
 
     const fetchProducts = async () => {
@@ -189,6 +211,24 @@ export default function ProductPage() {
         });
     }
 
+
+    const handleCategoryChange = (categoryId) => {
+        // Check if the category is already selected
+        if (selectedCategories.includes(categoryId)) {
+            // If selected, remove it from the array
+            setSelectedCategories((prevSelected) =>
+                prevSelected.filter((id) => id !== categoryId)
+            );
+        } else {
+            // If not selected, add it to the array
+            setSelectedCategories((prevSelected) => [...prevSelected, categoryId]);
+        }
+    };
+
+    useEffect(() => {
+        onSortItems((data) => data);
+    }, [selectedCategories]);
+
     return (
         <PageLayout title="Sản phẩm">
             <Slider />
@@ -232,7 +272,12 @@ export default function ProductPage() {
                                                     <label
                                                         className="flex items-center dark:text-gray-400 "
                                                     >
-                                                        <input type="checkbox" className="w-4 h-4 mr-2" />
+                                                        <input
+                                                            type="checkbox"
+                                                            className="w-4 h-4 mr-2"
+                                                            onChange={() => handleCategoryChange(obj.id)}
+                                                            checked={selectedCategories.includes(obj.id)}
+                                                        />
                                                         <span className="text-lg">{obj.name}</span>
                                                     </label>
                                                 </li>
@@ -241,7 +286,6 @@ export default function ProductPage() {
                                     }
                                 </ul>
                             </div>
-                            {/* Box */}
                         </div>
                         <div className="w-full px-3 lg:w-3/4 ">
                             <div className="px-3 ">
