@@ -1,5 +1,7 @@
-import { Controller, Get, Post, Body, Patch, Param,
-     Delete, UseGuards, BadRequestException, Req, InternalServerErrorException } from '@nestjs/common';
+import {
+    Controller, Get, Post, Body, Patch, Param,
+    Delete, UseGuards, BadRequestException, Req, InternalServerErrorException, Query
+} from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
@@ -34,10 +36,56 @@ export class ProductController {
         }
     }
 
+    @Get("/find-paginate")
+    async findPaginate(@Query('limit') limit: number, @Query('page') page: number) {
+        try {
+            limit = limit ? Number(limit) : 10; // Default limit is 10
+            page = page ? Number(page) : 1; // Default page is 1
+
+            const offset = (page - 1) * limit;
+
+            const totalItems = await this.productService.count();
+            const totalPages = Math.ceil(totalItems / limit);
+
+            const data = await this.productService.findPaginate(limit, offset);
+
+            return {
+                data: data,
+                totalPages: totalPages,
+            };
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
+
+    @Get("find-best-selling")
+    findBestSelling(@Query('limit') limit: number) {
+        try {
+            limit = limit ? Number(limit) : 10; // Default limit is 10
+            return this.productService.findBestSelling(limit);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
+
     @Get(':id')
     findOne(@Param('id') id: string) {
         try {
+            this.productService.increaseView(+id, 1);
             return this.productService.findOne(+id);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
+
+    @Get('/find-related/:id')
+    findRelated(@Param('id') id: string, @Query('limit') limit: number) {
+        try {
+            limit = limit ? Number(limit) : 10; // Default limit is 10
+            return this.productService.findRelated(+id, limit);
         }
         catch (err) {
             throw new InternalServerErrorException();
@@ -76,12 +124,12 @@ export class ProductController {
             if (!request.files) {
                 throw new BadRequestException("Invalid file");
             }
-    
+
             const image = request.files["image"];
             if (!image) {
                 throw new BadRequestException("Invalid image");
             }
-    
+
             return this.productService.updateImage(+id, image);
         }
         catch (err) {

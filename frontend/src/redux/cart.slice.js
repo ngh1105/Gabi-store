@@ -52,6 +52,7 @@ const cartSlice = createSlice({
             state.cart = cart;
             return;
         },
+
         removeFromCart: (state, action) => {
 
             const idProduct = action.payload;
@@ -62,6 +63,7 @@ const cartSlice = createSlice({
             state.cart = cart;
             return;
         },
+
         increaseAmountInCart: (state, action) => {
 
             const cart = state.cart;
@@ -82,6 +84,7 @@ const cartSlice = createSlice({
             state.cart = cart;
             return;
         },
+
         decreaseAmountInCart: (state, action) => {
 
             const cart = state.cart;
@@ -107,6 +110,7 @@ const cartSlice = createSlice({
             state.cart = cart;
             return;
         },
+        
         clearCart: (state, action) => {
             state.cart = [];
         },

@@ -123,6 +123,10 @@ export class UserService {
             throw new HttpException('No record found', HttpStatus.NOT_FOUND);
         }
 
+        if (image.name.length > 155) {
+            throw new BadRequestException("File name too long");
+        }
+
         const fileName = `/upload/user/${record.id}/${image.md5}/${image.name}`;
         if (fileName === record.avatarUrl) {
             return "File is already exist";

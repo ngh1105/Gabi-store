@@ -3,6 +3,7 @@ import { CreateBillDetailDto } from './dto/create-bill-detail.dto';
 import { UpdateBillDetailDto } from './dto/update-bill-detail.dto';
 import { BillDetail } from './entities/bill-detail.entity';
 import { BillDetailDto } from './dto/bill-detail.dto';
+import { Sequelize } from 'sequelize-typescript';
 
 @Injectable()
 export class BillDetailService {
@@ -36,5 +37,18 @@ export class BillDetailService {
             obj.billId, obj.name, obj.productId,
             obj.quantity, obj.price, obj.imageUrl
         ));
+    }
+
+    async findBestSelling() {
+        const data = await this.billDetailRepository.findAll<BillDetail>({
+            attributes: ['productId', [Sequelize.fn('sum', Sequelize.col('quantity')), 'totalQuantity']],
+            group: ['productId'],
+            order: [[Sequelize.literal('totalQuantity'), 'DESC']]
+        });
+    
+        return data.map(obj => ({
+            productId: obj.productId,
+            totalQuantity: obj.getDataValue('totalQuantity')
+        }));
     }
 }

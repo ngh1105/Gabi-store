@@ -8,6 +8,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import "index.css";
 import TokenGuard from 'components/token-guard';
+import "react-multi-carousel/lib/styles.css";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

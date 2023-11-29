@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, 
-    BadRequestException, Req, UseGuards, InternalServerErrorException } from '@nestjs/common';
+    BadRequestException, Req, UseGuards, InternalServerErrorException, Query } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
@@ -30,6 +30,29 @@ export class CategoryController {
     findAll() {
         try {
             return this.categoryService.findAll();
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
+
+    @Get("/find-paginate")
+    async findPaginate(@Query('limit') limit: number, @Query('page') page: number) {
+        try {
+            limit = limit ? Number(limit) : 10; // Default limit is 10
+            page = page ? Number(page) : 1; // Default page is 1
+    
+            const offset = (page - 1) * limit;
+    
+            const totalItems = await this.categoryService.count();
+            const totalPages = Math.ceil(totalItems / limit);
+    
+            const data = await this.categoryService.findPaginate(limit, offset);
+    
+            return {
+                data: data,
+                totalPages: totalPages,
+            };
         }
         catch (err) {
             throw new InternalServerErrorException();

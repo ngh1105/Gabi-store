@@ -1,4 +1,4 @@
-import { Injectable, Inject, HttpStatus, HttpException } from '@nestjs/common';
+import { Injectable, Inject, HttpStatus, HttpException, BadRequestException } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { Category } from './entities/category.entity';
@@ -23,6 +23,18 @@ export class CategoryService {
 
     async findAll() {
         const data = await this.categoryRepository.findAll<Category>({
+            order: [
+                ['id', 'DESC']
+            ]
+        });
+        
+        return data.map(obj => new CategoryDto(obj));
+    }
+
+    async findPaginate(limit: number, offset: number) {
+        const data = await this.categoryRepository.findAll<Category>({
+            limit: limit,
+            offset: offset,
             order: [
                 ['id', 'DESC']
             ]
@@ -96,6 +108,10 @@ export class CategoryService {
             throw new HttpException('No record found', HttpStatus.NOT_FOUND);
         }
 
+        if (image.name.length > 155) {
+            throw new BadRequestException("File name too long");
+        }
+
         const fileName = `/upload/category/${record.id}/${image.md5}/${image.name}`;
         if (fileName === record.imageUrl) {
             return "File is already exist";
@@ -123,5 +139,9 @@ export class CategoryService {
         });
 
         return !!record;
+    }
+
+    async count() {
+        return await this.categoryRepository.count();
     }
 }
