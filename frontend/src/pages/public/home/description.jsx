@@ -1,18 +1,6 @@
 
-
-function Description() {
+export default function DescriptionSection() {
     return (
-        // <div className={cx('description')}>
-        //     <ul className={cx('description__list')}>
-        //         <li>
-        //             CHÚNG TÔI TỰ HÀO KHI MANG LẠI <br /> NHỮNG SẢN PHẨM CHẤT LƯỢNG CHO NGƯỜI VIỆT !
-        //         </li>
-        //         <li>GABISTORE</li>
-        //         <li>
-        //             SỰ LỤA CHỌN SỐ MỘT <br /> DÀNH CHO BẠN
-        //         </li>
-        //     </ul>
-        // </div>
 
         <>
             <section className="flex items-center justify-center bg-gray-100 dark:bg-gray-800 lg:h-screen">
@@ -98,7 +86,7 @@ function Description() {
                                                 fill="none"
                                                 viewBox="0 0 20 20"
                                             >
-                                                <path stroke="currentColor" strokeLinejoin="round" strokeWidth={2} d="M10 6v4l3.276 3.276M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" classname="text-white">
+                                                <path stroke="currentColor" strokeLinejoin="round" strokeWidth={2} d="M10 6v4l3.276 3.276M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" className="text-white">
                                                 </path>
 
                                             </svg>
@@ -155,7 +143,7 @@ function Description() {
                                                 fill="none"
                                                 viewBox="0 0 20 20"
                                             >
-                                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.408 7.5h.01m-6.876 0h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM4.6 11a5.5 5.5 0 0 0 10.81 0H4.6Z" classname="text-white">
+                                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.408 7.5h.01m-6.876 0h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM4.6 11a5.5 5.5 0 0 0 10.81 0H4.6Z" className="text-white">
 </path>
 
                                             </svg>
@@ -174,4 +162,3 @@ function Description() {
         </>
     );
 }
-export default Description;

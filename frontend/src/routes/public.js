@@ -10,13 +10,11 @@ import BillDetailPage from "pages/public/bill-detail"
 import Blog from "pages/public/Blog";
 import BlogDetail from "pages/public/Blog/BlogDetail";
 import Story from "pages/public/Story";
-import StoryDetail from "pages/public/Home/Story/StoryDetail";
-import Slider from "pages/public/home/slider";
-import PostItem from "pages/public/Home/PostItem";
-import Description from "pages/public/Home/Description";
-import Catelog from "pages/public/Home/Catelog"
-import BestSeller from "pages/public/Home/BestSeller";
-import NewProducts from "pages/public/Home/NewProducts";
+import StoryDetail from "pages/public/home/Story/StoryDetail";
+import PostItem from "pages/public/home/PostItem";
+import Catelog from "pages/public/home/Catelog"
+import BestSeller from "pages/public/home/BestSeller";
+import NewProducts from "pages/public/home/NewProducts";
 import ForgetPassword from "pages/public/ForgetPassword";
 
 import Following from "pages/public/Following";
@@ -52,9 +50,7 @@ export const publicRoutes = {
         { path: '/blog/:id', element: <BlogDetail /> },
 
         { path: '/story', element: <Story /> },
-        { path: '/slider', element: <Slider /> },
         { path: '/postitem', element: <PostItem /> },
-        { path: '/description', element: <Description /> },
         { path: '/catelog', element: <Catelog /> },
         { path: '/bestSeller', element: <BestSeller /> },
         { path: '/newproducts', element: <NewProducts /> },
