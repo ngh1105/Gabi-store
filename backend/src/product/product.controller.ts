@@ -41,14 +41,14 @@ export class ProductController {
         try {
             limit = limit ? Number(limit) : 10; // Default limit is 10
             page = page ? Number(page) : 1; // Default page is 1
-    
+
             const offset = (page - 1) * limit;
-    
+
             const totalItems = await this.productService.count();
             const totalPages = Math.ceil(totalItems / limit);
-    
+
             const data = await this.productService.findPaginate(limit, offset);
-    
+
             return {
                 data: data,
                 totalPages: totalPages,
@@ -75,6 +75,17 @@ export class ProductController {
         try {
             this.productService.increaseView(+id, 1);
             return this.productService.findOne(+id);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
+
+    @Get('/find-related/:id')
+    findRelated(@Param('id') id: string, @Query('limit') limit: number) {
+        try {
+            limit = limit ? Number(limit) : 10; // Default limit is 10
+            return this.productService.findRelated(+id, limit);
         }
         catch (err) {
             throw new InternalServerErrorException();

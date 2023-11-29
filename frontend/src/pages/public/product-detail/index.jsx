@@ -3,15 +3,20 @@ import { API_URL } from "app/config";
 import PageLayout from "components/page-layout";
 import ProductItem from "components/product-item";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import { toast } from "react-toastify";
+import { addToCart } from "redux/cart.slice";
 import utils from "utils";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 export default function ProductDetailPage() {
 
     const { id } = useParams();
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [currProduct, setCurrProduct] = useState({
         id: 0,
@@ -20,6 +25,8 @@ export default function ProductDetailPage() {
         price: 0,
         description: "",
     });
+
+    const [relatedProducts, setRelatedProducts] = useState([]);
 
     useEffect(() => {
         (async () => {
@@ -39,9 +46,29 @@ export default function ProductDetailPage() {
                 description: res.response.description,
                 categoryId: res.response.categoryId,
             });
+
+            const res2 = await Api.Get(`/product/find-related/${id}`);
+            setRelatedProducts(res2.response);
         })();
 
     }, [id]);
+
+    const [count, setCount] = useState(1);
+
+    const handleDecreaseCount = () => setCount((c) => count > 1 ? c - 1 : 1);
+    const handleIncreaseCount = () => setCount((c) => c + 1);
+
+    const handleAddToCart = () => {
+        dispatch(addToCart({
+            idProduct: currProduct.id,
+            name: currProduct.name,
+            imageUrl: currProduct.imageUrl,
+            price: currProduct.price,
+            amount: count,
+        }));
+
+        toast.success("Đã thêm vào giỏ hàng");
+    }
 
     return (
         <PageLayout title="Sản phẩm chi tiết">
@@ -53,34 +80,16 @@ export default function ProductDetailPage() {
                                 <div className="relative mb-6 lg:mb-10 lg:h-2/4 ">
                                     <img src={`${API_URL}${currProduct.imageUrl}`} alt className="object-cover w-full lg:h-full " />
                                 </div>
-                                <div className="flex-wrap hidden md:flex ">
-                                    <div className="w-1/2 p-2 sm:w-1/4">
-                                        <a href="#" className="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                                            <img src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg" alt className="object-cover w-full lg:h-20" />
-                                        </a>
-                                    </div>
-                                    <div className="w-1/2 p-2 sm:w-1/4">
-                                        <a href="#" className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                                            <img src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg" alt className="object-cover w-full lg:h-20" />
-                                        </a>
-                                    </div>
-                                    <div className="w-1/2 p-2 sm:w-1/4">
-                                        <a href="#" className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                                            <img src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg" alt className="object-cover w-full lg:h-20" />
-                                        </a>
-                                    </div>
-                                    <div className="w-1/2 p-2 sm:w-1/4">
-                                        <a href="#" className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                                            <img src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg" alt className="object-cover w-full lg:h-20" />
-                                        </a>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div className="w-full px-4 md:w-1/2 ">
                             <div className="lg:pl-20">
                                 <div className="mb-8 ">
-                                    <span className="text-lg font-medium text-rose-500 dark:text-rose-200">New</span>
+                                    {
+                                        currProduct.isNew ? (
+                                            <span className="text-lg font-medium text-rose-500 dark:text-rose-200">New</span>
+                                        ) : null
+                                    }
                                     <h2 className="max-w-xl mt-2 mb-6 text-2xl font-bold dark:text-gray-400 md:text-4xl">
                                         {currProduct.name}
                                     </h2>
@@ -120,14 +129,13 @@ export default function ProductDetailPage() {
                                     <p className="max-w-md mb-8 text-gray-700 dark:text-gray-400">
                                         {currProduct.description}
                                     </p>
-                                    <p className="inline-block mb-8 text-4xl font-bold text-gray-700 dark:text-gray-400 ">
+                                    <p className="inline-block mb-2 text-4xl font-bold text-gray-700 dark:text-gray-400 ">
                                         <span>{utils.formatVND(currProduct.price)}</span>
                                     </p>
-                                    <p className="text-green-600 dark:text-green-300 ">7 in stock</p>
                                 </div>
                                 <div className="flex items-center mb-8">
-                                    <h2 className="w-16 mr-6 text-xl font-bold dark:text-gray-400">
-                                        Colors:</h2>
+                                    <h2 className="mr-6 text-xl font-bold dark:text-gray-400">
+                                        Màu sắc:</h2>
                                     <div className="flex flex-wrap -mx-2 -mb-2">
                                         <button className="p-1 mb-2 mr-2 border border-transparent hover:border-blue-400 dark:border-gray-800 dark:hover:border-gray-400 ">
                                             <div className="w-6 h-6 bg-cyan-300" />
@@ -141,8 +149,8 @@ export default function ProductDetailPage() {
                                     </div>
                                 </div>
                                 <div className="flex items-center mb-8">
-                                    <h2 className="w-16 text-xl font-bold dark:text-gray-400">
-                                        Size:</h2>
+                                    <h2 className="mr-6 text-xl font-bold dark:text-gray-400">
+                                        Kích cỡ:</h2>
                                     <div className="flex flex-wrap -mx-2 -mb-2">
                                         <button className="py-1 mb-2 mr-1 border w-11 hover:border-blue-400 dark:border-gray-400 hover:text-blue-600 dark:hover:border-gray-300 dark:text-gray-400">XL
                                         </button>
@@ -154,27 +162,35 @@ export default function ProductDetailPage() {
                                         </button>
                                     </div>
                                 </div>
-                                <div className="w-32 mb-8 ">
-                                    <label htmlFor className="w-full text-xl font-semibold text-gray-700 dark:text-gray-400">Quantity</label>
-                                    <div className="relative flex flex-row w-full h-10 mt-4 bg-transparent rounded-lg">
-                                        <button className="w-20 h-full text-gray-600 bg-gray-300 rounded-l outline-none cursor-pointer dark:hover:bg-gray-700 dark:text-gray-400 hover:text-gray-700 dark:bg-gray-900 hover:bg-gray-400">
-                                            <span className="m-auto text-2xl font-thin">-</span>
+                                <div className="mb-8 flex items-center gap-3">
+                                    <label className="text-xl font-semibold text-gray-700 dark:text-gray-400">Số lượng:</label>
+                                    <div className="flex justify-center items-center">
+                                        <button
+                                            className="border rounded-md px-2 mr-2"
+                                            onClick={() => handleDecreaseCount(currProduct)}
+                                        >
+                                            -
                                         </button>
-                                        <input type="number" className="flex items-center w-full font-semibold text-center text-gray-700 placeholder-gray-700 bg-gray-300 outline-none dark:text-gray-400 dark:placeholder-gray-400 dark:bg-gray-900 focus:outline-none text-md hover:text-black" placeholder={1} />
-                                        <button className="w-20 h-full text-gray-600 bg-gray-300 rounded-r outline-none cursor-pointer dark:hover:bg-gray-700 dark:text-gray-400 dark:bg-gray-900 hover:text-gray-700 hover:bg-gray-400">
-                                            <span className="m-auto text-2xl font-thin">+</span>
+                                        <span className="text-center w-3">1</span>
+                                        <button
+                                            className="border rounded-md px-2 ml-2"
+                                            onClick={() => handleIncreaseCount(currProduct)}
+                                        >
+                                            +
                                         </button>
                                     </div>
                                 </div>
                                 <div className="flex flex-wrap items-center -mx-4 ">
                                     <div className="w-full px-4 mb-4 lg:w-1/2 lg:mb-0">
-                                        <button className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
-                                            Add to Cart
+                                        <button
+                                            onClick={handleAddToCart}
+                                            className="flex items-center justify-center w-full p-4 text-indigo-500 border border-indigo-500 rounded-md hover:bg-indigo-600 hover:border-indigo-600 hover:text-gray-100">
+                                            Thêm vào giỏ hàng
                                         </button>
                                     </div>
                                     <div className="w-full px-4 mb-4 lg:mb-0 lg:w-1/2">
-                                        <button className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
-                                            Add to wishlist
+                                        <button className="flex items-center justify-center w-full p-4 text-indigo-500 border border-indigo-500 rounded-md hover:bg-indigo-600 hover:border-indigo-600 hover:text-gray-100">
+                                            Thêm vào yêu thích
                                         </button>
                                     </div>
                                 </div>
@@ -182,33 +198,49 @@ export default function ProductDetailPage() {
                         </div>
                     </div>
                 </div>
-                <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
+                <div className="mx-auto max-w-screen-xl px-4 py-4 mx-auto lg:py-8 md:px-6">
                     <div className="px-4">
                         <h2 className="pb-2 mt-4 text-lg font-semibold text-gray-900 dark:text-gray-400 font-poppins">
                             Có thể bạn quan tâm
                         </h2>
                         <div className="w-16 mb-3 border-b-2 border-blue-500 dark:border-gray-400 inset-px" />
 
-                        <div className="grid grid-cols-3 gap-4">
-                            <ProductItem product={{
-                                id: 1,
-                                name: "Quần tây gucchi",
-                                price: 3400000,
-                                imageUrl: "/upload/product/2/3621ce4b23595e0f69f35821045767d6/AjustÃ¡vel Simples Crossbody Para Saco Masculino.jpg"
-                            }} />
-                            <ProductItem product={{
-                                id: 1,
-                                name: "Quần tây gucchi",
-                                isNew: true,
-                                price: 3400000,
-                                imageUrl: "/upload/product/2/3621ce4b23595e0f69f35821045767d6/AjustÃ¡vel Simples Crossbody Para Saco Masculino.jpg"
-                            }} />
-                            <ProductItem product={{
-                                id: 1,
-                                name: "Quần tây gucchi",
-                                price: 3400000,
-                                imageUrl: "/upload/product/2/3621ce4b23595e0f69f35821045767d6/AjustÃ¡vel Simples Crossbody Para Saco Masculino.jpg"
-                            }} />
+                        <div className="">
+                            <Carousel
+                                responsive={{
+                                    superLargeDesktop: {
+                                        // the naming can be any, depends on you.
+                                        breakpoint: { max: 4000, min: 3000 },
+                                        items: 10
+                                    },
+                                    desktop: {
+                                        breakpoint: { max: 3000, min: 1024 },
+                                        items: 4,
+                                    },
+                                    tablet: {
+                                        breakpoint: { max: 1024, min: 464 },
+                                        items: 3
+                                    },
+                                    mobile: {
+                                        breakpoint: { max: 464, min: 0 },
+                                        items: 2
+                                    }
+                                }}
+                                swipeable={false}
+                                draggable={false}
+                                infinite={true}
+                                autoPlay={true}
+                                partialVisible={false}
+                                itemClass="px-2"
+                            >
+                                {
+                                    relatedProducts.map((obj, index) => {
+                                        return (
+                                            <ProductItem key={index} product={obj} />
+                                        )
+                                    })
+                                }
+                            </Carousel>
                         </div>
                     </div>
                 </div>

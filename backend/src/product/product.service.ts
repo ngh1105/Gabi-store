@@ -41,7 +41,7 @@ export class ProductService {
                 ['id', 'DESC']
             ]
         });
-        
+
         return data.map(obj => new ProductDto(obj));
     }
 
@@ -53,7 +53,7 @@ export class ProductService {
                 ['id', 'DESC']
             ]
         });
-        
+
         return data.map(obj => new ProductDto(obj));
     }
 
@@ -88,14 +88,34 @@ export class ProductService {
 
         // Get the product IDs of the best selling products
         const productIds = bestSellings.map(obj => obj.productId);
-    
+
         // Find the products with the product IDs
         const products = await this.productRepository.findAll<Product>({
             where: { id: { [Op.in]: productIds } },
             limit: limit
         });
-    
+
         return products;
+    }
+
+    async findRelated(id: number, limit: number) {
+        const record = await this.productRepository.findOne<Product>({
+            where: { id: id },
+        });
+
+        if (!record) {
+            throw new HttpException('No record found', HttpStatus.NOT_FOUND);
+        }
+
+        const data = await this.productRepository.findAll<Product>({
+            where: {
+                categoryId: record.categoryId,
+                id: { [Op.ne]: id } // Exclude the current product ID
+            },
+            limit: limit
+        });
+
+        return data.map(obj => new ProductDto(obj));
     }
 
     async update(id: number, data: UpdateProductDto) {

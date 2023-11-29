@@ -85,7 +85,7 @@ export default function ProductItem({ product }) {
                     onClick={() => handleAddToCart(product)}
                     className="w-full flex justify-center px-4 py-2 bg-indigo-700 text-gray-100 border border-indigo-300 rounded-full hover:opacity-[0.9]"
                 >
-                    Thêm vào giỏ
+                    Thêm vào giỏ hàng
                 </button>
             </div>
         </div>
