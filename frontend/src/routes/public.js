@@ -1,7 +1,8 @@
-import { PublicLayout } from "layouts/public";
-import { HomePage } from "pages/public/Home";
+import PublicLayout from "layouts/public";
+import HomePage from "pages/public/home";
 import ProductPage from "pages/public/product";
 import ContactPage from "pages/public/contact";
+import AboutPage from "pages/public/about";
 import CartPage from "pages/public/cart";
 import CheckoutPage from "pages/public/checkout";
 import BillDetailPage from "pages/public/bill-detail"
@@ -9,16 +10,12 @@ import BillDetailPage from "pages/public/bill-detail"
 import Blog from "pages/public/Blog";
 import BlogDetail from "pages/public/Blog/BlogDetail";
 import Story from "pages/public/Story";
-import StoryDetail from "pages/public/Home/Story/StoryDetail";
-import Slider from "pages/public/Home/Slider";
-import PostItem from "pages/public/Home/PostItem";
-import Description from "pages/public/Home/Description";
-import Catelog from "pages/public/Home/Catelog"
-import BestSeller from "pages/public/Home/BestSeller";
-import NewProducts from "pages/public/Home/NewProducts";
-import Card from "pages/public/Home/NewProducts/Card";
+import StoryDetail from "pages/public/home/Story/StoryDetail";
+import PostItem from "pages/public/home/PostItem";
+import Catelog from "pages/public/home/Catelog"
+import BestSeller from "pages/public/home/best-selling";
+import NewProducts from "pages/public/home/NewProducts";
 import ForgetPassword from "pages/public/ForgetPassword";
-import About from "pages/public/About";
 
 import Following from "pages/public/Following";
 
@@ -40,6 +37,7 @@ export const publicRoutes = {
         { path: '/product-detail/:id', element: <ProductDetailPage /> },
 
         { path: '/contact', element: <ContactPage /> },
+        { path: '/about', element: <AboutPage /> },
 
         { path: '/cart', element: <CartPage /> },
         { path: '/checkout', element: <CheckoutPage /> },
@@ -52,16 +50,12 @@ export const publicRoutes = {
         { path: '/blog/:id', element: <BlogDetail /> },
 
         { path: '/story', element: <Story /> },
-        { path: '/slider', element: <Slider /> },
         { path: '/postitem', element: <PostItem /> },
-        { path: '/description', element: <Description /> },
         { path: '/catelog', element: <Catelog /> },
         { path: '/bestSeller', element: <BestSeller /> },
         { path: '/newproducts', element: <NewProducts /> },
-        { path: '/card', element: <Card /> },
         { path: '/forgetPassword', element: <ForgetPassword /> },
 
-        { path: '/about', element: <About /> },
         { path: '/following', element: <Following /> },
         { path: '/policy', element: <Policy /> },
         { path: '/storydetail', element: <StoryDetail /> },

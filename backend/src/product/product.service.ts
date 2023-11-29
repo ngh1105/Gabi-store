@@ -1,10 +1,12 @@
-import { Injectable, Inject, HttpStatus, HttpException } from '@nestjs/common';
+import { Injectable, Inject, HttpStatus, HttpException, BadRequestException } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Product } from './entities/product.entity';
 import { ProductDto } from './dto/product.dto';
 import { CategoryService } from 'src/category/category.service';
 import * as fs from "fs";
+import { BillDetailService } from 'src/bill-detail/bill-detail.service';
+import { Op } from 'sequelize';
 
 @Injectable()
 export class ProductService {
@@ -12,7 +14,8 @@ export class ProductService {
         @Inject('PRODUCT_REPOSITORY')
         private productRepository: typeof Product,
 
-        private categoryService: CategoryService
+        private categoryService: CategoryService,
+        private billDetailService: BillDetailService
     ) { }
 
     async create(data: CreateProductDto) {
@@ -38,7 +41,19 @@ export class ProductService {
                 ['id', 'DESC']
             ]
         });
-        
+
+        return data.map(obj => new ProductDto(obj));
+    }
+
+    async findPaginate(limit: number, offset: number) {
+        const data = await this.productRepository.findAll<Product>({
+            limit: limit,
+            offset: offset,
+            order: [
+                ['id', 'DESC']
+            ]
+        });
+
         return data.map(obj => new ProductDto(obj));
     }
 
@@ -52,6 +67,55 @@ export class ProductService {
         }
 
         return new ProductDto(record);
+    }
+
+    async increaseView(id: number, value: number) {
+        const record = await this.productRepository.findOne<Product>({
+            where: { id: id },
+        });
+
+        if (!record) {
+            throw new HttpException('No record found', HttpStatus.NOT_FOUND);
+        }
+
+        await record.increment('viewCount', { by: value });
+
+        return "Increased successfully";
+    }
+
+    async findBestSelling(limit: number) {
+        const bestSellings = await this.billDetailService.findBestSelling();
+
+        // Get the product IDs of the best selling products
+        const productIds = bestSellings.map(obj => obj.productId);
+
+        // Find the products with the product IDs
+        const products = await this.productRepository.findAll<Product>({
+            where: { id: { [Op.in]: productIds } },
+            limit: limit
+        });
+
+        return products;
+    }
+
+    async findRelated(id: number, limit: number) {
+        const record = await this.productRepository.findOne<Product>({
+            where: { id: id },
+        });
+
+        if (!record) {
+            throw new HttpException('No record found', HttpStatus.NOT_FOUND);
+        }
+
+        const data = await this.productRepository.findAll<Product>({
+            where: {
+                categoryId: record.categoryId,
+                id: { [Op.ne]: id } // Exclude the current product ID
+            },
+            limit: limit
+        });
+
+        return data.map(obj => new ProductDto(obj));
     }
 
     async update(id: number, data: UpdateProductDto) {
@@ -97,6 +161,10 @@ export class ProductService {
             throw new HttpException('No record found', HttpStatus.NOT_FOUND);
         }
 
+        if (image.name.length > 155) {
+            throw new BadRequestException("File name too long");
+        }
+
         const fileName = `/upload/product/${record.id}/${image.md5}/${image.name}`;
         if (fileName === record.imageUrl) {
             return "File is already exist";
@@ -124,5 +192,9 @@ export class ProductService {
         if (record.imageUrl && record.imageUrl !== "") {
             fs.unlinkSync(`./public${record.imageUrl}`);
         }
+    }
+
+    async count() {
+        return await this.productRepository.count();
     }
 }

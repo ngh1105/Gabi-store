@@ -23,6 +23,10 @@ export class ProductDto {
 
     @ApiProperty()
     @IsOptional()
+    viewCount?: number = 0;
+
+    @ApiProperty()
+    @IsOptional()
     description?: string = "";
 
     @ApiProperty()
@@ -30,12 +34,23 @@ export class ProductDto {
     @IsNumber()
     categoryId: number;
 
+    @ApiProperty()
+    @IsOptional()
+    createdAt?: string = "";
+
+    @ApiProperty()
+    @IsOptional()
+    updatedAt?: string = "";
+
     constructor(data: Product) {
         this.id = data.id;
         this.name = data.name;
         this.imageUrl = data.imageUrl;
         this.price = data.price;
+        this.viewCount = data.viewCount;
         this.description = data.description;
         this.categoryId = data.categoryId;
+        this.createdAt = data.createdAt;
+        this.updatedAt = data.updatedAt;
     }
 }

@@ -97,7 +97,8 @@ export default function CartPage() {
                                                         <div className="flex justify-center items-center">
                                                             <button
                                                                 className="border rounded-md px-2 mr-2"
-                                                                onClick={() => handleDecreaseCount(obj)}>
+                                                                onClick={() => handleDecreaseCount(obj)}
+                                                            >
                                                                 -
                                                             </button>
                                                             <span className="text-center w-3">{obj.amount}</span>
