@@ -33,7 +33,7 @@ export default function ProductItem({ product }) {
     return (
         <div className="border border-gray-200 rounded-md dark:border-gray-800 shadow p-2 ">
             <div className="relative bg-gray-200">
-                <Link to={`/product-detail/${product.id}`} className="">
+                <Link to={`/product-detail/${product.id}`}>
                     <img
                         src={`${API_URL}${product.imageUrl}`}
                         alt=""

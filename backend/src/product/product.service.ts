@@ -5,6 +5,8 @@ import { Product } from './entities/product.entity';
 import { ProductDto } from './dto/product.dto';
 import { CategoryService } from 'src/category/category.service';
 import * as fs from "fs";
+import { BillDetailService } from 'src/bill-detail/bill-detail.service';
+import { Op } from 'sequelize';
 
 @Injectable()
 export class ProductService {
@@ -12,7 +14,8 @@ export class ProductService {
         @Inject('PRODUCT_REPOSITORY')
         private productRepository: typeof Product,
 
-        private categoryService: CategoryService
+        private categoryService: CategoryService,
+        private billDetailService: BillDetailService
     ) { }
 
     async create(data: CreateProductDto) {
@@ -78,6 +81,21 @@ export class ProductService {
         await record.increment('viewCount', { by: value });
 
         return "Increased successfully";
+    }
+
+    async findBestSelling(limit: number) {
+        const bestSellings = await this.billDetailService.findBestSelling();
+
+        // Get the product IDs of the best selling products
+        const productIds = bestSellings.map(obj => obj.productId);
+    
+        // Find the products with the product IDs
+        const products = await this.productRepository.findAll<Product>({
+            where: { id: { [Op.in]: productIds } },
+            limit: limit
+        });
+    
+        return products;
     }
 
     async update(id: number, data: UpdateProductDto) {

@@ -59,6 +59,17 @@ export class ProductController {
         }
     }
 
+    @Get("find-best-selling")
+    findBestSelling(@Query('limit') limit: number) {
+        try {
+            limit = limit ? Number(limit) : 10; // Default limit is 10
+            return this.productService.findBestSelling(limit);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
+
     @Get(':id')
     findOne(@Param('id') id: string) {
         try {

@@ -31,6 +31,18 @@ export class CategoryService {
         return data.map(obj => new CategoryDto(obj));
     }
 
+    async findPaginate(limit: number, offset: number) {
+        const data = await this.categoryRepository.findAll<Category>({
+            limit: limit,
+            offset: offset,
+            order: [
+                ['id', 'DESC']
+            ]
+        });
+        
+        return data.map(obj => new CategoryDto(obj));
+    }
+
     async findOne(id: number) {
         const record = await this.categoryRepository.findOne<Category>({
             where: { id: id },
@@ -127,5 +139,9 @@ export class CategoryService {
         });
 
         return !!record;
+    }
+
+    async count() {
+        return await this.categoryRepository.count();
     }
 }
