@@ -42,6 +42,18 @@ export class ProductService {
         return data.map(obj => new ProductDto(obj));
     }
 
+    async findPaginate(limit: number, offset: number) {
+        const data = await this.productRepository.findAll<Product>({
+            limit: limit,
+            offset: offset,
+            order: [
+                ['id', 'DESC']
+            ]
+        });
+        
+        return data.map(obj => new ProductDto(obj));
+    }
+
     async findOne(id: number) {
         const record = await this.productRepository.findOne<Product>({
             where: { id: id },
@@ -128,5 +140,9 @@ export class ProductService {
         if (record.imageUrl && record.imageUrl !== "") {
             fs.unlinkSync(`./public${record.imageUrl}`);
         }
+    }
+
+    async count() {
+        return await this.productRepository.count();
     }
 }

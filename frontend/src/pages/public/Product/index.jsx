@@ -10,6 +10,71 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "redux/cart.slice";
 import ProductItem from "components/product-item";
 
+const usePaginate = () => {
+
+    const [items, setItems] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+
+    
+}
+
+function Pagination({ totalPages, currentPage, onPageChange }) {
+
+    const handleClick = (page) => {
+        if (page >= 1 && page <= totalPages) {
+            onPageChange(page);
+        }
+    };
+
+    return (
+        <nav aria-label="page-navigation">
+            <ul className="flex list-style-none">
+                {/* Previous Button */}
+                <li
+                    className='page-item'
+                    disabled={currentPage === 1}
+                >
+                    <button
+                        onClick={() => handleClick(currentPage - 1)}
+                        className="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-indigo-100 rounded-md mr-3 "
+                    >
+                        Trước
+                    </button>
+                </li>
+
+                {/* Page Buttons */}
+                {Array.from({ length: totalPages }).map((_, index) => (
+                    <li key={index} className="page-item">
+                        <button
+                            onClick={() => handleClick(index + 1)}
+                            className={`relative block px-3 py-1.5 text-base ${currentPage === index + 1
+                                ? 'text-gray-100 bg-indigo-600'
+                                : 'text-gray-700 hover:text-indigo-700 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-indigo-100'
+                                } transition-all duration-300 rounded-md mr-3`}
+                        >
+                            {index + 1}
+                        </button>
+                    </li>
+                ))}
+
+                {/* Next Button */}
+                <li
+                    className='page-item'
+                    disabled={currentPage === totalPages}
+                >
+                    <button
+                        onClick={() => handleClick(currentPage + 1)}
+                        className="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-indigo-100 rounded-md mr-3 "
+                    >
+                        Sau
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    );
+}
+
 export default function ProductPage() {
 
     const [categories, setCategories] = useState([]);
@@ -27,12 +92,29 @@ export default function ProductPage() {
     }, []);
 
     const [products, setProducts] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const productsPerPage = 9;
+
+    const fetchProducts = async () => {
+        const res = await Api.Get(`/product`);
+        setProducts(res.response);
+        setTotalPages(Math.ceil(res.response.length / productsPerPage));
+    }
+
+    const handlePageChage = async (page) => {
+        setCurrentPage(page);
+    }
+
+    // Calculate the range of products to display for the current page
+    const startIndex = (currentPage - 1) * productsPerPage;
+    const endIndex = startIndex + productsPerPage;
+    const currentProducts = products.slice(startIndex, endIndex);
 
     useEffect(() => {
         try {
             (async () => {
-                const res = await Api.Get("/product");
-                setProducts(res.response);
+                await fetchProducts();
             })();
         }
         catch (err) {
@@ -231,58 +313,19 @@ export default function ProductPage() {
                             {/* All product */}
                             <div className="grid grid-cols-3 auto-cols-max gap-4">
                                 {
-                                    products.map((obj, index) => {
+                                    currentProducts.map((obj, index) => {
                                         return (
-                                           <ProductItem key={index} product={obj} />
+                                            <ProductItem key={index} product={obj} />
                                         )
                                     })
                                 }
                             </div>
                             <div className="flex justify-end mt-6">
-                                <nav aria-label="page-navigation">
-                                    <ul className="flex list-style-none">
-                                        <li className="page-item disabled ">
-                                            <a
-                                                href="#"
-                                                className="relative block pointer-events-none px-3 py-1.5 mr-3 text-base text-gray-700 transition-all duration-300  rounded-md dark:text-gray-400 hover:text-gray-100 hover:bg-indigo-600"
-                                            >
-                                                Trước
-                                            </a>
-                                        </li>
-                                        <li className="page-item ">
-                                            <a
-                                                href="#"
-                                                className="relative block px-3 py-1.5 mr-3 text-base hover:text-indigo-700 transition-all duration-300 hover:bg-indigo-200 dark:hover:text-gray-400 dark:hover:bg-gray-700 rounded-md text-gray-100 bg-indigo-600"
-                                            >
-                                                1
-                                            </a>
-                                        </li>
-                                        <li className="page-item ">
-                                            <a
-                                                href="#"
-                                                className="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-indigo-100 rounded-md mr-3  "
-                                            >
-                                                2
-                                            </a>
-                                        </li>
-                                        <li className="page-item ">
-                                            <a
-                                                href="#"
-                                                className="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-indigo-100 rounded-md mr-3 "
-                                            >
-                                                3
-                                            </a>
-                                        </li>
-                                        <li className="page-item ">
-                                            <a
-                                                href="#"
-                                                className="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-indigo-100 rounded-md "
-                                            >
-                                                Sau
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
+                                <Pagination
+                                    totalPages={totalPages}
+                                    currentPage={currentPage}
+                                    onPageChange={handlePageChage}
+                                />
                             </div>
                         </div>
                     </div>

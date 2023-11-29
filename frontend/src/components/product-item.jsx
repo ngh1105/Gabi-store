@@ -55,7 +55,7 @@ export default function ProductItem({ product }) {
                             {utils.formatVND(product.price)}
                         </span>
                         <span className="ml-2 text-gray-400  dark:text-gray-400">
-                            <a href="#" className>
+                            <a href="#">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width={16}
