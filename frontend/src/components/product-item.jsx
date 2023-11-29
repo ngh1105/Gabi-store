@@ -1,14 +1,24 @@
 import { API_URL } from "app/config";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { addToCart } from "redux/cart.slice";
 import utils from "utils";
 import { toast } from "react-toastify";
+import { useAuth } from "hooks/use-auth";
 
 export default function ProductItem({ product }) {
+
+    const { isAuthenticated } = useAuth();
+
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const handleAddToCart = (obj) => {
+        if (!isAuthenticated()) {
+            navigate("/auth/login");
+            return;
+        }
+
         dispatch(addToCart({
             idProduct: obj.id,
             name: obj.name,
