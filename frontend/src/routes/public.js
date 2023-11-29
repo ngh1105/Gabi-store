@@ -13,7 +13,7 @@ import Story from "pages/public/Story";
 import StoryDetail from "pages/public/home/Story/StoryDetail";
 import PostItem from "pages/public/home/PostItem";
 import Catelog from "pages/public/home/Catelog"
-import BestSeller from "pages/public/home/BestSeller";
+import BestSeller from "pages/public/home/best-selling";
 import NewProducts from "pages/public/home/NewProducts";
 import ForgetPassword from "pages/public/ForgetPassword";
 

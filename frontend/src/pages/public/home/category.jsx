@@ -25,11 +25,11 @@ export default function CategorySection() {
         superLargeDesktop: {
             // the naming can be any, depends on you.
             breakpoint: { max: 4000, min: 3000 },
-            items: 5
+            items: 10
         },
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
-            items: 4
+            items: 5
         },
         tablet: {
             breakpoint: { max: 1024, min: 464 },
@@ -44,9 +44,9 @@ export default function CategorySection() {
     return (
         <>
             <div className="mx-auto max-w-screen-xl">
-                <section className="flex items-center py-10 dark:bg-gray-800 font-poppins">
-                    <div className="p-4 mx-auto max-w-6xl">
-                        <h2 className="pb-4  font-bold text-center text-gray-800 text-[24px] dark:text-gray-400 uppercase">
+                <section className="py-10 dark:bg-gray-800 font-poppins">
+                    <div className="p-4 mx-auto">
+                        <h2 className="pb-4 font-bold text-center text-gray-800 text-[24px] dark:text-gray-400 uppercase">
                             Danh mục sản phẩm
                         </h2>
                         <div className="mx-auto mb-10 border-b border-red-700 w-44 dark:border-gray-400" />
