@@ -230,7 +230,7 @@ export default function ProductDetailPage() {
                                 draggable={false}
                                 infinite={true}
                                 autoPlay={true}
-                                partialVisible={false}
+                                autoPlaySpeed={2000}
                                 itemClass="px-2"
                             >
                                 {

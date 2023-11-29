@@ -57,6 +57,7 @@ export default function CategorySection() {
                             draggable={false}
                             infinite={true}
                             autoPlay={true}
+                            autoPlaySpeed={2000}
                         >
                             {
                                 categories.map((obj, index) => {
