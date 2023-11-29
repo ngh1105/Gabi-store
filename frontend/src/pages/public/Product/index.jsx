@@ -16,19 +16,32 @@ const usePaginate = (itemPerPage) => {
     const [filteredItems, setFilteredItems] = useState(totalItems);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
+    const [keyword, setKeyword] = useState("");
 
     const startIndex = (currentPage - 1) * itemPerPage;
     const endIndex = startIndex + itemPerPage;
     const items = useMemo(() => filteredItems.slice(startIndex, endIndex), [filteredItems, currentPage]);
 
-    const onSearchItems = (keyword) => {
-        const newFilteredItems = totalItems.filter(item => item.name.includes(keyword));
+    const onSearchItems = (kw) => {
+        setKeyword(kw);
+        const newFilteredItems = totalItems.filter(item => item.name.includes(kw));
         setCurrentPage(1);
         setTotalPages(Math.ceil(newFilteredItems.length / itemPerPage));
         setFilteredItems(newFilteredItems);
 
         //console.log(items);
         //console.log(filteredItems);
+    }
+
+    const onSortItems = (callback) => {
+
+        const data = callback(totalItems);
+        setTotalItems(data);
+
+        const newFilteredItems = data.filter(item => item.name.includes(keyword));
+        setCurrentPage(1);
+        setTotalPages(Math.ceil(newFilteredItems.length / itemPerPage));
+        setFilteredItems(newFilteredItems);
     }
 
     const setItems = (data) => {
@@ -92,7 +105,7 @@ const usePaginate = (itemPerPage) => {
         );
     }
 
-    return { items, setItems, setTotalPages, onSearchItems, Pagination };
+    return { items, setItems, totalItems, onSortItems, setTotalPages, onSearchItems, Pagination };
 }
 
 export default function ProductPage() {
@@ -111,8 +124,14 @@ export default function ProductPage() {
         }
     }, []);
 
+    const [sortOption, setSortOption] = useState("latest");
+    const { sortedItems, setSortedItems } = useState([]);
+
     const PRODUCTS_PER_PAGE = 9;
-    const { items, setItems, setTotalPages, onSearchItems, Pagination } = usePaginate(PRODUCTS_PER_PAGE);
+    const {
+        items, setItems, totalItems, onSortItems,
+        setTotalPages, onSearchItems, Pagination
+    } = usePaginate(PRODUCTS_PER_PAGE);
 
     const fetchProducts = async () => {
         const res = await Api.Get(`/product`);
@@ -131,16 +150,43 @@ export default function ProductPage() {
         }
     }, []);
 
-    const dispatch = useDispatch();
+    const handleSortProduct = (option) => {
 
-    const handleAddToCart = (obj) => {
-        dispatch(addToCart({
-            idProduct: obj.id,
-            name: obj.name,
-            imageUrl: obj.imageUrl,
-            price: obj.price,
-            amount: 1,
-        }));
+        onSortItems((data) => {
+            switch (option) {
+                case "latest": {
+
+                    const sortedData = [...data].sort((a, b) => {
+                        // Convert createdAt strings to Date objects for comparison
+                        const dateA = new Date(a.createdAt);
+                        const dateB = new Date(b.createdAt);
+
+                        // Sort in descending order (latest first)
+                        return dateB - dateA;
+                    });
+
+                    return sortedData;
+                    break;
+                }
+                case "mostPopular": {
+
+                    const sortedData = [...data].sort((a, b) => b.viewCount - a.viewCount);
+                    return sortedData;
+
+                    break;
+                }
+                case "lowestPrice": {
+
+                    const sortedData = [...data].sort((a, b) => a.price - b.price);
+                    return sortedData;
+
+                    break;
+                }
+                default: {
+                    return data; // Return unsorted data for unknown options
+                }
+            }
+        });
     }
 
     return (
@@ -218,10 +264,13 @@ export default function ProductPage() {
                                     </div>
 
                                     <div className="flex items-center justify-between">
-                                        <select className="block w-40 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                            <option value selected>Mới nhất</option>
-                                            <option value>Phổ biến nhất</option>
-                                            <option value>Giá thấp nhất</option>
+                                        <select
+                                            defaultValue="latest"
+                                            onChange={(e) => handleSortProduct(e.target.value)}
+                                            className="block w-40 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            <option value="latest">Mới nhất</option>
+                                            <option value="mostPopular">Phổ biến nhất</option>
+                                            <option value="lowestPrice">Giá thấp nhất</option>
                                         </select>
                                     </div>
                                 </div>

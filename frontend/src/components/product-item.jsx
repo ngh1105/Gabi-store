@@ -26,7 +26,7 @@ export default function ProductItem({ product }) {
                 <Link to={`/product-detail/${product.id}`} className="">
                     <img
                         src={`${API_URL}${product.imageUrl}`}
-                        alt
+                        alt=""
                         className="object-cover w-full h-56 mx-auto "
                     />
                 </Link>

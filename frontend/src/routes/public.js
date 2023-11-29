@@ -17,7 +17,6 @@ import Description from "pages/public/Home/Description";
 import Catelog from "pages/public/Home/Catelog"
 import BestSeller from "pages/public/Home/BestSeller";
 import NewProducts from "pages/public/Home/NewProducts";
-import Card from "pages/public/Home/NewProducts/Card";
 import ForgetPassword from "pages/public/ForgetPassword";
 
 import Following from "pages/public/Following";
@@ -59,7 +58,6 @@ export const publicRoutes = {
         { path: '/catelog', element: <Catelog /> },
         { path: '/bestSeller', element: <BestSeller /> },
         { path: '/newproducts', element: <NewProducts /> },
-        { path: '/card', element: <Card /> },
         { path: '/forgetPassword', element: <ForgetPassword /> },
 
         { path: '/following', element: <Following /> },
