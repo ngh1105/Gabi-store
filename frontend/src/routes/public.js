@@ -1,5 +1,5 @@
-import { PublicLayout } from "layouts/public";
-import { HomePage } from "pages/public/Home";
+import PublicLayout from "layouts/public";
+import HomePage from "pages/public/home";
 import ProductPage from "pages/public/product";
 import ContactPage from "pages/public/contact";
 import AboutPage from "pages/public/about";
@@ -11,7 +11,7 @@ import Blog from "pages/public/Blog";
 import BlogDetail from "pages/public/Blog/BlogDetail";
 import Story from "pages/public/Story";
 import StoryDetail from "pages/public/Home/Story/StoryDetail";
-import Slider from "pages/public/Home/Slider";
+import Slider from "pages/public/home/slider";
 import PostItem from "pages/public/Home/PostItem";
 import Description from "pages/public/Home/Description";
 import Catelog from "pages/public/Home/Catelog"
