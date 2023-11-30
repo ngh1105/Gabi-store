@@ -95,7 +95,16 @@ export class ProductService {
             limit: limit
         });
 
-        return products;
+        return products.map(obj => new ProductDto(obj));
+    }
+
+    async findNewest(limit: number) {
+        const products = await this.productRepository.findAll<Product>({
+            order: [['createdAt', 'DESC']],
+            limit: limit
+        });
+    
+        return products.map(obj => new ProductDto(obj));
     }
 
     async findRelated(id: number, limit: number) {

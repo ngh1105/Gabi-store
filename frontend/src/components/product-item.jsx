@@ -6,7 +6,7 @@ import utils from "utils";
 import { toast } from "react-toastify";
 import { useAuth } from "hooks/use-auth";
 
-export default function ProductItem({ product }) {
+export default function ProductItem({ product, isNew }) {
 
     const { isAuthenticated } = useAuth();
 
@@ -31,7 +31,7 @@ export default function ProductItem({ product }) {
     }
 
     return (
-        <div className="border border-gray-200 rounded-md dark:border-gray-800 shadow p-2 ">
+        <div className="border border-gray-200 rounded-md dark:border-gray-800 shadow p-2">
             <div className="relative bg-gray-200">
                 <Link to={`/product-detail/${product.id}`}>
                     <img
@@ -41,11 +41,10 @@ export default function ProductItem({ product }) {
                     />
                 </Link>
                 {
-                    product.isNew && product.isNew === true
+                    isNew && isNew === true
                         ? (
                             <div className="absolute top-0 right-0 z-10 m-2 flex items-center justify-center p-2 text-center bg-red-600 ">
                                 <span className="relative text-base font-normal text-gray-100 ">
-                                    {" "}
                                     New
                                 </span>
                             </div>
@@ -54,7 +53,7 @@ export default function ProductItem({ product }) {
                 }
             </div>
             <div className="p-5 bg-gray-50 dark:bg-gray-900">
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-4 min-h-[3rem]">
                     <h3 className="w-full text-xl font-medium dark:text-gray-400">
                         {product.name}
                     </h3>

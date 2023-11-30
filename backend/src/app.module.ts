@@ -10,6 +10,7 @@ import { BillModule } from './bill/bill.module';
 import { BillDetailModule } from './bill-detail/bill-detail.module';
 import { CommentModule } from './comment/comment.module';
 import { AuthModule } from './auth/auth.module';
+import { WishlistModule } from './wishlist/wishlist.module';
 
 @Module({
     imports: [
@@ -22,6 +23,7 @@ import { AuthModule } from './auth/auth.module';
         BillDetailModule,
         CommentModule,
         AuthModule,
+        WishlistModule,
     ],
     controllers: [AppController],
     providers: [AppService],

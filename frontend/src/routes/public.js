@@ -14,7 +14,6 @@ import StoryDetail from "pages/public/home/Story/StoryDetail";
 import PostItem from "pages/public/home/PostItem";
 import Catelog from "pages/public/home/Catelog"
 import BestSeller from "pages/public/home/best-selling";
-import NewProducts from "pages/public/home/NewProducts";
 import ForgetPassword from "pages/public/ForgetPassword";
 
 import Following from "pages/public/Following";
@@ -53,7 +52,6 @@ export const publicRoutes = {
         { path: '/postitem', element: <PostItem /> },
         { path: '/catelog', element: <Catelog /> },
         { path: '/bestSeller', element: <BestSeller /> },
-        { path: '/newproducts', element: <NewProducts /> },
         { path: '/forgetPassword', element: <ForgetPassword /> },
 
         { path: '/following', element: <Following /> },

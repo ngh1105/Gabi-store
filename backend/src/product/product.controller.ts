@@ -70,6 +70,17 @@ export class ProductController {
         }
     }
 
+    @Get("find-newest")
+    findNewest(@Query('limit') limit: number) {
+        try {
+            limit = limit ? Number(limit) : 10; // Default limit is 10
+            return this.productService.findNewest(limit);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
+
     @Get(':id')
     findOne(@Param('id') id: string) {
         try {
