@@ -46,4 +46,16 @@ export class Product extends Model {
         allowNull: false,
     })
     categoryId: number;
+
+    @Column({
+        type: DataType.ARRAY(DataType.STRING),
+        allowNull: false,
+    })
+    colors: string[];
+
+    @Column({
+        type: DataType.ARRAY(DataType.STRING),
+        allowNull: false,
+    })
+    sizes: string[];
 }

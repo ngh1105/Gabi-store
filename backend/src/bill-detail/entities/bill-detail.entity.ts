@@ -47,4 +47,16 @@ export class BillDetail extends Model {
         allowNull: false,
     })
     imageUrl: string;
+
+    @Column({
+        type: DataType.STRING,
+        allowNull: false,
+    })
+    color: string;
+
+    @Column({
+        type: DataType.STRING,
+        allowNull: false,
+    })
+    size: string;
 }
