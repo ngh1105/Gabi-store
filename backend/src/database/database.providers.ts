@@ -125,7 +125,17 @@ export const databaseProviders = [
             });
 
             // Add model here
-            sequelize.addModels([Category, Product, User, Blog, Bill, BillDetail, Comment, Wishlist]);
+            sequelize.addModels([
+                Category,
+                Product,
+                User,
+                Blog,
+                Bill,
+                BillDetail,
+                Comment,
+                Wishlist,
+                Rating,
+            ]);
 
             createRelationship();
 
