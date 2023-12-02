@@ -48,14 +48,24 @@ export class Product extends Model {
     categoryId: number;
 
     @Column({
-        type: DataType.ARRAY(DataType.STRING),
-        allowNull: false,
+        type: DataType.STRING,
+        get: function () {
+            return JSON.parse(this.getDataValue('colors'));
+        },
+        set: function (val) {
+            return this.setDataValue('colors', JSON.stringify(val));
+        }
     })
     colors: string[];
 
     @Column({
-        type: DataType.ARRAY(DataType.STRING),
-        allowNull: false,
+        type: DataType.STRING,
+        get: function () {
+            return JSON.parse(this.getDataValue('sizes'));
+        },
+        set: function (val) {
+            return this.setDataValue('sizes', JSON.stringify(val));
+        }
     })
     sizes: string[];
 }

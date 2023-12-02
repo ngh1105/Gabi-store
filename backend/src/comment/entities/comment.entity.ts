@@ -23,4 +23,10 @@ export class Comment extends Model {
         allowNull: false,
     })
     userId: number;
+
+    @Column({
+        type: DataType.STRING,
+        defaultValue: "",
+    })
+    content: string;
 }
