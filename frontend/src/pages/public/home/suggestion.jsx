@@ -45,15 +45,11 @@ export default function SuggestionSection() {
         <div className="mx-auto max-w-screen-xl">
             <section className="">
                 <div className="p-4 mx-auto">
-                    <h2 className="pb-4 font-bold text-center text-gray-800 text-[24px] dark:text-gray-400 uppercase">
-                        Gợi ý dành cho bạn
-                    </h2>
-                    <div className="mx-auto border-b border-red-700 w-44 dark:border-gray-400" />
-
-                    <div className="mt-10">
-                        <h3 class="text-lg text-indigo-500 text-center font-semibold dark:text-white uppercase">
+                    <div className="">
+                        <h2 className="pb-4 font-bold text-center text-gray-800 text-[24px] dark:text-gray-400 uppercase">
                             Hàng mới về
-                        </h3>
+                        </h2>
+                        <div className="mx-auto border-b border-red-700 w-44 dark:border-gray-400" />
 
                         <div className="mt-4">
                             <Carousel
@@ -77,10 +73,11 @@ export default function SuggestionSection() {
                     </div>
 
                     {/* Love */}
-                    <div className="mt-10">
-                        <h3 class="text-lg text-indigo-500 text-center font-semibold dark:text-white uppercase">
+                    <div className="mt-20">
+                        <h2 className="pb-4 font-bold text-center text-gray-800 text-[24px] dark:text-gray-400 uppercase">
                             Sản phẩm yêu thích
-                        </h3>
+                        </h2>
+                        <div className="mx-auto border-b border-red-700 w-44 dark:border-gray-400" />
 
                         <div className="mt-4">
                             <Carousel
@@ -103,10 +100,11 @@ export default function SuggestionSection() {
                         </div>
                     </div>
 
-                    <div className="mt-10">
-                        <h3 class="text-lg text-indigo-500 text-center font-semibold dark:text-white uppercase">
+                    <div className="mt-20">
+                        <h2 className="pb-4 font-bold text-center text-gray-800 text-[24px] dark:text-gray-400 uppercase">
                             Sản phẩm được quan tâm
-                        </h3>
+                        </h2>
+                        <div className="mx-auto border-b border-red-700 w-44 dark:border-gray-400" />
 
                         <div className="mt-4">
                             <Carousel
