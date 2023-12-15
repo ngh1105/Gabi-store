@@ -49,9 +49,9 @@ export default function CheckoutPage() {
         enableReinitialize: true,
         initialValues: {
             fullName: user.fullName,
-            email: "",
-            address: "",
-            phoneNumber: "",
+            email: user.email,
+            address: user.address,
+            phoneNumber: user.phoneNumber,
         },
         validationSchema: Yup.object({
             fullName: Yup.string()
@@ -211,7 +211,6 @@ export default function CheckoutPage() {
                                                     name="check"
                                                     id={obj.id}
                                                     type="radio"
-                                                    defaultValue
                                                     className="w-4 h-4 text-indigo-600 bg-gray-100 border-indigo-300 rounded-full focus:ring-indigo-500 focus:ring-2"
                                                 />
                                                 <label

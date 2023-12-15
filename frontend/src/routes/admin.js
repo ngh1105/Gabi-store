@@ -3,6 +3,7 @@ import OverviewPage from "pages/admin/overview";
 import CategoryPage from "pages/admin/category";
 import ProductPage from "pages/admin/product";
 import UserPage from "pages/admin/user";
+import BrandPage from "pages/admin/brand";
 
 export const adminRoutes = {
     path: '/admin',
@@ -15,6 +16,10 @@ export const adminRoutes = {
         {
             path: 'category',
             element: <CategoryPage />,
+        },
+        {
+            path: 'brand',
+            element: <BrandPage />,
         },
         {
             path: 'product',

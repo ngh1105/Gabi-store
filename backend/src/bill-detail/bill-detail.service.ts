@@ -21,6 +21,8 @@ export class BillDetailService {
             quantity: data.quantity,
             price: data.price,
             imageUrl: data.imageUrl,
+            color: data.color,
+            size: data.size,
         });
 
         const billData = await record.save();
@@ -33,10 +35,7 @@ export class BillDetailService {
             where: { billId: id },
         });
 
-        return data.map(obj => new BillDetailDto(
-            obj.billId, obj.name, obj.productId,
-            obj.quantity, obj.price, obj.imageUrl
-        ));
+        return data.map(obj => new BillDetailDto(obj));
     }
 
     async findBestSelling() {
@@ -45,10 +44,40 @@ export class BillDetailService {
             group: ['productId'],
             order: [[Sequelize.literal('totalQuantity'), 'DESC']]
         });
-    
+
         return data.map(obj => ({
             productId: obj.productId,
             totalQuantity: obj.getDataValue('totalQuantity')
         }));
+    }
+
+    async count() {
+        return await this.billDetailRepository.count();
+    }
+
+    async findPaginate(limit: number) {
+        const data = await this.billDetailRepository.findAll<BillDetail>({
+            limit: limit,
+            order: [
+                ['id', 'DESC']
+            ]
+        });
+
+        return data.map(obj => new BillDetailDto(obj));
+    }
+
+    async isBought(idUser: number, idProduct: number) {
+        const record = await this.billDetailRepository.findOne<BillDetail>({
+            where: {
+                userId: idUser,
+                productId: idProduct,
+            },
+        });
+
+        if (record) {
+            return true;
+        }
+
+        return false;
     }
 }

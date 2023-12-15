@@ -10,23 +10,35 @@ import { toast } from "react-toastify";
 export default function AddPage({ fetchData }) {
 
     const [categories, setCategories] = useState([]);
-
-    async function fetchCategories() {
-        const res = await Api.Get("/category");
-
-        const newData = res.response.map((obj, index) => {
-            return {
-                id: obj.id,
-                name: obj.name,
-            }
-        })
-
-        setCategories(newData);
-    }
+    const [brands, setBrands] = useState([]);
 
     useEffect(() => {
         try {
-            fetchCategories();
+            (async () => {
+                const res = await Api.Get("/category");
+
+                const newData = res.response.map((obj, index) => {
+                    return {
+                        id: obj.id,
+                        name: obj.name,
+                    }
+                })
+
+                setCategories(newData);
+            })();
+
+            (async () => {
+                const res = await Api.Get("/brand");
+
+                let newData = res.response.map((obj, index) => {
+                    return {
+                        id: obj.id,
+                        name: obj.name,
+                    }
+                })
+
+                setBrands(newData);
+            })();
         }
         catch (err) {
             console.log(err);
@@ -69,13 +81,17 @@ export default function AddPage({ fetchData }) {
         enableReinitialize: true,
         initialValues: {
             categoryId: categories[0] ? categories[0].id : 0,
+            brandId: 0,
             name: "",
             price: 0,
             description: "",
+            colors: [],
+            sizes: [],
         },
         validationSchema: Yup.object({
             categoryId: Yup.string()
                 .required("Đây là dữ liệu bắt buộc"),
+            brandId: Yup.string(),
             name: Yup.string()
                 .required("Đây là dữ liệu bắt buộc")
                 .min(6, `Cần ít nhất 6 ký tự`)
@@ -85,6 +101,8 @@ export default function AddPage({ fetchData }) {
                 .typeError("Dữ liệu phải là một số"),
             description: Yup.string()
                 .required("Đây là dữ liệu bắt buộc"),
+            colors: Yup.array(),
+            sizes: Yup.array(),
         }),
         onSubmit: async (values, { resetForm }) => {
             setStatus(prevState => ({
@@ -94,9 +112,12 @@ export default function AddPage({ fetchData }) {
 
             const data = {
                 categoryId: parseInt(values.categoryId),
+                brandId: parseInt(values.brandId),
                 name: values.name,
                 price: parseInt(values.price),
                 description: values.description,
+                colors: values.colors,
+                sizes: values.sizes,
             }
 
             console.log(data);
@@ -150,7 +171,7 @@ export default function AddPage({ fetchData }) {
                         <div className="grid gap-4 mb-6 sm:grid-cols-2">
                             <div>
                                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Loại hàng</label>
-                                <select 
+                                <select
                                     name="categoryId"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                     value={formik.values.categoryId || 0}
@@ -167,6 +188,28 @@ export default function AddPage({ fetchData }) {
                                 {formik.errors.categoryId && formik.touched.categoryId && (
                                     <p className="mt-1 ml-1 text-red-600 text-sm">
                                         {formik.errors.categoryId}
+                                    </p>
+                                )}
+                            </div>
+                            <div>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Thương hiệu</label>
+                                <select
+                                    name="brandId"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                    value={formik.values.brandId || 0}
+                                    onChange={formik.handleChange}
+                                >
+                                    {
+                                        brands.map((obj, index) => (
+                                            <option key={index} value={obj.id}>
+                                                {obj.name}
+                                            </option>
+                                        ))
+                                    }
+                                </select>
+                                {formik.errors.brandId && formik.touched.brandId && (
+                                    <p className="mt-1 ml-1 text-red-600 text-sm">
+                                        {formik.errors.brandId}
                                     </p>
                                 )}
                             </div>
@@ -188,14 +231,6 @@ export default function AddPage({ fetchData }) {
                                 )}
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hình ảnh</label>
-                                <input
-                                    type="file"
-                                    name="image"
-                                    onChange={handleImageChange}
-                                />
-                            </div>
-                            <div>
                                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Giá</label>
                                 <input
                                     type="text"
@@ -213,6 +248,39 @@ export default function AddPage({ fetchData }) {
                                 )}
                             </div>
                             <div>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Màu sắc</label>
+                                <select
+                                    name="colors"
+                                    multiple
+                                    size="5"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                    onChange={formik.handleChange}
+                                >
+                                    <option>Xanh</option>
+                                    <option>Đỏ</option>
+                                    <option>Tím</option>
+                                    <option>Vàng</option>
+                                    <option>Hồng</option>
+                                    <option>Đen</option>
+                                    <option>Trắng</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kích cỡ</label>
+                                <select
+                                    name="sizes"
+                                    multiple
+                                    size="5"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                    onChange={formik.handleChange}
+                                >
+                                    <option>S</option>
+                                    <option>M</option>
+                                    <option>L</option>
+                                    <option>XL</option>
+                                </select>
+                            </div>
+                            <div>
                                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mô tả</label>
                                 <input
                                     type="text"
@@ -228,6 +296,14 @@ export default function AddPage({ fetchData }) {
                                         {formik.errors.description}
                                     </p>
                                 )}
+                            </div>
+                            <div>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hình ảnh</label>
+                                <input
+                                    type="file"
+                                    name="image"
+                                    onChange={handleImageChange}
+                                />
                             </div>
                         </div>
                         <button

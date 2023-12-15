@@ -5,17 +5,15 @@ import ContactPage from "pages/public/contact";
 import AboutPage from "pages/public/about";
 import CartPage from "pages/public/cart";
 import CheckoutPage from "pages/public/checkout";
+import BillPage from "pages/public/bill";
 import BillDetailPage from "pages/public/bill-detail"
 
 import Blog from "pages/public/Blog";
 import BlogDetail from "pages/public/Blog/BlogDetail";
-import Story from "pages/public/Story";
+import Story from "pages/public/story";
 import StoryDetail from "pages/public/home/Story/StoryDetail";
 import PostItem from "pages/public/home/PostItem";
 import Catelog from "pages/public/home/Catelog"
-import BestSeller from "pages/public/home/best-selling";
-import NewProducts from "pages/public/home/NewProducts";
-import ForgetPassword from "pages/public/ForgetPassword";
 
 import Following from "pages/public/Following";
 
@@ -23,7 +21,6 @@ import Policy from "pages/public/Policy";
 import Rules from "pages/public/Rules";
 import Information from "pages/public/Information";
 import ProductDetailPage from "pages/public/product-detail";
-
 
 export const publicRoutes = {
     path: '/',
@@ -42,6 +39,7 @@ export const publicRoutes = {
         { path: '/cart', element: <CartPage /> },
         { path: '/checkout', element: <CheckoutPage /> },
 
+        { path: '/bill', element: <BillPage /> },
         { path: '/bill-detail/:id', element: <BillDetailPage /> },
 
         { path: '/rules', element: <Rules /> },
@@ -52,9 +50,6 @@ export const publicRoutes = {
         { path: '/story', element: <Story /> },
         { path: '/postitem', element: <PostItem /> },
         { path: '/catelog', element: <Catelog /> },
-        { path: '/bestSeller', element: <BestSeller /> },
-        { path: '/newproducts', element: <NewProducts /> },
-        { path: '/forgetPassword', element: <ForgetPassword /> },
 
         { path: '/following', element: <Following /> },
         { path: '/policy', element: <Policy /> },

@@ -14,22 +14,16 @@ import { useProductPaginate } from "./use-paginate";
 export default function ProductPage() {
 
     const [categories, setCategories] = useState([]);
-
-    // Handle redirect from home page
-    const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-    const category = queryParams.get('category');
+    const [brands, setBrands] = useState([]);
 
     useEffect(() => {
         try {
             (async () => {
-                // if (category && category > 0) {
-                //     //console.log(category);
-                //     handleCategoryChange(category);
-                // }
-
-                const res = await Api.Get("/category");
+                let res = await Api.Get("/category");
                 setCategories(res.response);
+
+                res = await Api.Get("/brand");
+                setBrands(res.response);
             })();
         }
         catch (err) {
@@ -41,20 +35,36 @@ export default function ProductPage() {
     const {
         items, setItems, totalItems,
         selectedCategories, setSelectedCategories,
+        selectedBrands, setSelectedBrands,
         onSortItems, setTotalPages,
         onSearchItems, Pagination
     } = useProductPaginate(PRODUCTS_PER_PAGE);
 
-    const fetchProducts = async () => {
-        const res = await Api.Get(`/product`);
-        setItems(res.response);
-        setTotalPages(Math.ceil(res.response.length / PRODUCTS_PER_PAGE));
-    }
+    // Handle redirect from home page
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+
+    const category = queryParams.get('category');
+    const brand = queryParams.get('brand');
+
+    useEffect(() => {
+        if (category && category > 0) {
+            setSelectedCategories([parseInt(category)]);
+        }
+
+        if (brand && brand > 0) {
+            setSelectedBrands([parseInt(brand)]);
+        }
+    }, [category, brand]);
 
     useEffect(() => {
         try {
             (async () => {
-                await fetchProducts();
+                const res = await Api.Get(`/product`);
+                setTotalPages(Math.ceil(res.response.length / PRODUCTS_PER_PAGE));
+                setItems(res.response);
+
+                //onSortItems((data) => data);
             })();
         }
         catch (err) {
@@ -114,9 +124,22 @@ export default function ProductPage() {
         }
     };
 
+    const handleBrandChange = (brandId) => {
+        // Check if the category is already selected
+        if (selectedBrands.includes(brandId)) {
+            // If selected, remove it from the array
+            setSelectedBrands((prevSelected) =>
+                prevSelected.filter((id) => id !== brandId)
+            );
+        } else {
+            // If not selected, add it to the array
+            setSelectedBrands((prevSelected) => [...prevSelected, brandId]);
+        }
+    };
+
     useEffect(() => {
         onSortItems((data) => data);
-    }, [selectedCategories]);
+    }, [selectedCategories, selectedBrands, totalItems]);
 
     return (
         <PageLayout title="Sản phẩm">
@@ -128,12 +151,12 @@ export default function ProductPage() {
                     <nav className="flex mb-3" >
                         <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                             <li className="inline-flex items-center">
-                                <a href="#" className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-white">
+                                <Link to="/" className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-white">
                                     <svg className="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
                                     </svg>
                                     Trang chủ
-                                </a>
+                                </Link>
                             </li>
                             <li aria-current="page">
                                 <div className="flex items-center">
@@ -166,6 +189,33 @@ export default function ProductPage() {
                                                             className="w-4 h-4 mr-2"
                                                             onChange={() => handleCategoryChange(obj.id)}
                                                             checked={selectedCategories.includes(obj.id)}
+                                                        />
+                                                        <span className="text-lg">{obj.name}</span>
+                                                    </label>
+                                                </li>
+                                            )
+                                        })
+                                    }
+                                </ul>
+                            </div>
+                            <div className="p-4 mb-5 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-900">
+                                <h2 className="text-2xl font-bold dark:text-gray-400">
+                                    Thương hiệu
+                                </h2>
+                                <div className="w-16 pb-2 mb-6 border-b border-rose-600 dark:border-gray-400" />
+                                <ul>
+                                    {
+                                        brands.map((obj, index) => {
+                                            return (
+                                                <li className="mb-4" key={index}>
+                                                    <label
+                                                        className="flex items-center dark:text-gray-400 "
+                                                    >
+                                                        <input
+                                                            type="checkbox"
+                                                            className="w-4 h-4 mr-2"
+                                                            onChange={() => handleBrandChange(obj.id)}
+                                                            checked={selectedBrands.includes(obj.id)}
                                                         />
                                                         <span className="text-lg">{obj.name}</span>
                                                     </label>

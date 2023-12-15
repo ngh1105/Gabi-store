@@ -10,7 +10,7 @@ export class CategoryService {
     constructor(
         @Inject('CATEGORY_REPOSITORY')
         private categoryRepository: typeof Category
-    ) {}
+    ) { }
 
     async create(data: CreateCategoryDto) {
         const record = await this.categoryRepository.create({
@@ -27,7 +27,7 @@ export class CategoryService {
                 ['id', 'DESC']
             ]
         });
-        
+
         return data.map(obj => new CategoryDto(obj));
     }
 
@@ -39,7 +39,7 @@ export class CategoryService {
                 ['id', 'DESC']
             ]
         });
-        
+
         return data.map(obj => new CategoryDto(obj));
     }
 
@@ -89,13 +89,13 @@ export class CategoryService {
     async removeAll() {
         // Find all records in the category table
         const data = await this.categoryRepository.findAll<Category>();
-    
+
         // Loop through each record and delete it
         for (const record of data) {
             this.deleteImage(record);
             await record.destroy();
         }
-    
+
         return "All records deleted successfully";
     }
 
@@ -117,7 +117,7 @@ export class CategoryService {
             return "File is already exist";
         }
 
-       this.deleteImage(record);
+        this.deleteImage(record);
 
         image.mv(`./public${fileName}`);
 
@@ -134,8 +134,8 @@ export class CategoryService {
     }
 
     async isExists(id: number) {
-        const record = await this.categoryRepository.findOne({ 
-            where: { id } 
+        const record = await this.categoryRepository.findOne({
+            where: { id }
         });
 
         return !!record;

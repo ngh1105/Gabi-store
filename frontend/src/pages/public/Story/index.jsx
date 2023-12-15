@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom';
 function Story() {
     return (
         <div>
-            <img src="https://mcdn.coolmate.me/image/September2023/mceclip5_29.jpg"
-             />
+            <img src="https://mcdn.coolmate.me/image/September2023/mceclip5_29.jpg" alt=""
+            />
             <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
                 <div className="grid grid-cols-1 gap-4 mt-8">
-                    <img className="w-[450px] h-[650px] rounded-lg" src="https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/March2023/DSC04764_copy_35.jpg" alt="office content 1" />
+                    <img className="w-[450px] h-[650px] rounded-lg"
+                        src="https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/March2023/DSC04764_copy_35.jpg" alt="office content 1" />
                 </div>
                 <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
                     <h2 className="mb-4 text-2xl tracking-tight font-medium text-gray-900 dark:text-white">ÁO THỜI TRANG NAM CHẤT</h2>
@@ -23,8 +24,8 @@ function Story() {
                         da của người mặc.</p>
                     <p className='mb-4 text-[17px]'> Mặc dù đi theo lối thiết kế đơn giản nhưng áo nam chính hãng tại  <span className="font-bold">Gabi Store </span> vẫn có những họa
                         tiết độc đáo, mang xu hướng mới lạ, tạo điểm nhấn riêng. </p>
-                    <p className='mb-4 text-[17px]'>   Bên cạnh đó, với tiêu chí <span className="font-bold"> "Good Mood - Good Day"</span>, nên các sản phẩm áo nam cao cấp tại <span className="font-bold">Gabi Store </span> 
-                      cũng có những thiết kế basic, dễ dàng phối đồ dành cho các bạn nam. </p>
+                    <p className='mb-4 text-[17px]'>   Bên cạnh đó, với tiêu chí <span className="font-bold"> "Good Mood - Good Day"</span>, nên các sản phẩm áo nam cao cấp tại <span className="font-bold">Gabi Store </span>
+                        cũng có những thiết kế basic, dễ dàng phối đồ dành cho các bạn nam. </p>
 
                     <p className='mb-4 text-[17px]'>  Giờ đây, bạn có thể khám phá những mẫu áo nam hàng hiệu, đẹp nhất, mới nhất tại hệ thống cửa
                         hàng áo nam trên toàn Việt Nam, những shop áo nam của <span className="font-bold">Gabi Store </span> đã có mặt tại những thành phố

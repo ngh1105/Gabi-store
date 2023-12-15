@@ -2,10 +2,13 @@ import { Sequelize } from 'sequelize-typescript';
 import { BillDetail } from 'src/bill-detail/entities/bill-detail.entity';
 import { Bill } from 'src/bill/entities/bill.entity';
 import { Blog } from 'src/blog/entities/blog.entity';
+import { Brand } from 'src/brand/entities/brand.entity';
 import { Category } from 'src/category/entities/category.entity';
 import { Comment } from 'src/comment/entities/comment.entity';
 import { Product } from 'src/product/entities/product.entity';
+import { Rating } from 'src/rating/entities/rating.entity';
 import { User } from 'src/user/entities/user.entity';
+import { Wishlist } from 'src/wishlist/entities/wishlist.entity';
 
 const createRelationship = () => {
 
@@ -17,6 +20,15 @@ const createRelationship = () => {
     Product.belongsTo(Category, {
         foreignKey: 'categoryId',
     });
+
+    // Brand.hasMany(Product, {
+    //     onDelete: 'CASCADE',
+    //     foreignKey: 'brandId',
+    // });
+
+    // Product.belongsTo(Brand, {
+    //     foreignKey: 'brandId',
+    // });
 
     User.hasMany(Blog, {
         onDelete: 'CASCADE',
@@ -71,6 +83,42 @@ const createRelationship = () => {
     Comment.belongsTo(Product, {
         foreignKey: 'productId',
     });
+
+    Product.hasMany(Wishlist, {
+        onDelete: 'CASCADE',
+        foreignKey: 'productId',
+    });
+
+    Wishlist.belongsTo(Product, {
+        foreignKey: 'productId',
+    });
+
+    User.hasMany(Wishlist, {
+        onDelete: 'CASCADE',
+        foreignKey: 'userId',
+    });
+
+    Wishlist.belongsTo(User, {
+        foreignKey: 'userId',
+    });
+
+    Product.hasMany(Rating, {
+        onDelete: 'CASCADE',
+        foreignKey: 'productId',
+    });
+
+    Rating.belongsTo(Product, {
+        foreignKey: 'productId',
+    });
+
+    User.hasMany(Rating, {
+        onDelete: 'CASCADE',
+        foreignKey: 'userId',
+    });
+
+    Rating.belongsTo(User, {
+        foreignKey: 'userId',
+    });
 }
 
 export const databaseProviders = [
@@ -87,7 +135,18 @@ export const databaseProviders = [
             });
 
             // Add model here
-            sequelize.addModels([Category, Product, User, Blog, Bill, BillDetail, Comment]);
+            sequelize.addModels([
+                Category,
+                Product,
+                User,
+                Blog,
+                Bill,
+                BillDetail,
+                Comment,
+                Wishlist,
+                Rating,
+                Brand,
+            ]);
 
             createRelationship();
 

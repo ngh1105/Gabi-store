@@ -36,6 +36,19 @@ export class ProductDto {
 
     @ApiProperty()
     @IsOptional()
+    @IsNumber()
+    brandId?: number = 0;
+
+    @ApiProperty()
+    @IsOptional()
+    colors?: string[];
+
+    @ApiProperty()
+    @IsOptional()
+    sizes?: string[];
+
+    @ApiProperty()
+    @IsOptional()
     createdAt?: string = "";
 
     @ApiProperty()
@@ -50,6 +63,9 @@ export class ProductDto {
         this.viewCount = data.viewCount;
         this.description = data.description;
         this.categoryId = data.categoryId;
+        this.brandId = data.brandId;
+        this.colors = data.colors;
+        this.sizes = data.sizes;
         this.createdAt = data.createdAt;
         this.updatedAt = data.updatedAt;
     }

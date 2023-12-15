@@ -1,3 +1,4 @@
+import { useMemo, useState } from "react";
 
 export const usePaginate = (itemPerPage) => {
 
@@ -52,7 +53,7 @@ export const usePaginate = (itemPerPage) => {
                     {/* Previous Button */}
                     <li
                         className='page-item'
-                        disabled={currentPage === 1}
+                        disabled={currentPage <= 1}
                     >
                         <button
                             onClick={() => handleClick(currentPage - 1)}
@@ -80,7 +81,7 @@ export const usePaginate = (itemPerPage) => {
                     {/* Next Button */}
                     <li
                         className='page-item'
-                        disabled={currentPage === totalPages}
+                        disabled={currentPage >= totalPages}
                     >
                         <button
                             onClick={() => handleClick(currentPage + 1)}

@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 export const useProductPaginate = (itemPerPage) => {
 
     const [selectedCategories, setSelectedCategories] = useState([]);
+    const [selectedBrands, setSelectedBrands] = useState([]);
     const [totalItems, setTotalItems] = useState([]);
     const [filteredItems, setFilteredItems] = useState(totalItems);
     const [currentPage, setCurrentPage] = useState(1);
@@ -17,15 +18,19 @@ export const useProductPaginate = (itemPerPage) => {
 
         const data = totalItems;
 
-        // If there are selected categories, filter by them
         let filteredByCategory = data;
         if (selectedCategories.length > 0) {
             filteredByCategory = data.filter(item => selectedCategories.includes(item.categoryId));
         }
-    
+
+        let filteredByBrand = filteredByCategory;
+        if (selectedBrands.length > 0) {
+            filteredByBrand = filteredByCategory.filter(item => selectedBrands.includes(item.brandId));
+        }
+
         // Filter by keyword
-        const filteredByKeyword = filteredByCategory.filter(item => item.name.includes(kw));
-    
+        const filteredByKeyword = filteredByBrand.filter(item => item.name.includes(kw));
+
         // Update state
         setKeyword(kw);
         setCurrentPage(1);
@@ -44,9 +49,14 @@ export const useProductPaginate = (itemPerPage) => {
             filteredByCategory = data.filter(item => selectedCategories.includes(item.categoryId));
         }
 
-        const newFilteredItems = filteredByCategory.filter(item => item.name.includes(keyword));
+        let filteredByBrand = filteredByCategory;
+        if (selectedBrands.length > 0) {
+            filteredByBrand = filteredByCategory.filter(item => selectedBrands.includes(item.brandId));
+        }
 
-         // Update state
+        const newFilteredItems = filteredByBrand.filter(item => item.name.includes(keyword));
+
+        // Update state
         setCurrentPage(1);
         setTotalPages(Math.ceil(newFilteredItems.length / itemPerPage));
         setFilteredItems(newFilteredItems);
@@ -116,6 +126,7 @@ export const useProductPaginate = (itemPerPage) => {
     return {
         items, setItems, totalItems,
         selectedCategories, setSelectedCategories,
+        selectedBrands, setSelectedBrands,
         onSortItems, setTotalPages,
         onSearchItems, Pagination
     };
