@@ -7,11 +7,12 @@ import { DatabaseModule } from 'src/database/database.module';
 import { ratingProviders } from './rating.providers';
 
 @Module({
-  imports: [DatabaseModule, UserModule, ProductModule],
+  imports: [DatabaseModule],
   controllers: [RatingController],
   providers: [
     RatingService,
     ...ratingProviders,
   ],
+  exports: [RatingService]
 })
 export class RatingModule { }

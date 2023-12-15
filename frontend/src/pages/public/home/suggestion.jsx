@@ -8,12 +8,20 @@ import ProductItem from "components/product-item";
 export default function SuggestionSection() {
 
     const [newestProducts, setNewestProducts] = useState([]);
+    const [bestRatingProducts, setBestRatingProducts] = useState([]);
+    const [bestViewProducts, setBestViewProducts] = useState([]);
 
     useEffect(() => {
         try {
             (async () => {
-                const res = await Api.Get("/product/find-newest");
+                let res = await Api.Get("/product/find-newest");
                 setNewestProducts(res.response);
+
+                res = await Api.Get("/product/find-best-rating");
+                setBestRatingProducts(res.response);
+
+                res = await Api.Get("/product/find-best-view");
+                setBestViewProducts(res.response);
             })();
         }
         catch (err) {
@@ -90,7 +98,7 @@ export default function SuggestionSection() {
                                 itemClass="px-2"
                             >
                                 {
-                                    newestProducts.map((obj, index) => {
+                                    bestRatingProducts.map((obj, index) => {
                                         return (
                                             <ProductItem key={index} product={obj} />
                                         )
@@ -117,7 +125,7 @@ export default function SuggestionSection() {
                                 itemClass="px-2"
                             >
                                 {
-                                    newestProducts.map((obj, index) => {
+                                    bestViewProducts.map((obj, index) => {
                                         return (
                                             <ProductItem key={index} product={obj} />
                                         )

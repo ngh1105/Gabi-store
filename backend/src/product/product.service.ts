@@ -7,6 +7,7 @@ import { CategoryService } from 'src/category/category.service';
 import * as fs from "fs";
 import { BillDetailService } from 'src/bill-detail/bill-detail.service';
 import { Op } from 'sequelize';
+import { RatingService } from 'src/rating/rating.service';
 
 @Injectable()
 export class ProductService {
@@ -15,7 +16,8 @@ export class ProductService {
         private productRepository: typeof Product,
 
         private categoryService: CategoryService,
-        private billDetailService: BillDetailService
+        private billDetailService: BillDetailService,
+        private ratingService: RatingService
     ) { }
 
     async create(data: CreateProductDto) {
@@ -99,6 +101,30 @@ export class ProductService {
         });
 
         return products.map(obj => new ProductDto(obj));
+    }
+
+    async findBestRating(limit: number) {
+        const fromRatings = await this.ratingService.findBestRating(limit);
+        const productIds = fromRatings.map(rating => rating.productId);
+
+        const products = await this.productRepository.findAll({
+            where: {
+                id: {
+                    [Op.in]: productIds
+                }
+            }
+        });
+
+        return products;
+    }
+
+    async findBestView(limit: number) {
+        const products = await this.productRepository.findAll({
+            order: [['viewCount', 'DESC']],
+            limit: limit
+        });
+
+        return products;
     }
 
     async findNewest(limit: number) {

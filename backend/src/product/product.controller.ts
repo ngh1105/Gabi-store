@@ -70,6 +70,28 @@ export class ProductController {
         }
     }
 
+    @Get("find-best-rating")
+    findBestRating(@Query('limit') limit: number) {
+        try {
+            limit = limit ? Number(limit) : 10; // Default limit is 10
+            return this.productService.findBestRating(limit);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
+
+    @Get("find-best-view")
+    findBestView(@Query('limit') limit: number) {
+        try {
+            limit = limit ? Number(limit) : 10; // Default limit is 10
+            return this.productService.findBestView(limit);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
+
     @Get("find-newest")
     findNewest(@Query('limit') limit: number) {
         try {
@@ -81,7 +103,7 @@ export class ProductController {
         }
     }
 
-    @Get("/count-total")
+    @Get("count-total")
     countAll() {
         try {
             return this.productService.count();

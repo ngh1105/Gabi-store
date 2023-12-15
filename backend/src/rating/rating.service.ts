@@ -4,6 +4,7 @@ import { UpdateRatingDto } from './dto/update-rating.dto';
 import { Rating } from './entities/rating.entity';
 import { RatingDto } from './dto/rating.dto';
 import { Sequelize } from 'sequelize';
+import { fn, col } from 'sequelize';
 
 @Injectable()
 export class RatingService {
@@ -57,5 +58,17 @@ export class RatingService {
         }) as any[];
 
         return ratings[0].averageScore;
+    }
+
+    async findBestRating(limit: number) {
+        const products = await this.ratingRepository.findAll({
+            attributes: ['productId', [fn('AVG', col('score')), 'averageScore']],
+            group: ['productId'],
+            order: [[fn('AVG', col('score')), 'DESC']],
+            limit: limit,
+            raw: true,
+        });
+
+        return products;
     }
 }
