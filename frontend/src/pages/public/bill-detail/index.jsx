@@ -105,13 +105,13 @@ export default function BillDetailPage() {
                                                                         </p>
                                                                         <div>
                                                                             <div className="flex items-center gap-2 mt-1">
-                                                                                <h2 className="text-sm dark:text-gray-400 opacity-80">
-                                                                                    Màu sắc:
+                                                                                <h2 className="text-sm opacity-80">
+                                                                                    Màu sắc: <span className="text-bold">{obj.color ? obj.color : "Tự do"}</span>
                                                                                 </h2>
-                                                                                <div className="w-4 h-4 bg-cyan-300" />
+
                                                                             </div>
                                                                             <h2 className="text-sm mt-1 opacity-80">
-                                                                                Kích cỡ: <span className="text-bold">XL</span>
+                                                                                Kích cỡ: <span className="text-bold">{obj.size ? obj.size : "Tự do"}</span>
                                                                             </h2>
                                                                         </div>
                                                                     </div>

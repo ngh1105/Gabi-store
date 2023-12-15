@@ -47,6 +47,8 @@ const cartSlice = createSlice({
                 price: newItem.price,
                 amount: newItem.amount,
                 totalPrice: newItem.price * newItem.amount,
+                color: newItem.color,
+                size: newItem.size,
             })
 
             state.cart = cart;
@@ -110,7 +112,7 @@ const cartSlice = createSlice({
             state.cart = cart;
             return;
         },
-        
+
         clearCart: (state, action) => {
             state.cart = [];
         },

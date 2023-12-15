@@ -21,6 +21,8 @@ export class BillDetailService {
             quantity: data.quantity,
             price: data.price,
             imageUrl: data.imageUrl,
+            color: data.color,
+            size: data.size,
         });
 
         const billData = await record.save();

@@ -45,6 +45,9 @@ export default function ProductDetailPage() {
                 price: res.response.price,
                 description: res.response.description,
                 categoryId: res.response.categoryId,
+                brandId: res.response.brandId,
+                colors: res.response.colors,
+                sizes: res.response.sizes,
             });
 
             const res2 = await Api.Get(`/product/find-related/${id}`);
@@ -54,6 +57,8 @@ export default function ProductDetailPage() {
     }, [id]);
 
     const [count, setCount] = useState(1);
+    const [color, setColor] = useState("Tự do");
+    const [size, setSize] = useState("Tự do");
 
     const handleDecreaseCount = () => setCount((c) => count > 1 ? c - 1 : 1);
     const handleIncreaseCount = () => setCount((c) => c + 1);
@@ -65,9 +70,15 @@ export default function ProductDetailPage() {
             imageUrl: currProduct.imageUrl,
             price: currProduct.price,
             amount: count,
+            color: color,
+            size: size,
         }));
 
-        toast.success("Đã thêm vào giỏ hàng");
+        toast.success("Đã thêm vào giỏ hàng", {
+            position: "bottom-right",
+            autoClose: 1000,
+            hideProgressBar: true,
+        });
     }
 
     return (
@@ -137,29 +148,58 @@ export default function ProductDetailPage() {
                                     <h2 className="mr-6 text-xl font-bold dark:text-gray-400">
                                         Màu sắc:</h2>
                                     <div className="flex flex-wrap -mx-2 -mb-2">
-                                        <button className="p-1 mb-2 mr-2 border border-transparent hover:border-blue-400 dark:border-gray-800 dark:hover:border-gray-400 ">
-                                            <div className="w-6 h-6 bg-cyan-300" />
-                                        </button>
-                                        <button className="p-1 mb-2 mr-2 border border-transparent hover:border-blue-400 dark:border-gray-800 dark:hover:border-gray-400">
-                                            <div className="w-6 h-6 bg-green-300 " />
-                                        </button>
-                                        <button className="p-1 mb-2 border border-transparent hover:border-blue-400 dark:border-gray-800 dark:hover:border-gray-400">
-                                            <div className="w-6 h-6 bg-red-200 " />
-                                        </button>
+                                        {
+                                            (!currProduct.colors || currProduct.colors.length <= 0)
+                                                ? (
+                                                    <button className="px-3 py-1 mb-2 mr-1 border border-indigo-400 text-indigo-600">
+                                                        Tự do
+                                                    </button>
+                                                )
+                                                : (
+                                                    currProduct.colors.map((obj, index) => {
+                                                        const activeClass = "px-3 py-1 mb-2 mr-1 border border-indigo-400 text-indigo-600";
+                                                        const normalClass = "px-3 py-1 mb-2 mr-1 border hover:border-indigo-400 hover:text-indigo-600";
+                                                        return (
+                                                            <button
+                                                                key={index}
+                                                                className={color === obj ? activeClass : normalClass}
+                                                                onClick={() => setColor(obj)}
+                                                            >
+                                                                {obj}
+                                                            </button>
+                                                        )
+                                                    })
+                                                )
+                                        }
                                     </div>
                                 </div>
                                 <div className="flex items-center mb-8">
                                     <h2 className="mr-6 text-xl font-bold dark:text-gray-400">
                                         Kích cỡ:</h2>
                                     <div className="flex flex-wrap -mx-2 -mb-2">
-                                        <button className="py-1 mb-2 mr-1 border w-11 hover:border-blue-400 dark:border-gray-400 hover:text-blue-600 dark:hover:border-gray-300 dark:text-gray-400">XL
-                                        </button>
-                                        <button className="py-1 mb-2 mr-1 border w-11 hover:border-blue-400 hover:text-blue-600 dark:border-gray-400 dark:hover:border-gray-300 dark:text-gray-400">S
-                                        </button>
-                                        <button className="py-1 mb-2 mr-1 border w-11 hover:border-blue-400 hover:text-blue-600 dark:border-gray-400 dark:hover:border-gray-300 dark:text-gray-400">M
-                                        </button>
-                                        <button className="py-1 mb-2 mr-1 border w-11 hover:border-blue-400 hover:text-blue-600 dark:border-gray-400 dark:hover:border-gray-300 dark:text-gray-400">XS
-                                        </button>
+                                        {
+                                            (!currProduct.sizes || currProduct.sizes.length <= 0)
+                                                ? (
+                                                    <button className="px-3 py-1 mb-2 mr-1 border border-indigo-400 text-indigo-600">
+                                                        Tự do
+                                                    </button>
+                                                )
+                                                : (
+                                                    currProduct.sizes.map((obj, index) => {
+                                                        const activeClass = "px-3 py-1 mb-2 mr-1 border border-indigo-400 text-indigo-600";
+                                                        const normalClass = "px-3 py-1 mb-2 mr-1 border hover:border-indigo-400 hover:text-indigo-600";
+                                                        return (
+                                                            <button
+                                                                key={index}
+                                                                className={size === obj ? activeClass : normalClass}
+                                                                onClick={() => setSize(obj)}
+                                                            >
+                                                                {obj}
+                                                            </button>
+                                                        )
+                                                    })
+                                                )
+                                        }
                                     </div>
                                 </div>
                                 <div className="mb-8 flex items-center gap-3">
