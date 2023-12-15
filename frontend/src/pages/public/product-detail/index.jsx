@@ -12,6 +12,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ReactStars from "react-rating-stars-component";
 import { useAuth } from "hooks/use-auth";
+import CommentSection from "./comment";
 
 export default function ProductDetailPage() {
 
@@ -318,6 +319,9 @@ export default function ProductDetailPage() {
                             </Carousel>
                         </div>
                     </div>
+                </div>
+                <div className="mx-auto max-w-screen-xl px-4 py-4 mx-auto lg:py-8 md:px-6">
+                    <CommentSection />
                 </div>
             </section>
         </PageLayout >

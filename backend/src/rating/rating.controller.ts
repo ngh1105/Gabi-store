@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, InternalServerErrorE
 import { RatingService } from './rating.service';
 import { CreateRatingDto } from './dto/create-rating.dto';
 import { UpdateRatingDto } from './dto/update-rating.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { GuestGuard } from 'src/auth/auth.guard';
 import { RatingDto } from './dto/rating.dto';
 
@@ -21,6 +21,7 @@ export class RatingController {
         }
     }
 
+    @ApiSecurity('private-key')
     @UseGuards(GuestGuard)
     @Post("add-score")
     addScore(@Body() ratingDto: CreateRatingDto) {

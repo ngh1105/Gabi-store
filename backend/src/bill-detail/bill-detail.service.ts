@@ -65,4 +65,19 @@ export class BillDetailService {
 
         return data.map(obj => new BillDetailDto(obj));
     }
+
+    async isBought(idUser: number, idProduct: number) {
+        const record = await this.billDetailRepository.findOne<BillDetail>({
+            where: {
+                userId: idUser,
+                productId: idProduct,
+            },
+        });
+
+        if (record) {
+            return true;
+        }
+
+        return false;
+    }
 }

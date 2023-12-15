@@ -40,6 +40,10 @@ export class ProductService {
         return new ProductDto(retData);
     }
 
+    async isBought(idUser: number, idProduct: number) {
+
+    }
+
     async findAll() {
         const data = await this.productRepository.findAll<Product>({
             order: [

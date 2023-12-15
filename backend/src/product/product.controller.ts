@@ -6,7 +6,7 @@ import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ApiSecurity, ApiTags } from '@nestjs/swagger';
-import { AdminGuard } from 'src/auth/auth.guard';
+import { AdminGuard, GuestGuard } from 'src/auth/auth.guard';
 import { Request } from 'express';
 
 @ApiTags('product')
@@ -36,7 +36,19 @@ export class ProductController {
         }
     }
 
-    @Get("/find-paginate")
+    @ApiSecurity('private-key')
+    @UseGuards(GuestGuard)
+    @Get('is-bought/:idUser/:idProduct')
+    isBought(@Param('idUser') idUser: string, @Param('idProduct') idProduct: string) {
+        try {
+            return this.productService.isBought(+idUser, +idProduct);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
+
+    @Get("find-paginate")
     async findPaginate(@Query('limit') limit: number, @Query('page') page: number) {
         try {
             limit = limit ? Number(limit) : 10; // Default limit is 10
