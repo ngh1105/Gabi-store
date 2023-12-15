@@ -31,7 +31,7 @@ export class Product extends Model {
 
     @Column({
         type: DataType.INTEGER,
-        allowNull: false,
+        defaultValue: 0,
     })
     viewCount: number;
 

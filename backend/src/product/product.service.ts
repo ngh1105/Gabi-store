@@ -29,6 +29,9 @@ export class ProductService {
             price: data.price,
             description: data.description,
             categoryId: data.categoryId,
+            brandId: data.brandId,
+            colors: data.colors,
+            sizes: data.sizes,
         });
 
         const retData = await record.save();
@@ -103,7 +106,7 @@ export class ProductService {
             order: [['createdAt', 'DESC']],
             limit: limit
         });
-    
+
         return products.map(obj => new ProductDto(obj));
     }
 
@@ -140,6 +143,9 @@ export class ProductService {
         record.price = data.price;
         record.description = data.description;
         record.categoryId = data.categoryId;
+        record.brandId = data.brandId;
+        record.colors = data.colors;
+        record.sizes = data.sizes;
 
         const retData = await record.save();
         return new ProductDto(retData);
