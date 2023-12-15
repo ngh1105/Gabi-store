@@ -27,7 +27,11 @@ export default function ProductItem({ product, isNew }) {
             amount: 1,
         }));
 
-        toast.success("Đã thêm vào giỏ hàng");
+        toast.success("Đã thêm vào giỏ hàng", {
+            position: "bottom-right",
+            autoClose: 1000,
+            hideProgressBar: true,
+        });
     }
 
     return (
