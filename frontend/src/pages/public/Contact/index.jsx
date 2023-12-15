@@ -45,7 +45,7 @@ export default function ContactPage() {
                     <div className="py-12 md:px-12">
                         <div className="container w- mx-auto xl:px-32">
                             <div className="grid items-center lg:grid-cols-2">
-                                <div className>
+                                <div className="">
                                     <div className="pr-10">
                                         <h2 className="mb-7 text-3xl font-bold">Liên hệ với chúng tôi</h2>
                                         <form action="https://formbold.com/s/FORM_ID" method="POST">
