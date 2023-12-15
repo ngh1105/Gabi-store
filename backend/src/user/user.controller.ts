@@ -1,5 +1,7 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, 
-    BadRequestException, Req, UseGuards, InternalServerErrorException } from '@nestjs/common';
+import {
+    Controller, Get, Post, Body, Patch, Param, Delete,
+    BadRequestException, Req, UseGuards, InternalServerErrorException
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -30,6 +32,16 @@ export class UserController {
     findAll() {
         try {
             return this.userService.findAll();
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
+
+    @Get("/count-total")
+    countAll() {
+        try {
+            return this.userService.count();
         }
         catch (err) {
             throw new InternalServerErrorException();
@@ -80,12 +92,12 @@ export class UserController {
             if (!request.files) {
                 throw new BadRequestException("Invalid file");
             }
-    
+
             const image = request.files["image"];
             if (!image) {
                 throw new BadRequestException("Invalid image");
             }
-    
+
             return this.userService.updateAvatar(+id, image);
         }
         catch (err) {

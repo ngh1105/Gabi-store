@@ -1,5 +1,7 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, 
-    BadRequestException, Req, UseGuards, InternalServerErrorException, Query } from '@nestjs/common';
+import {
+    Controller, Get, Post, Body, Patch, Param, Delete,
+    BadRequestException, Req, UseGuards, InternalServerErrorException, Query
+} from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
@@ -36,23 +38,33 @@ export class CategoryController {
         }
     }
 
-    @Get("/find-paginate")
+    @Get("find-paginate")
     async findPaginate(@Query('limit') limit: number, @Query('page') page: number) {
         try {
             limit = limit ? Number(limit) : 10; // Default limit is 10
             page = page ? Number(page) : 1; // Default page is 1
-    
+
             const offset = (page - 1) * limit;
-    
+
             const totalItems = await this.categoryService.count();
             const totalPages = Math.ceil(totalItems / limit);
-    
+
             const data = await this.categoryService.findPaginate(limit, offset);
-    
+
             return {
                 data: data,
                 totalPages: totalPages,
             };
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
+
+    @Get("count-total")
+    countAll() {
+        try {
+            return this.categoryService.count();
         }
         catch (err) {
             throw new InternalServerErrorException();
@@ -113,12 +125,12 @@ export class CategoryController {
             if (!request.files) {
                 throw new BadRequestException("Invalid file");
             }
-    
+
             const image = request.files["image"];
             if (!image) {
                 throw new BadRequestException("Invalid image");
             }
-    
+
             return this.categoryService.updateImage(+id, image);
         }
         catch (err) {

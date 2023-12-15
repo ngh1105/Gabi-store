@@ -81,6 +81,16 @@ export class ProductController {
         }
     }
 
+    @Get("/count-total")
+    countAll() {
+        try {
+            return this.productService.count();
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
+
     @Get(':id')
     findOne(@Param('id') id: string) {
         try {

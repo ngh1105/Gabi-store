@@ -96,7 +96,7 @@ export class UserService {
 
     async remove(id: number, user: any) {
         if (id == user.userId) {
-            throw new BadRequestException("You cannot delete yourself");   
+            throw new BadRequestException("You cannot delete yourself");
         }
 
         const record = await this.userRepository.findOne<User>({
@@ -162,5 +162,9 @@ export class UserService {
         });
 
         return !!record;
+    }
+
+    async count() {
+        return await this.userRepository.count();
     }
 }

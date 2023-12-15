@@ -6,6 +6,7 @@ import { UserService } from 'src/user/user.service';
 import { BillDto } from './dto/bill.dto';
 import { BillDetailService } from 'src/bill-detail/bill-detail.service';
 import { CreateBillDetailDto } from 'src/bill-detail/dto/create-bill-detail.dto';
+import { Op, fn, col, literal } from 'sequelize';
 
 @Injectable()
 export class BillService {
@@ -66,7 +67,7 @@ export class BillService {
 
     async findOneByUser(idUser: number, idBill: number) {
         const record = await this.billRepository.findOne<Bill>({
-            where: { 
+            where: {
                 id: idBill,
                 userId: idUser,
             },
@@ -96,5 +97,26 @@ export class BillService {
         });
 
         return data.map(obj => new BillDto(obj));
+    }
+
+    async findRevenue(months: number) {
+        const date = new Date();
+        date.setMonth(date.getMonth() - months);
+
+        const revenue = await this.billRepository.findAll({
+            attributes: [
+                [fn('date_format', col('createdAt'), '%m/%Y'), 'date'],
+                [fn('sum', col('totalPrice')), 'revenue']
+            ],
+            where: {
+                createdAt: {
+                    [Op.gte]: date
+                }
+            },
+            group: [fn('MONTH', col('createdAt')), fn('YEAR', col('createdAt'))],
+            raw: true,
+        });
+
+        return revenue;
     }
 }

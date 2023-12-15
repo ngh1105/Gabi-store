@@ -50,13 +50,13 @@ export class BillDetail extends Model {
 
     @Column({
         type: DataType.STRING,
-        allowNull: false,
+        defaultValue: "",
     })
     color: string;
 
     @Column({
         type: DataType.STRING,
-        allowNull: false,
+        defaultValue: "",
     })
     size: string;
 }
