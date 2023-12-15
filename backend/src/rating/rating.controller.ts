@@ -1,36 +1,44 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, InternalServerErrorException, UseGuards } from '@nestjs/common';
 import { RatingService } from './rating.service';
 import { CreateRatingDto } from './dto/create-rating.dto';
 import { UpdateRatingDto } from './dto/update-rating.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { GuestGuard } from 'src/auth/auth.guard';
+import { RatingDto } from './dto/rating.dto';
 
 @ApiTags('rating')
 @Controller('rating')
 export class RatingController {
-  constructor(private readonly ratingService: RatingService) { }
+    constructor(private readonly ratingService: RatingService) { }
 
-  @Post()
-  create(@Body() createRatingDto: CreateRatingDto) {
-    return this.ratingService.create(createRatingDto);
-  }
+    @Get('count-rating/:idProduct')
+    countRating(@Param('idProduct') idProduct: string) {
+        try {
+            return this.ratingService.countRating(+idProduct);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
 
-  @Get()
-  findAll() {
-    return this.ratingService.findAll();
-  }
+    @UseGuards(GuestGuard)
+    @Post("add-score")
+    addScore(@Body() ratingDto: CreateRatingDto) {
+        try {
+            return this.ratingService.addScore(ratingDto);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.ratingService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateRatingDto: UpdateRatingDto) {
-    return this.ratingService.update(+id, updateRatingDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.ratingService.remove(+id);
-  }
+    @Get('get-score/:idProduct')
+    getScore(@Param('idProduct') idProduct: string) {
+        try {
+            return this.ratingService.getScore(+idProduct);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
 }

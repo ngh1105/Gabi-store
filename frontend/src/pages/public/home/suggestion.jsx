@@ -75,7 +75,7 @@ export default function SuggestionSection() {
                     {/* Love */}
                     <div className="mt-20">
                         <h2 className="pb-4 font-bold text-center text-gray-800 text-[24px] dark:text-gray-400 uppercase">
-                            Sản phẩm yêu thích
+                            Sản phẩm được đánh giá cao
                         </h2>
                         <div className="mx-auto border-b border-red-700 w-44 dark:border-gray-400" />
 
@@ -102,7 +102,7 @@ export default function SuggestionSection() {
 
                     <div className="mt-20">
                         <h2 className="pb-4 font-bold text-center text-gray-800 text-[24px] dark:text-gray-400 uppercase">
-                            Sản phẩm được quan tâm
+                            Sản phẩm có nhiều lượt xem
                         </h2>
                         <div className="mx-auto border-b border-red-700 w-44 dark:border-gray-400" />
 
