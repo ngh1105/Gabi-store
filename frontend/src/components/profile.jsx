@@ -35,10 +35,10 @@ export default function Profile() {
                             </Dropdown.Item>
                         </>
                     )
-                    : null
+                        : null
                 }
                 <Dropdown.Item>Hồ sơ của tôi</Dropdown.Item>
-                <Dropdown.Item>Đơn hàng</Dropdown.Item>
+                <Dropdown.Item><Link to="/bill" >Đơn hàng</Link></Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item onClick={() => handleLogout()}>Đăng xuất</Dropdown.Item>
             </Dropdown>

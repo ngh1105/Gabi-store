@@ -1,4 +1,5 @@
 import Api from "app/api";
+import { API_URL } from "app/config";
 import PageLayout from "components/page-layout";
 import { useEffect, useState } from "react";
 import utils from "utils";
@@ -109,7 +110,7 @@ export default function OverviewPage() {
                                     return (
                                         <div key={index} className="flex justify-between mb-4">
                                             <div className="flex gap-2">
-                                                <img src="https://i.postimg.cc/x8LtrkfV/kenny-eliason-HIz-Gn9-FZDFU-unsplash.jpg" alt className="object-cover w-14 h-14" />
+                                                <img src={`${API_URL}${obj.imageUrl}`} alt="" className="object-cover w-14 h-14" />
                                                 <div className>
                                                     <h2 className="py-1 text-lg font-medium">
                                                         {obj.name}

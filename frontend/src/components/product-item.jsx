@@ -5,6 +5,7 @@ import { addToCart } from "redux/cart.slice";
 import utils from "utils";
 import { toast } from "react-toastify";
 import { useAuth } from "hooks/use-auth";
+import { Tooltip } from 'flowbite-react';
 
 export default function ProductItem({ product, isNew }) {
 
@@ -57,31 +58,29 @@ export default function ProductItem({ product, isNew }) {
                 }
             </div>
             <div className="p-5 bg-gray-50 dark:bg-gray-900">
-                <div className="flex items-center justify-between mb-4 min-h-[3rem]">
-                    <h3 className="w-full text-xl font-medium dark:text-gray-400">
+                <div className="flex items-center justify-between mb-2 min-h-[3rem]">
+                    <h3 className="w-full text-xl font-medium dark:text-gray-400 text-ellipsis line-clamp-2">
                         {product.name}
                     </h3>
                 </div>
-                <div className="mb-4 ">
-                    <p className="text-lg flex justify-between">
-                        <span className="text-red-400 dark:text-gray-400">
-                            {utils.formatVND(product.price)}
-                        </span>
-                        <span className="ml-2 text-gray-400  dark:text-gray-400">
-                            <a href="#">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width={16}
-                                    height={16}
-                                    fill="currentColor"
-                                    className="text-red-500 dark:text-gray-400 bi bi-heart"
-                                    viewBox="0 0 16 16"
-                                >
-                                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                </svg>
-                            </a>
-                        </span>
-                    </p>
+                <div className="mb-4 text-lg flex justify-between items-center">
+                    <span className="text-red-400 dark:text-gray-400">
+                        {utils.formatVND(product.price)}
+                    </span>
+                    <span className="ml-2 text-gray-400 dark:text-gray-400">
+                        <a href="#">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width={16}
+                                height={16}
+                                fill="currentColor"
+                                className="text-red-500 dark:text-gray-400 bi bi-heart"
+                                viewBox="0 0 16 16"
+                            >
+                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                            </svg>
+                        </a>
+                    </span>
                 </div>
 
                 <button

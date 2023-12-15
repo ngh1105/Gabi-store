@@ -5,6 +5,7 @@ import ContactPage from "pages/public/contact";
 import AboutPage from "pages/public/about";
 import CartPage from "pages/public/cart";
 import CheckoutPage from "pages/public/checkout";
+import BillPage from "pages/public/bill";
 import BillDetailPage from "pages/public/bill-detail"
 
 import Blog from "pages/public/Blog";
@@ -20,7 +21,6 @@ import Policy from "pages/public/Policy";
 import Rules from "pages/public/Rules";
 import Information from "pages/public/Information";
 import ProductDetailPage from "pages/public/product-detail";
-
 
 export const publicRoutes = {
     path: '/',
@@ -39,6 +39,7 @@ export const publicRoutes = {
         { path: '/cart', element: <CartPage /> },
         { path: '/checkout', element: <CheckoutPage /> },
 
+        { path: '/bill', element: <BillPage /> },
         { path: '/bill-detail/:id', element: <BillDetailPage /> },
 
         { path: '/rules', element: <Rules /> },
