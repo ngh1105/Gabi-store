@@ -35,6 +35,11 @@ export class ProductDto {
     categoryId: number;
 
     @ApiProperty()
+    @IsNotEmpty()
+    @IsNumber()
+    brandId: number;
+
+    @ApiProperty()
     @IsOptional()
     createdAt?: string = "";
 
@@ -50,6 +55,7 @@ export class ProductDto {
         this.viewCount = data.viewCount;
         this.description = data.description;
         this.categoryId = data.categoryId;
+        this.brandId = data.brandId;
         this.createdAt = data.createdAt;
         this.updatedAt = data.updatedAt;
     }

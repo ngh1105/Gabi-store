@@ -42,12 +42,6 @@ export class Product extends Model {
     description: string;
 
     @Column({
-        type: DataType.INTEGER,
-        allowNull: false,
-    })
-    categoryId: number;
-
-    @Column({
         type: DataType.STRING,
         get: function () {
             return JSON.parse(this.getDataValue('colors'));
@@ -68,4 +62,16 @@ export class Product extends Model {
         }
     })
     sizes: string[];
+
+    @Column({
+        type: DataType.INTEGER,
+        allowNull: false,
+    })
+    categoryId: number;
+
+    @Column({
+        type: DataType.INTEGER,
+        defaultValue: 0,
+    })
+    brandId: number;
 }

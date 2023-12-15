@@ -9,7 +9,7 @@ import BillDetailPage from "pages/public/bill-detail"
 
 import Blog from "pages/public/Blog";
 import BlogDetail from "pages/public/Blog/BlogDetail";
-import Story from "pages/public/Story";
+import Story from "pages/public/story";
 import StoryDetail from "pages/public/home/Story/StoryDetail";
 import PostItem from "pages/public/home/PostItem";
 import Catelog from "pages/public/home/Catelog"
