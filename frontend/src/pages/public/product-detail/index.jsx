@@ -76,6 +76,11 @@ export default function ProductDetailPage() {
     const handleIncreaseCount = () => setCount((c) => c + 1);
 
     const handleAddToCart = () => {
+        if (!isAuthenticated()) {
+            navigate("/auth/login");
+            return;
+        }
+
         dispatch(addToCart({
             idProduct: currProduct.id,
             name: currProduct.name,
@@ -141,6 +146,24 @@ export default function ProductDetailPage() {
             });
         }
     };
+
+    const handleAddToWishlist = async () => {
+        if (!isAuthenticated()) {
+            navigate("/auth/login");
+            return;
+        }
+
+        await Api.Post(`/wishlist/like`, {
+            productId: currProduct.id,
+            userId: user.userId
+        });
+
+        toast.success("Đã thêm vào yêu thích", {
+            position: "bottom-right",
+            autoClose: 1000,
+            hideProgressBar: true,
+        });
+    }
 
     return (
         <PageLayout title="Sản phẩm chi tiết">
@@ -270,7 +293,9 @@ export default function ProductDetailPage() {
                                         </button>
                                     </div>
                                     <div className="w-full px-4 mb-4 lg:mb-0 lg:w-1/2">
-                                        <button className="flex items-center justify-center w-full p-4 text-indigo-500 border border-indigo-500 rounded-md hover:bg-indigo-600 hover:border-indigo-600 hover:text-gray-100">
+                                        <button
+                                            onClick={handleAddToWishlist}
+                                            className="flex items-center justify-center w-full p-4 text-indigo-500 border border-indigo-500 rounded-md hover:bg-indigo-600 hover:border-indigo-600 hover:text-gray-100">
                                             Thêm vào yêu thích
                                         </button>
                                     </div>
