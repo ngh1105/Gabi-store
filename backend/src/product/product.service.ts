@@ -41,7 +41,7 @@ export class ProductService {
     }
 
     async isBought(idUser: number, idProduct: number) {
-
+        return await this.billDetailService.isBought(idUser, idProduct);
     }
 
     async findAll() {
