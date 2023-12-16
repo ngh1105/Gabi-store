@@ -26,6 +26,8 @@ export default function ProductItem({ product, isNew }) {
             imageUrl: obj.imageUrl,
             price: obj.price,
             amount: 1,
+            color: "Tự do",
+            size: "Tự do",
         }));
 
         toast.success("Đã thêm vào giỏ hàng", {

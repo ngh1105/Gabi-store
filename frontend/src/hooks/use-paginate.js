@@ -95,5 +95,10 @@ export const usePaginate = (itemPerPage) => {
         );
     }
 
-    return { items, setItems, totalItems, onSortItems, setTotalPages, onSearchItems, Pagination };
+    return {
+        items, setItems,
+        totalItems, onSortItems,
+        setTotalPages, onSearchItems,
+        setCurrentPage, Pagination
+    };
 }

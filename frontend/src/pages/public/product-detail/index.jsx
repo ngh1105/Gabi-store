@@ -61,7 +61,7 @@ export default function ProductDetailPage() {
 
             if (user) {
                 res = await Api.Get(`/product/is-bought/${user.userId}/${id}`);
-                console.log(res.response);
+                //console.log(res.response);
                 setIsBought(res.response);
             }
         })();
@@ -113,7 +113,7 @@ export default function ProductDetailPage() {
         catch (err) {
             console.log(err);
         }
-    }, []);
+    }, [id]);
 
     const handleRatingChange = async (newRating) => {
         //console.log(newRating);
@@ -317,7 +317,11 @@ export default function ProductDetailPage() {
                                 {
                                     relatedProducts.map((obj, index) => {
                                         return (
-                                            <ProductItem key={index} product={obj} />
+                                            <div className="" onClick={() => {
+                                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                                            }}>
+                                                <ProductItem key={index} product={obj} />
+                                            </div>
                                         )
                                     })
                                 }

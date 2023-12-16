@@ -1,4 +1,4 @@
-import { Injectable, Inject, HttpStatus, HttpException, BadRequestException } from '@nestjs/common';
+import { Injectable, Inject, HttpStatus, HttpException, BadRequestException, NotFoundException } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Product } from './entities/product.entity';
@@ -23,7 +23,7 @@ export class ProductService {
     async create(data: CreateProductDto) {
         const isExists = await this.categoryService.isExists(data.categoryId);
         if (!isExists) {
-            throw new HttpException('Category is not exist', HttpStatus.NOT_FOUND);
+            throw new NotFoundException('Category is not exist');
         }
 
         const record = await this.productRepository.create({

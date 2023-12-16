@@ -23,10 +23,11 @@ export class AuthService {
             throw new UnauthorizedException('Password is not correct');
         }
 
-        const payload = { 
-            userId: user.id, 
+        const payload = {
+            userId: user.id,
             email: user.email,
             role: user.role,
+            avatarUrl: user.avatarUrl,
         };
 
         const accessToken = await this.jwtService.signAsync(payload, { expiresIn: ACCESS_KEY_EXPIRATION, });
@@ -69,8 +70,9 @@ export class AuthService {
                 userId: tokenData.userId,
                 email: tokenData.email,
                 role: tokenData.role,
+                avatarUrl: tokenData.avatarUrl,
             };
-           
+
             const accessToken = await this.jwtService.signAsync(payload, { expiresIn: ACCESS_KEY_EXPIRATION, });
 
             return {
