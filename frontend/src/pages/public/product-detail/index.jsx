@@ -252,7 +252,7 @@ export default function ProductDetailPage() {
                                         >
                                             -
                                         </button>
-                                        <span className="text-center w-3">1</span>
+                                        <span className="text-center w-3">{count}</span>
                                         <button
                                             className="border rounded-md px-2 ml-2"
                                             onClick={() => handleIncreaseCount(currProduct)}

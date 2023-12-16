@@ -6,10 +6,12 @@ import utils from "utils";
 import { toast } from "react-toastify";
 import { useAuth } from "hooks/use-auth";
 import { Tooltip } from 'flowbite-react';
+import { useEffect, useState } from "react";
+import Api from "app/api";
 
 export default function ProductItem({ product, isNew }) {
 
-    const { isAuthenticated } = useAuth();
+    const { user, isAuthenticated } = useAuth();
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -36,6 +38,21 @@ export default function ProductItem({ product, isNew }) {
             hideProgressBar: true,
         });
     }
+
+    const [isLiked, setIsLiked] = useState(false);
+
+    useEffect(() => {
+        (async () => {
+            const res = await Api.Get(`/wishlist/is-liked/${user.userId}/${product.id}`);
+
+            if (!res.isSuccess) {
+                return;
+            }
+
+            setIsLiked(res.response);
+        })();
+
+    }, []);
 
     return (
         <div className="border border-gray-200 rounded-md dark:border-gray-800 shadow p-2">
@@ -72,18 +89,36 @@ export default function ProductItem({ product, isNew }) {
                         {utils.formatVND(product.price)}
                     </span>
                     <span className="ml-2 text-gray-400 dark:text-gray-400">
-                        <a href="#">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width={16}
-                                height={16}
-                                fill="currentColor"
-                                className="text-red-500 dark:text-gray-400 bi bi-heart"
-                                viewBox="0 0 16 16"
-                            >
-                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                            </svg>
-                        </a>
+                        {
+                            isLiked ? (
+                                <div className="">
+                                    <svg
+                                        width={16}
+                                        height={16}
+                                        className="text-red-500 dark:text-gray-400 bi bi-heart"
+                                        aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 18">
+                                        <path d="M17.947 2.053a5.209 5.209 0 0 0-3.793-1.53A6.414 6.414 0 0 0 10 2.311 6.482 6.482 0 0 0 5.824.5a5.2 5.2 0 0 0-3.8 1.521c-1.915 1.916-2.315 5.392.625 8.333l7 7a.5.5 0 0 0 .708 0l7-7a6.6 6.6 0 0 0 2.123-4.508 5.179 5.179 0 0 0-1.533-3.793Z" />
+                                    </svg>
+                                </div>
+                            )
+                                : (
+                                    <div>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width={16}
+                                            height={16}
+                                            fill="currentColor"
+                                            className="text-red-500 dark:text-gray-400 bi bi-heart"
+                                            viewBox="0 0 16 16"
+                                        >
+                                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                        </svg>
+                                    </div>
+                                )
+                        }
                     </span>
                 </div>
 

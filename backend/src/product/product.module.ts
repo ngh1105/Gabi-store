@@ -19,5 +19,6 @@ import { RatingModule } from 'src/rating/rating.module';
         ProductService,
         ...productProviders,
     ],
+    exports: [ProductService],
 })
 export class ProductModule { }
