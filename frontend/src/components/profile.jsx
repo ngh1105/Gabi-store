@@ -1,6 +1,7 @@
 import { useAuth } from "hooks/use-auth";
 import { Avatar, Dropdown } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
+import { API_URL } from "app/config";
 
 export default function Profile() {
 
@@ -19,7 +20,7 @@ export default function Profile() {
             className="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
         >
             <Dropdown
-                label={<Avatar alt="User settings" size="sm" img="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png" rounded />}
+                label={<Avatar alt="User settings" size="sm" img={`${API_URL}${(user.avatarUrl && user.avatarUrl !== "") ? user.avatarUrl : "/upload/user/default-avatar.png"}`} rounded />}
                 arrowIcon={false}
                 inline
             >

@@ -4,6 +4,7 @@ import { UpdateBillDetailDto } from './dto/update-bill-detail.dto';
 import { BillDetail } from './entities/bill-detail.entity';
 import { BillDetailDto } from './dto/bill-detail.dto';
 import { Sequelize } from 'sequelize-typescript';
+import { Bill } from 'src/bill/entities/bill.entity';
 
 @Injectable()
 export class BillDetailService {
@@ -67,11 +68,13 @@ export class BillDetailService {
     }
 
     async isBought(idUser: number, idProduct: number) {
-        const record = await this.billDetailRepository.findOne<BillDetail>({
-            where: {
-                userId: idUser,
-                productId: idProduct,
-            },
+        const record = await this.billDetailRepository.findOne({
+            include: [{
+                model: Bill,
+                where: { userId: idUser },
+                attributes: []
+            }],
+            where: { productId: idProduct },
         });
 
         if (record) {

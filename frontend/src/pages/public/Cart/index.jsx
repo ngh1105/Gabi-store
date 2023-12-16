@@ -1,14 +1,26 @@
 import { API_URL } from "app/config";
 import PageLayout from "components/page-layout";
 import PageTitle from "components/page-title";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { decreaseAmountInCart, increaseAmountInCart, removeFromCart } from "redux/cart.slice";
 import utils from "utils";
 import EmptyCart from "./empty-cart";
+import { usePaginate } from "hooks/use-paginate";
+import { useAuth } from "hooks/use-auth";
 
 export default function CartPage() {
+
+    const navigate = useNavigate();
+    const { user } = useAuth();
+
+    useEffect(() => {
+        if (!user) {
+            navigate("/auth/login");
+        }
+    }, [user]);
+
     const cart = useSelector(state => state.cart.cart);
     const dispatch = useDispatch();
 
@@ -38,11 +50,23 @@ export default function CartPage() {
         return cart.reduce((acc, cartItem) => acc + cartItem.amount * cartItem.price, 0)
     }, [cart]);
 
-    const navigate = useNavigate();
-
     const handleCheckoutButton = () => {
         navigate("/checkout");
     }
+
+    const ITEMS_PER_PAGE = 4;
+    const {
+        items, setItems, totalItems,
+        onSortItems, setTotalPages,
+        onSearchItems, Pagination,
+    } = usePaginate(ITEMS_PER_PAGE);
+
+    useEffect(() => {
+        if (cart && cart.length > 0) {
+            setTotalPages(Math.ceil(cart.length / ITEMS_PER_PAGE));
+            setItems(cart);
+        }
+    }, [cart])
 
     return (
         <PageLayout title="Giỏ hàng">
@@ -65,7 +89,7 @@ export default function CartPage() {
                                 </thead>
                                 <tbody>
                                     {
-                                        cart.map((obj, index) => {
+                                        cart.length > 0 && items.map((obj, index) => {
                                             return (
                                                 <tr key={index}>
                                                     <td className="py-4 w-80">
@@ -125,6 +149,9 @@ export default function CartPage() {
                             </table>
                         </div>
                         {cart.length <= 0 ? <EmptyCart /> : null}
+                        <div className="flex justify-center mt-6">
+                            <Pagination />
+                        </div>
                     </div>
                     <div className="lg:w-1/4">
                         <div className="bg-white rounded-lg shadow-md p-6">
@@ -145,7 +172,7 @@ export default function CartPage() {
                             <button
                                 disabled={cart.length === 0}
                                 onClick={handleCheckoutButton}
-                                className="bg-indigo-700 text-white py-2 px-4 rounded-lg mt-4 w-full">
+                                className="bg-indigo-700 text-white py-2 px-4 rounded-lg mt-4 w-full hover:opacity-[0.9]">
                                 Thanh toán
                             </button>
                         </div>

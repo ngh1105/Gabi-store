@@ -57,6 +57,10 @@ export class RatingService {
             raw: true,
         }) as any[];
 
+        if (!ratings || ratings.length <= 0) {
+            return 0;
+        }
+
         return ratings[0].averageScore;
     }
 

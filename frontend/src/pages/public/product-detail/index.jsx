@@ -32,10 +32,11 @@ export default function ProductDetailPage() {
     });
 
     const [relatedProducts, setRelatedProducts] = useState([]);
+    const [isBought, setIsBought] = useState(false);
 
     useEffect(() => {
         (async () => {
-            const res = await Api.Get(`/product/${id}`);
+            let res = await Api.Get(`/product/${id}`);
 
             if (!res.isSuccess) {
                 toast.error("Có lỗi khi xem trang");
@@ -55,8 +56,14 @@ export default function ProductDetailPage() {
                 sizes: res.response.sizes,
             });
 
-            const res2 = await Api.Get(`/product/find-related/${id}`);
-            setRelatedProducts(res2.response);
+            res = await Api.Get(`/product/find-related/${id}`);
+            setRelatedProducts(res.response);
+
+            if (user) {
+                res = await Api.Get(`/product/is-bought/${user.userId}/${id}`);
+                //console.log(res.response);
+                setIsBought(res.response);
+            }
         })();
 
     }, [id]);
@@ -69,6 +76,11 @@ export default function ProductDetailPage() {
     const handleIncreaseCount = () => setCount((c) => c + 1);
 
     const handleAddToCart = () => {
+        if (!isAuthenticated()) {
+            navigate("/auth/login");
+            return;
+        }
+
         dispatch(addToCart({
             idProduct: currProduct.id,
             name: currProduct.name,
@@ -94,7 +106,7 @@ export default function ProductDetailPage() {
         setRatingCount(res.response);
 
         res = await Api.Get(`/rating/get-score/${id}`);
-        setRatingScore(res.response);
+        setRatingScore(parseInt(res.response));
     }
 
     useEffect(() => {
@@ -106,14 +118,10 @@ export default function ProductDetailPage() {
         catch (err) {
             console.log(err);
         }
-    }, []);
+    }, [id]);
 
     const handleRatingChange = async (newRating) => {
         //console.log(newRating);
-
-        if (!isAuthenticated()) {
-            return;
-        }
 
         try {
             await Api.Post(`/rating/add-score`, {
@@ -139,6 +147,24 @@ export default function ProductDetailPage() {
         }
     };
 
+    const handleAddToWishlist = async () => {
+        if (!isAuthenticated()) {
+            navigate("/auth/login");
+            return;
+        }
+
+        await Api.Post(`/wishlist/like`, {
+            productId: currProduct.id,
+            userId: user.userId
+        });
+
+        toast.success("Đã thêm vào yêu thích", {
+            position: "bottom-right",
+            autoClose: 1000,
+            hideProgressBar: true,
+        });
+    }
+
     return (
         <PageLayout title="Sản phẩm chi tiết">
             <section className="overflow-hidden bg-white py-11 font-poppins dark:bg-gray-800">
@@ -163,14 +189,16 @@ export default function ProductDetailPage() {
                                         {currProduct.name}
                                     </h2>
                                     <div className="flex items-center mb-6 gap-2">
-                                        <ReactStars
-                                            key={`stars_${ratingScore}`}
-                                            count={5}
-                                            value={ratingScore}
-                                            onChange={handleRatingChange}
-                                            size={24}
-                                            activeColor="#ffd700"
-                                        />
+                                        <div className={(!user || !isBought) ? `pointer-events-none` : ""}>
+                                            <ReactStars
+                                                key={`stars_${ratingScore}`}
+                                                count={5}
+                                                value={ratingScore}
+                                                onChange={handleRatingChange}
+                                                size={24}
+                                                activeColor="#ffd700"
+                                            />
+                                        </div>
                                         <p className="text-sm dark:text-gray-400 ">({ratingCount} lượt đánh giá)</p>
                                     </div>
                                     <p className="max-w-md mb-8 text-gray-700 dark:text-gray-400">
@@ -247,7 +275,7 @@ export default function ProductDetailPage() {
                                         >
                                             -
                                         </button>
-                                        <span className="text-center w-3">1</span>
+                                        <span className="text-center w-3">{count}</span>
                                         <button
                                             className="border rounded-md px-2 ml-2"
                                             onClick={() => handleIncreaseCount(currProduct)}
@@ -265,7 +293,9 @@ export default function ProductDetailPage() {
                                         </button>
                                     </div>
                                     <div className="w-full px-4 mb-4 lg:mb-0 lg:w-1/2">
-                                        <button className="flex items-center justify-center w-full p-4 text-indigo-500 border border-indigo-500 rounded-md hover:bg-indigo-600 hover:border-indigo-600 hover:text-gray-100">
+                                        <button
+                                            onClick={handleAddToWishlist}
+                                            className="flex items-center justify-center w-full p-4 text-indigo-500 border border-indigo-500 rounded-md hover:bg-indigo-600 hover:border-indigo-600 hover:text-gray-100">
                                             Thêm vào yêu thích
                                         </button>
                                     </div>
@@ -276,10 +306,10 @@ export default function ProductDetailPage() {
                 </div>
                 <div className="mx-auto max-w-screen-xl px-4 py-4 mx-auto lg:py-8 md:px-6">
                     <div className="px-4">
-                        <h2 className="pb-2 mt-4 text-lg font-semibold text-gray-900 dark:text-gray-400 font-poppins">
+                        <h2 className="pb-2 mt-4 text-2xl font-bold text-gray-900 dark:text-gray-400 font-poppins">
                             Có thể bạn quan tâm
                         </h2>
-                        <div className="w-16 mb-3 border-b-2 border-blue-500 dark:border-gray-400 inset-px" />
+                        <div className="w-16 mb-3 border-b-2 border-indigo-500 dark:border-gray-400 inset-px" />
 
                         <div className="">
                             <Carousel
@@ -312,7 +342,11 @@ export default function ProductDetailPage() {
                                 {
                                     relatedProducts.map((obj, index) => {
                                         return (
-                                            <ProductItem key={index} product={obj} />
+                                            <div className="" onClick={() => {
+                                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                                            }}>
+                                                <ProductItem key={index} product={obj} />
+                                            </div>
                                         )
                                     })
                                 }
@@ -321,7 +355,7 @@ export default function ProductDetailPage() {
                     </div>
                 </div>
                 <div className="mx-auto max-w-screen-xl px-4 py-4 mx-auto lg:py-8 md:px-6">
-                    <CommentSection />
+                    <CommentSection id={id} isBought={isBought} />
                 </div>
             </section>
         </PageLayout >

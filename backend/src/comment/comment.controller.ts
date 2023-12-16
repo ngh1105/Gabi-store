@@ -1,36 +1,44 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, InternalServerErrorException, UseGuards } from '@nestjs/common';
 import { CommentService } from './comment.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { UpdateCommentDto } from './dto/update-comment.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiSecurity, ApiTags } from '@nestjs/swagger';
+import { GuestGuard } from 'src/auth/auth.guard';
 
 @ApiTags('comment')
 @Controller('comment')
 export class CommentController {
-  constructor(private readonly commentService: CommentService) {}
+    constructor(private readonly commentService: CommentService) { }
 
-  @Post()
-  create(@Body() createCommentDto: CreateCommentDto) {
-    return this.commentService.create(createCommentDto);
-  }
+    @Get('count-comment/:idProduct')
+    countComment(@Param('idProduct') idProduct: string) {
+        try {
+            return this.commentService.countCommentOfProduct(+idProduct);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
 
-  @Get()
-  findAll() {
-    return this.commentService.findAll();
-  }
+    @Get('find-related/:idProduct')
+    findRelated(@Param('idProduct') idProduct: string) {
+        try {
+            return this.commentService.findRelated(+idProduct);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.commentService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCommentDto: UpdateCommentDto) {
-    return this.commentService.update(+id, updateCommentDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.commentService.remove(+id);
-  }
+    @ApiSecurity('private-key')
+    @UseGuards(GuestGuard)
+    @Post()
+    create(@Body() data: CreateCommentDto) {
+        try {
+            return this.commentService.create(data);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
 }
