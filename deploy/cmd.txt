@@ -1,0 +1,1 @@
+pm2 start /root/gabi-store/dist/main.js --name gabi-store

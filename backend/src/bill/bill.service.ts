@@ -100,6 +100,12 @@ export class BillService {
     }
 
     async findRevenue(months: number) {
+
+        const count = await this.billRepository.count();
+        if (count <= 0) {
+            return [];
+        }
+
         const date = new Date();
         date.setMonth(date.getMonth() - months);
 
