@@ -1,12 +1,13 @@
 import { API_URL } from "app/config";
 import PageLayout from "components/page-layout";
 import PageTitle from "components/page-title";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { decreaseAmountInCart, increaseAmountInCart, removeFromCart } from "redux/cart.slice";
 import utils from "utils";
 import EmptyCart from "./empty-cart";
+import { usePaginate } from "hooks/use-paginate";
 
 export default function CartPage() {
     const cart = useSelector(state => state.cart.cart);
@@ -44,6 +45,20 @@ export default function CartPage() {
         navigate("/checkout");
     }
 
+    const ITEMS_PER_PAGE = 4;
+    const {
+        items, setItems, totalItems,
+        onSortItems, setTotalPages,
+        onSearchItems, Pagination,
+    } = usePaginate(ITEMS_PER_PAGE);
+
+    useEffect(() => {
+        if (cart && cart.length > 0) {
+            setTotalPages(Math.ceil(cart.length / ITEMS_PER_PAGE));
+            setItems(cart);
+        }
+    }, [cart])
+
     return (
         <PageLayout title="Giỏ hàng">
             <section className="mx-auto max-w-screen-xl py-10">
@@ -65,7 +80,7 @@ export default function CartPage() {
                                 </thead>
                                 <tbody>
                                     {
-                                        cart.map((obj, index) => {
+                                        items.map((obj, index) => {
                                             return (
                                                 <tr key={index}>
                                                     <td className="py-4 w-80">
@@ -125,6 +140,9 @@ export default function CartPage() {
                             </table>
                         </div>
                         {cart.length <= 0 ? <EmptyCart /> : null}
+                        <div className="flex justify-center mt-6">
+                            <Pagination />
+                        </div>
                     </div>
                     <div className="lg:w-1/4">
                         <div className="bg-white rounded-lg shadow-md p-6">

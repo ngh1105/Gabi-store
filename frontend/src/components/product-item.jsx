@@ -54,6 +54,32 @@ export default function ProductItem({ product, isNew }) {
 
     }, []);
 
+    const handleLiked = async () => {
+        if (!isAuthenticated()) {
+            return;
+        }
+
+        await Api.Post(`/wishlist/like`, {
+            productId: product.id,
+            userId: user.userId
+        });
+
+        setIsLiked(true);
+    }
+
+    const handleUnliked = async () => {
+        if (!isAuthenticated()) {
+            return;
+        }
+
+        await Api.Post(`/wishlist/unlike`, {
+            productId: product.id,
+            userId: user.userId
+        });
+
+        setIsLiked(false);
+    }
+
     return (
         <div className="border border-gray-200 rounded-md dark:border-gray-800 shadow p-2">
             <div className="relative bg-gray-200">
@@ -90,8 +116,8 @@ export default function ProductItem({ product, isNew }) {
                     </span>
                     <span className="ml-2 text-gray-400 dark:text-gray-400">
                         {
-                            isLiked ? (
-                                <div className="">
+                            (isLiked && user) ? (
+                                <div onClick={() => handleUnliked()} className="hover:cursor-pointer">
                                     <svg
                                         width={16}
                                         height={16}
@@ -105,7 +131,7 @@ export default function ProductItem({ product, isNew }) {
                                 </div>
                             )
                                 : (
-                                    <div>
+                                    <div onClick={() => handleLiked()} className="hover:cursor-pointer">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width={16}
