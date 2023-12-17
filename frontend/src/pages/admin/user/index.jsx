@@ -13,6 +13,10 @@ export default function UserPage() {
 
     async function fetchData() {
         const res = await Api.Get("/user");
+        if (!res.isSuccess) {
+            toast.error("Đã có lỗi xảy ra");
+            return;
+        }
 
         const newData = res.response.map((obj, index) => {
             return {

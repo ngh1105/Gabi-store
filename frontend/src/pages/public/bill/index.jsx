@@ -27,6 +27,11 @@ export default function BillPage() {
         try {
             (async () => {
                 const res = await Api.Get(`/bill/find-all/${user.userId}`);
+                if (!res.isSuccess) {
+                    toast.error("Đã có lỗi xảy ra");
+                    return;
+                }
+
                 setTotalPages(Math.ceil(res.response.length / ITEMS_PER_PAGE));
                 setItems(res.response);
             })();

@@ -57,10 +57,20 @@ export default function ProductDetailPage() {
             });
 
             res = await Api.Get(`/product/find-related/${id}`);
+            if (!res.isSuccess) {
+                toast.error("Đã có lỗi xảy ra");
+                return;
+            }
+
             setRelatedProducts(res.response);
 
             if (user) {
                 res = await Api.Get(`/product/is-bought/${user.userId}/${id}`);
+                if (!res.isSuccess) {
+                    toast.error("Đã có lỗi xảy ra");
+                    return;
+                }
+
                 //console.log(res.response);
                 setIsBought(res.response);
             }
@@ -103,9 +113,19 @@ export default function ProductDetailPage() {
 
     const fetchRatingData = async () => {
         let res = await Api.Get(`/rating/count-rating/${id}`);
+        if (!res.isSuccess) {
+            toast.error("Đã có lỗi xảy ra");
+            return;
+        }
+
         setRatingCount(res.response);
 
         res = await Api.Get(`/rating/get-score/${id}`);
+        if (!res.isSuccess) {
+            toast.error("Đã có lỗi xảy ra");
+            return;
+        }
+
         setRatingScore(parseInt(res.response));
     }
 

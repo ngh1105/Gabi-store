@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
+import toast from 'react-toastify';
 
 export default function CategorySection() {
 
@@ -13,6 +14,11 @@ export default function CategorySection() {
         try {
             (async () => {
                 const res = await Api.Get("/category/find-paginate");
+                if (!res.isSuccess) {
+                    toast.error("Đã có lỗi xảy ra");
+                    return;
+                }
+
                 setCategories(res.response.data);
             })();
         }

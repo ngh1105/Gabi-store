@@ -16,6 +16,10 @@ export default function AddPage({ fetchData }) {
         try {
             (async () => {
                 const res = await Api.Get("/category");
+                if (!res.isSuccess) {
+                    toast.error("Đã có lỗi xảy ra");
+                    return;
+                }
 
                 const newData = res.response.map((obj, index) => {
                     return {
@@ -29,6 +33,10 @@ export default function AddPage({ fetchData }) {
 
             (async () => {
                 const res = await Api.Get("/brand");
+                if (!res.isSuccess) {
+                    toast.error("Đã có lỗi xảy ra");
+                    return;
+                }
 
                 let newData = res.response.map((obj, index) => {
                     return {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import JsxParser from 'react-jsx-parser';
 
 function BlogDetail() {
     const [details, setDetails] = useState({});
@@ -12,9 +13,12 @@ function BlogDetail() {
         setDetails(location.state.item);
     }, []);
 
+    const jsxString = '<p className="font-bold text-red-500">Hello World</p>';
+
     return (
         <>
             <section className="pb-11 dark:bg-gray-900">
+                <JsxParser jsx={jsxString} />
                 <div
                     className="object-cover w-full bg-center bg-cover h-[15rem] "
                     style={{

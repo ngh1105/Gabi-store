@@ -29,11 +29,19 @@ export default function CommentSection({ id, isBought }) {
 
     const fetchCommentData = async () => {
         let res = await Api.Get(`/comment/count-comment/${id}`);
+        if (!res.isSuccess) {
+            toast.error("Đã có lỗi xảy ra");
+            return;
+        }
 
         setCommentCount(res.response);
 
         res = await Api.Get(`/comment/find-related/${id}`);
-        //console.log(res.response);
+        if (!res.isSuccess) {
+            toast.error("Đã có lỗi xảy ra");
+            return;
+        }
+
         setTotalPages(Math.ceil(res.response.length / ITEMS_PER_PAGE));
         setCurrentPage(1);
         setItems(res.response);
