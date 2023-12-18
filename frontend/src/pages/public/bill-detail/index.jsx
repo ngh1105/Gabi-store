@@ -3,7 +3,7 @@ import { API_URL } from "app/config";
 import PageLayout from "components/page-layout";
 import { useAuth } from "hooks/use-auth";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import utils from "utils";
 
@@ -149,6 +149,9 @@ export default function BillDetailPage() {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div className="flex justify-center mt-6">
+                        <Link to="/" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Quay về trang chủ</Link>
                     </div>
                 </div>
             </section>

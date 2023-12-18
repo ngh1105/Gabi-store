@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, InternalServerErrorException, Req, BadRequestException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, InternalServerErrorException, Req, BadRequestException, Query } from '@nestjs/common';
 import { BlogService } from './blog.service';
 import { CreateBlogDto } from './dto/create-blog.dto';
 import { UpdateBlogDto } from './dto/update-blog.dto';
@@ -27,6 +27,29 @@ export class BlogController {
     findAll() {
         try {
             return this.blogService.findAll();
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
+
+    @Get("find-paginate")
+    async findPaginate(@Query('limit') limit: number, @Query('page') page: number) {
+        try {
+            limit = limit ? Number(limit) : 10; // Default limit is 10
+            page = page ? Number(page) : 1; // Default page is 1
+
+            const offset = (page - 1) * limit;
+
+            const totalItems = await this.blogService.count();
+            const totalPages = Math.ceil(totalItems / limit);
+
+            const data = await this.blogService.findPaginate(limit, offset);
+
+            return {
+                data: data,
+                totalPages: totalPages,
+            };
         }
         catch (err) {
             throw new InternalServerErrorException();

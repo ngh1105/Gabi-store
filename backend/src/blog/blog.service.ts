@@ -118,4 +118,20 @@ export class BlogService {
             fs.unlinkSync(`./public${record.thumbnail}`);
         }
     }
+
+    async findPaginate(limit: number, offset: number) {
+        const data = await this.blogRepository.findAll<Blog>({
+            limit: limit,
+            offset: offset,
+            order: [
+                ['id', 'DESC']
+            ]
+        });
+
+        return data.map(obj => new BlogDto(obj));
+    }
+
+    async count() {
+        return await this.blogRepository.count();
+    }
 }

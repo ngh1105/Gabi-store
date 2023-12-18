@@ -25,7 +25,7 @@ function StoryDetail() {
             content3v1: "Tiêu chí này đảm bảo rằng mọi người đều có thể tiếp cận với các nguồn tài nguyên để đảm bảo mức sống chất lượng cao và đầy đủ nhất. Ngoài ra, tiêu chí này đòi hỏi các hoạt động giúp phát triển kinh tế nhưng không làm ảnh hưởng đến môi trường hoặc các thế hệ tương lai..",
             content4v1: "Công bằng xã hội giải quyết vấn đề phân bổ không đồng đều về mọi phương diện giữa các cá nhân với nhau.",
             content4v2: "Nếu bạn quan tâm đến thời trang bền vững, hãy tham khảo bài viết của GabiStore. Bài viết này cung cấp thông tin về xu hướng thời trang bền vững, nguồn gốc của thuật ngữ Sustainability, tiêu chí của tính bền vững, và nhiều hơn nữa.",
-            date:"Mon 2, 2023",
+            date: "Mon 2, 2023",
         },
     ])
     return (
@@ -39,7 +39,7 @@ function StoryDetail() {
                             <div>
                                 <div className="p-4 ">
                                     <img
-                                        src={bnm.img1}
+                                        src="dfdfsd"
                                         className="object-cover w-full rounded-md h-96"
                                     />
                                     <div className="flex mt-6 mb-4 ">
@@ -57,7 +57,7 @@ function StoryDetail() {
                                             >
                                                 <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
                                             </svg>
-                                            {bnm.date}
+
                                         </a>
                                         <a
                                             href="#"
@@ -79,390 +79,58 @@ function StoryDetail() {
 
                                     <div className=" font-poppins dark:text-gray-400">
                                         <h2 className="mb-4 text-2xl font-semibold font-poppins dark:text-gray-300">
-                                            {bnm.title1}
+                                            "sdfsdfsdf"
                                         </h2>
-                                        <p className='font-light'>{bnm.content1v1}</p>
-                                        <p className='font-light'>{bnm.content1v2}</p>
-                                        <p className='font-light'>{bnm.content1v3}</p>
-                                        <p className='font-light'>{bnm.content1v4}</p>
-                                        <p className='font-light'>{bnm.content1v5}</p>
+                                        <p className='font-light'>sdfsdfdsf</p>
+                                        <p className='font-light'>sdfsdfdsf</p>
+                                        <p className='font-light'>sdfsdfdsf</p>
+                                        <p className='font-light'>sdfsdfdsf</p>
+                                        <p className='font-light'>sdfsdfdsf</p>
                                         <p className="pb-4"></p>
                                         <img
-                                            src={bnm.img2}
+                                            src="sdfsdfdsfds"
                                             className="object-cover w-full rounded-md h-96"
                                         />
                                     </div>
 
                                     <div className=" pt-3 font-poppins dark:text-gray-400">
                                         <h2 className="mb-3 text-2xl font-semibold font-poppins dark:text-gray-300">
-                                            {bnm.title2}
+                                            "fsdgfdhgf"
                                         </h2>
                                         <h2 className="mb-3 text-2xl font-semibold font-poppins dark:text-gray-300">
-                                            {bnm.title3}
+                                            "sfsdfsdf"
                                         </h2>
-                                        <p className='font-light'>{bnm.content2v1}</p>
+                                        <p className='font-light'>"sfdsfdsfdsf</p>
                                         <p className="pb-4"></p>
                                         <img
-                                            src={bnm.img3}
+                                            src="dsfsdfdsfds"
                                             className="object-cover w-full rounded-md h-96"
                                         />
                                     </div>
 
                                     <div className=" pt-3 font-poppins dark:text-gray-400">
                                         <h2 className="mb-3 text-2xl font-semibold font-poppins dark:text-gray-300">
-                                            {bnm.title4}
+                                            saasfdsf
                                         </h2>
-                                        <p className='font-light'>{bnm.content3v1}</p>
+                                        <p className='font-light'>eret56y7ui8o9i</p>
                                         <p className="pb-4"></p>
                                         <img
-                                            src={bnm.img4}
+                                            src="efrgtrhyuikjyhtre"
                                             className="object-cover w-full rounded-md h-96"
                                         />
                                     </div>
 
                                     <div className=" pt-3 font-poppins dark:text-gray-400">
                                         <h2 className="mb-3 text-2xl font-semibold font-poppins dark:text-gray-300">
-                                            {bnm.title5}
+                                            ssadasd
                                         </h2>
-                                        <p className='font-light'>{bnm.content4v1}</p>
+                                        <p className='font-light'>sdfdsfdsf</p>
                                         <p className="pb-4"></p>
                                         <img
-                                            src={bnm.img5}
+                                            src="dsfsdfds"
                                             className="object-cover w-full rounded-md h-96"
                                         />
-                                        <p className='pt-3 font-light'>{bnm.content4v2}</p>
-                                    </div>
-                                </div>
-                                <div className="px-4">
-                                    <h2 className="pb-2 mt-4 text-lg font-semibold text-gray-900 dark:text-gray-400 font-poppins">
-                                        Tags
-                                    </h2>
-                                    <div className="w-16 mb-3 border-b-2 border-blue-500 dark:border-gray-400 inset-px" />
-                                    <div className="flex flex-wrap gap-2 my-4 font-poppins ">
-                                        <a
-                                            className="px-4 py-1 mb-2 text-xs text-black transition bg-gray-200 rounded-md btn btn-sm hover:bg-blue-500 dark:text-gray-100 dark:bg-gray-600 dark:hover:bg-gray-800 hover:text-white"
-                                            href="#"
-                                        >
-                                            Corporate
-                                        </a>
-                                        <a
-                                            className="px-4 py-1 mb-2 text-xs text-black transition bg-gray-200 rounded-md btn btn-sm hover:bg-blue-500 hover:text-white dark:text-gray-100 dark:bg-gray-600 dark:hover:bg-gray-800"
-                                            href="#"
-                                        >
-                                            Business
-                                        </a>
-                                        <a
-                                            className="px-4 py-1 mb-2 text-xs text-black transition bg-gray-200 rounded-md btn btn-sm hover:bg-blue-500 hover:text-white dark:text-gray-100 dark:bg-gray-600 dark:hover:bg-gray-800"
-                                            href="#"
-                                        >
-                                            Field
-                                        </a>
-                                    </div>
-                                    <div className="flex flex-wrap items-center ">
-                                        <div className="w-full px-3 mb-6 sm:w-1/2 md:w-1/3">
-                                            <div className="border border-gray-200 rounded-md dark:border-gray-800">
-                                                <div className="relative bg-gray-200">
-                                                    <a href="#" className>
-                                                        <img
-                                                            src="https://i.postimg.cc/NGCTCW70/pexels-mike-250288.jpg"
-                                                            alt
-                                                            className="object-cover w-full h-56 mx-auto "
-                                                        />
-                                                    </a>
-                                                    <div className="absolute top-0 right-0 z-10 m-1 flex items-center justify-center w-16 h-16 p-5 text-center text-gray-100 bg-red-600 rounded-full shadow-xl ">
-                                                        <span className="relative text-base font-semibold text-gray-200 ">
-                                                            Mới nhất
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div className="p-5 bg-gray-50 dark:bg-gray-900">
-                                                    <div className="flex items-center justify-between mb-4">
-                                                        <h3 className="text-xl font-medium dark:text-gray-400">
-                                                            Product name
-                                                        </h3>
-                                                        <a href="#" className>
-                                                            <svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                width={16}
-                                                                height={16}
-                                                                fill="currentColor"
-                                                                className="text-red-500 dark:text-gray-400 bi bi-heart"
-                                                                viewBox="0 0 16 16"
-                                                            >
-                                                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                            </svg>
-                                                        </a>
-                                                    </div>
-                                                    <div className="mb-4 ">
-                                                        <p className="text-lg flex justify-between">
-                                                            <span className="text-red-400 dark:text-gray-400">
-                                                                $800.00
-                                                            </span>
-                                                            <span className="ml-2 text-gray-400  dark:text-gray-400">
-                                                                Lượt xem : 160
-                                                            </span>
-                                                        </p>
-                                                    </div>
-
-                                                    <a
-                                                        href="#"
-                                                        className="flex justify-center px-4 py-2 text-indigo-600 border border-indigo-300 rounded-full dark:border-gray-600 dark:text-gray-400 hover:bg-indigo-700 hover:text-gray-100 dark:hover:bg-gray-800 dark:hover:border-gray-900"
-                                                    >
-                                                        Thêm vào giỏ
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="w-full px-3 mb-6 sm:w-1/2 md:w-1/3">
-                                            <div className="border border-gray-200 rounded-md dark:border-gray-800">
-                                                <div className="relative bg-gray-200">
-                                                    <a href="#" className>
-                                                        <img
-                                                            src="https://i.postimg.cc/8CbfR3zN/light-grey-t-shirt-front.jpg"
-                                                            alt
-                                                            className="object-cover w-full h-56 mx-auto "
-                                                        />
-                                                    </a>
-                                                </div>
-                                                <div className="p-5 bg-gray-50 dark:bg-gray-900">
-                                                    <div className="flex items-center justify-between mb-4">
-                                                        <h3 className="text-xl font-medium dark:text-gray-400">
-                                                            Product name
-                                                        </h3>
-                                                        <a href="#" className>
-                                                            <svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                width={16}
-                                                                height={16}
-                                                                fill="currentColor"
-                                                                className="text-red-500 dark:text-gray-400 bi bi-heart"
-                                                                viewBox="0 0 16 16"
-                                                            >
-                                                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                            </svg>
-                                                        </a>
-                                                    </div>
-                                                    <div className="mb-4 ">
-                                                        <p className="text-lg flex justify-between ">
-                                                            <span className="text-red-400 dark:text-gray-400">
-                                                                $900.00
-                                                            </span>
-                                                            <span className="ml-2 text-gray-400  dark:text-gray-400">
-                                                                Lượt xem : 160
-                                                            </span>
-                                                        </p>
-                                                    </div>
-
-                                                    <a
-                                                        href="#"
-                                                        className="flex justify-center px-4 py-2 text-indigo-600 border border-indigo-300 rounded-full dark:border-gray-600 dark:text-gray-400 hover:bg-indigo-700 hover:text-gray-100 dark:hover:bg-gray-800 dark:hover:border-gray-900"
-                                                    >
-                                                        Thêm vào giỏ
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="w-full px-3 mb-6 sm:w-1/2 md:w-1/3">
-                                            <div className="border border-gray-200 rounded-md dark:border-gray-800">
-                                                <div className="relative bg-gray-200">
-                                                    <a href="#" className>
-                                                        <img
-                                                            src="https://i.postimg.cc/pdd5BChj/pexels-nathan-j-hilton-4277508.jpg"
-                                                            alt
-                                                            className="object-cover w-full h-56 mx-auto "
-                                                        />
-                                                    </a>
-                                                </div>
-                                                <div className="p-5 bg-gray-50 dark:bg-gray-900">
-                                                    <div className="flex items-center justify-between mb-4">
-                                                        <h3 className="text-xl font-medium dark:text-gray-400">
-                                                            Product name
-                                                        </h3>
-                                                        <a href="#" className>
-                                                            <svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                width={16}
-                                                                height={16}
-                                                                fill="currentColor"
-                                                                className="text-red-500 dark:text-gray-400 bi bi-heart"
-                                                                viewBox="0 0 16 16"
-                                                            >
-                                                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                            </svg>
-                                                        </a>
-                                                    </div>
-                                                    <div className="mb-4 ">
-                                                        <p className="text-lg flex justify-between ">
-                                                            <span className="text-red-400 dark:text-gray-400">
-                                                                $1000.00
-                                                            </span>
-                                                            <span className="ml-2 text-gray-400  dark:text-gray-400">
-                                                                Lượt xem : 160
-                                                            </span>
-                                                        </p>
-                                                    </div>
-
-                                                    <a
-                                                        href="#"
-                                                        className="flex justify-center px-4 py-2 text-indigo-600 border border-indigo-300 rounded-full dark:border-gray-600 dark:text-gray-400 hover:bg-indigo-700 hover:text-gray-100 dark:hover:bg-gray-800 dark:hover:border-gray-900"
-                                                    >
-                                                        Thêm vào giỏ
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="w-full px-3 mb-6 sm:w-1/2 md:w-1/3">
-                                            <div className="border border-gray-200 rounded-md dark:border-gray-800">
-                                                <div className="relative bg-gray-200">
-                                                    <a href="#" className>
-                                                        <img
-                                                            src="https://i.postimg.cc/XvTNykw4/black-front-sweater.jpg"
-                                                            alt
-                                                            className="object-cover w-full h-56 mx-auto "
-                                                        />
-                                                    </a>
-                                                </div>
-                                                <div className="p-5 bg-gray-50 dark:bg-gray-900">
-                                                    <div className="flex items-center justify-between mb-4">
-                                                        <h3 className="text-xl font-medium dark:text-gray-400">
-                                                            Product name
-                                                        </h3>
-                                                        <a href="#" className>
-                                                            <svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                width={16}
-                                                                height={16}
-                                                                fill="currentColor"
-                                                                className="text-red-500 dark:text-gray-400 bi bi-heart"
-                                                                viewBox="0 0 16 16"
-                                                            >
-                                                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                            </svg>
-                                                        </a>
-                                                    </div>
-                                                    <div className="mb-4 ">
-                                                        <p className="text-lg flex justify-between ">
-                                                            <span className="text-red-400 dark:text-gray-400">
-                                                                $700.00
-                                                            </span>
-                                                            <span className="ml-2 text-gray-400  dark:text-gray-400">
-                                                                Lượt xem : 160
-                                                            </span>
-                                                        </p>
-                                                    </div>
-
-                                                    <a
-                                                        href="#"
-                                                        className="flex justify-center px-4 py-2 text-indigo-600 border border-indigo-300 rounded-full dark:border-gray-600 dark:text-gray-400 hover:bg-indigo-700 hover:text-gray-100 dark:hover:bg-gray-800 dark:hover:border-gray-900"
-                                                    >
-                                                        Thêm vào giỏ
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="w-full px-3 mb-6 sm:w-1/2 md:w-1/3">
-                                            <div className="border border-gray-200 rounded-md dark:border-gray-800">
-                                                <div className="relative bg-gray-200">
-                                                    <a href="#" className>
-                                                        <img
-                                                            src="https://i.postimg.cc/wjCnXfbf/pexels-timothy-paule-ii-2002717.jpg"
-                                                            alt
-                                                            className="object-cover w-full h-56 mx-auto "
-                                                        />
-                                                    </a>
-                                                    <div className="absolute top-0 right-0 z-10 m-2 flex items-center justify-center p-2 text-center bg-indigo-600 ">
-                                                        <span className="relative text-base font-normal text-gray-100 ">
-                                                            New
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div className="p-5 bg-gray-50 dark:bg-gray-900">
-                                                    <div className="flex items-center justify-between mb-4">
-                                                        <h3 className="text-xl font-medium dark:text-gray-400">
-                                                            Product name
-                                                        </h3>
-                                                        <a href="#" className>
-                                                            <svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                width={16}
-                                                                height={16}
-                                                                fill="currentColor"
-                                                                className="text-red-500 dark:text-gray-400 bi bi-heart"
-                                                                viewBox="0 0 16 16"
-                                                            >
-                                                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                            </svg>
-                                                        </a>
-                                                    </div>
-                                                    <div className="mb-4 ">
-                                                        <p className="text-lg flex justify-between ">
-                                                            <span className="text-red-400 dark:text-gray-400">
-                                                                $600.00
-                                                            </span>
-                                                            <span className="ml-2 text-gray-400  dark:text-gray-400">
-                                                                Lượt xem : 160
-                                                            </span>
-                                                        </p>
-                                                    </div>
-
-                                                    <a
-                                                        href="#"
-                                                        className="flex justify-center px-4 py-2 text-indigo-600 border border-indigo-300 rounded-full dark:border-gray-600 dark:text-gray-400 hover:bg-indigo-700 hover:text-gray-100 dark:hover:bg-gray-800 dark:hover:border-gray-900"
-                                                    >
-                                                        Thêm vào giỏ
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="w-full px-3 mb-6 sm:w-1/2 md:w-1/3">
-                                            <div className="border border-gray-200 rounded-md dark:border-gray-800">
-                                                <div className="relative bg-gray-200">
-                                                    <a href="#" className>
-                                                        <img
-                                                            src="https://i.postimg.cc/tghbJjN7/pexels-web-donut-19090.jpg"
-                                                            alt
-                                                            className="object-cover w-full h-56 mx-auto "
-                                                        />
-                                                    </a>
-                                                </div>
-                                                <div className="p-5 bg-gray-50 dark:bg-gray-900">
-                                                    <div className="flex items-center justify-between mb-4">
-                                                        <h3 className="text-xl font-medium dark:text-gray-400">
-                                                            Product name
-                                                        </h3>
-                                                        <a href="#" className>
-                                                            <svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                width={16}
-                                                                height={16}
-                                                                fill="currentColor"
-                                                                className="text-red-500 dark:text-gray-400 bi bi-heart"
-                                                                viewBox="0 0 16 16"
-                                                            >
-                                                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                            </svg>
-                                                        </a>
-                                                    </div>
-                                                    <div className="mb-4 ">
-                                                        <p className="text-lg flex justify-between ">
-                                                            <span className="text-red-400 dark:text-gray-400">
-                                                                $900.00
-                                                            </span>
-                                                            <span className="ml-2 text-gray-400  dark:text-gray-400">
-                                                                Lượt xem : 160
-                                                            </span>
-                                                        </p>
-                                                    </div>
-
-                                                    <a
-                                                        href="#"
-                                                        className="flex justify-center px-4 py-2 text-indigo-600 border border-indigo-300 rounded-full dark:border-gray-600 dark:text-gray-400 hover:bg-indigo-700 hover:text-gray-100 dark:hover:bg-gray-800 dark:hover:border-gray-900"
-                                                    >
-                                                        Thêm vào giỏ
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <p className='pt-3 font-light'>"dsfdsfsd</p>
                                     </div>
                                 </div>
                             </div>

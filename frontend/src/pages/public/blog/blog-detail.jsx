@@ -21,6 +21,25 @@ function BlogDetailPage() {
         createdAt: "",
     });
 
+    const [relatedBlogs, setRelatedBlogs] = useState([]);
+
+    useEffect(() => {
+        try {
+            (async () => {
+                const res = await Api.Get("/blog/find-paginate?limit=3");
+                if (!res.isSuccess) {
+                    toast.error("Đã có lỗi xảy ra");
+                    return;
+                }
+
+                setRelatedBlogs(res.response.data);
+            })();
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }, []);
+
     useEffect(() => {
         (async () => {
 
@@ -105,154 +124,65 @@ function BlogDetailPage() {
                             <div className="px-2 pt-4 lg:px-0 dark:border-gray-700">
                                 <div>
                                     <h2 className="pb-2 text-lg font-semibold leading-5 tracking-tight text-gray-900 dark:text-gray-300 ">
-                                        BÀI VIẾT LIÊN QUAN
+                                        CÁC BÀI VIẾT KHÁC
                                     </h2>
                                     <div className="w-16 mb-5 border-b-2 border-blue-400 inset-px " />
-                                    <div className="flex w-full mb-4 border-b border-gray-200 dark:border-gray-700">
-                                        <div>
-                                            <img
-                                                className="object-cover w-20 h-20 mr-4 rounded"
-                                                src="https://i.postimg.cc/SKtsKrRX/pexels-marc-mueller-380769.jpg"
-                                                alt
-                                            />
-                                        </div>
-                                        <div className="flex-1 mb-5">
-                                            <h2 className="mb-1 text-base font-medium tracking-tight text-gray-700 hover:text-blue-600 dark:text-gray-400">
-                                                <a href="#">
-                                                    Top 11 mẫu đồng phục tiếp viên hàng không đẹp chuyên
-                                                    nghiệp
-                                                </a>
-                                            </h2>
-                                            <a
-                                                href="#"
-                                                className="flex items-center mr-6 no-underline "
-                                            >
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    width={16}
-                                                    height={16}
-                                                    fill="currentColor"
-                                                    className="w-3 h-3 text-blue-600 dark:text-blue-400 bi bi-calendar"
-                                                    viewBox="0 0 16 16"
-                                                >
-                                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                                                </svg>
-                                                <span className="ml-2 text-xs text-gray-500 dark:text-blue-400 hover:text-blue-600">
-                                                    May10, 2022
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className="flex w-full mb-4 border-b border-gray-200 dark:border-gray-700">
-                                        <div>
-                                            <img
-                                                className="object-cover w-20 h-20 mr-4 rounded"
-                                                src="https://i.postimg.cc/63GLBzwc/aqq.jpg"
-                                                alt
-                                            />
-                                        </div>
-                                        <div className="flex-1 mb-5">
-                                            <h2 className="mb-1 text-base font-medium tracking-tight text-gray-700 hover:text-blue-600 dark:text-gray-400">
-                                                <a href="#">
-                                                    Bí kíp tạo dáng chụp ảnh nam đẹp ngầu như mẫu nam Hàn
-                                                    Quốc
-                                                </a>
-                                            </h2>
-                                            <a
-                                                href="#"
-                                                className="flex items-center mr-6 no-underline "
-                                            >
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    width={16}
-                                                    height={16}
-                                                    fill="currentColor"
-                                                    className="w-3 h-3 text-blue-600 dark:text-blue-400 bi bi-calendar"
-                                                    viewBox="0 0 16 16"
-                                                >
-                                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                                                </svg>
-                                                <span className="ml-2 text-xs text-gray-500 hover:text-blue-600 dark:text-blue-400 ">
-                                                    May 10, 2022
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className="flex w-full mb-4 ">
-                                        <div>
-                                            <img
-                                                className="object-cover w-20 h-20 mr-4 rounded"
-                                                src="https://i.postimg.cc/PqC1MKLH/pexels-pixabay-38271.jpg"
-                                                alt
-                                            />
-                                        </div>
-                                        <div className="flex-1 mb-5">
-                                            <h2 className="mb-1 text-base font-medium tracking-tight text-gray-700 hover:text-blue-600 dark:text-gray-400">
-                                                <a href="#">
-                                                    Bí kíp phối đồ tập gym nam cực chất lại thoải mái cho
-                                                    chàng
-                                                </a>
-                                            </h2>
-                                            <a
-                                                href="#"
-                                                className="flex items-center mr-6 no-underline"
-                                            >
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    width={16}
-                                                    height={16}
-                                                    fill="currentColor"
-                                                    className="w-3 h-3 text-blue-600 dark:text-blue-400 bi bi-calendar"
-                                                    viewBox="0 0 16 16"
-                                                >
-                                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                                                </svg>
-                                                <span className="ml-2 text-xs text-gray-500 hover:text-blue-600 dark:text-blue-400 ">
-                                                    May 10, 2022
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </div>
+                                    {
+                                        relatedBlogs.map((obj, index) => {
+                                            return (
+                                                <div className="flex w-full mb-4 border-b border-gray-200 dark:border-gray-700">
+                                                    <div>
+                                                        <img
+                                                            className="object-cover w-20 h-20 mr-4 rounded"
+                                                            src="https://i.postimg.cc/SKtsKrRX/pexels-marc-mueller-380769.jpg"
+                                                            alt
+                                                        />
+                                                    </div>
+                                                    <div className="flex-1 mb-5">
+                                                        <h2 className="mb-1 text-base font-medium tracking-tight text-gray-700 hover:text-indigo-600 dark:text-gray-400">
+                                                            <a href="#">
+                                                                {obj.title}
+                                                            </a>
+                                                        </h2>
+                                                        <a
+                                                            href="#"
+                                                            className="flex items-center mr-6 no-underline "
+                                                        >
+                                                            <svg
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                width={16}
+                                                                height={16}
+                                                                fill="currentColor"
+                                                                className="w-3 h-3 text-blue-600 dark:text-blue-400 bi bi-calendar"
+                                                                viewBox="0 0 16 16"
+                                                            >
+                                                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                                                            </svg>
+                                                            <span className="ml-2 text-xs text-gray-500 hover:text-indigo-600">
+                                                                {utils.formatDate(obj.createdAt)}
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                    }
+
                                 </div>
                             </div>
                             <div className="mb-4  rounded-md dark:border-gray-800 dark:bg-gray-800">
-                                <Link to="/product">
-                                    <img
-                                        src="https://bizweb.dktcdn.net/100/438/408/themes/930060/assets/article_banner_1.jpg?1700022409557"
-                                        alt
-                                        className="object-cover w-full rounded-md h-full"
-                                    />
-                                </Link>
-                            </div>
-                            <div className="p-4 mb-4 bg-white border rounded-md shadow dark:bg-gray-800 dark:border-gray-900">
-                                <h2 className="py-2 my-2 text-xl font-semibold leading-5 tracking-tight text-gray-900 font-montserrat lg:text-2xl dark:text-gray-400 lg:mt-3 ">
-                                    ĐĂNG KÍ NHẬN TIN
-                                </h2>
-                                <input
-                                    type="email "
-                                    name="email "
-                                    id="email "
-                                    autoComplete="email "
-                                    required
-                                    placeholder="Nhập email"
-                                    className="w-full px-2 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-gray-400 dark:border-gray-800 focus:outline-none focus:border-indigo-500 focus-ring-1 focus:ring-indigo-500 "
+                                <img
+                                    src="https://bizweb.dktcdn.net/100/438/408/themes/930060/assets/article_banner_1.jpg?1700022409557"
+                                    alt
+                                    className="object-cover w-full rounded-md h-full"
                                 />
-                                <button className="flex justify-center w-full px-4 py-2 mt-4 text-sm font-medium text-gray-100 uppercase bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 dark:focus:ring-0 focus:ring-offset-2 dark:focus:ring-offset-0 focus:ring-blue-500 ">
-                                    ĐĂNG KÍ
-                                </button>
-                                <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                                    Đăng kí để nhận thông tin khuyển mãi, sản phẩm mới từ GABI
-                                    Store
-                                </p>
                             </div>
                             <div className="mb-4  rounded-md dark:border-gray-800 dark:bg-gray-800">
-                                <Link to="/product">
-                                    <img
-                                        src="https://lzd-img-global.slatic.net/g/p/ba37a5f70278d62bea6943cbb1591254.jpg_720x720q80.jpg"
-                                        alt
-                                        className="object-cover w-full rounded-md h-full"
-                                    />
-                                </Link>
+                                <img
+                                    src="https://lzd-img-global.slatic.net/g/p/ba37a5f70278d62bea6943cbb1591254.jpg_720x720q80.jpg"
+                                    alt
+                                    className="object-cover w-full rounded-md h-full"
+                                />
                             </div>
                         </div>
                     </div>
