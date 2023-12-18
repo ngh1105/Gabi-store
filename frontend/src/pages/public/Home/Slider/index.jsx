@@ -50,7 +50,7 @@ export default function SliderSection() {
                             </Link>
                         </span>
                     </div>
-                    <div className="hidden lg:mt-0 lg:col-span-5 lg:flex h-96">
+                    <div className="hidden lg:mt-0 lg:col-span-5 lg:flex h-72">
                         <Carousel>
                             <img src={`${API_URL}/upload/banner/banner.jpg`} className="w-full h-full" alt="..." />
                             <img src={`${API_URL}/upload/banner/banner2.jfif`} alt="..." />

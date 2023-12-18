@@ -137,7 +137,7 @@ export default function OverviewPage() {
                                         <div key={index} className="flex justify-between mb-4">
                                             <div className="flex gap-2">
                                                 <img src={`${API_URL}${obj.imageUrl}`} alt="" className="object-cover w-14 h-14" />
-                                                <div className>
+                                                <div>
                                                     <h2 className="py-1 text-lg font-medium">
                                                         {obj.name}
                                                     </h2>
