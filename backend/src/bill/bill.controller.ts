@@ -40,6 +40,18 @@ export class BillController {
 
     @ApiSecurity('private-key')
     @UseGuards(AdminGuard)
+    @Delete(':id')
+    remove(@Param('id') id: string) {
+        try {
+            return this.billService.remove(+id);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
+
+    @ApiSecurity('private-key')
+    @UseGuards(AdminGuard)
     @Get("find-revenue")
     findRevenue(@Query('months') months: number) {
         try {

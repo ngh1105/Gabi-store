@@ -1,21 +1,17 @@
 import { useEffect, useMemo, useState } from "react"
-import AddPage from "./add";
-import UpdatePage from "./update";
-import { Link } from "react-router-dom";
-import DeletePage from "./delete";
+//import DeletePage from "./delete";
 import { useFlexLayout, useGlobalFilter, usePagination, useTable } from "react-table";
 import Api from "app/api";
 import { API_URL } from "app/config";
 import PageLayout from "components/page-layout";
 import { toast } from "react-toastify";
 
-export default function CategoryPage() {
+export default function BillPage() {
 
-    const [categories, setCategories] = useState([]);
+    const [bills, setBills] = useState([]);
 
     async function fetchData() {
-        const res = await Api.Get("/category");
-
+        const res = await Api.Get("/bill");
         if (!res.isSuccess) {
             toast.error("Đã có lỗi xảy ra");
             return;
@@ -23,18 +19,19 @@ export default function CategoryPage() {
 
         const newData = res.response.map((obj, index) => {
             return {
-                name: obj.name,
-                imageUrl: <img className="w-10 h-10 rounded-full" src={`${API_URL}${obj.imageUrl}`} alt="." />,
+                id: obj.id,
+                fullName: obj.fullName,
+                totalPrice: obj.totalPrice,
                 actions: (
                     <div className="w-full flex justify-end items-center gap-2 text-right">
-                        <div><UpdatePage id={obj.id} fetchData={fetchData} /></div>
-                        <div><DeletePage id={obj.id} fetchData={fetchData} /></div>
+                        <div></div>
+                        {/* <div><DeletePage id={obj.id} fetchData={fetchData} /></div> */}
                     </div>
                 )
             }
         })
 
-        setCategories(newData);
+        setBills(newData);
     }
 
     useEffect(() => {
@@ -43,12 +40,16 @@ export default function CategoryPage() {
 
     const columns = useMemo(() => [
         {
-            Header: "Tên",
-            accessor: "name",
+            Header: "ID",
+            accessor: "id",
         },
         {
-            Header: "Hình ảnh",
-            accessor: "imageUrl",
+            Header: "Họ tên",
+            accessor: "fullName",
+        },
+        {
+            Header: "Tổng tiền",
+            accessor: "totalPrice",
         },
         {
             Header: () => <div className="text-right">Thao tác</div>,
@@ -58,7 +59,7 @@ export default function CategoryPage() {
         }
     ], []);
 
-    const data = useMemo(() => categories, [categories]);
+    const data = useMemo(() => bills, [bills]);
 
     const tableInstance = useTable({
         columns,
@@ -93,7 +94,7 @@ export default function CategoryPage() {
     const { globalFilter, pageIndex, pageSize } = state;
 
     return (
-        <PageLayout title="Loại hàng" >
+        <PageLayout title="Đơn hàng" >
             <section className="bg-gray-50 p-3 sm:p-5">
                 <div className="mx-auto max-w-screen-xl px-4 lg:px-12">
                     {/* Start coding here */}
@@ -119,7 +120,7 @@ export default function CategoryPage() {
                                 </form>
                             </div>
                             <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                                <AddPage fetchData={fetchData} />
+                                {/* <AddPage fetchData={fetchData} /> */}
                             </div>
                         </div>
 

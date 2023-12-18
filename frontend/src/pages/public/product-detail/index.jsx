@@ -236,7 +236,7 @@ export default function ProductDetailPage() {
                                             (!currProduct.colors || currProduct.colors.length <= 0)
                                                 ? (
                                                     <button className="px-3 py-1 mb-2 mr-1 border border-indigo-400 text-indigo-600">
-                                                        Tự do
+                                                        Theo hình
                                                     </button>
                                                 )
                                                 : (
@@ -308,7 +308,7 @@ export default function ProductDetailPage() {
                                     <div className="w-full px-4 mb-4 lg:w-1/2 lg:mb-0">
                                         <button
                                             onClick={handleAddToCart}
-                                            className="flex items-center justify-center w-full p-4 text-indigo-500 border border-indigo-500 rounded-md hover:bg-indigo-600 hover:border-indigo-600 hover:text-gray-100">
+                                            className="flex items-center justify-center w-full p-4 rounded-md bg-indigo-700 text-white hover:opacity-[0.9]">
                                             Thêm vào giỏ hàng
                                         </button>
                                     </div>

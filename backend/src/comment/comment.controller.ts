@@ -3,7 +3,7 @@ import { CommentService } from './comment.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { UpdateCommentDto } from './dto/update-comment.dto';
 import { ApiSecurity, ApiTags } from '@nestjs/swagger';
-import { GuestGuard } from 'src/auth/auth.guard';
+import { AdminGuard, GuestGuard } from 'src/auth/auth.guard';
 
 @ApiTags('comment')
 @Controller('comment')
@@ -36,6 +36,30 @@ export class CommentController {
     create(@Body() data: CreateCommentDto) {
         try {
             return this.commentService.create(data);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
+
+    @ApiSecurity('private-key')
+    @UseGuards(AdminGuard)
+    @Get()
+    findAll() {
+        try {
+            return this.commentService.findAll();
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
+
+    @ApiSecurity('private-key')
+    @UseGuards(AdminGuard)
+    @Delete(':id')
+    remove(@Param('id') id: string) {
+        try {
+            return this.commentService.remove(+id);
         }
         catch (err) {
             throw new InternalServerErrorException();

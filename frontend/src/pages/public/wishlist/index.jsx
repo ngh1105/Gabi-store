@@ -72,7 +72,7 @@ export default function WishlistPage() {
             imageUrl: obj.Product.imageUrl,
             price: obj.Product.price,
             amount: 1,
-            color: "Tự do",
+            color: "Theo hình",
             size: "Tự do",
         }));
 
@@ -91,7 +91,7 @@ export default function WishlistPage() {
                 imageUrl: obj.Product.imageUrl,
                 price: obj.Product.price,
                 amount: 1,
-                color: "Tự do",
+                color: "Theo hình",
                 size: "Tự do",
             }));
         })
@@ -139,7 +139,7 @@ export default function WishlistPage() {
                                                                     <div>
                                                                         <div className="flex items-center gap-2 mt-1">
                                                                             <h2 className="text-sm opacity-80">
-                                                                                Màu sắc: <span className="text-bold">Tự do</span>
+                                                                                Màu sắc: <span className="text-bold">Theo hình</span>
                                                                             </h2>
 
                                                                         </div>

@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "redux/cart.slice";
 import ProductItem from "components/product-item";
 import { useProductPaginate } from "./use-paginate";
-import toast from 'react-toastify';
+import { toast } from 'react-toastify';
 
 export default function ProductPage() {
 

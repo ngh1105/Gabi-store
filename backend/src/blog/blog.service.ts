@@ -17,7 +17,7 @@ export class BlogService {
     async create(data: CreateBlogDto) {
         const isExists = await this.userService.isExists(data.userId);
         if (!isExists) {
-            throw new HttpException('Category is not exist', HttpStatus.NOT_FOUND);
+            throw new HttpException('User is not exist', HttpStatus.NOT_FOUND);
         }
 
         const record = await this.blogRepository.create({

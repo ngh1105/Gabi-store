@@ -3,6 +3,7 @@ import HomePage from "pages/public/home";
 import ProductPage from "pages/public/product";
 import ProductDetailPage from "pages/public/product-detail";
 import ContactPage from "pages/public/contact";
+import PolicyPage from "pages/public/policy";
 import AboutPage from "pages/public/about";
 import CartPage from "pages/public/cart";
 import CheckoutPage from "pages/public/checkout";
@@ -19,7 +20,6 @@ import Catelog from "pages/public/home/Catelog"
 
 import Following from "pages/public/Following";
 
-import Policy from "pages/public/Policy";
 import Rules from "pages/public/Rules";
 import Information from "pages/public/Information";
 
@@ -35,6 +35,7 @@ export const publicRoutes = {
         { path: '/product-detail/:id', element: <ProductDetailPage /> },
 
         { path: '/contact', element: <ContactPage /> },
+        { path: '/policy', element: <PolicyPage /> },
         { path: '/about', element: <AboutPage /> },
 
         { path: '/cart', element: <CartPage /> },
@@ -55,7 +56,6 @@ export const publicRoutes = {
         { path: '/catelog', element: <Catelog /> },
 
         { path: '/following', element: <Following /> },
-        { path: '/policy', element: <Policy /> },
         { path: '/storydetail', element: <StoryDetail /> },
     ]
 };

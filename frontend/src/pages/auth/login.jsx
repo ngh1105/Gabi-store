@@ -12,7 +12,7 @@ export default function LoginPage() {
     const navigate = useNavigate();
 
     const { status, setStatus } = useApiStatus();
-    
+
     const { user, setLocalUser } = useAuth();
 
     const formik = useFormik({
@@ -50,7 +50,7 @@ export default function LoginPage() {
             if (!loginData.isSuccess) {
                 setStatus(prevState => ({
                     isError: true,
-                    errorMessage: loginData.response.message,
+                    errorMessage: "Tên tài khoản hoặc mật khẩu không chính xác",
                     isSubmit: false,
                 }));
 

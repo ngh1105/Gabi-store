@@ -3,6 +3,7 @@ import { useAuth } from "hooks/use-auth";
 import { useEffect } from "react"
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function TokenGuard({ children }) {
 
@@ -25,6 +26,9 @@ export default function TokenGuard({ children }) {
 
             localStorage.removeItem("user");
             dispatch(setUser(null));
+
+            toast.error("Phiên đăng nhập hết hạn, vui lòng đăng nhập lại");
+
             navigate('/auth/login');
         };
 

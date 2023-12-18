@@ -7,7 +7,7 @@ import { useFlexLayout, useGlobalFilter, usePagination, useTable } from "react-t
 import Api from "app/api";
 import { API_URL } from "app/config";
 import PageLayout from "components/page-layout";
-import toast from 'react-toastify';
+import { toast } from "react-toastify";
 
 export default function BrandPage() {
 

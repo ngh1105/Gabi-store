@@ -28,7 +28,7 @@ export default function ProductItem({ product, isNew }) {
             imageUrl: obj.imageUrl,
             price: obj.price,
             amount: 1,
-            color: "Tự do",
+            color: "Theo hình",
             size: "Tự do",
         }));
 

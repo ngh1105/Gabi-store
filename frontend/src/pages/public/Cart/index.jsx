@@ -105,7 +105,7 @@ export default function CartPage() {
                                                                 <div>
                                                                     <div className="flex items-center gap-2 mt-1">
                                                                         <h2 className="text-sm opacity-80">
-                                                                            Màu sắc: <span className="text-bold">{obj.color ? obj.color : "Tự do"}</span>
+                                                                            Màu sắc: <span className="text-bold">{obj.color ? obj.color : "Theo hình"}</span>
                                                                         </h2>
 
                                                                     </div>
@@ -162,7 +162,7 @@ export default function CartPage() {
                             </div>
                             <div className="flex justify-between mb-2">
                                 <span>Phí vận chuyển</span>
-                                <span>0đ</span>
+                                <span>0 đ</span>
                             </div>
                             <hr className="my-2" />
                             <div className="flex justify-between mb-2">
@@ -172,8 +172,8 @@ export default function CartPage() {
                             <button
                                 disabled={cart.length === 0}
                                 onClick={handleCheckoutButton}
-                                className="bg-indigo-700 text-white py-2 px-4 rounded-lg mt-4 w-full hover:opacity-[0.9]">
-                                Thanh toán
+                                className="bg-indigo-700 text-white py-2 px-4 rounded-lg mt-4 w-full hover:opacity-[0.9] hover:cursor-pointer">
+                                Đặt hàng
                             </button>
                         </div>
                     </div>

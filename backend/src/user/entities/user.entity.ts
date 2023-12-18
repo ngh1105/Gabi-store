@@ -42,4 +42,16 @@ export class User extends Model {
         defaultValue: "",
     })
     avatarUrl: string;
+
+    @Column({
+        type: DataType.STRING,
+        defaultValue: "",
+    })
+    phoneNumber: string;
+
+    @Column({
+        type: DataType.STRING,
+        defaultValue: "",
+    })
+    address: string;
 }
