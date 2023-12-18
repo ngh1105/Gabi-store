@@ -2,7 +2,7 @@ import { Table, Column, Model, DataType } from 'sequelize-typescript';
 
 @Table
 export class Blog extends Model {
-    
+
     @Column({
         type: DataType.INTEGER,
         autoIncrement: true,
@@ -31,7 +31,7 @@ export class Blog extends Model {
     description: string;
 
     @Column({
-        type: DataType.STRING,
+        type: DataType.TEXT('long'),
         defaultValue: "",
     })
     content: string;
