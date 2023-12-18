@@ -5,6 +5,7 @@ import ProductPage from "pages/admin/product";
 import UserPage from "pages/admin/user";
 import BrandPage from "pages/admin/brand";
 import BillPage from "pages/admin/bill";
+import CommentPage from "pages/admin/comment";
 
 export const adminRoutes = {
     path: '/admin',
@@ -33,6 +34,10 @@ export const adminRoutes = {
         {
             path: 'bill',
             element: < BillPage />,
+        },
+        {
+            path: 'comment',
+            element: < CommentPage />,
         },
     ]
 };

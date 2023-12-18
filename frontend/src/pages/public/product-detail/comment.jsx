@@ -62,12 +62,21 @@ export default function CommentSection({ id, isBought }) {
         validationSchema: Yup.object({
             content: Yup.string()
                 .required("Đây là dữ liệu bắt buộc")
-                .max(500, `Không thể vượt quá 500 ký tự`),
+                .max(1000, `Không thể vượt quá 1000 ký tự`),
         }),
         onSubmit: async (values, { resetForm }) => {
 
             if (!isAuthenticated()) {
                 navigate("/auth/login");
+                return;
+            }
+
+            if (!isBought) {
+                toast.error("Bạn chưa mua sản phẩm này", {
+                    autoClose: 1000,
+                    hideProgressBar: true,
+                });
+
                 return;
             }
 

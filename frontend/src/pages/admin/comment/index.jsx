@@ -6,12 +6,12 @@ import { API_URL } from "app/config";
 import PageLayout from "components/page-layout";
 import { toast } from "react-toastify";
 
-export default function BillPage() {
+export default function CommentPage() {
 
-    const [bills, setBills] = useState([]);
+    const [comments, setComments] = useState([]);
 
     async function fetchData() {
-        const res = await Api.Get("/bill");
+        const res = await Api.Get("/comment");
         if (!res.isSuccess) {
             toast.error("Đã có lỗi xảy ra");
             return;
@@ -19,9 +19,9 @@ export default function BillPage() {
 
         const newData = res.response.map((obj, index) => {
             return {
-                id: obj.id,
-                fullName: obj.fullName,
-                totalPrice: obj.totalPrice,
+                userId: obj.userId,
+                productId: obj.productId,
+                content: (<p className="text-ellipsis overflow-hidden line-clamp-2">{obj.content}</p>),
                 actions: (
                     <div className="w-full flex justify-end items-center gap-2 text-right">
                         <div></div>
@@ -31,7 +31,7 @@ export default function BillPage() {
             }
         })
 
-        setBills(newData);
+        setComments(newData);
     }
 
     useEffect(() => {
@@ -40,16 +40,16 @@ export default function BillPage() {
 
     const columns = useMemo(() => [
         {
-            Header: "ID",
+            Header: "ID Người dùng",
             accessor: "id",
         },
         {
-            Header: "Họ tên",
+            Header: "ID Sản phẩm",
             accessor: "fullName",
         },
         {
-            Header: "Tổng tiền",
-            accessor: "totalPrice",
+            Header: "Nội dung",
+            accessor: "content",
         },
         {
             Header: () => <div className="text-right">Thao tác</div>,
@@ -59,7 +59,7 @@ export default function BillPage() {
         }
     ], []);
 
-    const data = useMemo(() => bills, [bills]);
+    const data = useMemo(() => comments, [comments]);
 
     const tableInstance = useTable({
         columns,
@@ -94,7 +94,7 @@ export default function BillPage() {
     const { globalFilter, pageIndex, pageSize } = state;
 
     return (
-        <PageLayout title="Đơn hàng" >
+        <PageLayout title="Bình luận" >
             <section className="bg-gray-50 p-3 sm:p-5">
                 <div className="mx-auto max-w-screen-xl px-4 lg:px-12">
                     {/* Start coding here */}

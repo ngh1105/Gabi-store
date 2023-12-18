@@ -98,7 +98,7 @@ export default function BillDetailPage() {
                                                                     <img
                                                                         className="w-16 h-16 rounded mt-1"
                                                                         src={`${API_URL}${obj.imageUrl}`}
-                                                                        alt="Default avatar" />
+                                                                        alt="" />
                                                                     <div className="">
                                                                         <p className="font-semibold">
                                                                             {obj.name}

@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import utils from "utils";
 
 export const useProductPaginate = (itemPerPage) => {
 
@@ -29,7 +30,15 @@ export const useProductPaginate = (itemPerPage) => {
         }
 
         // Filter by keyword
-        const filteredByKeyword = filteredByBrand.filter(item => item.name.includes(kw));
+        const filteredByKeyword = filteredByBrand.filter(item => {
+            const lwName = item.name.toLowerCase();
+            const lwKw = kw.toLowerCase();
+            const strPrice = item.price.toString();
+
+            return lwName.includes(lwKw)
+                || strPrice.includes(kw)
+                || utils.formatVND(item.price).includes(kw);
+        });
 
         // Update state
         setKeyword(kw);

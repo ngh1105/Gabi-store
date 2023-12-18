@@ -79,7 +79,7 @@ export default function ProductDetailPage() {
     }, [id]);
 
     const [count, setCount] = useState(1);
-    const [color, setColor] = useState("Tự do");
+    const [color, setColor] = useState("Như hình");
     const [size, setSize] = useState("Tự do");
 
     const handleDecreaseCount = () => setCount((c) => count > 1 ? c - 1 : 1);
@@ -225,7 +225,7 @@ export default function ProductDetailPage() {
                                         {currProduct.description}
                                     </p>
                                     <p className="inline-block mb-2 text-4xl font-bold text-gray-700 dark:text-gray-400 ">
-                                        <span>{utils.formatVND(currProduct.price)}</span>
+                                        <span className="text-orange-500">{utils.formatVND(currProduct.price)}</span>
                                     </p>
                                 </div>
                                 <div className="flex items-center mb-8">
