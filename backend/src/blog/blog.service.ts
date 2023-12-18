@@ -1,9 +1,10 @@
-import { Injectable, Inject, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable, Inject, HttpException, HttpStatus, BadRequestException } from '@nestjs/common';
 import { CreateBlogDto } from './dto/create-blog.dto';
 import { UpdateBlogDto } from './dto/update-blog.dto';
 import { Blog } from './entities/blog.entity';
 import { UserService } from 'src/user/user.service';
 import { BlogDto } from './dto/blog.dto';
+import * as fs from "fs";
 
 @Injectable()
 export class BlogService {
@@ -17,7 +18,7 @@ export class BlogService {
     async create(data: CreateBlogDto) {
         const isExists = await this.userService.isExists(data.userId);
         if (!isExists) {
-            throw new HttpException('Category is not exist', HttpStatus.NOT_FOUND);
+            throw new HttpException('User is not exist', HttpStatus.NOT_FOUND);
         }
 
         const record = await this.blogRepository.create({
@@ -32,7 +33,12 @@ export class BlogService {
     }
 
     async findAll() {
-        const data = await this.blogRepository.findAll<Blog>();
+        const data = await this.blogRepository.findAll<Blog>({
+            order: [
+                ['id', 'DESC']
+            ]
+        });
+
         return data.map(obj => new BlogDto(obj));
     }
 
@@ -77,5 +83,39 @@ export class BlogService {
         await record.destroy();
 
         return "Deleted successfully";
+    }
+
+    async updateThumbnail(id: number, image: any) {
+        const record = await this.blogRepository.findOne<Blog>({
+            where: { id: id },
+        });
+
+        if (!record) {
+            throw new HttpException('No record found', HttpStatus.NOT_FOUND);
+        }
+
+        if (image.name.length > 155) {
+            throw new BadRequestException("File name too long");
+        }
+
+        const fileName = `/upload/blog/${record.id}/${image.md5}/${image.name}`;
+        if (fileName === record.thumbnail) {
+            return "File is already exist";
+        }
+
+        this.deleteThumbnail(record);
+
+        image.mv(`./public${fileName}`);
+
+        record.thumbnail = fileName;
+        await record.save();
+
+        return "Uploaded successfully";
+    }
+
+    deleteThumbnail(record: Blog) {
+        if (record.thumbnail && record.thumbnail !== "") {
+            fs.unlinkSync(`./public${record.thumbnail}`);
+        }
     }
 }

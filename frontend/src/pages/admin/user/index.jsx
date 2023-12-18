@@ -6,6 +6,7 @@ import { useFlexLayout, useGlobalFilter, usePagination, useTable } from "react-t
 import Api from "app/api";
 import { API_URL } from "app/config";
 import PageLayout from "components/page-layout";
+import { toast } from "react-toastify";
 
 export default function UserPage() {
 
@@ -13,6 +14,10 @@ export default function UserPage() {
 
     async function fetchData() {
         const res = await Api.Get("/user");
+        if (!res.isSuccess) {
+            toast.error("Đã có lỗi xảy ra");
+            return;
+        }
 
         const newData = res.response.map((obj, index) => {
             return {

@@ -28,7 +28,7 @@ export default function ProductItem({ product, isNew }) {
             imageUrl: obj.imageUrl,
             price: obj.price,
             amount: 1,
-            color: "Tự do",
+            color: "Theo hình",
             size: "Tự do",
         }));
 
@@ -46,6 +46,7 @@ export default function ProductItem({ product, isNew }) {
             const res = await Api.Get(`/wishlist/is-liked/${user.userId}/${product.id}`);
 
             if (!res.isSuccess) {
+                toast.error("Đã có lỗi xảy ra");
                 return;
             }
 

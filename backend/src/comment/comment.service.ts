@@ -60,4 +60,28 @@ export class CommentService {
         const retData = await record.save();
         return new CommentDto(retData);
     }
+
+    async findAll() {
+        const data = await this.commentRepository.findAll<Comment>({
+            order: [
+                ['id', 'DESC']
+            ]
+        });
+
+        return data.map(obj => new CommentDto(obj));
+    }
+
+    async remove(id: number) {
+        const record = await this.commentRepository.findOne<Comment>({
+            where: { id: id },
+        });
+
+        if (!record) {
+            throw new NotFoundException('No record found');
+        }
+
+        await record.destroy();
+
+        return "Deleted successfully";
+    }
 }

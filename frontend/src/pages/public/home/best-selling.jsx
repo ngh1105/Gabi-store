@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 export default function BestSellingSection() {
 
@@ -14,6 +15,11 @@ export default function BestSellingSection() {
         try {
             (async () => {
                 const res = await Api.Get("/product/find-best-selling");
+                if (!res.isSuccess) {
+                    toast.error("Đã có lỗi xảy ra");
+                    return;
+                }
+
                 setBestSellings(res.response);
             })();
         }
@@ -52,14 +58,14 @@ export default function BestSellingSection() {
                     <div className="mx-auto mb-10 border-b border-red-700 w-44 dark:border-gray-400" />
 
                     <Carousel
-                            responsive={responsive}
-                            swipeable={false}
-                            draggable={false}
-                            infinite={true}
-                            autoPlay={true}
-                            autoPlaySpeed={2000}
-                            itemClass="px-2"
-                        >
+                        responsive={responsive}
+                        swipeable={false}
+                        draggable={false}
+                        infinite={true}
+                        autoPlay={true}
+                        autoPlaySpeed={2000}
+                        itemClass="px-2"
+                    >
                         {
                             bestSellings.map((obj, index) => {
                                 return (

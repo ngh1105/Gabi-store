@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "redux/cart.slice";
 import ProductItem from "components/product-item";
 import { useProductPaginate } from "./use-paginate";
+import { toast } from 'react-toastify';
 
 export default function ProductPage() {
 
@@ -20,9 +21,19 @@ export default function ProductPage() {
         try {
             (async () => {
                 let res = await Api.Get("/category");
+                if (!res.isSuccess) {
+                    toast.error("Đã có lỗi xảy ra");
+                    return;
+                }
+
                 setCategories(res.response);
 
                 res = await Api.Get("/brand");
+                if (!res.isSuccess) {
+                    toast.error("Đã có lỗi xảy ra");
+                    return;
+                }
+
                 setBrands(res.response);
             })();
         }
@@ -61,6 +72,11 @@ export default function ProductPage() {
         try {
             (async () => {
                 const res = await Api.Get(`/product`);
+                if (!res.isSuccess) {
+                    toast.error("Đã có lỗi xảy ra");
+                    return;
+                }
+
                 setTotalPages(Math.ceil(res.response.length / PRODUCTS_PER_PAGE));
                 setItems(res.response);
 

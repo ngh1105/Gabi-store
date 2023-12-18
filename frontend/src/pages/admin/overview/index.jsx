@@ -2,6 +2,7 @@ import Api from "app/api";
 import { API_URL } from "app/config";
 import PageLayout from "components/page-layout";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import utils from "utils";
 
 export default function OverviewPage() {
@@ -13,20 +14,45 @@ export default function OverviewPage() {
     const [revenues, setRevenues] = useState([]);
 
     async function fetchData() {
-        const resCategory = await Api.Get("/category/count-total");
-        setCategoryCount(resCategory.response);
+        let res = await Api.Get("/category/count-total");
+        if (res.isSuccess) {
+            setCategoryCount(res.response);
+        }
+        else {
+            toast.error("Đã có lỗi xảy ra");
+        }
 
-        const resProduct = await Api.Get("/product/count-total");
-        setProductCount(resProduct.response);
+        res = await Api.Get("/product/count-total");
+        if (res.isSuccess) {
+            setProductCount(res.response);
+        }
+        else {
+            toast.error("Đã có lỗi xảy ra");
+        }
 
-        const resUser = await Api.Get("/user/count-total");
-        setUserCount(resUser.response);
+        res = await Api.Get("/user/count-total");
+        if (res.isSuccess) {
+            setUserCount(res.response);
+        }
+        else {
+            toast.error("Đã có lỗi xảy ra");
+        }
 
-        const resBills = await Api.Get("/bill-detail/find-recently?limit=4");
-        setRecentBills(resBills.response);
+        res = await Api.Get("/bill-detail/find-recently?limit=4");
+        if (res.isSuccess) {
+            setRecentBills(res.response);
+        }
+        else {
+            toast.error("Đã có lỗi xảy ra");
+        }
 
-        const resRevenues = await Api.Get("/bill/find-revenue?months=4");
-        setRevenues(resRevenues.response);
+        res = await Api.Get("/bill/find-revenue?months=4");
+        if (res.isSuccess) {
+            setRevenues(res.response);
+        }
+        else {
+            toast.error("Đã có lỗi xảy ra");
+        }
     }
 
     useEffect(() => {

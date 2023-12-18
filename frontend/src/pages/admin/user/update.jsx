@@ -32,25 +32,20 @@ export default function UpdatePage({ id, fetchData }) {
     const updateData = async () => {
         const res = await Api.Get(`/user/${id}`);
 
-            if (!res.isSuccess) {
-                toast.error("ID không tồn tại");
-                setOpenModal(false);
-            }
+        if (!res.isSuccess) {
+            toast.error("ID không tồn tại");
+            setOpenModal(false);
+        }
 
-            setCurrUser({
-                id: res.response.id,
-                email: res.response.email,
-                fullName: res.response.fullName,
-                role: res.response.role,
-                avatarUrl: res.response.avatarUrl,
-            });
+        setCurrUser({
+            id: res.response.id,
+            email: res.response.email,
+            fullName: res.response.fullName,
+            role: res.response.role,
+            avatarUrl: res.response.avatarUrl,
+        });
 
-            setImageFromUrl(`${API_URL}${res.response.imageUrl}`);
-    }
-
-    const handleOpenButton = async () => {
-        setOpenModal(true);
-        await updateData();
+        setImageFromUrl(`${API_URL}${res.response.imageUrl}`);
     }
 
     const uploadAvatar = async (id) => {
@@ -110,7 +105,7 @@ export default function UpdatePage({ id, fetchData }) {
                 role: values.role,
             }
 
-            const resData = await Api.Post("/user", data);
+            const resData = await Api.Patch(`/user/${id}`, data);
             if (!resData.isSuccess) {
                 setStatus(prevState => ({
                     isError: true,

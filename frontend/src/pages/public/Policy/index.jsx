@@ -4,11 +4,11 @@ import PageTitle from "components/page-title";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function Policy() {
+export default function PolicyPage() {
     return (
         <PageLayout title="Chính sách">
             <PageTitle name="Chính sách" imageUrl={`${API_URL}${"/upload/page/contact.avif"}`} />
-            <div className="max-w-screen-xl mx-auto">
+            <div className="max-w-screen-xl mx-auto pb-6">
                 <main className="mt-2">
                     <div className="flex flex-col lg:flex-row ">
                         <div className="px-4 lg:px-0 mt-12 text-gray-700 text-lg leading-relaxed w-full lg:w-4/4">
@@ -102,10 +102,6 @@ export default function Policy() {
                                 Áo thun, quần short: thu gom và gởi cho các chương trình từ thiện
                             </p>
                             <p className="pb-6"> Bít tất, boxer: huỷ bỏ 100%</p>
-                            <p className="pb-6 text-red-700" >
-                                {" "}
-                                <Link to="/deliverInfo"> Tiếp tục thanh toán</Link>
-                            </p>
                         </div>
                     </div>
                 </main>

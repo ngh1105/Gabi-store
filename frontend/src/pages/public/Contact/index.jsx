@@ -41,7 +41,7 @@ export default function ContactPage() {
                         </div>
                     </div>
                 </div>
-                <section className>
+                <section>
                     <div className="py-12 md:px-12">
                         <div className="container w- mx-auto xl:px-32">
                             <div className="grid items-center lg:grid-cols-2">
@@ -59,13 +59,13 @@ export default function ContactPage() {
                                                 <label htmlFor="email" className="mb-3 block text-base font-medium text-[#07074D]">
                                                     Địa chỉ Email
                                                 </label>
-                                                <input type="email" name="email" id="email" placeholder="abcdef@gmail.com" className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                                                <input type="email" name="email" id="email" placeholder="gabistore@gmail.com" className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                                             </div>
                                             <div className="mb-3">
                                                 <label htmlFor="message" className="mb-3 block text-base font-medium text-[#07074D]">
                                                     Lời nhắn
                                                 </label>
-                                                <textarea rows={2} name="message" id="message" placeholder="Shop này uy tín" className="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" defaultValue={""} />
+                                                <textarea rows={2} name="message" id="message" placeholder="Lời nhắn của bạn..." className="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" defaultValue={""} />
                                             </div>
                                             <div>
                                                 <button className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none">
@@ -77,7 +77,7 @@ export default function ContactPage() {
                                 </div>
                                 <div className="md:mb-12 lg:mb-0">
                                     <div className="relative w-[600px] h-[600px] rounded-lg shadow-lg dark:shadow-black/20">
-                                        <iframe src="https://maps.google.com/maps?q=manhatan&t=&z=13&ie=UTF8&iwloc=&output=embed" className="absolute w-[600px] h-[600px] " frameBorder={0} allowFullScreen />
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15673.995516826699!2d106.61753725000001!3d10.84960925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752b1317183d1f%3A0xcd493d03279ee0ca!2sQTSC%20Building%203!5e0!3m2!1sen!2s!4v1702889226972!5m2!1sen!2s" className="absolute w-[600px] h-[600px] " frameBorder={0} allowFullScreen></iframe>
                                     </div>
                                 </div>
                             </div>

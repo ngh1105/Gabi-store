@@ -21,14 +21,14 @@ const createRelationship = () => {
         foreignKey: 'categoryId',
     });
 
-    // Brand.hasMany(Product, {
-    //     onDelete: 'CASCADE',
-    //     foreignKey: 'brandId',
-    // });
+    Brand.hasMany(Product, {
+        onDelete: 'CASCADE',
+        foreignKey: 'brandId',
+    });
 
-    // Product.belongsTo(Brand, {
-    //     foreignKey: 'brandId',
-    // });
+    Product.belongsTo(Brand, {
+        foreignKey: 'brandId',
+    });
 
     User.hasMany(Blog, {
         onDelete: 'CASCADE',
@@ -127,10 +127,12 @@ export const databaseProviders = [
         useFactory: async () => {
             const sequelize = new Sequelize({
                 dialect: 'mysql',
+                // username: 'new_user',
+                // password: 'password',
+                username: "root",
+                password: "",
                 host: 'localhost',
                 port: 3306,
-                username: 'root',
-                password: '',
                 database: 'gabi_store',
             });
 

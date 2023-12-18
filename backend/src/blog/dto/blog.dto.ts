@@ -30,6 +30,10 @@ export class BlogDto {
     @IsNumber()
     userId: number;
 
+    @ApiProperty()
+    @IsOptional()
+    createdAt?: string = "";
+
     constructor(data: Blog) {
         this.id = data.id;
         this.title = data.title;
@@ -37,5 +41,6 @@ export class BlogDto {
         this.description = data.description;
         this.content = data.content;
         this.userId = data.userId;
+        this.createdAt = data.createdAt;
     }
 }

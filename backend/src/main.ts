@@ -11,7 +11,10 @@ async function bootstrap() {
 
     app.use(express.static('public'));
 
-    app.use(fileUpload({ createParentPath: true }));
+    app.use(fileUpload({
+        createParentPath: true,
+        limits: { fileSize: 50 * 1024 * 1024 },
+    }));
 
     app.use(cookieParser());
 
@@ -20,7 +23,14 @@ async function bootstrap() {
         origin: [
             "http://localhost:3000",
             "http://localhost:8000",
-        ]
+            "https://localhost:3000",
+            "https://localhost:8000",
+            "http://gabi-store.xyz",
+            "https://gabi-store.xyz",
+            "http://api.gabi-store.xyz",
+            "https://api.gabi-store.xyz",
+        ],
+        optionsSuccessStatus: 200,
     })
 
     const config = new DocumentBuilder()
@@ -28,7 +38,7 @@ async function bootstrap() {
         .setDescription('Backend API for gabi store project')
         .setVersion('1.0')
         .addApiKey({
-            type: 'apiKey', 
+            type: 'apiKey',
             name: 'api-key',
             in: 'header',
         }, 'private-key')

@@ -16,6 +16,10 @@ export default function AddPage({ fetchData }) {
         try {
             (async () => {
                 const res = await Api.Get("/category");
+                if (!res.isSuccess) {
+                    toast.error("Đã có lỗi xảy ra");
+                    return;
+                }
 
                 const newData = res.response.map((obj, index) => {
                     return {
@@ -29,6 +33,10 @@ export default function AddPage({ fetchData }) {
 
             (async () => {
                 const res = await Api.Get("/brand");
+                if (!res.isSuccess) {
+                    toast.error("Đã có lỗi xảy ra");
+                    return;
+                }
 
                 let newData = res.response.map((obj, index) => {
                     return {
@@ -81,7 +89,7 @@ export default function AddPage({ fetchData }) {
         enableReinitialize: true,
         initialValues: {
             categoryId: categories[0] ? categories[0].id : 0,
-            brandId: 0,
+            brandId: brands[0] ? brands[0].id : 0,
             name: "",
             price: 0,
             description: "",
@@ -91,7 +99,8 @@ export default function AddPage({ fetchData }) {
         validationSchema: Yup.object({
             categoryId: Yup.string()
                 .required("Đây là dữ liệu bắt buộc"),
-            brandId: Yup.string(),
+            brandId: Yup.string()
+                .required("Đây là dữ liệu bắt buộc"),
             name: Yup.string()
                 .required("Đây là dữ liệu bắt buộc")
                 .min(6, `Cần ít nhất 6 ký tự`)

@@ -1,4 +1,4 @@
-import { Injectable, Inject, HttpException, HttpStatus, UnauthorizedException } from '@nestjs/common';
+import { Injectable, Inject, HttpException, HttpStatus, UnauthorizedException, NotFoundException } from '@nestjs/common';
 import { CreateBillDto } from './dto/create-bill.dto';
 import { UpdateBillDto } from './dto/update-bill.dto';
 import { Bill } from './entities/bill.entity';
@@ -45,8 +45,14 @@ export class BillService {
         return new BillDto(billData);
     }
 
-    findAll() {
-        return `This action returns all bill`;
+    async findAll() {
+        const data = await this.billRepository.findAll<Bill>({
+            order: [
+                ['id', 'DESC']
+            ]
+        });
+
+        return data.map(obj => new BillDto(obj));
     }
 
     async findOne(id: number) {
@@ -100,6 +106,12 @@ export class BillService {
     }
 
     async findRevenue(months: number) {
+
+        const count = await this.billRepository.count();
+        if (count <= 0) {
+            return [];
+        }
+
         const date = new Date();
         date.setMonth(date.getMonth() - months);
 
@@ -118,5 +130,19 @@ export class BillService {
         });
 
         return revenue;
+    }
+
+    async remove(id: number) {
+        const record = await this.billRepository.findOne<Bill>({
+            where: { id: id },
+        });
+
+        if (!record) {
+            throw new NotFoundException('No record found');
+        }
+
+        await record.destroy();
+
+        return "Deleted successfully";
     }
 }

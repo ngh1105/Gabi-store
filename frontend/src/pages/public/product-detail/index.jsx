@@ -57,10 +57,20 @@ export default function ProductDetailPage() {
             });
 
             res = await Api.Get(`/product/find-related/${id}`);
+            if (!res.isSuccess) {
+                toast.error("Đã có lỗi xảy ra");
+                return;
+            }
+
             setRelatedProducts(res.response);
 
             if (user) {
                 res = await Api.Get(`/product/is-bought/${user.userId}/${id}`);
+                if (!res.isSuccess) {
+                    toast.error("Đã có lỗi xảy ra");
+                    return;
+                }
+
                 //console.log(res.response);
                 setIsBought(res.response);
             }
@@ -69,7 +79,7 @@ export default function ProductDetailPage() {
     }, [id]);
 
     const [count, setCount] = useState(1);
-    const [color, setColor] = useState("Tự do");
+    const [color, setColor] = useState("Như hình");
     const [size, setSize] = useState("Tự do");
 
     const handleDecreaseCount = () => setCount((c) => count > 1 ? c - 1 : 1);
@@ -103,9 +113,19 @@ export default function ProductDetailPage() {
 
     const fetchRatingData = async () => {
         let res = await Api.Get(`/rating/count-rating/${id}`);
+        if (!res.isSuccess) {
+            toast.error("Đã có lỗi xảy ra");
+            return;
+        }
+
         setRatingCount(res.response);
 
         res = await Api.Get(`/rating/get-score/${id}`);
+        if (!res.isSuccess) {
+            toast.error("Đã có lỗi xảy ra");
+            return;
+        }
+
         setRatingScore(parseInt(res.response));
     }
 
@@ -205,7 +225,7 @@ export default function ProductDetailPage() {
                                         {currProduct.description}
                                     </p>
                                     <p className="inline-block mb-2 text-4xl font-bold text-gray-700 dark:text-gray-400 ">
-                                        <span>{utils.formatVND(currProduct.price)}</span>
+                                        <span className="text-orange-500">{utils.formatVND(currProduct.price)}</span>
                                     </p>
                                 </div>
                                 <div className="flex items-center mb-8">
@@ -216,7 +236,7 @@ export default function ProductDetailPage() {
                                             (!currProduct.colors || currProduct.colors.length <= 0)
                                                 ? (
                                                     <button className="px-3 py-1 mb-2 mr-1 border border-indigo-400 text-indigo-600">
-                                                        Tự do
+                                                        Theo hình
                                                     </button>
                                                 )
                                                 : (
@@ -288,7 +308,7 @@ export default function ProductDetailPage() {
                                     <div className="w-full px-4 mb-4 lg:w-1/2 lg:mb-0">
                                         <button
                                             onClick={handleAddToCart}
-                                            className="flex items-center justify-center w-full p-4 text-indigo-500 border border-indigo-500 rounded-md hover:bg-indigo-600 hover:border-indigo-600 hover:text-gray-100">
+                                            className="flex items-center justify-center w-full p-4 rounded-md bg-indigo-700 text-white hover:opacity-[0.9]">
                                             Thêm vào giỏ hàng
                                         </button>
                                     </div>
