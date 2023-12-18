@@ -165,7 +165,7 @@ export default function AddPage({ fetchData }) {
                         <div className="mb-4">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nội dung</label>
                             <textarea
-                                rows="6"
+                                rows="10"
                                 type="text"
                                 name="content"
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"

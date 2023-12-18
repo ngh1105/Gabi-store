@@ -10,9 +10,9 @@ import CheckoutPage from "pages/public/checkout";
 import BillPage from "pages/public/bill";
 import BillDetailPage from "pages/public/bill-detail"
 import WishlistPage from "pages/public/wishlist";
+import BlogPage from "pages/public/blog";
+import BlogDetailPage from "pages/public/blog/blog-detail";
 
-import Blog from "pages/public/Blog";
-import BlogDetail from "pages/public/Blog/BlogDetail";
 import Story from "pages/public/story";
 import StoryDetail from "pages/public/home/Story/StoryDetail";
 import PostItem from "pages/public/home/PostItem";
@@ -44,12 +44,13 @@ export const publicRoutes = {
         { path: '/bill', element: <BillPage /> },
         { path: '/bill-detail/:id', element: <BillDetailPage /> },
 
+        { path: '/blog', element: <BlogPage /> },
+        { path: '/blog-detail/:id', element: <BlogDetailPage /> },
+
         { path: '/wishlist', element: <WishlistPage /> },
 
         { path: '/rules', element: <Rules /> },
         { path: '/information', element: <Information /> },
-        { path: '/blog', element: <Blog /> },
-        { path: '/blog/:id', element: <BlogDetail /> },
 
         { path: '/story', element: <Story /> },
         { path: '/postitem', element: <PostItem /> },

@@ -33,7 +33,12 @@ export class BlogService {
     }
 
     async findAll() {
-        const data = await this.blogRepository.findAll<Blog>();
+        const data = await this.blogRepository.findAll<Blog>({
+            order: [
+                ['id', 'DESC']
+            ]
+        });
+
         return data.map(obj => new BlogDto(obj));
     }
 
