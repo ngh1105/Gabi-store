@@ -69,7 +69,7 @@ export default function RegisterPage() {
                 password: values.password,
             }
 
-            const registerData = await Api.Post("auth/register", data);
+            const registerData = await Api.Post("/auth/register", data);
 
             if (!registerData.isSuccess) {
                 setStatus(prevState => ({

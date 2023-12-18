@@ -63,6 +63,22 @@ export class UserService {
         return new UserDto(record);
     }
 
+    async resetPassword(id: number, newPassword: string) {
+        const record = await this.userRepository.findOne<User>({
+            where: { id: id },
+        });
+
+        if (!record) {
+            throw new HttpException('No record found', HttpStatus.NOT_FOUND);
+        }
+
+        record.password = await this.hashPassword(newPassword);
+
+        await record.save();
+
+        return new UserDto(record);
+    }
+
     async verifyUser(id: number) {
         const record = await this.userRepository.findOne<User>({
             where: { id: id },
