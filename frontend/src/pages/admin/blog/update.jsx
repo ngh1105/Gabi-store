@@ -1,5 +1,5 @@
 import { Modal } from "flowbite-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Api from "app/api";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useImageUpload } from "hooks/use-image-upload";
 import { toast } from "react-toastify";
 import { API_URL } from "app/config";
+import { useAuth } from "hooks/use-auth";
 
 export default function UpdatePage({ id, fetchData }) {
 
@@ -21,34 +22,35 @@ export default function UpdatePage({ id, fetchData }) {
     const navigate = useNavigate();
     const { image, previewUrl, setImageFromUrl, handleImageChange } = useImageUpload();
 
-    const [currUser, setCurrUser] = useState({
-        id: "",
-        email: "",
-        fullName: "",
-        role: "",
-        avatarUrl: "",
+    const [currBlog, setCurrBlog] = useState({
+        title: "",
+        description: "",
+        content: "",
     });
 
     const updateData = async () => {
-        const res = await Api.Get(`/user/${id}`);
+        const res = await Api.Get(`/blog/${id}`);
 
         if (!res.isSuccess) {
             toast.error("ID không tồn tại");
             setOpenModal(false);
         }
 
-        setCurrUser({
-            id: res.response.id,
-            email: res.response.email,
-            fullName: res.response.fullName,
-            role: res.response.role,
-            avatarUrl: res.response.avatarUrl,
+        setCurrBlog({
+            title: res.response.title,
+            description: res.response.description,
+            content: res.response.content,
         });
 
-        setImageFromUrl(`${API_URL}${res.response.imageUrl}`);
+        setImageFromUrl(`${API_URL}${res.response.thumbnail}`);
     }
 
-    const uploadAvatar = async (id) => {
+    const handleOpenButton = async () => {
+        setOpenModal(true);
+        await updateData();
+    }
+
+    const uploadThumbnail = async (id) => {
 
         if (!image) {
             return false;
@@ -57,7 +59,7 @@ export default function UpdatePage({ id, fetchData }) {
         const formData = new FormData();
         formData.append('image', image);
 
-        const resData = await Api.Post(`/user/upload-avatar/${id}`, formData, {
+        const resData = await Api.Post(`/blog/upload-thumbnail/${id}`, formData, {
             headers: { "Content-Type": "multipart/form-data" }
         });
 
@@ -69,27 +71,23 @@ export default function UpdatePage({ id, fetchData }) {
         return true;
     }
 
+    const { user } = useAuth();
+
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: {
-            email: currUser.name,
-            password: currUser.password,
-            fullName: currUser.fullName,
-            role: currUser.role,
+            title: currBlog.title,
+            description: currBlog.description,
+            content: currBlog.content,
         },
         validationSchema: Yup.object({
-            email: Yup.string()
+            title: Yup.string()
                 .required("Đây là dữ liệu bắt buộc")
-                .email()
                 .min(6, `Cần ít nhất 6 ký tự`)
                 .max(255, `Không thể vượt quá 255 ký tự`),
-            password: Yup.string()
+            description: Yup.string()
                 .required("Đây là dữ liệu bắt buộc"),
-            fullName: Yup.string()
-                .required("Đây là dữ liệu bắt buộc")
-                .min(6, `Cần ít nhất 6 ký tự`)
-                .max(255, `Không thể vượt quá 255 ký tự`),
-            role: Yup.string()
+            content: Yup.string()
                 .required("Đây là dữ liệu bắt buộc"),
         }),
         onSubmit: async (values, { resetForm }) => {
@@ -99,13 +97,13 @@ export default function UpdatePage({ id, fetchData }) {
             }));
 
             const data = {
-                email: values.email,
-                password: values.password,
-                fullName: values.fullName,
-                role: values.role,
+                title: values.title,
+                description: values.description,
+                content: values.content,
+                userId: user.userId,
             }
 
-            const resData = await Api.Patch(`/user/${id}`, data);
+            const resData = await Api.Patch(`/blog/${id}`, data);
             if (!resData.isSuccess) {
                 setStatus(prevState => ({
                     isError: true,
@@ -119,7 +117,7 @@ export default function UpdatePage({ id, fetchData }) {
                 return;
             }
 
-            await uploadAvatar(resData.response.id);
+            await uploadThumbnail(resData.response.id);
 
             setStatus(prevState => ({
                 isError: false,
@@ -140,92 +138,76 @@ export default function UpdatePage({ id, fetchData }) {
             {/* Modal toggle */}
             <div className="flex">
                 <button
-                    onClick={() => updateData()}
+                    onClick={() => handleOpenButton()}
                     className="block text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-2 py-2 text-center " type="button">
                     Sửa
                 </button>
             </div>
             <Modal show={openModal} onClose={() => setOpenModal(false)}>
-                <Modal.Header className="pb-4">Thêm người dùng</Modal.Header>
+                <Modal.Header className="pb-4">Sửa bài viết</Modal.Header>
                 <Modal.Body className="pt-2">
                     <form onSubmit={formik.handleSubmit}>
                         <div className="grid gap-4 mb-6 sm:grid-cols-2">
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tiêu đề</label>
                                 <input
                                     type="text"
-                                    name="email"
+                                    name="title"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                     autoComplete="off"
                                     spellCheck="false"
-                                    value={formik.values.email || ''}
+                                    value={formik.values.title || ''}
                                     onChange={formik.handleChange}
                                 />
-                                {formik.errors.email && formik.touched.email && (
+                                {formik.errors.title && formik.touched.title && (
                                     <p className="mt-1 ml-1 text-red-600 text-sm">
-                                        {formik.errors.email}
+                                        {formik.errors.title}
                                     </p>
                                 )}
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mô tả</label>
                                 <input
                                     type="text"
-                                    name="password"
+                                    name="description"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                     autoComplete="off"
                                     spellCheck="false"
-                                    value={formik.values.password || ''}
+                                    value={formik.values.description || ''}
                                     onChange={formik.handleChange}
                                 />
-                                {formik.errors.password && formik.touched.password && (
+                                {formik.errors.description && formik.touched.description && (
                                     <p className="mt-1 ml-1 text-red-600 text-sm">
-                                        {formik.errors.password}
+                                        {formik.errors.description}
                                     </p>
                                 )}
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Họ tên</label>
-                                <input
-                                    type="text"
-                                    name="fullName"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                    autoComplete="off"
-                                    spellCheck="false"
-                                    value={formik.values.fullName || ''}
-                                    onChange={formik.handleChange}
-                                />
-                                {formik.errors.fullName && formik.touched.fullName && (
-                                    <p className="mt-1 ml-1 text-red-600 text-sm">
-                                        {formik.errors.fullName}
-                                    </p>
-                                )}
-                            </div>
-                            <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ảnh đại diện</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ảnh bìa</label>
                                 <input
                                     type="file"
                                     name="image"
                                     onChange={handleImageChange}
                                 />
                             </div>
-                            <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vai trò</label>
-                                <select
-                                    name="role"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                    value={formik.values.role || 0}
-                                    onChange={formik.handleChange}
-                                >
-                                    <option value="GUEST">Guest</option>
-                                    <option value="ADMIN">Admin</option>
-                                </select>
-                                {formik.errors.role && formik.touched.role && (
-                                    <p className="mt-1 ml-1 text-red-600 text-sm">
-                                        {formik.errors.role}
-                                    </p>
-                                )}
-                            </div>
+                        </div>
+                        <div className="mb-4">
+                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nội dung</label>
+                            <textarea
+                                rows="6"
+                                type="text"
+                                name="content"
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                autoComplete="off"
+                                spellCheck="false"
+                                value={formik.values.content || ''}
+                                onChange={formik.handleChange}
+                            />
+                            {formik.errors.content && formik.touched.content && (
+                                <p className="mt-1 ml-1 text-red-600 text-sm">
+                                    {formik.errors.content}
+                                </p>
+                            )}
                         </div>
                         <button
                             disabled={status.isSubmit}

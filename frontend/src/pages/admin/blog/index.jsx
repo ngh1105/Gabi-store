@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useState } from "react"
+import AddPage from "./add";
+import UpdatePage from "./update";
 import DeletePage from "./delete";
 import { useFlexLayout, useGlobalFilter, usePagination, useTable } from "react-table";
 import Api from "app/api";
@@ -6,12 +8,12 @@ import { API_URL } from "app/config";
 import PageLayout from "components/page-layout";
 import { toast } from "react-toastify";
 
-export default function CommentPage() {
+export default function BlogPage() {
 
-    const [comments, setComments] = useState([]);
+    const [blogs, setBlogs] = useState([]);
 
     async function fetchData() {
-        const res = await Api.Get("/comment");
+        const res = await Api.Get("/blog");
         if (!res.isSuccess) {
             toast.error("Đã có lỗi xảy ra");
             return;
@@ -19,19 +21,19 @@ export default function CommentPage() {
 
         const newData = res.response.map((obj, index) => {
             return {
-                userId: obj.userId,
-                productId: obj.productId,
-                content: (<p className="text-ellipsis overflow-hidden line-clamp-2">{obj.content}</p>),
+                title: obj.title,
+                thumbnail: <img className="w-10 h-10 rounded-full" src={`${API_URL}${obj.thumbnail}`} alt="." />,
+                description: (<p className="text-ellipsis overflow-hidden line-clamp-2">{obj.description}</p>),
                 actions: (
                     <div className="w-full flex justify-end items-center gap-2 text-right">
-                        <div></div>
+                        <div><UpdatePage id={obj.id} fetchData={fetchData} /></div>
                         <div><DeletePage id={obj.id} fetchData={fetchData} /></div>
                     </div>
                 )
             }
         })
 
-        setComments(newData);
+        setBlogs(newData);
     }
 
     useEffect(() => {
@@ -40,16 +42,16 @@ export default function CommentPage() {
 
     const columns = useMemo(() => [
         {
-            Header: "ID Người dùng",
-            accessor: "userId",
+            Header: "Tiêu đề",
+            accessor: "title",
         },
         {
-            Header: "ID Sản phẩm",
-            accessor: "productId",
+            Header: "Ảnh bìa",
+            accessor: "thumbnail",
         },
         {
-            Header: "Nội dung",
-            accessor: "content",
+            Header: "Mô tả",
+            accessor: "description",
         },
         {
             Header: () => <div className="text-right">Thao tác</div>,
@@ -59,7 +61,7 @@ export default function CommentPage() {
         }
     ], []);
 
-    const data = useMemo(() => comments, [comments]);
+    const data = useMemo(() => blogs, [blogs]);
 
     const tableInstance = useTable({
         columns,
@@ -94,7 +96,7 @@ export default function CommentPage() {
     const { globalFilter, pageIndex, pageSize } = state;
 
     return (
-        <PageLayout title="Bình luận" >
+        <PageLayout title="Người dùng" >
             <section className="bg-gray-50 p-3 sm:p-5">
                 <div className="mx-auto max-w-screen-xl px-4 lg:px-12">
                     {/* Start coding here */}
@@ -120,7 +122,7 @@ export default function CommentPage() {
                                 </form>
                             </div>
                             <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                                {/* <AddPage fetchData={fetchData} /> */}
+                                <AddPage fetchData={fetchData} />
                             </div>
                         </div>
 
