@@ -1,4 +1,4 @@
-import { Injectable, Inject, HttpException, HttpStatus, BadRequestException } from '@nestjs/common';
+import { Injectable, Inject, HttpException, HttpStatus, BadRequestException, NotFoundException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
@@ -61,6 +61,26 @@ export class UserService {
         }
 
         return new UserDto(record);
+    }
+
+    async verifyUser(id: number) {
+        const record = await this.userRepository.findOne<User>({
+            where: { id: id },
+        });
+
+        if (!record) {
+            throw new NotFoundException("Invalid id");
+        }
+
+        if (record.isEmailVerified === true) {
+            return "Email is already verified";
+        }
+
+        record.isEmailVerified = true;
+
+        await record.save()
+
+        return "Verified successfully";
     }
 
     async findOneByEmail(email: string): Promise<UserDto | undefined> {

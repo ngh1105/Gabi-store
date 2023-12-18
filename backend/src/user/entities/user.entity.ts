@@ -54,4 +54,10 @@ export class User extends Model {
         defaultValue: "",
     })
     address: string;
+
+    @Column({
+        type: DataType.BOOLEAN,
+        defaultValue: false,
+    })
+    isEmailVerified: boolean;
 }

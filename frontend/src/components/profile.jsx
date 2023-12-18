@@ -12,7 +12,7 @@ export default function Profile() {
     const handleLogout = async () => {
 
         await logoutUser();
-        nagivate("/");
+        nagivate("/auth/login");
     }
 
     return (

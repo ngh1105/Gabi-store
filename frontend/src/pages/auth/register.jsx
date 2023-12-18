@@ -4,16 +4,22 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Api from "app/api";
 import PageLayout from "components/page-layout";
+import { toast } from "react-toastify";
 
 export default function RegisterPage() {
 
     const navigate = useNavigate();
 
     const [status, setStatus] = useState({
+        firstSubmit: false,
         isError: false,
         errorMessage: "",
         isSubmit: false,
+        isSuccess: false,
+        successMessage: "",
     });
+
+    const [confirmedTerms, setConfirmedTerms] = useState(false);
 
     const formik = useFormik({
         initialValues: {
@@ -40,10 +46,21 @@ export default function RegisterPage() {
                 .required("Đây là dữ liệu bắt buộc")
                 .oneOf([Yup.ref('password'), null], 'Mật khẩu phải trùng khớp')
         }),
-        onSubmit: async (values) => {
+        onSubmit: async (values, { resetForm }) => {
+
+            if (!confirmedTerms) {
+                setStatus(prevState => ({
+                    isError: true,
+                    errorMessage: "Bạn chưa đồng ý với điều khoản sử dụng",
+                    isSubmit: false,
+                }));
+
+                return;
+            }
+
             setStatus(prevState => ({
                 ...prevState,
-                isSubmit: true
+                isSubmit: true,
             }));
 
             const data = {
@@ -67,9 +84,16 @@ export default function RegisterPage() {
             setStatus(prevState => ({
                 ...prevState,
                 isSubmit: false,
+                isError: false,
+                isSuccess: true,
+                successMessage: "Bạn đã đăng ký thành công! Một email xác nhận đã được gửi đến hòm thư của bạn. Vui lòng kiểm tra hòm thư đến và thực hiện theo hướng dẫn trong email để hoàn tất quá trình đăng ký."
             }));
 
-            navigate("/auth/login");
+            resetForm();
+
+            toast.success("Đăng ký thành công");
+
+            //navigate("/auth/login");
         },
     })
 
@@ -121,7 +145,6 @@ export default function RegisterPage() {
                         <input
                             type="password"
                             name="password"
-                            placeholder="••••••••"
                             className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             autoComplete="off"
                             spellCheck="false"
@@ -139,7 +162,6 @@ export default function RegisterPage() {
                         <input
                             type="password"
                             name="confirmPassword"
-                            placeholder="••••••••"
                             className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             spellCheck="false"
                             value={formik.values.confirmPassword || ''}
@@ -153,10 +175,15 @@ export default function RegisterPage() {
                     </div>
                     <div className="flex items-start">
                         <div className="flex items-center h-5">
-                            <input id="terms" aria-describedby="terms" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required />
+                            <input
+                                onChange={(e) => setConfirmedTerms(e.target.value)}
+                                aria-describedby="terms"
+                                type="checkbox"
+                                className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                            />
                         </div>
                         <div className="ml-3 text-sm">
-                            <label htmlFor="terms" className="font-light text-gray-500 dark:text-gray-300">Tôi đồng ý với <a className="font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">Điều khoản sử dụng</a></label>
+                            <label htmlFor="terms" className="font-light text-gray-500 dark:text-gray-300">Tôi đồng ý với <Link className="font-medium text-primary-600 hover:underline dark:text-primary-500" to="/terms">Điều khoản sử dụng</Link></label>
                         </div>
                     </div>
                     <button
@@ -173,6 +200,17 @@ export default function RegisterPage() {
                                     marginTop: '0.25rem',
                                 }}>
                                     {status.errorMessage}
+                                </p>
+                            )
+                            : null
+                    }
+                    {
+                        status.successMessage !== "" && status.isSuccess
+                            ? (
+                                <p className="ml-1 text-green-600 text-sm" style={{
+                                    marginTop: '0.25rem',
+                                }}>
+                                    {status.successMessage}
                                 </p>
                             )
                             : null

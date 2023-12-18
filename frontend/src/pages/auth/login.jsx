@@ -49,8 +49,22 @@ export default function LoginPage() {
 
             if (!loginData.isSuccess) {
                 setStatus(prevState => ({
+                    ...prevState,
                     isError: true,
                     errorMessage: "Tên tài khoản hoặc mật khẩu không chính xác",
+                    isSubmit: false,
+                }));
+
+                return;
+            }
+
+            if (loginData.isSuccess
+                && loginData.response.isEmailVerified === false) {
+
+                setStatus(prevState => ({
+                    ...prevState,
+                    isError: true,
+                    errorMessage: "Email của bạn chưa được xác thực, vui lòng kiểm tra hòm thư đến và thực hiện theo hướng dẫn trong email",
                     isSubmit: false,
                 }));
 
