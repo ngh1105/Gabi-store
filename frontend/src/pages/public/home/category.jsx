@@ -69,7 +69,11 @@ export default function CategorySection() {
                                 categories.map((obj, index) => {
                                     return (
                                         <div key={index} className="flex flex-col items-center">
-                                            <Link to={`/product?category=${obj.id}`}>
+                                            <Link
+                                                onClick={() => {
+                                                    window.scrollTo(0, 0);
+                                                }}
+                                                to={`/product?category=${obj.id}`}>
                                                 <img
                                                     className="w-48 h-48 mb-3 rounded-full shadow-lg"
                                                     src={`${API_URL}${obj.imageUrl}`} alt="category" />

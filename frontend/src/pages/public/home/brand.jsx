@@ -63,7 +63,11 @@ export default function BrandSection() {
                                 brands.map((obj, index) => {
                                     return (
                                         <div key={index} className="flex flex-col items-center">
-                                            <Link to={`/product?brand=${obj.id}`}>
+                                            <Link
+                                                onClick={() => {
+                                                    window.scrollTo(0, 0);
+                                                }}
+                                                to={`/product?brand=${obj.id}`}>
                                                 <img
                                                     className="w-48 h-48 mb-3 rounded-full shadow-lg"
                                                     src={`${API_URL}${obj.imageUrl}`} alt="category" />
