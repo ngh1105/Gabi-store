@@ -49,8 +49,22 @@ export default function LoginPage() {
 
             if (!loginData.isSuccess) {
                 setStatus(prevState => ({
+                    ...prevState,
                     isError: true,
                     errorMessage: "Tên tài khoản hoặc mật khẩu không chính xác",
+                    isSubmit: false,
+                }));
+
+                return;
+            }
+
+            if (loginData.isSuccess
+                && loginData.response.isEmailVerified === false) {
+
+                setStatus(prevState => ({
+                    ...prevState,
+                    isError: true,
+                    errorMessage: "Email của bạn chưa được xác thực, vui lòng kiểm tra hòm thư đến và thực hiện theo hướng dẫn trong email",
                     isSubmit: false,
                 }));
 
@@ -133,7 +147,7 @@ export default function LoginPage() {
                         <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                             Bạn chưa có tài khoản ? <Link to="/auth/register" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Đăng ký</Link>
                         </p>
-                        <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Quên mật khẩu ?</a>
+                        <Link to="/auth/forgot-password" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Quên mật khẩu ?</Link>
                     </div>
                 </form>
             </div>

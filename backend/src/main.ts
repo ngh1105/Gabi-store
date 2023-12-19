@@ -14,6 +14,7 @@ async function bootstrap() {
     app.use(fileUpload({
         createParentPath: true,
         limits: { fileSize: 50 * 1024 * 1024 },
+        safeFileNames: true,
     }));
 
     app.use(cookieParser());

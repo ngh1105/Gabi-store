@@ -43,7 +43,7 @@ export default function BillDetailPage() {
                 return;
             }
 
-            console.log(res.response);
+            //console.log(res.response);
 
             setCurrBill({
                 id: res.response.id,

@@ -13,10 +13,15 @@ import { AuthModule } from './auth/auth.module';
 import { WishlistModule } from './wishlist/wishlist.module';
 import { BrandModule } from './brand/brand.module';
 import { RatingModule } from './rating/rating.module';
+import { MailModule } from './mail/mail.module';
+import { MailerModule } from '@nestjs-modules/mailer';
 
 @Module({
     imports: [
         ConfigModule.forRoot({ isGlobal: true }),
+        MailerModule.forRoot({
+            transport: 'smtps://user@domain.com:pass@smtp.domain.com',
+        }),
         CategoryModule,
         UserModule,
         ProductModule,
@@ -28,6 +33,7 @@ import { RatingModule } from './rating/rating.module';
         WishlistModule,
         BrandModule,
         RatingModule,
+        MailModule,
     ],
     controllers: [AppController],
     providers: [AppService],

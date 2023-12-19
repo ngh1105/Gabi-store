@@ -12,16 +12,8 @@ import BillDetailPage from "pages/public/bill-detail"
 import WishlistPage from "pages/public/wishlist";
 import BlogPage from "pages/public/blog";
 import BlogDetailPage from "pages/public/blog/blog-detail";
-
-import Story from "pages/public/story";
-import StoryDetail from "pages/public/home/Story/StoryDetail";
-import PostItem from "pages/public/home/PostItem";
-import Catelog from "pages/public/home/Catelog"
-
-import Following from "pages/public/Following";
-
-import Rules from "pages/public/Rules";
-import Information from "pages/public/Information";
+import TermsPage from "pages/public/terms";
+import UserSettingsPage from "pages/public/user-settings";
 
 export const publicRoutes = {
     path: '/',
@@ -31,15 +23,14 @@ export const publicRoutes = {
             path: '/',
             element: <HomePage />,
         },
+
         { path: '/product', element: <ProductPage /> },
         { path: '/product-detail/:id', element: <ProductDetailPage /> },
 
-        { path: '/contact', element: <ContactPage /> },
-        { path: '/policy', element: <PolicyPage /> },
-        { path: '/about', element: <AboutPage /> },
-
         { path: '/cart', element: <CartPage /> },
         { path: '/checkout', element: <CheckoutPage /> },
+
+        { path: '/wishlist', element: <WishlistPage /> },
 
         { path: '/bill', element: <BillPage /> },
         { path: '/bill-detail/:id', element: <BillDetailPage /> },
@@ -47,16 +38,11 @@ export const publicRoutes = {
         { path: '/blog', element: <BlogPage /> },
         { path: '/blog-detail/:id', element: <BlogDetailPage /> },
 
-        { path: '/wishlist', element: <WishlistPage /> },
+        { path: '/terms', element: <TermsPage /> },
+        { path: '/contact', element: <ContactPage /> },
+        { path: '/policy', element: <PolicyPage /> },
+        { path: '/about', element: <AboutPage /> },
 
-        { path: '/rules', element: <Rules /> },
-        { path: '/information', element: <Information /> },
-
-        { path: '/story', element: <Story /> },
-        { path: '/postitem', element: <PostItem /> },
-        { path: '/catelog', element: <Catelog /> },
-
-        { path: '/following', element: <Following /> },
-        { path: '/storydetail', element: <StoryDetail /> },
+        { path: '/user-settings', element: <UserSettingsPage /> },
     ]
 };

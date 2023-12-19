@@ -9,6 +9,7 @@ import { Product } from 'src/product/entities/product.entity';
 import { Rating } from 'src/rating/entities/rating.entity';
 import { User } from 'src/user/entities/user.entity';
 import { Wishlist } from 'src/wishlist/entities/wishlist.entity';
+import { DATABASE_PASSWORD, DATABASE_USERNAME } from './database.constants';
 
 const createRelationship = () => {
 
@@ -127,10 +128,8 @@ export const databaseProviders = [
         useFactory: async () => {
             const sequelize = new Sequelize({
                 dialect: 'mysql',
-                // username: 'new_user',
-                // password: 'password',
-                username: "root",
-                password: "",
+                username: DATABASE_USERNAME,
+                password: DATABASE_PASSWORD,
                 host: 'localhost',
                 port: 3306,
                 database: 'gabi_store',

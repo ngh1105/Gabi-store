@@ -1,10 +1,12 @@
-import { Injectable, Inject, HttpException, HttpStatus, BadRequestException } from '@nestjs/common';
+import { Injectable, Inject, HttpException, HttpStatus, BadRequestException, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { UserDto } from './dto/user.dto';
 import { genSalt, hash, compare } from 'bcrypt';
 import * as fs from "fs";
+import { UpdateUserInfoDto } from './dto/update-user-info.dto';
+import { UpdateUserPasswordDto } from './dto/update-user-password.dto';
 
 @Injectable()
 export class UserService {
@@ -35,6 +37,7 @@ export class UserService {
             password: hashedPassword,
             fullName: data.fullName,
             role: data.role,
+            isEmailVerified: data.isEmailVerified,
         });
 
         const retData = await record.save();
@@ -63,6 +66,42 @@ export class UserService {
         return new UserDto(record);
     }
 
+    async resetPassword(id: number, newPassword: string) {
+        const record = await this.userRepository.findOne<User>({
+            where: { id: id },
+        });
+
+        if (!record) {
+            throw new HttpException('No record found', HttpStatus.NOT_FOUND);
+        }
+
+        record.password = await this.hashPassword(newPassword);
+
+        await record.save();
+
+        return new UserDto(record);
+    }
+
+    async verifyUser(id: number) {
+        const record = await this.userRepository.findOne<User>({
+            where: { id: id },
+        });
+
+        if (!record) {
+            throw new NotFoundException("Invalid id");
+        }
+
+        if (record.isEmailVerified === true) {
+            return "Email is already verified";
+        }
+
+        record.isEmailVerified = true;
+
+        await record.save()
+
+        return "Verified successfully";
+    }
+
     async findOneByEmail(email: string): Promise<UserDto | undefined> {
         const record = await this.userRepository.findOne<User>({
             where: { email: email },
@@ -73,6 +112,45 @@ export class UserService {
         }
 
         return new UserDto(record);
+    }
+
+    async updateInfo(id: number, data: UpdateUserInfoDto) {
+        const record = await this.userRepository.findOne<User>({
+            where: { id: id },
+        });
+
+        if (!record) {
+            throw new HttpException('No record found', HttpStatus.NOT_FOUND);
+        }
+
+        record.fullName = data.fullName;
+        record.phoneNumber = data.phoneNumber;
+        record.address = data.address;
+
+        const retData = await record.save();
+        return new UserDto(retData);
+    }
+
+    async updatePassword(id: number, data: UpdateUserPasswordDto) {
+        const record = await this.userRepository.findOne<User>({
+            where: { id: id },
+        });
+
+        if (!record) {
+            throw new HttpException('No record found', HttpStatus.NOT_FOUND);
+        }
+
+        const validPassword = await this.comparePassword(data.oldPassword, record.password);
+        if (!validPassword) {
+            throw new UnauthorizedException('Password is not correct');
+        }
+
+        const hashedPassword = await this.hashPassword(data.newPassword);
+
+        record.password = hashedPassword;
+
+        const retData = await record.save();
+        return new UserDto(retData);
     }
 
     async update(id: number, data: UpdateUserDto) {
@@ -139,7 +217,7 @@ export class UserService {
         record.avatarUrl = fileName;
         await record.save();
 
-        return "Uploaded successfully";
+        return fileName;
     }
 
     deleteAvatar(record: User) {

@@ -64,7 +64,7 @@ export default function ProductDetailPage() {
 
             setRelatedProducts(res.response);
 
-            if (user) {
+            if (user && user.userId) {
                 res = await Api.Get(`/product/is-bought/${user.userId}/${id}`);
                 if (!res.isSuccess) {
                     toast.error("Đã có lỗi xảy ra");
@@ -76,7 +76,7 @@ export default function ProductDetailPage() {
             }
         })();
 
-    }, [id]);
+    }, [id, user]);
 
     const [count, setCount] = useState(1);
     const [color, setColor] = useState("Như hình");
@@ -362,7 +362,7 @@ export default function ProductDetailPage() {
                                 {
                                     relatedProducts.map((obj, index) => {
                                         return (
-                                            <div className="" onClick={() => {
+                                            <div key={index} className="" onClick={() => {
                                                 window.scrollTo({ top: 0, behavior: 'smooth' });
                                             }}>
                                                 <ProductItem key={index} product={obj} />

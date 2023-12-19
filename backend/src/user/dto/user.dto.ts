@@ -40,6 +40,10 @@ export class UserDto {
     @IsOptional()
     address?: string = "";
 
+    @ApiProperty()
+    @IsOptional()
+    isEmailVerified?: boolean = false;
+
     constructor(data: User) {
         this.id = data.id;
         this.email = data.email;
@@ -49,5 +53,6 @@ export class UserDto {
         this.avatarUrl = data.avatarUrl;
         this.phoneNumber = data.phoneNumber;
         this.address = data.address;
+        this.isEmailVerified = data.isEmailVerified;
     }
 }

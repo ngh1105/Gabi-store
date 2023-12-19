@@ -18,3 +18,28 @@
     --toastify-color-warning: #eab308;
     --toastify-color-error: #ef4444;
 }
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+    width: 12px;
+    /* Adjust the width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    /* Track color */
+    border-radius: 1rem;
+    /* Border radius for the track */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    /* Thumb color, choose one that matches your theme */
+    border-radius: 1rem;
+    /* Border radius for the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+    /* Thumb color on hover */
+}

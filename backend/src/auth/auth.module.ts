@@ -4,6 +4,7 @@ import { AuthService } from './auth.service';
 import { UserModule } from 'src/user/user.module';
 import { JwtModule } from '@nestjs/jwt';
 import { JWT_SECRET } from './auth.constants';
+import { MailModule } from 'src/mail/mail.module';
 
 @Module({
     imports: [
@@ -12,8 +13,10 @@ import { JWT_SECRET } from './auth.constants';
             global: true,
             secret: JWT_SECRET,
         }),
+        MailModule,
     ],
     controllers: [AuthController],
-    providers: [AuthService]
+    providers: [AuthService],
+    exports: [AuthService]
 })
 export class AuthModule { }

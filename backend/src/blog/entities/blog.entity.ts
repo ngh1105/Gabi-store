@@ -32,7 +32,6 @@ export class Blog extends Model {
 
     @Column({
         type: DataType.TEXT('long'),
-        defaultValue: "",
     })
     content: string;
 

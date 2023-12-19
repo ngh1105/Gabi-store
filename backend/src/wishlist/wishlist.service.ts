@@ -25,10 +25,14 @@ export class WishlistService {
         });
 
         if (record) {
-            return true;
+            return {
+                isLiked: true,
+            };
         }
 
-        return false;
+        return {
+            isLiked: false,
+        };
     }
 
     async like(data: CreateWishlistDto) {

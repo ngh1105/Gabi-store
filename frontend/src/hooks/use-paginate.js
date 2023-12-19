@@ -44,10 +44,66 @@ export const usePaginate = (itemPerPage) => {
 
     const Pagination = () => {
 
+        const displayPages = 5;
+
         const handleClick = (page) => {
             if (page >= 1 && page <= totalPages) {
                 setCurrentPage(page);
             }
+        };
+
+        const renderPageButton = (index) => (
+            <li key={index} className="page-item">
+                <button
+                    onClick={() => handleClick(index + 1)}
+                    className={`relative block px-3 py-1.5 text-base ${currentPage === index + 1
+                        ? 'text-gray-100 bg-indigo-600'
+                        : 'text-gray-700 hover:text-indigo-700 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-indigo-100'
+                        } transition-all duration-300 rounded-md mr-3`}
+                >
+                    {index + 1}
+                </button>
+            </li>
+        );
+
+        const renderEllipsis = () => (
+            <li key="ellipsis" className="page-item">
+                <span className="relative block px-3 py-1.5 text-base text-gray-700 dark:text-gray-400">
+                    ...
+                </span>
+            </li>
+        );
+
+        const renderPaginationButtons = () => {
+            const pages = Array.from({ length: totalPages });
+
+            if (totalPages <= displayPages) {
+                return pages.map((_, index) => renderPageButton(index));
+            }
+
+            const start = Math.max(0, currentPage - Math.floor(displayPages / 2));
+            const end = Math.min(totalPages - 1, start + displayPages - 1);
+
+            const buttons = [];
+            if (start > 0) {
+                buttons.push(renderPageButton(0));
+                if (start > 1) {
+                    buttons.push(renderEllipsis());
+                }
+            }
+
+            for (let i = start; i <= end; i++) {
+                buttons.push(renderPageButton(i));
+            }
+
+            if (end < totalPages - 1) {
+                if (end < totalPages - 2) {
+                    buttons.push(renderEllipsis());
+                }
+                buttons.push(renderPageButton(totalPages - 1));
+            }
+
+            return buttons;
         };
 
         return (
@@ -69,25 +125,11 @@ export const usePaginate = (itemPerPage) => {
                                     </button>
                                 </li>
 
-                                {/* Page Buttons */}
-                                {Array.from({ length: totalPages }).map((_, index) => (
-                                    <li key={index} className="page-item">
-                                        <button
-                                            onClick={() => handleClick(index + 1)}
-                                            className={`relative block px-3 py-1.5 text-base ${currentPage === index + 1
-                                                ? 'text-gray-100 bg-indigo-600'
-                                                : 'text-gray-700 hover:text-indigo-700 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-indigo-100'
-                                                } transition-all duration-300 rounded-md mr-3`}
-                                        >
-                                            {index + 1}
-                                        </button>
-                                    </li>
-                                ))}
+                                {renderPaginationButtons()}
 
                                 {/* Next Button */}
                                 <li
-                                    className='page-item'
-                                    disabled={currentPage >= totalPages}
+                                    className={`page-item ${!canNext ? "pointer-events-none" : null}`}
                                 >
                                     <button
                                         onClick={() => handleClick(currentPage + 1)}

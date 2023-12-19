@@ -16,6 +16,28 @@ export const useAuth = () => {
         }
     }, []);
 
+    const setUserInfo = (data) => {
+        if (user) {
+
+            setLocalUser({
+                ...user,
+                fullName: data.fullName,
+                phoneNumber: data.phoneNumber,
+                address: data.address,
+            });
+        }
+    }
+
+    const setAvatarUrl = (url) => {
+        if (user) {
+
+            setLocalUser({
+                ...user,
+                avatarUrl: url,
+            });
+        }
+    }
+
     const isAuthenticated = () => {
         return user !== null;
     };
@@ -32,5 +54,9 @@ export const useAuth = () => {
         dispatch(setUser(null));
     }
 
-    return { user, setLocalUser, logoutUser, isAuthenticated };
+    return {
+        user, setLocalUser,
+        logoutUser, isAuthenticated,
+        setUserInfo, setAvatarUrl
+    };
 }
