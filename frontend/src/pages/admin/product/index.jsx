@@ -6,6 +6,7 @@ import { useFlexLayout, useGlobalFilter, usePagination, useTable } from "react-t
 import Api from "app/api";
 import { API_URL } from "app/config";
 import PageLayout from "components/page-layout";
+import utils from "utils";
 
 export default function ProductPage() {
 
@@ -18,7 +19,7 @@ export default function ProductPage() {
             return {
                 name: obj.name,
                 imageUrl: <img className="w-10 h-10 rounded-full" src={`${API_URL}${obj.imageUrl}`} alt="." />,
-                price: obj.price,
+                price: <p>{utils.formatVND(obj.price)}</p>,
                 actions: (
                     <div className="w-full flex justify-end items-center gap-2 text-right">
                         <div><UpdatePage id={obj.id} fetchData={fetchData} /></div>

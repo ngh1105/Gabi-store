@@ -20,7 +20,7 @@ function BlogCard({ data }) {
                 </div>
                 <div className="px-4">
                     <div className="mb-0 lg:mb-4" href="#">
-                        <h2 className="mb-3 text-xl font-bold leading-9 text-blue-800 dark:text-white">
+                        <h2 className="mb-3 text-xl font-bold leading-9 text-blue-800 dark:text-white text-ellipsis line-clamp-2">
                             {data.title}
                         </h2>
                         <p className="text-base leading-7 text-gray-400 text-ellipsis line-clamp-3">

@@ -43,6 +43,10 @@ export default function ProductItem({ product, isNew }) {
 
     useEffect(() => {
         (async () => {
+            if (!isAuthenticated()) {
+                return;
+            }
+
             const res = await Api.Get(`/wishlist/is-liked/${user.userId}/${product.id}`);
 
             if (!res.isSuccess) {
@@ -85,6 +89,9 @@ export default function ProductItem({ product, isNew }) {
         <div className="border border-gray-200 rounded-md dark:border-gray-800 shadow p-2">
             <div className="relative bg-gray-200">
                 <Link
+                    onClick={() => {
+                        window.scrollTo(0, 0);
+                    }}
                     to={`/product-detail/${product.id}`}
                 >
                     <img

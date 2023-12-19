@@ -127,10 +127,10 @@ export const databaseProviders = [
         useFactory: async () => {
             const sequelize = new Sequelize({
                 dialect: 'mysql',
-                // username: 'new_user',
-                // password: 'password',
-                username: "root",
-                password: "",
+                username: 'new_user',
+                password: 'password',
+                // username: "root",
+                // password: "",
                 host: 'localhost',
                 port: 3306,
                 database: 'gabi_store',

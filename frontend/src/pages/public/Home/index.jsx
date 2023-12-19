@@ -5,8 +5,7 @@ import BrandSection from "./brand"
 import DescriptionSection from "./description"
 import BestSellingSection from "./best-selling"
 import SuggestionSection from "./suggestion"
-
-import Story from "./Story"
+import BlogSection from "./blog"
 
 export default function HomePage() {
     return (
@@ -17,7 +16,7 @@ export default function HomePage() {
             <BestSellingSection />
             <SuggestionSection />
             <DescriptionSection />
-            <Story />
+            <BlogSection />
         </PageLayout>
     )
 }
