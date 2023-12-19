@@ -10,7 +10,12 @@ export default function Footer() {
                 <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
                     <div className="md:flex md:justify-between">
                         <div className="mb-6 md:mb-0">
-                            <Link to="/" className="flex items-center">
+                            <Link
+                                onClick={() => {
+                                    window.scrollTo(0, 0);
+                                }}
+                                to="/"
+                                className="flex items-center">
                                 <img src={Logo} className="w-auto h-8 me-3" alt="Logo" />
                                 <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Gabi Store</span>
                             </Link>
@@ -20,10 +25,20 @@ export default function Footer() {
                                 <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Về Gabi</h2>
                                 <ul className="text-gray-500 dark:text-gray-400 font-medium">
                                     <li className="mb-4">
-                                        <Link to="/contact" className="hover:underline">Liên hệ</Link>
+                                        <Link
+                                            onClick={() => {
+                                                window.scrollTo(0, 0);
+                                            }}
+                                            to="/contact"
+                                            className="hover:underline">Liên hệ</Link>
                                     </li>
                                     <li>
-                                        <Link to="/about" className="hover:underline">Giới thiệu</Link>
+                                        <Link
+                                            onClick={() => {
+                                                window.scrollTo(0, 0);
+                                            }}
+                                            to="/about"
+                                            className="hover:underline">Giới thiệu</Link>
                                     </li>
                                 </ul>
                             </div>
@@ -31,10 +46,20 @@ export default function Footer() {
                                 <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Về Gabi</h2>
                                 <ul className="text-gray-500 dark:text-gray-400 font-medium">
                                     <li className="mb-4">
-                                        <Link to="/contact" className="hover:underline">Liên hệ</Link>
+                                        <Link
+                                            onClick={() => {
+                                                window.scrollTo(0, 0);
+                                            }}
+                                            to="/contact"
+                                            className="hover:underline">Liên hệ</Link>
                                     </li>
                                     <li>
-                                        <Link to="/about" className="hover:underline">Giới thiệu</Link>
+                                        <Link
+                                            onClick={() => {
+                                                window.scrollTo(0, 0);
+                                            }}
+                                            to="/about"
+                                            className="hover:underline">Giới thiệu</Link>
                                     </li>
                                 </ul>
                             </div>
@@ -42,10 +67,18 @@ export default function Footer() {
                                 <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Về Gabi</h2>
                                 <ul className="text-gray-500 dark:text-gray-400 font-medium">
                                     <li className="mb-4">
-                                        <Link to="/contact" className="hover:underline">Liên hệ</Link>
+                                        <Link
+                                            onClick={() => {
+                                                window.scrollTo(0, 0);
+                                            }}
+                                            to="/contact" className="hover:underline">Liên hệ</Link>
                                     </li>
                                     <li>
-                                        <Link to="/about" className="hover:underline">Giới thiệu</Link>
+                                        <Link
+                                            onClick={() => {
+                                                window.scrollTo(0, 0);
+                                            }}
+                                            to="/about" className="hover:underline">Giới thiệu</Link>
                                     </li>
                                 </ul>
                             </div>
@@ -64,10 +97,18 @@ export default function Footer() {
                                 <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Chính sách</h2>
                                 <ul className="text-gray-500 dark:text-gray-400 font-medium">
                                     <li className="mb-4">
-                                        <Link to="/information" className="hover:underline">Chính sách bảo mật</Link>
+                                        <Link
+                                            onClick={() => {
+                                                window.scrollTo(0, 0);
+                                            }}
+                                            to="/information" className="hover:underline">Chính sách bảo mật</Link>
                                     </li>
                                     <li>
-                                        <Link to="/rules" className="hover:underline">Điều khoản sử dụng</Link>
+                                        <Link
+                                            onClick={() => {
+                                                window.scrollTo(0, 0);
+                                            }}
+                                            to="/rules" className="hover:underline">Điều khoản sử dụng</Link>
                                     </li>
                                 </ul>
                             </div>

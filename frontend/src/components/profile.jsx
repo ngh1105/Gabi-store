@@ -25,8 +25,8 @@ export default function Profile() {
                 inline
             >
                 <Dropdown.Header>
-                    <span className="block text-sm">Huy Ngoc</span>
-                    <span className="block truncate text-sm font-medium">huy@gmail.com</span>
+                    <span className="block text-sm">{user?.fullName}</span>
+                    <span className="block truncate text-sm font-medium">{user?.email}</span>
                 </Dropdown.Header>
                 {
                     (user && user.role == "ADMIN") ? (
@@ -38,7 +38,7 @@ export default function Profile() {
                     )
                         : null
                 }
-                <Dropdown.Item>Hồ sơ của tôi</Dropdown.Item>
+                <Dropdown.Item><Link to="/user-settings" >Hồ sơ của tôi</Link></Dropdown.Item>
                 <Dropdown.Item><Link to="/bill" >Đơn hàng</Link></Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item onClick={() => handleLogout()}>Đăng xuất</Dropdown.Item>

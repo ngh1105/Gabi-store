@@ -13,6 +13,7 @@ import WishlistPage from "pages/public/wishlist";
 import BlogPage from "pages/public/blog";
 import BlogDetailPage from "pages/public/blog/blog-detail";
 import TermsPage from "pages/public/terms";
+import UserSettingsPage from "pages/public/user-settings";
 
 export const publicRoutes = {
     path: '/',
@@ -41,5 +42,7 @@ export const publicRoutes = {
         { path: '/contact', element: <ContactPage /> },
         { path: '/policy', element: <PolicyPage /> },
         { path: '/about', element: <AboutPage /> },
+
+        { path: '/user-settings', element: <UserSettingsPage /> },
     ]
 };

@@ -26,7 +26,7 @@ function BlogDetailPage() {
     useEffect(() => {
         try {
             (async () => {
-                const res = await Api.Get("/blog/find-paginate?limit=3");
+                const res = await Api.Get("/blog/find-paginate?limit=4");
                 if (!res.isSuccess) {
                     toast.error("Đã có lỗi xảy ra");
                     return;
@@ -130,7 +130,7 @@ function BlogDetailPage() {
                                     {
                                         relatedBlogs.map((obj, index) => {
                                             return (
-                                                <div className="flex w-full mb-4 border-b border-gray-200 dark:border-gray-700">
+                                                <div key={index} className="flex w-full mb-4 border-b border-gray-200 dark:border-gray-700">
                                                     <div>
                                                         <img
                                                             className="object-cover w-20 h-20 mr-4 rounded"
@@ -140,9 +140,9 @@ function BlogDetailPage() {
                                                     </div>
                                                     <div className="flex-1 mb-5">
                                                         <h2 className="mb-1 text-base font-medium tracking-tight text-gray-700 hover:text-indigo-600 dark:text-gray-400">
-                                                            <a href="#">
+                                                            <Link to={`/blog-detail/${obj.id}`}>
                                                                 {obj.title}
-                                                            </a>
+                                                            </Link>
                                                         </h2>
                                                         <a
                                                             href="#"

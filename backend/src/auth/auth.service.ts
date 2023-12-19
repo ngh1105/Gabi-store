@@ -39,6 +39,7 @@ export class AuthService {
             avatarUrl: user.avatarUrl,
             phoneNumber: user.phoneNumber,
             address: user.address,
+            fullName: user.fullName,
         };
 
         const accessToken = await this.jwtService.signAsync(payload, { expiresIn: ACCESS_KEY_EXPIRATION, });

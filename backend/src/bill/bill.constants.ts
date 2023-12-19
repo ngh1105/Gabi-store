@@ -1,6 +1,6 @@
 export enum PaymentMethod {
     COD = "COD",
-    PAYPAL = "PAYPAL",
+    ZALOPAY = "ZALOPAY",
 }
 
 export enum BillStatus {

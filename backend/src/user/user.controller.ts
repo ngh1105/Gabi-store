@@ -6,8 +6,10 @@ import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiSecurity, ApiTags } from '@nestjs/swagger';
-import { AdminGuard } from 'src/auth/auth.guard';
+import { AdminGuard, GuestGuard } from 'src/auth/auth.guard';
 import { Request } from 'express';
+import { UpdateUserInfoDto } from './dto/update-user-info.dto';
+import { UpdateUserPasswordDto } from './dto/update-user-password.dto';
 
 @ApiTags('user')
 @Controller('user')
@@ -61,6 +63,30 @@ export class UserController {
     }
 
     @ApiSecurity('private-key')
+    @UseGuards(GuestGuard)
+    @Patch('update-info/:id')
+    updateInfo(@Param('id') id: string, @Body() data: UpdateUserInfoDto) {
+        try {
+            return this.userService.updateInfo(+id, data);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
+
+    @ApiSecurity('private-key')
+    @UseGuards(GuestGuard)
+    @Patch('update-password/:id')
+    updatePassword(@Param('id') id: string, @Body() data: UpdateUserPasswordDto) {
+        try {
+            return this.userService.updatePassword(+id, data);
+        }
+        catch (err) {
+            throw new InternalServerErrorException();
+        }
+    }
+
+    @ApiSecurity('private-key')
     @UseGuards(AdminGuard)
     @Patch(':id')
     update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
@@ -85,7 +111,7 @@ export class UserController {
     }
 
     @ApiSecurity('private-key')
-    @UseGuards(AdminGuard)
+    @UseGuards(GuestGuard)
     @Post('upload-avatar/:id')
     uploadFile(@Param('id') id: string, @Req() request: Request) {
         try {
