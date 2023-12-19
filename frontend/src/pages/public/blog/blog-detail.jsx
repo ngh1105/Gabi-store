@@ -134,8 +134,8 @@ function BlogDetailPage() {
                                                     <div>
                                                         <img
                                                             className="object-cover w-20 h-20 mr-4 rounded"
-                                                            src="https://i.postimg.cc/SKtsKrRX/pexels-marc-mueller-380769.jpg"
-                                                            alt
+                                                            src={`${API_URL}${obj.thumbnail}`}
+                                                            alt=""
                                                         />
                                                     </div>
                                                     <div className="flex-1 mb-5">

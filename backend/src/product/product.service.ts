@@ -234,8 +234,13 @@ export class ProductService {
     }
 
     deleteImage(record: Product) {
-        if (record.imageUrl && record.imageUrl !== "") {
-            fs.unlinkSync(`./public${record.imageUrl}`);
+        try {
+            if (record.imageUrl && record.imageUrl !== "") {
+                fs.unlinkSync(`./public${record.imageUrl}`);
+            }
+        }
+        catch (err) {
+            return
         }
     }
 

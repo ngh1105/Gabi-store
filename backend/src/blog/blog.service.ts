@@ -114,8 +114,13 @@ export class BlogService {
     }
 
     deleteThumbnail(record: Blog) {
-        if (record.thumbnail && record.thumbnail !== "") {
-            fs.unlinkSync(`./public${record.thumbnail}`);
+        try {
+            if (record.thumbnail && record.thumbnail !== "") {
+                fs.unlinkSync(`./public${record.thumbnail}`);
+            }
+        }
+        catch (err) {
+            return
         }
     }
 

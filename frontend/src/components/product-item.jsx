@@ -54,7 +54,7 @@ export default function ProductItem({ product, isNew }) {
                 return;
             }
 
-            setIsLiked(res.response);
+            setIsLiked(res.response.isLiked);
         })();
 
     }, []);
