@@ -5,6 +5,8 @@ import Api from "app/api";
 import { API_URL } from "app/config";
 import PageLayout from "components/page-layout";
 import { toast } from "react-toastify";
+import utils from "utils";
+import BillDetailPage from "./bill-details";
 
 export default function BillPage() {
 
@@ -21,10 +23,10 @@ export default function BillPage() {
             return {
                 id: obj.id,
                 fullName: obj.fullName,
-                totalPrice: obj.totalPrice,
+                totalPrice: <p>{utils.formatVND(obj.totalPrice)}</p>,
                 actions: (
                     <div className="w-full flex justify-end items-center gap-2 text-right">
-                        <div></div>
+                        <div><BillDetailPage id={obj.id} fetchData={fetchData} /></div>
                         <div><DeletePage id={obj.id} fetchData={fetchData} /></div>
                     </div>
                 )

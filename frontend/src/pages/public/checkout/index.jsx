@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { useAuth } from "hooks/use-auth";
 import Api from "app/api";
 import { useDispatch, useSelector } from "react-redux";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import utils from "utils";
 import { toast } from "react-toastify";
@@ -16,21 +16,23 @@ export default function CheckoutPage() {
 
     const paymentOptions = useMemo(() => [
         {
-            id: "cod-checkbox",
+            id: 0,
             name: "COD",
             image: `${API_URL}/upload/payment/cod.jpg`,
         },
         {
-            id: "momo-checkbox",
-            name: "Ví điện tử Momo",
-            image: `${API_URL}/upload/payment/momo.png`,
-        },
-        {
-            id: "zalo-checkbox",
+            id: 1,
             name: "Ví điện tử ZaloPay",
             image: `${API_URL}/upload/payment/zalo.webp`,
         },
     ], []);
+
+    const [selectedPayment, setSelectedPayment] = useState(0);
+
+    const handleRadioChange = (event) => {
+        console.log(event.target.value);
+        setSelectedPayment(event.target.value);
+    };
 
     const navigate = useNavigate();
 
@@ -48,10 +50,10 @@ export default function CheckoutPage() {
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: {
-            fullName: user.fullName,
-            email: user.email,
-            address: user.address,
-            phoneNumber: user.phoneNumber,
+            fullName: user?.fullName,
+            email: user?.email,
+            address: user?.address,
+            phoneNumber: user?.phoneNumber,
         },
         validationSchema: Yup.object({
             fullName: Yup.string()
@@ -208,7 +210,10 @@ export default function CheckoutPage() {
                                         <li key={index} className="w-full border-b border-gray-200 dark:border-gray-600">
                                             <div className="flex items-center ps-3">
                                                 <input
+                                                    value={obj.id} // Assuming obj.id is the value you want to use
+                                                    onChange={handleRadioChange}
                                                     name="check"
+                                                    defaultChecked={obj.id === 0}
                                                     id={obj.id}
                                                     type="radio"
                                                     className="w-4 h-4 text-indigo-600 bg-gray-100 border-indigo-300 rounded-full focus:ring-indigo-500 focus:ring-2"

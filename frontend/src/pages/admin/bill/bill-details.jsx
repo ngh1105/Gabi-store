@@ -1,16 +1,18 @@
-import Api from "app/api";
-import { API_URL } from "app/config";
-import PageLayout from "components/page-layout";
-import { useAuth } from "hooks/use-auth";
+import { Modal } from "flowbite-react";
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import Api from "app/api";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
+import { useImageUpload } from "hooks/use-image-upload";
 import { toast } from "react-toastify";
+import { API_URL } from "app/config";
+import { useAuth } from "hooks/use-auth";
 import utils from "utils";
 
-export default function BillDetailPage() {
+export default function BillDetailPage({ id, fetchData }) {
 
-    const { id } = useParams();
-    const navigate = useNavigate();
+    const [openModal, setOpenModal] = useState(false);
 
     const [currBill, setCurrBill] = useState({
         id: 0,
@@ -26,47 +28,58 @@ export default function BillDetailPage() {
         createdAt: "",
     });
 
-    const { user } = useAuth();
+    const updateData = async () => {
+        const res = await Api.Get(`/bill/${id}`);
+
+        if (!res.isSuccess) {
+            toast.error("Đã có lỗi xảy ra");
+            setOpenModal(false);
+            return;
+        }
+
+        //console.log(res.response);
+
+        setCurrBill({
+            id: res.response.id,
+            fullName: res.response.fullName,
+            email: res.response.email,
+            phoneNumber: res.response.phoneNumber,
+            address: res.response.address,
+            totalPrice: res.response.totalPrice,
+            paymentMethod: res.response.paymentMethod,
+            status: res.response.status,
+            userId: res.response.userId,
+            details: res.response.details,
+            createdAt: res.response.createdAt,
+        });
+    }
 
     useEffect(() => {
         (async () => {
-
-            if (!user) {
-                return;
-            }
-
-            const res = await Api.Get(`/bill/find-one/${user.userId}/${id}`);
-
-            if (!res.isSuccess) {
-                toast.error("Có lỗi khi xem trang");
-                navigate("/bill");
-                return;
-            }
-
-            //console.log(res.response);
-
-            setCurrBill({
-                id: res.response.id,
-                fullName: res.response.fullName,
-                email: res.response.email,
-                phoneNumber: res.response.phoneNumber,
-                address: res.response.address,
-                totalPrice: res.response.totalPrice,
-                paymentMethod: res.response.paymentMethod,
-                status: res.response.status,
-                userId: res.response.userId,
-                details: res.response.details,
-                createdAt: res.response.createdAt,
-            });
+            await updateData();
         })();
 
-    }, [id, user]);
+    }, [id]);
+
+    const handleOpenButton = async () => {
+        setOpenModal(true);
+        await updateData();
+    }
 
     return (
-        <PageLayout title="Chi tiết đơn hàng">
-            <section className="mx-auto max-w-screen-xl py-10">
-                <div className="container mx-auto p-6 font-mono max-w-4xl">
-                    <div className="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
+        <div>
+            {/* Modal toggle */}
+            <div className="flex">
+                <button
+                    onClick={() => handleOpenButton()}
+                    className="block text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-2 py-2 text-center " type="button">
+                    Xem
+                </button>
+            </div>
+            <Modal show={openModal} onClose={() => setOpenModal(false)}>
+                <Modal.Header className="pb-4"></Modal.Header>
+                <Modal.Body className="">
+                    <div className="w-full overflow-hidden rounded-lg shadow-lg">
                         <div className="w-full overflow-x-auto">
                             <div className="my-2 p-5 bg-white">
                                 <div className="flex justify-between">
@@ -150,11 +163,8 @@ export default function BillDetailPage() {
                             </div>
                         </div>
                     </div>
-                    <div className="flex justify-center mt-6">
-                        <Link to="/" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Quay về trang chủ</Link>
-                    </div>
-                </div>
-            </section>
-        </PageLayout>
-    );
+                </Modal.Body>
+            </Modal>
+        </div>
+    )
 }
