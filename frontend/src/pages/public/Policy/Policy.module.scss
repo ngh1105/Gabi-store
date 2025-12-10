@@ -1,0 +1,43 @@
+﻿.wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.inner {
+   
+    // background-color: #ccc;
+    // margin: 20px 0;
+    padding: 20px;
+    width: var(--default-layout-width);
+}
+
+.inner h3, 
+.inner p  { 
+    margin: 20px 0  ;
+
+}
+.inner span { 
+    font-weight: bold;
+}
+
+.return {
+    margin-top: 20px;
+}
+// IPAD
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em){
+    
+    .inner{
+        width: 94%;
+       
+    }
+}
+
+// PHONE
+@media screen and (min-width:376px) and (max-width:812px){
+    .wrapper{
+        width: 100%;
+    }  
+}

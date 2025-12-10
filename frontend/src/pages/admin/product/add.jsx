@@ -1,0 +1,329 @@
+﻿import { Modal } from "flowbite-react";
+import { useEffect, useState } from "react";
+import Api from "app/api";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
+import { useImageUpload } from "hooks/use-image-upload";
+import { toast } from "react-toastify";
+
+export default function AddPage({ fetchData }) {
+
+    const [categories, setCategories] = useState([]);
+    const [brands, setBrands] = useState([]);
+
+    useEffect(() => {
+        try {
+            (async () => {
+                const res = await Api.Get("/category");
+                if (!res.isSuccess) {
+                    toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
+                    return;
+                }
+
+                const newData = res.response.map((obj, index) => {
+                    return {
+                        id: obj.id,
+                        name: obj.name,
+                    }
+                })
+
+                setCategories(newData);
+            })();
+
+            (async () => {
+                const res = await Api.Get("/brand");
+                if (!res.isSuccess) {
+                    toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
+                    return;
+                }
+
+                let newData = res.response.map((obj, index) => {
+                    return {
+                        id: obj.id,
+                        name: obj.name,
+                    }
+                })
+
+                setBrands(newData);
+            })();
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }, []);
+
+    const [openModal, setOpenModal] = useState(false);
+
+    const [status, setStatus] = useState({
+        isError: false,
+        errorMessage: "",
+        isSubmit: false,
+    });
+
+    const navigate = useNavigate();
+    const { image, previewUrl, handleImageChange } = useImageUpload();
+
+    const uploadImage = async (id) => {
+
+        if (!image) {
+            return false;
+        }
+
+        const formData = new FormData();
+        formData.append('image', image);
+
+        const resData = await Api.Post(`/product/upload-image/${id}`, formData, {
+            headers: { "Content-Type": "multipart/form-data" }
+        });
+
+        if (!resData.isSuccess) {
+            toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
+            return false;
+        }
+
+        return true;
+    }
+
+    const formik = useFormik({
+        enableReinitialize: true,
+        initialValues: {
+            categoryId: categories[0] ? categories[0].id : 0,
+            brandId: brands[0] ? brands[0].id : 0,
+            name: "",
+            price: 0,
+            description: "",
+            colors: [],
+            sizes: [],
+        },
+        validationSchema: Yup.object({
+            categoryId: Yup.string()
+                .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c"),
+            brandId: Yup.string()
+                .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c"),
+            name: Yup.string()
+                .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c")
+                .min(6, `Cáº§n Ã­t nháº¥t 6 kÃ½ tá»±`)
+                .max(255, `KhÃ´ng thá»ƒ vÆ°á»£t quÃ¡ 255 kÃ½ tá»±`),
+            price: Yup.number()
+                .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c")
+                .typeError("Dá»¯ liá»‡u pháº£i lÃ  má»™t sá»‘"),
+            description: Yup.string()
+                .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c"),
+            colors: Yup.array(),
+            sizes: Yup.array(),
+        }),
+        onSubmit: async (values, { resetForm }) => {
+            setStatus(prevState => ({
+                ...prevState,
+                isSubmit: true
+            }));
+
+            const data = {
+                categoryId: parseInt(values.categoryId),
+                brandId: parseInt(values.brandId),
+                name: values.name,
+                price: parseInt(values.price),
+                description: values.description,
+                colors: values.colors,
+                sizes: values.sizes,
+            }
+
+            console.log(data);
+
+            const resData = await Api.Post("/product", data);
+            if (!resData.isSuccess) {
+                setStatus(prevState => ({
+                    isError: true,
+                    errorMessage: resData.response.message,
+                    isSubmit: false,
+                }));
+
+                console.log(status);
+                toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
+                setOpenModal(false);
+
+                return;
+            }
+
+            await uploadImage(resData.response.id);
+
+            setStatus(prevState => ({
+                isError: false,
+                errorMessage: resData.response.message,
+                isSubmit: false,
+            }));
+
+            fetchData();
+
+            toast.success("ThÃªm thÃ nh cÃ´ng");
+            resetForm();
+            setOpenModal(false);
+        },
+    })
+
+    return (
+        <div>
+            {/* Modal toggle */}
+            <div className="flex justify-center m-5">
+                <button
+                    onClick={() => setOpenModal(true)}
+                    className="w-full md:w-auto block text-white w-24 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                >
+                    ThÃªm
+                </button>
+            </div>
+            <Modal show={openModal} onClose={() => setOpenModal(false)}>
+                <Modal.Header className="pb-4">ThÃªm sáº£n pháº©m</Modal.Header>
+                <Modal.Body className="pt-2">
+                    <form onSubmit={formik.handleSubmit}>
+                        <div className="grid gap-4 mb-6 sm:grid-cols-2">
+                            <div>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Loáº¡i hÃ ng</label>
+                                <select
+                                    name="categoryId"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                    value={formik.values.categoryId || 0}
+                                    onChange={formik.handleChange}
+                                >
+                                    {
+                                        categories.map((obj, index) => (
+                                            <option key={index} value={obj.id}>
+                                                {obj.name}
+                                            </option>
+                                        ))
+                                    }
+                                </select>
+                                {formik.errors.categoryId && formik.touched.categoryId && (
+                                    <p className="mt-1 ml-1 text-red-600 text-sm">
+                                        {formik.errors.categoryId}
+                                    </p>
+                                )}
+                            </div>
+                            <div>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ThÆ°Æ¡ng hiá»‡u</label>
+                                <select
+                                    name="brandId"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                    value={formik.values.brandId || 0}
+                                    onChange={formik.handleChange}
+                                >
+                                    {
+                                        brands.map((obj, index) => (
+                                            <option key={index} value={obj.id}>
+                                                {obj.name}
+                                            </option>
+                                        ))
+                                    }
+                                </select>
+                                {formik.errors.brandId && formik.touched.brandId && (
+                                    <p className="mt-1 ml-1 text-red-600 text-sm">
+                                        {formik.errors.brandId}
+                                    </p>
+                                )}
+                            </div>
+                            <div>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">TÃªn</label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                    autoComplete="off"
+                                    spellCheck="false"
+                                    value={formik.values.name || ''}
+                                    onChange={formik.handleChange}
+                                />
+                                {formik.errors.name && formik.touched.name && (
+                                    <p className="mt-1 ml-1 text-red-600 text-sm">
+                                        {formik.errors.name}
+                                    </p>
+                                )}
+                            </div>
+                            <div>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">GiÃ¡</label>
+                                <input
+                                    type="text"
+                                    name="price"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                    autoComplete="off"
+                                    spellCheck="false"
+                                    value={formik.values.price || ''}
+                                    onChange={formik.handleChange}
+                                />
+                                {formik.errors.price && formik.touched.price && (
+                                    <p className="mt-1 ml-1 text-red-600 text-sm">
+                                        {formik.errors.price}
+                                    </p>
+                                )}
+                            </div>
+                            <div>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">MÃ u sáº¯c</label>
+                                <select
+                                    name="colors"
+                                    multiple
+                                    size="5"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                    onChange={formik.handleChange}
+                                >
+                                    <option>Xanh</option>
+                                    <option>Äá»</option>
+                                    <option>TÃ­m</option>
+                                    <option>VÃ ng</option>
+                                    <option>Há»“ng</option>
+                                    <option>Äen</option>
+                                    <option>Tráº¯ng</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">KÃ­ch cá»¡</label>
+                                <select
+                                    name="sizes"
+                                    multiple
+                                    size="5"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                    onChange={formik.handleChange}
+                                >
+                                    <option>S</option>
+                                    <option>M</option>
+                                    <option>L</option>
+                                    <option>XL</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">MÃ´ táº£</label>
+                                <input
+                                    type="text"
+                                    name="description"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                    autoComplete="off"
+                                    spellCheck="false"
+                                    value={formik.values.description || ''}
+                                    onChange={formik.handleChange}
+                                />
+                                {formik.errors.description && formik.touched.description && (
+                                    <p className="mt-1 ml-1 text-red-600 text-sm">
+                                        {formik.errors.description}
+                                    </p>
+                                )}
+                            </div>
+                            <div>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">HÃ¬nh áº£nh</label>
+                                <input
+                                    type="file"
+                                    name="image"
+                                    onChange={handleImageChange}
+                                />
+                            </div>
+                        </div>
+                        <button
+                            disabled={status.isSubmit}
+                            type="submit"
+                            className="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+                            XÃ¡c nháº­n
+                        </button>
+                    </form>
+                </Modal.Body>
+            </Modal>
+        </div>
+    )
+}
