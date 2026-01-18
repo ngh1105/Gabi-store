@@ -69,10 +69,10 @@ export default function CartPage() {
     }, [cart])
 
     return (
-        <PageLayout title="Giỏ hàng">
+        <PageLayout title="Giá» hÃ ng">
             <section className="mx-auto max-w-screen-xl py-10">
                 <h1 className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900">
-                    Giỏ hàng
+                    Giá» hÃ ng
                 </h1>
                 <div className="flex flex-col md:flex-row gap-4">
                     <div className="lg:w-3/4">
@@ -81,9 +81,9 @@ export default function CartPage() {
                                 <thead>
                                     <tr>
                                         <th className="text-left font-semibold">Sản phẩm</th>
-                                        <th className="text-left font-semibold">Đơn giá</th>
+                                        <th className="text-left font-semibold">ÄÆ¡n giÃ¡</th>
                                         <th className="text-center font-semibold">Số lượng</th>
-                                        <th className="text-center font-semibold">Tổng cộng</th>
+                                        <th className="text-center font-semibold">Tá»•ng cá»™ng</th>
                                         <th className="text-center font-semibold"></th>
                                     </tr>
                                 </thead>
@@ -105,12 +105,12 @@ export default function CartPage() {
                                                                 <div>
                                                                     <div className="flex items-center gap-2 mt-1">
                                                                         <h2 className="text-sm opacity-80">
-                                                                            Màu sắc: <span className="text-bold">{obj.color ? obj.color : "Theo hình"}</span>
+                                                                            MÃ u sáº¯c: <span className="text-bold">{obj.color ? obj.color : "Theo hÃ¬nh"}</span>
                                                                         </h2>
 
                                                                     </div>
                                                                     <h2 className="text-sm mt-1 opacity-80">
-                                                                        Kích cỡ: <span className="text-bold">{obj.size ? obj.size : "Tự do"}</span>
+                                                                        KÃ­ch cá»¡: <span className="text-bold">{obj.size ? obj.size : "Tá»± do"}</span>
                                                                     </h2>
                                                                 </div>
                                                             </div>
@@ -155,25 +155,25 @@ export default function CartPage() {
                     </div>
                     <div className="lg:w-1/4">
                         <div className="bg-white rounded-lg shadow-md p-6">
-                            <h2 className="text-lg font-semibold mb-4">Thành tiền</h2>
+                            <h2 className="text-lg font-semibold mb-4">ThÃ nh tiá»n</h2>
                             <div className="flex justify-between mb-2">
-                                <span>Tổng đơn hàng</span>
+                                <span>Tá»•ng Ä‘Æ¡n hÃ ng</span>
                                 <span>{utils.formatVND(totalPrice)}</span>
                             </div>
                             <div className="flex justify-between mb-2">
-                                <span>Phí vận chuyển</span>
-                                <span>0 đ</span>
+                                <span>PhÃ­ váº­n chuyá»ƒn</span>
+                                <span>0 Ä‘</span>
                             </div>
                             <hr className="my-2" />
                             <div className="flex justify-between mb-2">
-                                <span className="font-semibold">Tổng cộng</span>
+                                <span className="font-semibold">Tá»•ng cá»™ng</span>
                                 <span className="font-semibold">{utils.formatVND(totalPrice)}</span>
                             </div>
                             <button
                                 disabled={cart.length === 0}
                                 onClick={handleCheckoutButton}
                                 className="bg-indigo-700 text-white py-2 px-4 rounded-lg mt-4 w-full hover:opacity-[0.9] hover:cursor-pointer">
-                                Đặt hàng
+                                Äáº·t hÃ ng
                             </button>
                         </div>
                     </div>

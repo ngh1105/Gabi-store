@@ -1,5 +1,5 @@
 import { API_URL } from "app/config";
-import styles from "./slider.module.scss";
+import styles from "./Slider.module.scss";
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 import { Carousel } from 'flowbite-react';
@@ -15,10 +15,10 @@ export default function SliderSection() {
 
                     <div className="mr-auto place-self-center lg:col-span-7">
                         <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white uppercase">
-                            gabistore - thời trang chất lượng
+                            E-Shop - thời trang chất lượng
                         </h1>
                         <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
-                            Sản phẩm GabiStore được sản xuất và chọn lọc kĩ càng để đem ra
+                            Sản phẩm E-Shop được sản xuất và chọn lọc kĩ càng để đem ra
                             những đầu ra chất lượng nhất để làm hài lòng khách hàng.
                         </p>
                         <span className={cx('btn')}>
@@ -46,7 +46,7 @@ export default function SliderSection() {
                                 to="/about"
                                 className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
                             >
-                                Định hướng GabiStore
+                                Định hướng E-Shop
                             </Link>
                         </span>
                     </div>

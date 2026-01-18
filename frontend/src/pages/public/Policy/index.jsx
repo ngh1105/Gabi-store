@@ -25,7 +25,7 @@ export default function PolicyPage() {
                             </p>
                             <p className="pb-6">
                                 {" "}
-                                Do đó GABI Store sẽ viết ngắn gọn nhất có thể, cơ bản là:
+                                Do đó E-Shop sẽ viết ngắn gọn nhất có thể, cơ bản là:
                             </p>
                             <p className="pb-6">
                                 {" "}
@@ -44,7 +44,7 @@ export default function PolicyPage() {
                                 tiền phí vận chuyển nếu có) cho khách trong vòng 24h qua TÀI KHOẢN
                                 NGÂN HÀNG của khách (không tính Thứ 7, CN và ngày lễ). Đồng thời,
                                 Coolmate sẽ đến tận nơi lấy hàng trả và không thu thêm bất cứ phí
-                                gì (Khách hàng cũng có thể tự gởi lại hàng cho Coolmate)
+                                gì (Khách hàng cũng có thể tự gửi lại hàng cho Coolmate)
                             </p>
 
                             <h2 className="text-2xl text-gray-800 font-semibold mb-4 mt-4">
@@ -61,8 +61,8 @@ export default function PolicyPage() {
                                 phẩm và thời gian nhận hàng
                             </p>
                             <p className="pb-6">
-                                <span>Bước 3</span>: Ngay khi xác nhận chúng tôi sẽ gởi bạn đơn
-                                hàng mới (hoặc lấy đơn hàng về), bạn chỉ cần gởi hàng cần đổi/trả
+                                <span>Bước 3</span>: Ngay khi xác nhận chúng tôi sẽ gửi bạn đơn
+                                hàng mới (hoặc lấy đơn hàng về), bạn chỉ cần gửi hàng cần đổi/trả
                                 cho shipper là được.
                             </p>
                             <h2 className="text-2xl text-gray-800 font-semibold mb-4 mt-4">
@@ -80,11 +80,11 @@ export default function PolicyPage() {
                             </h2>
                             <p className="pb-6">
                                 {" "}
-                                - GABI hỗ trợ đổi tối đa 3 lần/1 khách hàng.
+                                - E-Shop hỗ trợ đổi tối đa 3 lần/1 khách hàng.
                             </p>
                             <p className="pb-6">
                                 {" "}
-                                - GABI có quyền quyết định dừng việc hỗ trợ đổi trả và trả lại
+                                - E-Shop có quyền quyết định dừng việc hỗ trợ đổi trả và trả lại
                                 tiền cho khách hàng nếu phát hiện khách hàng sử dụng chính sách để
                                 trục lợi (như việc đổi quá nhiều lần).
                             </p>
@@ -92,14 +92,14 @@ export default function PolicyPage() {
                                 {" "}
                                 - Với các đơn sàn TMĐT thì sẽ áp dụng chính sách trả hàng của sàn
                                 TMĐT. Tuy nhiên, trường hợp quá thời gian trả hàng của sàn TMĐT sẽ
-                                được áp dụng chính sách trả hàng của GABI
+                                được áp dụng chính sách trả hàng của E-Shop
                             </p>
 
                             <h2 className="text-2xl text-gray-800 font-semibold mb-4 mt-4">
                                 Chúng tôi làm gì với hàng đổi trả:
                             </h2>
                             <p className="pb-6">
-                                Áo thun, quần short: thu gom và gởi cho các chương trình từ thiện
+                                Áo thun, quần short: thu gom và gửi cho các chương trình từ thiện
                             </p>
                             <p className="pb-6"> Bít tất, boxer: huỷ bỏ 100%</p>
                         </div>

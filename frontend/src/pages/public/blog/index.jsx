@@ -24,7 +24,7 @@ export default function BlogPage() {
             (async () => {
                 const res = await Api.Get("/blog");
                 if (!res.isSuccess) {
-                    toast.error("Đã có lỗi xảy ra");
+                    toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
                     return;
                 }
 

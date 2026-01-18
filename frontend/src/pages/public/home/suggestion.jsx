@@ -60,7 +60,7 @@ export default function SuggestionSection() {
                         <div className="mx-auto border-b border-red-700 w-44 dark:border-gray-400" />
 
                         <div className="mt-4">
-                            <Carousel
+                            {newestProducts && newestProducts.length > 0 && <Carousel
                                 responsive={responsive}
                                 swipeable={false}
                                 draggable={false}
@@ -76,7 +76,7 @@ export default function SuggestionSection() {
                                         )
                                     })
                                 }
-                            </Carousel>
+                            </Carousel>}
                         </div>
                     </div>
 
@@ -88,7 +88,7 @@ export default function SuggestionSection() {
                         <div className="mx-auto border-b border-red-700 w-44 dark:border-gray-400" />
 
                         <div className="mt-4">
-                            <Carousel
+                            {bestRatingProducts && bestRatingProducts.length > 0 && <Carousel
                                 responsive={responsive}
                                 swipeable={false}
                                 draggable={false}
@@ -104,7 +104,7 @@ export default function SuggestionSection() {
                                         )
                                     })
                                 }
-                            </Carousel>
+                            </Carousel>}
                         </div>
                     </div>
 
@@ -115,7 +115,7 @@ export default function SuggestionSection() {
                         <div className="mx-auto border-b border-red-700 w-44 dark:border-gray-400" />
 
                         <div className="mt-4">
-                            <Carousel
+                            {bestViewProducts && bestViewProducts.length > 0 && <Carousel
                                 responsive={responsive}
                                 swipeable={false}
                                 draggable={false}
@@ -131,7 +131,7 @@ export default function SuggestionSection() {
                                         )
                                     })
                                 }
-                            </Carousel>
+                            </Carousel>}
                         </div>
                     </div>
                 </div>

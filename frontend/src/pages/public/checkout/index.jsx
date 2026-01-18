@@ -56,17 +56,17 @@ export default function CheckoutPage() {
         },
         validationSchema: Yup.object({
             fullName: Yup.string()
-                .required("Đây là dữ liệu bắt buộc"),
+                .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c"),
             email: Yup.string()
-                .required("Đây là dữ liệu bắt buộc")
+                .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c")
                 .email("Email không hợp lệ")
                 .min(6, `Cần ít nhất 6 ký tự`)
                 .max(255, `Không thể vượt quá 255 ký tự`),
             address: Yup.string()
-                .required("Đây là dữ liệu bắt buộc"),
+                .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c"),
             phoneNumber: Yup.string()
-                .min(8, `Cần ít nhất 8 ký tự`)
-                .matches(phoneRegExp, 'Số điện thoại không hợp lệ'),
+                .min(8, `Cáº§n Ã­t nháº¥t 8 kÃ½ tá»±`)
+                .matches(phoneRegExp, 'Số điện thoại khÃ´ng há»£p lá»‡'),
         }),
         onSubmit: async (values) => {
             setStatus(prevState => ({
@@ -100,7 +100,7 @@ export default function CheckoutPage() {
 
             if (!billData.isSuccess) {
                 console.log(billData.response);
-                toast.error("Đã có lỗi xảy ra");
+                toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
 
                 setStatus(prevState => ({
                     isError: true,
@@ -157,7 +157,7 @@ export default function CheckoutPage() {
                             <div className="bg-white rounded-lg shadow-md p-6 mb-4">
                                 <div className="w-full">
                                     <div className="mb-5">
-                                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Họ tên</label>
+                                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Há» tÃªn</label>
                                         <input
                                             type="text"
                                             name="fullName"
@@ -208,7 +208,7 @@ export default function CheckoutPage() {
                                         )}
                                     </div>
                                     <div className="mb-2">
-                                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Địa chỉ</label>
+                                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Äá»‹a chá»‰</label>
                                         <input
                                             type="text"
                                             name="address"
@@ -230,16 +230,16 @@ export default function CheckoutPage() {
                         <div className="md:w-2/4">
                             <div className="bg-white rounded-lg shadow-md p-6 mt-2">
                                 <div className="flex justify-between mb-2">
-                                    <span>Tổng đơn hàng</span>
+                                    <span>Tá»•ng Ä‘Æ¡n hÃ ng</span>
                                     <span>{utils.formatVND(totalPrice)}</span>
                                 </div>
                                 <div className="flex justify-between mb-2">
-                                    <span>Phí vận chuyển</span>
-                                    <span>0đ</span>
+                                    <span>PhÃ­ váº­n chuyá»ƒn</span>
+                                    <span>0Ä‘</span>
                                 </div>
                                 <hr className="my-2" />
                                 <div className="flex justify-between mb-2">
-                                    <span className="font-semibold">Tổng cộng</span>
+                                    <span className="font-semibold">Tá»•ng cá»™ng</span>
                                     <span className="font-semibold">{utils.formatVND(totalPrice)}</span>
                                 </div>
                                 <button

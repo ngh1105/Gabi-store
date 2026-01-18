@@ -28,7 +28,7 @@ export default function BlogSection() {
         <div className="mx-auto max-w-screen-xl">
             <div className="p-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {
-                    blogs.map((obj, index) => {
+                    blogs && blogs.length > 0 && blogs.map((obj, index) => {
                         return (
                             <BlogCard key={index} data={obj} />
                         )

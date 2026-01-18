@@ -51,7 +51,7 @@ export default function BrandSection() {
                         </h2>
                         <div className="mx-auto mb-10 border-b border-red-700 w-44 dark:border-gray-400" />
 
-                        <Carousel
+                        {brands && brands.length > 0 && <Carousel
                             responsive={responsive}
                             swipeable={false}
                             draggable={false}
@@ -79,7 +79,7 @@ export default function BrandSection() {
                                     )
                                 })
                             }
-                        </Carousel>
+                        </Carousel>}
                     </div>
                 </section>
             </div>

@@ -26,7 +26,7 @@ export default function ForgotPasswordPage() {
         },
         validationSchema: Yup.object({
             email: Yup.string()
-                .required("Đây là dữ liệu bắt buộc")
+                .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c")
                 .email("Email không hợp lệ")
                 .min(6, `Cần ít nhất 6 ký tự`)
                 .max(255, `Không thể vượt quá 255 ký tự`),
@@ -47,7 +47,7 @@ export default function ForgotPasswordPage() {
             if (!res.isSuccess) {
                 setStatus(prevState => ({
                     isError: true,
-                    errorMessage: "Đã có lỗi xảy ra, vui lòng kiểm tra lại thông tin của bạn.",
+                    errorMessage: "ÄÃ£ cÃ³ lá»—i xáº£y ra, vui lÃ²ng kiá»ƒm tra láº¡i thÃ´ng tin cá»§a báº¡n.",
                     isSubmit: false,
                 }));
 
@@ -59,7 +59,7 @@ export default function ForgotPasswordPage() {
                 isSubmit: false,
                 isError: false,
                 isSuccess: true,
-                successMessage: "Một email xác nhận đã được gửi đến hòm thư của bạn. Vui lòng kiểm tra hòm thư đến và thực hiện theo hướng dẫn trong email để hoàn tất quá trình."
+                successMessage: "Má»™t email xÃ¡c nháº­n Ä‘Ã£ Ä‘Æ°á»£c gá»­i Ä‘áº¿n hÃ²m thÆ° cá»§a báº¡n. Vui lÃ²ng kiá»ƒm tra hÃ²m thÆ° Ä‘áº¿n vÃ  thực hiện theo hướng dẫn trong email Ä‘á»ƒ hoÃ n táº¥t quÃ¡ trÃ¬nh."
             }));
 
             resetForm();
@@ -74,7 +74,7 @@ export default function ForgotPasswordPage() {
                 <h1 className="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                     Quên mật khẩu?
                 </h1>
-                <p className="font-light text-gray-500 dark:text-gray-400">Đừng lo! Hãy để lại email của bạn và chúng tôi sẽ giúp bạn đặt lại mật khẩu!</p>
+                <p className="font-light text-gray-500 dark:text-gray-400">Äá»«ng lo! HÃ£y Ä‘á»ƒ láº¡i email cá»§a báº¡n vÃ  chÃºng tÃ´i sáº½ giÃºp báº¡n Ä‘áº·t láº¡i máº­t kháº©u!</p>
                 <form className="mt-4 space-y-4 lg:mt-5 md:space-y-5" onSubmit={formik.handleSubmit}>
                     <div>
                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
@@ -95,7 +95,7 @@ export default function ForgotPasswordPage() {
                         disabled={status.isSubmit}
                         type="submit"
                         className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                        Đặt lại mật khẩu
+                        Äáº·t láº¡i máº­t kháº©u
                     </button>
                     {
                         status.errorMessage !== "" && status.isError

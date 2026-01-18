@@ -1,5 +1,5 @@
 import PageLayout from "components/page-layout"
-import SliderSection from "./slider"
+import SliderSection from "./Slider"
 import CategorySection from "./category"
 import BrandSection from "./brand"
 import DescriptionSection from "./description"

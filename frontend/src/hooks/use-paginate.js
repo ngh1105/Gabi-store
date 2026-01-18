@@ -121,7 +121,7 @@ export const usePaginate = (itemPerPage) => {
                                         onClick={() => handleClick(currentPage - 1)}
                                         className="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-indigo-100 rounded-md mr-3 "
                                     >
-                                        Trước
+                                        TrÆ°á»›c
                                     </button>
                                 </li>
 

@@ -17,7 +17,7 @@ export default function ContactPage() {
                             </span>
                             <p className="text-2xl font-extrabold text-dark-grey-900">Email</p>
                             <p className="text-base leading-7 text-dark-grey-600">Liên hệ chúng tôi qua</p>
-                            <a className="text-lg font-bold text-purple-blue-500" href="mailto: hello@loopple.com">Gabistore@gmail.com</a>
+                            <a className="text-lg font-bold text-purple-blue-500" href="mailto: hello@loopple.com">support@example.com</a>
                         </div>
                         <div className="flex flex-col items-center gap-3 px-8 py-10 bg-white rounded-3xl shadow-main">
                             <span>
@@ -59,7 +59,7 @@ export default function ContactPage() {
                                                 <label htmlFor="email" className="mb-3 block text-base font-medium text-[#07074D]">
                                                     Địa chỉ Email
                                                 </label>
-                                                <input type="email" name="email" id="email" placeholder="gabistore@gmail.com" className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                                                <input type="email" name="email" id="email" placeholder="support@example.com" className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                                             </div>
                                             <div className="mb-3">
                                                 <label htmlFor="message" className="mb-3 block text-base font-medium text-[#07074D]">

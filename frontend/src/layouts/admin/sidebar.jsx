@@ -13,7 +13,7 @@ export default function Sidebar() {
                     <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
                 </>
             ),
-            name: "Tổng quan",
+            name: "Tá»•ng quan",
             href: "/admin",
         },
         {
@@ -23,7 +23,7 @@ export default function Sidebar() {
                     <path d="M1 18h16a1 1 0 0 0 1-1v-6h-4.439a.99.99 0 0 0-.908.6 3.978 3.978 0 0 1-7.306 0 .99.99 0 0 0-.908-.6H0v6a1 1 0 0 0 1 1Z" />
                 </>
             ),
-            name: "Loại hàng",
+            name: "Loáº¡i hÃ ng",
             href: "/admin/category",
         },
         {
@@ -46,7 +46,7 @@ export default function Sidebar() {
             icon: (
                 <path d="M7 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm2 1H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
             ),
-            name: "Người dùng",
+            name: "NgÆ°á»i dÃ¹ng",
             href: "/admin/user",
         },
         {
@@ -60,14 +60,14 @@ export default function Sidebar() {
             icon: (
                 <path d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2ZM7 2h4v2H7V2ZM5 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm0-4a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm8 4H8a1 1 0 0 1 0-2h5a1 1 0 0 1 0 2Zm0-4H8a1 1 0 0 1 0-2h5a1 1 0 1 1 0 2Z" />
             ),
-            name: "Hóa đơn",
+            name: "HÃ³a Ä‘Æ¡n",
             href: "/admin/bill",
         },
         {
             icon: (
                 <path d="M18 0H2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h3.546l3.2 3.659a1 1 0 0 0 1.506 0L13.454 14H18a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-8 10H5a1 1 0 0 1 0-2h5a1 1 0 1 1 0 2Zm5-4H5a1 1 0 0 1 0-2h10a1 1 0 1 1 0 2Z" />
             ),
-            name: "Bình luận",
+            name: "BÃ¬nh luáº­n",
             href: "/admin/comment",
         },
     ])
@@ -209,7 +209,7 @@ export default function Sidebar() {
                                             <use width={30} height={20} transform="rotate(-74 272.4 -114) scale(25.6137)" xlinkHref="#a" />
                                             <use width={30} height={20} transform="matrix(16 -19.968 19.968 16 256 230.4)" xlinkHref="#a" />
                                         </svg>
-                                        中文 (繁體)
+                                        ä¸­æ–‡ (ç¹é«”)
                                     </div>
                                 </a>
                             </li>

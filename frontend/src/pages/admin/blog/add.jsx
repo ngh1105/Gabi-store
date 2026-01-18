@@ -35,7 +35,7 @@ export default function AddPage({ fetchData }) {
         });
 
         if (!resData.isSuccess) {
-            toast.error("Đã có lỗi xảy ra");
+            toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
             return false;
         }
 
@@ -52,13 +52,13 @@ export default function AddPage({ fetchData }) {
         },
         validationSchema: Yup.object({
             title: Yup.string()
-                .required("Đây là dữ liệu bắt buộc")
+                .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c")
                 .min(6, `Cần ít nhất 6 ký tự`)
                 .max(255, `Không thể vượt quá 255 ký tự`),
             description: Yup.string()
-                .required("Đây là dữ liệu bắt buộc"),
+                .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c"),
             content: Yup.string()
-                .required("Đây là dữ liệu bắt buộc"),
+                .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c"),
         }),
         onSubmit: async (values, { resetForm }) => {
             setStatus(prevState => ({
@@ -81,7 +81,7 @@ export default function AddPage({ fetchData }) {
                     isSubmit: false,
                 }));
 
-                toast.error("Đã có lỗi xảy ra");
+                toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
                 setOpenModal(false);
 
                 return;
@@ -97,7 +97,7 @@ export default function AddPage({ fetchData }) {
 
             fetchData();
 
-            toast.success("Thêm thành công");
+            toast.success("ThÃªm thÃ nh cÃ´ng");
             resetForm();
             setOpenModal(false);
         },
@@ -111,16 +111,16 @@ export default function AddPage({ fetchData }) {
                     onClick={() => setOpenModal(true)}
                     className="w-full md:w-auto block text-white w-24 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 >
-                    Thêm
+                    ThÃªm
                 </button>
             </div>
             <Modal show={openModal} onClose={() => setOpenModal(false)}>
-                <Modal.Header className="pb-4">Thêm bài viết</Modal.Header>
+                <Modal.Header className="pb-4">ThÃªm bÃ i viáº¿t</Modal.Header>
                 <Modal.Body className="pt-2">
                     <form onSubmit={formik.handleSubmit}>
                         <div className="grid gap-4 mb-6 sm:grid-cols-2">
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tiêu đề</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">TiÃªu Ä‘á»</label>
                                 <input
                                     type="text"
                                     name="title"
@@ -137,7 +137,7 @@ export default function AddPage({ fetchData }) {
                                 )}
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mô tả</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">MÃ´ táº£</label>
                                 <input
                                     type="text"
                                     name="description"
@@ -154,7 +154,7 @@ export default function AddPage({ fetchData }) {
                                 )}
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ảnh bìa</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">áº¢nh bÃ¬a</label>
                                 <input
                                     type="file"
                                     name="image"
@@ -163,7 +163,7 @@ export default function AddPage({ fetchData }) {
                             </div>
                         </div>
                         <div className="mb-4">
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nội dung</label>
+                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ná»™i dung</label>
                             <textarea
                                 rows="10"
                                 type="text"
@@ -184,7 +184,7 @@ export default function AddPage({ fetchData }) {
                             disabled={status.isSubmit}
                             type="submit"
                             className="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
-                            Xác nhận
+                            XÃ¡c nháº­n
                         </button>
                     </form>
                 </Modal.Body>

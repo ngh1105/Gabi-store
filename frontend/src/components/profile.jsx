@@ -32,16 +32,16 @@ export default function Profile() {
                     (user && user.role == "ADMIN") ? (
                         <>
                             <Dropdown.Item>
-                                <Link to="/admin" >Trang quản trị</Link>
+                                <Link to="/admin" >Trang quáº£n trá»‹</Link>
                             </Dropdown.Item>
                         </>
                     )
                         : null
                 }
-                <Dropdown.Item><Link to="/user-settings" >Hồ sơ của tôi</Link></Dropdown.Item>
-                <Dropdown.Item><Link to="/bill" >Đơn hàng</Link></Dropdown.Item>
+                <Dropdown.Item><Link to="/user-settings" >Há»“ sÆ¡ cá»§a tÃ´i</Link></Dropdown.Item>
+                <Dropdown.Item><Link to="/bill" >ÄÆ¡n hÃ ng</Link></Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item onClick={() => handleLogout()}>Đăng xuất</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleLogout()}>ÄÄƒng xuáº¥t</Dropdown.Item>
             </Dropdown>
         </div>
     )

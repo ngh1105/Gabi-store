@@ -25,12 +25,12 @@ export const ChangePasswordSection = ({ user }) => {
         },
         validationSchema: Yup.object({
             oldPassword: Yup.string()
-                .required("Đây là dữ liệu bắt buộc"),
+                .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c"),
             newPassword: Yup.string()
-                .required("Đây là dữ liệu bắt buộc"),
+                .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c"),
             confirmPassword: Yup.string()
-                .required("Đây là dữ liệu bắt buộc")
-                .oneOf([Yup.ref('newPassword'), null], 'Mật khẩu mới phải trùng khớp')
+                .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c")
+                .oneOf([Yup.ref('newPassword'), null], 'Mật khẩu má»›i pháº£i trÃ¹ng khá»›p')
         }),
         onSubmit: async (values, { resetForm }) => {
 
@@ -53,7 +53,7 @@ export const ChangePasswordSection = ({ user }) => {
                 setStatus(prevState => ({
                     ...prevState,
                     isError: true,
-                    errorMessage: "Đã có lỗi xảy ra",
+                    errorMessage: "ÄÃ£ cÃ³ lá»—i xáº£y ra",
                     isSubmit: false,
                 }));
 
@@ -67,7 +67,7 @@ export const ChangePasswordSection = ({ user }) => {
 
             resetForm();
 
-            toast.success("Lưu thông tin thành công", {
+            toast.success("LÆ°u thÃ´ng tin thÃ nh cÃ´ng", {
                 position: "top-right",
                 autoClose: 1000,
                 hideProgressBar: true,
@@ -77,10 +77,10 @@ export const ChangePasswordSection = ({ user }) => {
 
     return (
         <div className="">
-            <h2 className="text-2xl font-semibold mb-6">Đổi mật khẩu</h2>
+            <h2 className="text-2xl font-semibold mb-6">Äá»•i máº­t kháº©u</h2>
             <form className="grid grid-cols-2 gap-4" onSubmit={formik.handleSubmit}>
                 <div>
-                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mật khẩu cũ</label>
+                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mật khẩu cÅ©</label>
                     <input
                         type="password"
                         name="oldPassword"
@@ -97,7 +97,7 @@ export const ChangePasswordSection = ({ user }) => {
                     )}
                 </div>
                 <div>
-                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mật khẩu mới</label>
+                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mật khẩu má»›i</label>
                     <input
                         type="password"
                         name="newPassword"
@@ -114,7 +114,7 @@ export const ChangePasswordSection = ({ user }) => {
                     )}
                 </div>
                 <div>
-                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nhập lại mật khẩu</label>
+                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nháº­p láº¡i máº­t kháº©u</label>
                     <input
                         type="password"
                         name="confirmPassword"
@@ -134,7 +134,7 @@ export const ChangePasswordSection = ({ user }) => {
                     disabled={status.isSubmit}
                     type="submit"
                     className="col-span-2 bg-indigo-700 text-white py-2 px-4 rounded hover:opacity-[0.9] hover:cursor-pointer">
-                    Lưu thay đổi
+                    LÆ°u thay Ä‘á»•i
                 </button>
             </form>
             {

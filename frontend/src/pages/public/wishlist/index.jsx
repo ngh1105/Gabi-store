@@ -2,7 +2,7 @@ import Api from "app/api";
 import PageLayout from "components/page-layout";
 import { useAuth } from "hooks/use-auth";
 import { usePaginate } from "hooks/use-paginate";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import EmptyWishlist from "./empty-wishlist";
@@ -22,17 +22,21 @@ export default function WishlistPage() {
         if (!user) {
             navigate("/auth/login");
         }
-    }, [user]);
+    }, [user, navigate]);
 
     const ITEMS_PER_PAGE = 4;
     const {
         items, setItems, totalItems,
-        onSortItems, setTotalPages,
-        onSearchItems, Pagination,
-        setCurrentPage
+        //onSortItems, 
+        setTotalPages,
+        //onSearchItems, 
+        Pagination,
+        //setCurrentPage
     } = usePaginate(ITEMS_PER_PAGE);
 
-    const fecthData = async () => {
+    const fecthData = useCallback(async () => {
+
+        if (!user) return; // Add check for user
 
         const res = await Api.Get(`/wishlist/find-all/${user.userId}`);
         if (!res.isSuccess) {
@@ -43,14 +47,14 @@ export default function WishlistPage() {
         //console.log(res.response);
         setTotalPages(Math.ceil(res.response.length / ITEMS_PER_PAGE));
         setItems(res.response);
-    }
+    }, [user, setItems, setTotalPages, ITEMS_PER_PAGE]);
 
     useEffect(() => {
         (async () => {
             await fecthData();
         })();
 
-    }, []);
+    }, [fecthData]);
 
     const handleUnliked = async (productId) => {
         if (!isAuthenticated()) {
@@ -72,11 +76,11 @@ export default function WishlistPage() {
             imageUrl: obj.Product.imageUrl,
             price: obj.Product.price,
             amount: 1,
-            color: "Theo hình",
-            size: "Tự do",
+            color: "Theo hÃ¬nh",
+            size: "Tá»± do",
         }));
 
-        toast.success("Đã thêm vào giỏ hàng", {
+        toast.success("ÄÃ£ thÃªm vÃ o giá» hÃ ng", {
             position: "bottom-right",
             autoClose: 1000,
             hideProgressBar: true,
@@ -91,12 +95,12 @@ export default function WishlistPage() {
                 imageUrl: obj.Product.imageUrl,
                 price: obj.Product.price,
                 amount: 1,
-                color: "Theo hình",
-                size: "Tự do",
+                color: "Theo hÃ¬nh",
+                size: "Tá»± do",
             }));
         })
 
-        toast.success("Đã thêm tất cả vào giỏ hàng", {
+        toast.success("ÄÃ£ thÃªm táº¥t cáº£ vÃ o giá» hÃ ng", {
             position: "bottom-right",
             autoClose: 1000,
             hideProgressBar: true,
@@ -105,10 +109,10 @@ export default function WishlistPage() {
 
     return (
         <>
-            <PageLayout title="Yêu thích">
+            <PageLayout title="YÃªu thÃ­ch">
                 <section className="mx-auto max-w-screen-xl py-10">
                     <h1 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900">
-                        Yêu thích
+                        YÃªu thÃ­ch
                     </h1>
                     <div className="flex flex-col md:flex-row gap-4">
                         <div className="lg:w-3/4">
@@ -117,8 +121,8 @@ export default function WishlistPage() {
                                     <thead>
                                         <tr>
                                             <th className="text-left font-semibold">Sản phẩm</th>
-                                            <th className="text-left font-semibold">Đơn giá</th>
-                                            <th className="text-center font-semibold">Thao tác</th>
+                                            <th className="text-left font-semibold">ÄÆ¡n giÃ¡</th>
+                                            <th className="text-center font-semibold">Thao tÃ¡c</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -139,12 +143,12 @@ export default function WishlistPage() {
                                                                     <div>
                                                                         <div className="flex items-center gap-2 mt-1">
                                                                             <h2 className="text-sm opacity-80">
-                                                                                Màu sắc: <span className="text-bold">Theo hình</span>
+                                                                                MÃ u sáº¯c: <span className="text-bold">Theo hÃ¬nh</span>
                                                                             </h2>
 
                                                                         </div>
                                                                         <h2 className="text-sm mt-1 opacity-80">
-                                                                            Kích cỡ: <span className="text-bold">Tự do</span>
+                                                                            KÃ­ch cá»¡: <span className="text-bold">Tá»± do</span>
                                                                         </h2>
                                                                     </div>
                                                                 </div>
@@ -192,7 +196,7 @@ export default function WishlistPage() {
                                     <button
                                         onClick={() => { }}
                                         className="text-indigo-500 w-full py-4 px-4 border border-indigo-500 rounded-lg hover:bg-indigo-600 hover:border-indigo-600 hover:text-gray-100">
-                                        Khám phá thêm
+                                        KhÃ¡m phÃ¡ thÃªm
                                     </button>
                                 </Link>
 
@@ -200,7 +204,7 @@ export default function WishlistPage() {
                                     disabled={items.length === 0}
                                     onClick={() => { handleAddToCartAll() }}
                                     className="bg-indigo-700 text-white py-4 px-4 rounded-lg mt-4 w-full hover:opacity-[0.9]">
-                                    Thêm vào giỏ hàng
+                                    ThÃªm vÃ o giá» hÃ ng
                                 </button>
                             </div>
                         </div>

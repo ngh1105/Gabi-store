@@ -33,7 +33,7 @@ export default function UpdatePage({ id, fetchData }) {
         const res = await Api.Get(`/user/${id}`);
 
         if (!res.isSuccess) {
-            toast.error("ID không tồn tại");
+            toast.error("ID khÃ´ng tá»“n táº¡i");
             setOpenModal(false);
         }
 
@@ -64,7 +64,7 @@ export default function UpdatePage({ id, fetchData }) {
         });
 
         if (!resData.isSuccess) {
-            toast.error("Đã có lỗi xảy ra");
+            toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
             return false;
         }
 
@@ -81,18 +81,18 @@ export default function UpdatePage({ id, fetchData }) {
         },
         validationSchema: Yup.object({
             email: Yup.string()
-                .required("Đây là dữ liệu bắt buộc")
+                .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c")
                 .email()
                 .min(6, `Cần ít nhất 6 ký tự`)
                 .max(255, `Không thể vượt quá 255 ký tự`),
             password: Yup.string()
-                .required("Đây là dữ liệu bắt buộc"),
+                .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c"),
             fullName: Yup.string()
-                .required("Đây là dữ liệu bắt buộc")
+                .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c")
                 .min(6, `Cần ít nhất 6 ký tự`)
                 .max(255, `Không thể vượt quá 255 ký tự`),
             role: Yup.string()
-                .required("Đây là dữ liệu bắt buộc"),
+                .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c"),
         }),
         onSubmit: async (values, { resetForm }) => {
             setStatus(prevState => ({
@@ -115,7 +115,7 @@ export default function UpdatePage({ id, fetchData }) {
                     isSubmit: false,
                 }));
 
-                toast.error("Đã có lỗi xảy ra");
+                toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
                 setOpenModal(false);
 
                 return;
@@ -131,7 +131,7 @@ export default function UpdatePage({ id, fetchData }) {
 
             fetchData();
 
-            toast.success("Sửa thành công");
+            toast.success("Sá»­a thÃ nh cÃ´ng");
             resetForm();
             setOpenModal(false);
         },
@@ -149,11 +149,11 @@ export default function UpdatePage({ id, fetchData }) {
                 <button
                     onClick={() => handleOpenButton()}
                     className="block text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-2 py-2 text-center " type="button">
-                    Sửa
+                    Sá»­a
                 </button>
             </div>
             <Modal show={openModal} onClose={() => setOpenModal(false)}>
-                <Modal.Header className="pb-4">Thêm người dùng</Modal.Header>
+                <Modal.Header className="pb-4">ThÃªm ngÆ°á»i dÃ¹ng</Modal.Header>
                 <Modal.Body className="pt-2">
                     <form onSubmit={formik.handleSubmit}>
                         <div className="grid gap-4 mb-6 sm:grid-cols-2">
@@ -192,7 +192,7 @@ export default function UpdatePage({ id, fetchData }) {
                                 )}
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Họ tên</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Há» tÃªn</label>
                                 <input
                                     type="text"
                                     name="fullName"
@@ -209,7 +209,7 @@ export default function UpdatePage({ id, fetchData }) {
                                 )}
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ảnh đại diện</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">áº¢nh Ä‘áº¡i diá»‡n</label>
                                 <input
                                     type="file"
                                     name="image"
@@ -217,7 +217,7 @@ export default function UpdatePage({ id, fetchData }) {
                                 />
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vai trò</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vai trÃ²</label>
                                 <select
                                     name="role"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
@@ -238,7 +238,7 @@ export default function UpdatePage({ id, fetchData }) {
                             disabled={status.isSubmit}
                             type="submit"
                             className="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
-                            Xác nhận
+                            XÃ¡c nháº­n
                         </button>
                     </form>
                 </Modal.Body>

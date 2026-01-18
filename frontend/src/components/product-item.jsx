@@ -28,11 +28,11 @@ export default function ProductItem({ product, isNew }) {
             imageUrl: obj.imageUrl,
             price: obj.price,
             amount: 1,
-            color: "Theo hình",
-            size: "Tự do",
+            color: "Theo hÃ¬nh",
+            size: "Tá»± do",
         }));
 
-        toast.success("Đã thêm vào giỏ hàng", {
+        toast.success("ÄÃ£ thÃªm vÃ o giá» hÃ ng", {
             position: "bottom-right",
             autoClose: 1000,
             hideProgressBar: true,
@@ -50,7 +50,7 @@ export default function ProductItem({ product, isNew }) {
             const res = await Api.Get(`/wishlist/is-liked/${user.userId}/${product.id}`);
 
             if (!res.isSuccess) {
-                toast.error("Đã có lỗi xảy ra");
+                toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
                 return;
             }
 
@@ -160,7 +160,7 @@ export default function ProductItem({ product, isNew }) {
                     onClick={() => handleAddToCart(product)}
                     className="w-full flex justify-center px-4 py-2 bg-indigo-700 text-gray-100 border border-indigo-300 rounded-full hover:opacity-[0.9]"
                 >
-                    Thêm vào giỏ hàng
+                    ThÃªm vÃ o giá» hÃ ng
                 </button>
             </div>
         </div>

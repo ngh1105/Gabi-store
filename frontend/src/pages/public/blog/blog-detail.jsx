@@ -28,7 +28,7 @@ function BlogDetailPage() {
             (async () => {
                 const res = await Api.Get("/blog/find-paginate?limit=4");
                 if (!res.isSuccess) {
-                    toast.error("Đã có lỗi xảy ra");
+                    toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
                     return;
                 }
 
@@ -46,7 +46,7 @@ function BlogDetailPage() {
             const res = await Api.Get(`/blog/${id}`);
 
             if (!res.isSuccess) {
-                toast.error("Có lỗi khi xem trang");
+                toast.error("CÃ³ lá»—i khi xem trang");
                 navigate("/blog");
                 return;
             }
@@ -124,7 +124,7 @@ function BlogDetailPage() {
                             <div className="px-2 pt-4 lg:px-0 dark:border-gray-700">
                                 <div>
                                     <h2 className="pb-2 text-lg font-semibold leading-5 tracking-tight text-gray-900 dark:text-gray-300 ">
-                                        CÁC BÀI VIẾT KHÁC
+                                        CÃC BÃ€I VIáº¾T KHÃC
                                     </h2>
                                     <div className="w-16 mb-5 border-b-2 border-blue-400 inset-px " />
                                     {

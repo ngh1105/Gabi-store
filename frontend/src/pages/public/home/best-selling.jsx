@@ -57,7 +57,7 @@ export default function BestSellingSection() {
                     </h2>
                     <div className="mx-auto mb-10 border-b border-red-700 w-44 dark:border-gray-400" />
 
-                    <Carousel
+                    {bestSellings && bestSellings.length > 0 && <Carousel
                         responsive={responsive}
                         swipeable={false}
                         draggable={false}
@@ -73,7 +73,7 @@ export default function BestSellingSection() {
                                 )
                             })
                         }
-                    </Carousel>
+                    </Carousel>}
                 </div>
             </section>
         </div>

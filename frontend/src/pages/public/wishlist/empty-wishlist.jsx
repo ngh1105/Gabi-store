@@ -10,7 +10,7 @@ export default function EmptyWishlist() {
                 <path d="M12.5 14.5C13.0523 14.5 13.5 14.0523 13.5 13.5C13.5 12.9477 13.0523 12.5 12.5 12.5C11.9477 12.5 11.5 12.9477 11.5 13.5C11.5 14.0523 11.9477 14.5 12.5 14.5Z" fill="currentColor" />
             </svg>
 
-            <p className="mt-2">Bạn chưa có sản phẩm yêu thích nào</p>
+            <p className="mt-2">Báº¡n chÆ°a cÃ³ sáº£n pháº©m yÃªu thÃ­ch nÃ o</p>
         </div>
     )
 }

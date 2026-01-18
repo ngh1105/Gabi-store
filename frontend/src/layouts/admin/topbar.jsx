@@ -19,7 +19,7 @@ export default function Topbar() {
                         </button>
                         <Link to="/" className="flex items-center justify-between mr-4">
                             <img src={Logo} className="mr-3 h-8" alt="Flowbite Logo" />
-                            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Gabi Store</span>
+                            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">E-Shop</span>
                         </Link>
                     </div>
                     <div className="flex items-center lg:order-2">

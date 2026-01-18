@@ -38,12 +38,12 @@ export default function UserSettingsPage() {
         },
         validationSchema: Yup.object({
             fullName: Yup.string()
-                .required("Đây là dữ liệu bắt buộc")
+                .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c")
                 .min(6, `Cần ít nhất 6 ký tự`)
                 .max(255, `Không thể vượt quá 255 ký tự`),
             phoneNumber: Yup.string()
-                .min(8, `Cần ít nhất 8 ký tự`)
-                .matches(phoneRegExp, 'Số điện thoại không hợp lệ'),
+                .min(8, `Cáº§n Ã­t nháº¥t 8 kÃ½ tá»±`)
+                .matches(phoneRegExp, 'Số điện thoại khÃ´ng há»£p lá»‡'),
             address: Yup.string()
                 .min(6, `Cần ít nhất 6 ký tự`)
                 .max(255, `Không thể vượt quá 255 ký tự`),
@@ -73,7 +73,7 @@ export default function UserSettingsPage() {
                 setStatus(prevState => ({
                     ...prevState,
                     isError: true,
-                    errorMessage: "Đã có lỗi xảy ra",
+                    errorMessage: "ÄÃ£ cÃ³ lá»—i xáº£y ra",
                     isSubmit: false,
                 }));
 
@@ -87,7 +87,7 @@ export default function UserSettingsPage() {
 
             setUserInfo(data);
 
-            toast.success("Lưu thông tin thành công", {
+            toast.success("LÆ°u thÃ´ng tin thÃ nh cÃ´ng", {
                 position: "top-right",
                 autoClose: 1000,
                 hideProgressBar: true,
@@ -109,7 +109,7 @@ export default function UserSettingsPage() {
         });
 
         if (!resData.isSuccess) {
-            toast.error("Đã có lỗi xảy ra");
+            toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
             return "";
         }
 
@@ -127,10 +127,10 @@ export default function UserSettingsPage() {
     };
 
     return (
-        <PageLayout title="Hồ sơ">
+        <PageLayout title="Há»“ sÆ¡">
             <section className="mx-auto max-w-screen-xl py-10">
                 <h1 className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900">
-                    Hồ sơ
+                    Há»“ sÆ¡
                 </h1>
                 <div className="flex flex-col md:flex-row gap-10">
                     <div className="lg:w-1/4">
@@ -138,12 +138,12 @@ export default function UserSettingsPage() {
                             <div className="text-center mb-6">
                                 <img className="mx-auto h-24 w-24 rounded-full" src={`${API_URL}${user && user.avatarUrl && user.avatarUrl !== "" ? user.avatarUrl : "/upload/user/default-avatar.png"}`} alt="" />
                                 <h2 className="text-xl font-semibold mt-2">{user?.fullName}</h2>
-                                <p className="text-gray-600">{user?.role === "ADMIN" ? "Quản trị viên" : "Khách"}</p>
+                                <p className="text-gray-600">{user?.role === "ADMIN" ? "Quáº£n trá»‹ viÃªn" : "KhÃ¡ch"}</p>
                                 <button
                                     className="mt-4 bg-indigo-700 text-white py-2 px-4 rounded hover:opacity-[0.9] hover:cursor-pointer"
                                     onClick={() => fileInputRef.current.click()}
                                 >
-                                    Chọn ảnh
+                                    Chá»n áº£nh
                                 </button>
                                 <input
                                     type="file"
@@ -157,10 +157,10 @@ export default function UserSettingsPage() {
                     <div className="lg:w-3/4">
                         <div className="bg-white rounded-lg shadow-md p-6">
                             <div className="">
-                                <h2 className="text-2xl font-semibold mb-6">Thông tin tài khoản</h2>
+                                <h2 className="text-2xl font-semibold mb-6">ThÃ´ng tin tÃ i khoáº£n</h2>
                                 <form className="grid grid-cols-2 gap-4" onSubmit={formik.handleSubmit}>
                                     <div>
-                                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Họ tên</label>
+                                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Há» tÃªn</label>
                                         <input
                                             type="text"
                                             name="fullName"
@@ -194,7 +194,7 @@ export default function UserSettingsPage() {
                                         )}
                                     </div>
                                     <div>
-                                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Địa chỉ</label>
+                                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Äá»‹a chá»‰</label>
                                         <input
                                             type="text"
                                             name="address"
@@ -214,7 +214,7 @@ export default function UserSettingsPage() {
                                         disabled={status.isSubmit}
                                         type="submit"
                                         className="col-span-2 bg-indigo-700 text-white py-2 px-4 rounded hover:opacity-[0.9] hover:cursor-pointer">
-                                        Lưu thay đổi
+                                        LÆ°u thay Ä‘á»•i
                                     </button>
                                 </form>
                                 {

@@ -27,7 +27,7 @@ export default function TokenGuard({ children }) {
             localStorage.removeItem("user");
             dispatch(setUser(null));
 
-            toast.error("Phiên đăng nhập hết hạn, vui lòng đăng nhập lại");
+            toast.error("PhiÃªn Ä‘Äƒng nháº­p háº¿t háº¡n, vui lÃ²ng Ä‘Äƒng nháº­p láº¡i");
 
             navigate('/auth/login');
         };

@@ -71,7 +71,7 @@ export default function UpdatePage({ id, fetchData }) {
         });
 
         if (!resData.isSuccess) {
-            toast.error("Đã có lỗi xảy ra");
+            toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
             return false;
         }
 
@@ -93,7 +93,7 @@ export default function UpdatePage({ id, fetchData }) {
         const res = await Api.Get(`/product/${id}`);
 
         if (!res.isSuccess) {
-            toast.error("ID không tồn tại");
+            toast.error("ID khÃ´ng tá»“n táº¡i");
             setOpenModal(false);
         }
 
@@ -132,17 +132,17 @@ export default function UpdatePage({ id, fetchData }) {
         },
         validationSchema: Yup.object({
             categoryId: Yup.string()
-                .required("Đây là dữ liệu bắt buộc"),
+                .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c"),
             brandId: Yup.string(),
             name: Yup.string()
-                .required("Đây là dữ liệu bắt buộc")
+                .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c")
                 .min(6, `Cần ít nhất 6 ký tự`)
                 .max(255, `Không thể vượt quá 255 ký tự`),
             price: Yup.number()
-                .required("Đây là dữ liệu bắt buộc")
-                .typeError("Dữ liệu phải là một số"),
+                .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c")
+                .typeError("Dá»¯ liá»‡u pháº£i lÃ  má»™t sá»‘"),
             description: Yup.string()
-                .required("Đây là dữ liệu bắt buộc"),
+                .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c"),
             colors: Yup.array(),
             sizes: Yup.array(),
         }),
@@ -173,7 +173,7 @@ export default function UpdatePage({ id, fetchData }) {
                 }));
 
                 console.log(status);
-                toast.error("Đã có lỗi xảy ra");
+                toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
                 setOpenModal(false);
 
                 return;
@@ -189,7 +189,7 @@ export default function UpdatePage({ id, fetchData }) {
 
             fetchData();
 
-            toast.success("Sửa thành công");
+            toast.success("Sá»­a thÃ nh cÃ´ng");
             resetForm();
             setOpenModal(false);
         },
@@ -202,16 +202,16 @@ export default function UpdatePage({ id, fetchData }) {
                 <button
                     onClick={() => handleOpenButton()}
                     className="block text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-2 py-2 text-center " type="button">
-                    Sửa
+                    Sá»­a
                 </button>
             </div>
             <Modal show={openModal} onClose={() => setOpenModal(false)}>
-                <Modal.Header className="pb-4">Sửa sản phẩm</Modal.Header>
+                <Modal.Header className="pb-4">Sá»­a sáº£n pháº©m</Modal.Header>
                 <Modal.Body className="pt-2">
                     <form onSubmit={formik.handleSubmit}>
                         <div className="grid gap-4 mb-6 sm:grid-cols-2">
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Loại hàng</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Loáº¡i hÃ ng</label>
                                 <select
                                     name="categoryId"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
@@ -255,7 +255,7 @@ export default function UpdatePage({ id, fetchData }) {
                                 )}
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tên</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">TÃªn</label>
                                 <input
                                     type="text"
                                     name="name"
@@ -272,7 +272,7 @@ export default function UpdatePage({ id, fetchData }) {
                                 )}
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Giá</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">GiÃ¡</label>
                                 <input
                                     type="text"
                                     name="price"
@@ -289,7 +289,7 @@ export default function UpdatePage({ id, fetchData }) {
                                 )}
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Màu sắc</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">MÃ u sáº¯c</label>
                                 <select
                                     name="colors"
                                     multiple
@@ -298,16 +298,16 @@ export default function UpdatePage({ id, fetchData }) {
                                     onChange={formik.handleChange}
                                 >
                                     <option>Xanh</option>
-                                    <option>Đỏ</option>
-                                    <option>Tím</option>
-                                    <option>Vàng</option>
-                                    <option>Hồng</option>
-                                    <option>Đen</option>
-                                    <option>Trắng</option>
+                                    <option>Äá»</option>
+                                    <option>TÃ­m</option>
+                                    <option>VÃ ng</option>
+                                    <option>Há»“ng</option>
+                                    <option>Äen</option>
+                                    <option>Tráº¯ng</option>
                                 </select>
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kích cỡ</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">KÃ­ch cá»¡</label>
                                 <select
                                     name="sizes"
                                     multiple
@@ -322,7 +322,7 @@ export default function UpdatePage({ id, fetchData }) {
                                 </select>
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mô tả</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">MÃ´ táº£</label>
                                 <input
                                     type="text"
                                     name="description"
@@ -339,7 +339,7 @@ export default function UpdatePage({ id, fetchData }) {
                                 )}
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hình ảnh</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">HÃ¬nh áº£nh</label>
                                 <input
                                     type="file"
                                     name="image"
@@ -351,7 +351,7 @@ export default function UpdatePage({ id, fetchData }) {
                             disabled={status.isSubmit}
                             type="submit"
                             className="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
-                            Xác nhận
+                            XÃ¡c nháº­n
                         </button>
                     </form>
                 </Modal.Body>

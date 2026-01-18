@@ -57,7 +57,7 @@ export default function CategorySection() {
                         </h2>
                         <div className="mx-auto mb-10 border-b border-red-700 w-44 dark:border-gray-400" />
 
-                        <Carousel
+                        {categories && categories.length > 0 && <Carousel
                             responsive={responsive}
                             swipeable={false}
                             draggable={false}
@@ -85,7 +85,7 @@ export default function CategorySection() {
                                     )
                                 })
                             }
-                        </Carousel>
+                        </Carousel>}
                     </div>
                 </section>
             </div>

@@ -32,7 +32,7 @@ export default function BillDetailPage({ id, fetchData }) {
         const res = await Api.Get(`/bill/${id}`);
 
         if (!res.isSuccess) {
-            toast.error("Đã có lỗi xảy ra");
+            toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
             setOpenModal(false);
             return;
         }
@@ -83,7 +83,7 @@ export default function BillDetailPage({ id, fetchData }) {
                         <div className="w-full overflow-x-auto">
                             <div className="my-2 p-5 bg-white">
                                 <div className="flex justify-between">
-                                    <span className="text-3xl font-bold text-gray-900">Mã hóa đơn #{currBill.id}</span>
+                                    <span className="text-3xl font-bold text-gray-900">MÃ£ hÃ³a Ä‘Æ¡n #{currBill.id}</span>
                                     <div className="text-right">
                                         <span className="block text-sm font-medium text-gray-600">{currBill.fullName}</span>
                                         <span className="block text-sm font-medium text-gray-600 mt-1">{currBill.address}</span>
@@ -96,9 +96,9 @@ export default function BillDetailPage({ id, fetchData }) {
                                         <thead>
                                             <tr>
                                                 <th className="text-left font-semibold">Sản phẩm</th>
-                                                <th className="text-left font-semibold">Đơn giá</th>
+                                                <th className="text-left font-semibold">ÄÆ¡n giÃ¡</th>
                                                 <th className="text-left font-semibold">Số lượng</th>
-                                                <th className="text-center font-semibold">Tổng cộng</th>
+                                                <th className="text-center font-semibold">Tá»•ng cá»™ng</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -119,12 +119,12 @@ export default function BillDetailPage({ id, fetchData }) {
                                                                         <div>
                                                                             <div className="flex items-center gap-2 mt-1">
                                                                                 <h2 className="text-sm opacity-80">
-                                                                                    Màu sắc: <span className="text-bold">{obj.color ? obj.color : "Theo hình"}</span>
+                                                                                    MÃ u sáº¯c: <span className="text-bold">{obj.color ? obj.color : "Theo hÃ¬nh"}</span>
                                                                                 </h2>
 
                                                                             </div>
                                                                             <h2 className="text-sm mt-1 opacity-80">
-                                                                                Kích cỡ: <span className="text-bold">{obj.size ? obj.size : "Tự do"}</span>
+                                                                                KÃ­ch cá»¡: <span className="text-bold">{obj.size ? obj.size : "Tá»± do"}</span>
                                                                             </h2>
                                                                         </div>
                                                                     </div>
@@ -154,7 +154,7 @@ export default function BillDetailPage({ id, fetchData }) {
                                                 <div className="inline-block ml-2 text-sm font-medium text-gray-600">{currBill.paymentMethod}</div>
                                             </div>
                                             <div className="">
-                                                <div className="inline-block text-sm font-bold text-gray-600">Tổng tiền:</div>
+                                                <div className="inline-block text-sm font-bold text-gray-600">Tá»•ng tiá»n:</div>
                                                 <div className="inline-block ml-2 text-sm font-medium text-gray-600">{utils.formatVND(currBill.totalPrice)}</div>
                                             </div>
                                         </div>
