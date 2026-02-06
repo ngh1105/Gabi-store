@@ -66,13 +66,13 @@ function BlogDetailPage() {
     return (
         <>
             <section className="pb-11 dark:bg-gray-900">
-                <PageTitle name={currBlog.title} imageUrl={`${API_URL}${"/upload/page/contact.avif"}`} />
+                <PageTitle name={currBlog.title} imageUrl={utils.resolveImage("/upload/page/contact.avif")} />
                 <div className="max-w-screen-xl mx-auto">
                     <div className="grid lg:grid-cols-[70%,1fr]  gap-4  pt-9 pb-7">
                         <div>
                             <div className="p-4 ">
                                 <img
-                                    src={`${API_URL}${currBlog.thumbnail}`}
+                                    src={utils.resolveImage(currBlog.thumbnail)}
                                     alt
                                     className="object-cover w-full rounded-md h-96"
                                 />
@@ -134,7 +134,7 @@ function BlogDetailPage() {
                                                     <div>
                                                         <img
                                                             className="object-cover w-20 h-20 mr-4 rounded"
-                                                            src={`${API_URL}${obj.thumbnail}`}
+                                                            src={utils.resolveImage(obj.thumbnail)}
                                                             alt=""
                                                         />
                                                     </div>

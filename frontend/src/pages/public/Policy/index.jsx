@@ -3,11 +3,12 @@ import PageLayout from "components/page-layout";
 import PageTitle from "components/page-title";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import utils from "utils";
 
 export default function PolicyPage() {
     return (
         <PageLayout title="Chính sách">
-            <PageTitle name="Chính sách" imageUrl={`${API_URL}${"/upload/page/contact.avif"}`} />
+            <PageTitle name="Chính sách" imageUrl={utils.resolveImage("/upload/page/contact.avif")} />
             <div className="max-w-screen-xl mx-auto pb-6">
                 <main className="mt-2">
                     <div className="flex flex-col lg:flex-row ">

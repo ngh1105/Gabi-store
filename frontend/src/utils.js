@@ -1,4 +1,6 @@
 
+import { API_URL } from "app/config";
+
 function formatVND(amount) {
     // Convert the input to a number
     const numberAmount = parseFloat(amount);
@@ -29,7 +31,16 @@ function formatDate(dateStr) {
     return day + '/' + month + '/' + year;
 }
 
+function resolveImage(path) {
+    if (!path) return "https://placehold.co/600x400"; // Fallback
+    if (path.startsWith("http://") || path.startsWith("https://")) {
+        return path;
+    }
+    return `${API_URL}${path}`;
+}
+
 export default {
     formatVND: formatVND,
     formatDate: formatDate,
+    resolveImage: resolveImage,
 }

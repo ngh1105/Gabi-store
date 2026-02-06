@@ -107,7 +107,7 @@ export default function AddPage({ fetchData }) {
                 .max(255, `Không thể vượt quá 255 ký tự`),
             price: Yup.number()
                 .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c")
-                .typeError("Dá»¯ liá»‡u pháº£i lÃ  má»™t sá»‘"),
+                .typeError("Dữ liệu phải là một số"),
             description: Yup.string()
                 .required("ÄÃ¢y lÃ  dá»¯ liá»‡u báº¯t buá»™c"),
             colors: Yup.array(),
@@ -156,7 +156,7 @@ export default function AddPage({ fetchData }) {
 
             fetchData();
 
-            toast.success("ThÃªm thÃ nh cÃ´ng");
+            toast.success("Thêm thành công");
             resetForm();
             setOpenModal(false);
         },
@@ -170,16 +170,16 @@ export default function AddPage({ fetchData }) {
                     onClick={() => setOpenModal(true)}
                     className="w-full md:w-auto block text-white w-24 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 >
-                    ThÃªm
+                    Thêm
                 </button>
             </div>
             <Modal show={openModal} onClose={() => setOpenModal(false)}>
-                <Modal.Header className="pb-4">ThÃªm sáº£n pháº©m</Modal.Header>
+                <Modal.Header className="pb-4">Thêm sản phẩm</Modal.Header>
                 <Modal.Body className="pt-2">
                     <form onSubmit={formik.handleSubmit}>
                         <div className="grid gap-4 mb-6 sm:grid-cols-2">
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Loáº¡i hÃ ng</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Loại hàng</label>
                                 <select
                                     name="categoryId"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
@@ -223,7 +223,7 @@ export default function AddPage({ fetchData }) {
                                 )}
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">TÃªn</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tên</label>
                                 <input
                                     type="text"
                                     name="name"
@@ -240,7 +240,7 @@ export default function AddPage({ fetchData }) {
                                 )}
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">GiÃ¡</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Giá</label>
                                 <input
                                     type="text"
                                     name="price"
@@ -257,7 +257,7 @@ export default function AddPage({ fetchData }) {
                                 )}
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">MÃ u sáº¯c</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Màu sắc</label>
                                 <select
                                     name="colors"
                                     multiple
@@ -266,16 +266,16 @@ export default function AddPage({ fetchData }) {
                                     onChange={formik.handleChange}
                                 >
                                     <option>Xanh</option>
-                                    <option>Äá»</option>
-                                    <option>TÃ­m</option>
-                                    <option>VÃ ng</option>
-                                    <option>Há»“ng</option>
-                                    <option>Äen</option>
-                                    <option>Tráº¯ng</option>
+                                    <option>Đỏ</option>
+                                    <option>Tím</option>
+                                    <option>Vàng</option>
+                                    <option>Hồng</option>
+                                    <option>Đen</option>
+                                    <option>Trắng</option>
                                 </select>
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">KÃ­ch cá»¡</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kích cỡ</label>
                                 <select
                                     name="sizes"
                                     multiple
@@ -290,7 +290,7 @@ export default function AddPage({ fetchData }) {
                                 </select>
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">MÃ´ táº£</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mô tả</label>
                                 <input
                                     type="text"
                                     name="description"
@@ -307,7 +307,7 @@ export default function AddPage({ fetchData }) {
                                 )}
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">HÃ¬nh áº£nh</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hình ảnh</label>
                                 <input
                                     type="file"
                                     name="image"
@@ -319,7 +319,7 @@ export default function AddPage({ fetchData }) {
                             disabled={status.isSubmit}
                             type="submit"
                             className="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
-                            XÃ¡c nháº­n
+                            Xác nhận
                         </button>
                     </form>
                 </Modal.Body>

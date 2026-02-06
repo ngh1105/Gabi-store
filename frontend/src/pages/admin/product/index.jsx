@@ -18,7 +18,7 @@ export default function ProductPage() {
         const newData = res.response.map((obj, index) => {
             return {
                 name: obj.name,
-                imageUrl: <img className="w-10 h-10 rounded-full" src={`${API_URL}${obj.imageUrl}`} alt="." />,
+                imageUrl: <img className="w-10 h-10 rounded-full" src={utils.resolveImage(obj.imageUrl)} alt="." />,
                 price: <p>{utils.formatVND(obj.price)}</p>,
                 actions: (
                     <div className="w-full flex justify-end items-center gap-2 text-right">
@@ -38,19 +38,19 @@ export default function ProductPage() {
 
     const columns = useMemo(() => [
         {
-            Header: "TÃªn",
+            Header: "Tên",
             accessor: "name",
         },
         {
-            Header: "HÃ¬nh áº£nh",
+            Header: "Hình ảnh",
             accessor: "imageUrl",
         },
         {
-            Header: "GiÃ¡",
+            Header: "Giá",
             accessor: "price",
         },
         {
-            Header: () => <div className="text-right">Thao tÃ¡c</div>,
+            Header: () => <div className="text-right">Thao tác</div>,
             accessor: "actions",
             disableSortBy: true,
             disableFilters: true,
@@ -100,7 +100,7 @@ export default function ProductPage() {
                         <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                             <div className="w-full md:w-1/2">
                                 <form className="flex justify-center items-center mt-0" onSubmit={e => e.preventDefault()} >
-                                    <label className="sr-only">TÃ¬m kiáº¿m</label>
+                                    <label className="sr-only">Tìm kiếm</label>
                                     <div className="relative w-full">
                                         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                             <svg aria-hidden="true" className="w-5 h-5 text-gray-500 " fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -110,7 +110,7 @@ export default function ProductPage() {
                                         <input
                                             type="text"
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 "
-                                            placeholder="TÃ¬m kiáº¿m"
+                                            placeholder="Tìm kiếm"
                                             value={globalFilter || ""}
                                             onChange={e => setGlobalFilter(e.target.value)}
                                         />
@@ -171,9 +171,9 @@ export default function ProductPage() {
 
                         <nav className="flex justify-between items-center space-y-3 md:space-y-0 p-4">
                             <span className="text-sm font-normal text-gray-500 ">
-                                Hiá»ƒn thá»‹
+                                Hiển thị
                                 <span className="font-semibold text-gray-900  px-1">{pageIndex + 1}</span>
-                                cá»§a
+                                của
                                 <span className="font-semibold text-gray-900  px-1">{pageOptions.length}</span>
                             </span>
                             <ul className="inline-flex items-stretch -space-x-px">

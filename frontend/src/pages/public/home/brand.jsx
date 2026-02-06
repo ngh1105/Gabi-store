@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
+import utils from "utils";
 
 export default function BrandSection() {
 
@@ -70,7 +71,7 @@ export default function BrandSection() {
                                                 to={`/product?brand=${obj.id}`}>
                                                 <img
                                                     className="w-48 h-48 mb-3 rounded-full shadow-lg"
-                                                    src={`${API_URL}${obj.imageUrl}`} alt="category" />
+                                                    src={utils.resolveImage(obj.imageUrl)} alt="category" />
                                             </Link>
 
                                             <h5 className="mt-3 mb-1 text-xl font-medium text-gray-900 capitalize">{obj.name}</h5>

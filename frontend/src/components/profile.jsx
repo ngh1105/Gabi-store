@@ -1,7 +1,7 @@
 import { useAuth } from "hooks/use-auth";
 import { Avatar, Dropdown } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
-import { API_URL } from "app/config";
+import utils from "utils";
 
 export default function Profile() {
 
@@ -20,7 +20,7 @@ export default function Profile() {
             className="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
         >
             <Dropdown
-                label={<Avatar alt="User settings" size="sm" img={`${API_URL}${user && user.avatarUrl && user.avatarUrl !== "" ? user.avatarUrl : "/upload/user/default-avatar.png"}`} rounded />}
+                label={<Avatar alt="User settings" size="sm" img={utils.resolveImage(user?.avatarUrl)} rounded />}
                 arrowIcon={false}
                 inline
             >
@@ -32,16 +32,16 @@ export default function Profile() {
                     (user && user.role == "ADMIN") ? (
                         <>
                             <Dropdown.Item>
-                                <Link to="/admin" >Trang quáº£n trá»‹</Link>
+                                <Link to="/admin" >Trang quản trị</Link>
                             </Dropdown.Item>
                         </>
                     )
                         : null
                 }
-                <Dropdown.Item><Link to="/user-settings" >Há»“ sÆ¡ cá»§a tÃ´i</Link></Dropdown.Item>
-                <Dropdown.Item><Link to="/bill" >ÄÆ¡n hÃ ng</Link></Dropdown.Item>
+                <Dropdown.Item><Link to="/user-settings" >Hồ sơ của tôi</Link></Dropdown.Item>
+                <Dropdown.Item><Link to="/bill" >Đơn hàng</Link></Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item onClick={() => handleLogout()}>ÄÄƒng xuáº¥t</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleLogout()}>Đăng xuất</Dropdown.Item>
             </Dropdown>
         </div>
     )

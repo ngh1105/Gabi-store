@@ -14,7 +14,7 @@ function BlogCard({ data }) {
                 <div className="relative mb-5 overflow-hidden h-72">
                     <img
                         className="object-cover w-full h-full transition-all rounded hover:scale-110"
-                        src={`${API_URL}${data.thumbnail}`}
+                        src={utils.resolveImage(data.thumbnail)}
                         alt=""
                     />
                 </div>

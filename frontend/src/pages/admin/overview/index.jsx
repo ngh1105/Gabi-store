@@ -19,7 +19,7 @@ export default function OverviewPage() {
             setCategoryCount(res.response);
         }
         else {
-            toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
+            toast.error("Đã có lỗi xảy ra");
         }
 
         res = await Api.Get("/product/count-total");
@@ -27,7 +27,7 @@ export default function OverviewPage() {
             setProductCount(res.response);
         }
         else {
-            toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
+            toast.error("Đã có lỗi xảy ra");
         }
 
         res = await Api.Get("/user/count-total");
@@ -35,7 +35,7 @@ export default function OverviewPage() {
             setUserCount(res.response);
         }
         else {
-            toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
+            toast.error("Đã có lỗi xảy ra");
         }
 
         res = await Api.Get("/bill-detail/find-recently?limit=4");
@@ -43,7 +43,7 @@ export default function OverviewPage() {
             setRecentBills(res.response);
         }
         else {
-            toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
+            toast.error("Đã có lỗi xảy ra");
         }
 
         res = await Api.Get("/bill/find-revenue?months=4");
@@ -51,7 +51,7 @@ export default function OverviewPage() {
             setRevenues(res.response);
         }
         else {
-            toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
+            toast.error("Đã có lỗi xảy ra");
         }
     }
 
@@ -60,7 +60,7 @@ export default function OverviewPage() {
     }, []);
 
     return (
-        <PageLayout title="Tá»•ng quan">
+        <PageLayout title="Tổng quan">
             <section className="px-4 pt-6">
                 <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
                     <div className="p-6 mb-8 bg-white rounded shadow lg:mb-0 dark:bg-gray-900">
@@ -73,14 +73,14 @@ export default function OverviewPage() {
                             </button>
                         </div>
                         <div className="flex items-center justify-between mb-3">
-                            <h2 className="font-medium text-gray-500 dark:text-gray-400">Loáº¡i hÃ ng</h2>
+                            <h2 className="font-medium text-gray-500 dark:text-gray-400">Loại hàng</h2>
                             <span className=""></span>
                         </div>
                         <div className="relative w-full h-1 mb-2 bg-gray-200 rounded">
                             <div className="absolute top-0 left-0 w-full h-full bg-blue-500 rounded ">
                             </div>
                         </div>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">ToÃ n bá»™</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">Toàn bộ</p>
                     </div>
                     <div className="p-6 mb-8 bg-white rounded shadow lg:mb-0 dark:bg-gray-900">
                         <div className="flex items-center justify-between mb-3">
@@ -99,7 +99,7 @@ export default function OverviewPage() {
                             <div className="absolute top-0 left-0 w-full h-full bg-red-500 rounded ">
                             </div>
                         </div>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">ToÃ n bá»™</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">Toàn bộ</p>
                     </div>
                     <div className="p-6 mb-8 bg-white rounded shadow lg:mb-0 dark:bg-gray-900">
                         <div className="flex items-center justify-between mb-3">
@@ -111,14 +111,14 @@ export default function OverviewPage() {
                             </button>
                         </div>
                         <div className="flex items-center justify-between mb-3">
-                            <h2 className="font-medium text-gray-500 dark:text-gray-400">NgÆ°á»i dÃ¹ng</h2>
+                            <h2 className="font-medium text-gray-500 dark:text-gray-400">Người dùng</h2>
                             <span className=""></span>
                         </div>
                         <div className="relative w-full h-1 mb-2 bg-gray-200 rounded">
                             <div className="absolute top-0 left-0 w-full h-full bg-green-500 rounded ">
                             </div>
                         </div>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">ToÃ n bá»™</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">Toàn bộ</p>
                     </div>
                 </div>
             </section>
@@ -127,7 +127,7 @@ export default function OverviewPage() {
                     <div className="p-4 bg-white rounded-md shadow md:p-6 dark:bg-gray-900 ">
                         <div className="flex flex-wrap justify-between mb-6">
                             <h2 className="py-1 text-xl font-semibold capitalize border-b border-indigo-500 dark:text-gray-400">
-                                ÄÆ°á»£c mua gáº§n Ä‘Ã¢y
+                                Được mua gần đây
                             </h2>
                         </div>
                         <div>
@@ -136,7 +136,7 @@ export default function OverviewPage() {
                                     return (
                                         <div key={index} className="flex justify-between mb-4">
                                             <div className="flex gap-2">
-                                                <img src={`${API_URL}${obj.imageUrl}`} alt="" className="object-cover w-14 h-14" />
+                                                <img src={utils.resolveImage(obj.imageUrl)} alt="" className="object-cover w-14 h-14" />
                                                 <div>
                                                     <h2 className="py-1 text-lg font-medium">
                                                         {obj.name}
@@ -154,7 +154,7 @@ export default function OverviewPage() {
                     <div className="p-4 bg-white rounded-md shadow md:p-6 dark:bg-gray-900">
                         <div className="flex flex-wrap justify-between mb-6">
                             <h2 className="py-1 text-xl font-semibold capitalize border-b border-indigo-500 dark:text-gray-400">
-                                Doanh thu cÃ¡c thÃ¡ng
+                                Doanh thu các tháng
                             </h2>
                         </div>
                         <div>

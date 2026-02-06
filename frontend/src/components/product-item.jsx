@@ -28,11 +28,11 @@ export default function ProductItem({ product, isNew }) {
             imageUrl: obj.imageUrl,
             price: obj.price,
             amount: 1,
-            color: "Theo hÃ¬nh",
-            size: "Tá»± do",
+            color: "Theo hình",
+            size: "Tự do",
         }));
 
-        toast.success("ÄÃ£ thÃªm vÃ o giá» hÃ ng", {
+        toast.success("Đã thêm vào giỏ hàng", {
             position: "bottom-right",
             autoClose: 1000,
             hideProgressBar: true,
@@ -50,7 +50,7 @@ export default function ProductItem({ product, isNew }) {
             const res = await Api.Get(`/wishlist/is-liked/${user.userId}/${product.id}`);
 
             if (!res.isSuccess) {
-                toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
+                toast.error("Đã có lỗi xảy ra");
                 return;
             }
 
@@ -95,7 +95,7 @@ export default function ProductItem({ product, isNew }) {
                     to={`/product-detail/${product.id}`}
                 >
                     <img
-                        src={`${API_URL}${product.imageUrl}`}
+                        src={utils.resolveImage(product.imageUrl)}
                         alt=""
                         className="object-cover w-full h-56 mx-auto "
                     />
@@ -160,7 +160,7 @@ export default function ProductItem({ product, isNew }) {
                     onClick={() => handleAddToCart(product)}
                     className="w-full flex justify-center px-4 py-2 bg-indigo-700 text-gray-100 border border-indigo-300 rounded-full hover:opacity-[0.9]"
                 >
-                    ThÃªm vÃ o giá» hÃ ng
+                    Thêm vào giỏ hàng
                 </button>
             </div>
         </div>

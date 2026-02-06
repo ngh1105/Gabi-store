@@ -1,5 +1,4 @@
 import Profile from "components/profile";
-import Logo from "images/logo.png";
 import { Link } from "react-router-dom";
 
 export default function Topbar() {
@@ -18,7 +17,7 @@ export default function Topbar() {
                             <span className="sr-only">Toggle sidebar</span>
                         </button>
                         <Link to="/" className="flex items-center justify-between mr-4">
-                            <img src={Logo} className="mr-3 h-8" alt="Flowbite Logo" />
+                            <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" className="mr-3 h-8" alt="Flowbite Logo" />
                             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">E-Shop</span>
                         </Link>
                     </div>

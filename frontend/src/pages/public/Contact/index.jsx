@@ -1,11 +1,12 @@
 import PageTitle from 'components/page-title';
 import { API_URL } from 'app/config';
 import PageLayout from 'components/page-layout';
+import utils from "utils";
 
 export default function ContactPage() {
     return (
         <PageLayout title="Liên hệ">
-            <PageTitle name="Liên hệ" imageUrl={`${API_URL}${"/upload/page/contact.avif"}`} />
+            <PageTitle name="Liên hệ" imageUrl={utils.resolveImage("/upload/page/contact.avif")} />
             <div>
                 <div className="container flex flex-col mx-auto bg-white">
                     <div className="grid w-full grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">

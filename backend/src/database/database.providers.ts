@@ -133,6 +133,13 @@ export const databaseProviders = [
                 host: 'localhost',
                 port: 3306,
                 database: 'gabi_store',
+                define: {
+                    charset: 'utf8mb4',
+                    collate: 'utf8mb4_unicode_ci',
+                },
+                dialectOptions: {
+                    charset: 'utf8mb4',
+                },
             });
 
             // Add model here

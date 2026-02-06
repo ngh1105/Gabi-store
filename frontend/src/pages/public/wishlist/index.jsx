@@ -76,11 +76,11 @@ export default function WishlistPage() {
             imageUrl: obj.Product.imageUrl,
             price: obj.Product.price,
             amount: 1,
-            color: "Theo hÃ¬nh",
-            size: "Tá»± do",
+            color: "Theo hình",
+            size: "Tự do",
         }));
 
-        toast.success("ÄÃ£ thÃªm vÃ o giá» hÃ ng", {
+        toast.success("Đã thêm vào giỏ hàng", {
             position: "bottom-right",
             autoClose: 1000,
             hideProgressBar: true,
@@ -95,12 +95,12 @@ export default function WishlistPage() {
                 imageUrl: obj.Product.imageUrl,
                 price: obj.Product.price,
                 amount: 1,
-                color: "Theo hÃ¬nh",
-                size: "Tá»± do",
+                color: "Theo hình",
+                size: "Tự do",
             }));
         })
 
-        toast.success("ÄÃ£ thÃªm táº¥t cáº£ vÃ o giá» hÃ ng", {
+        toast.success("Đã thêm tất cả vào giỏ hàng", {
             position: "bottom-right",
             autoClose: 1000,
             hideProgressBar: true,
@@ -109,10 +109,10 @@ export default function WishlistPage() {
 
     return (
         <>
-            <PageLayout title="YÃªu thÃ­ch">
+            <PageLayout title="Yêu thích">
                 <section className="mx-auto max-w-screen-xl py-10">
                     <h1 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900">
-                        YÃªu thÃ­ch
+                        Yêu thích
                     </h1>
                     <div className="flex flex-col md:flex-row gap-4">
                         <div className="lg:w-3/4">
@@ -121,8 +121,8 @@ export default function WishlistPage() {
                                     <thead>
                                         <tr>
                                             <th className="text-left font-semibold">Sản phẩm</th>
-                                            <th className="text-left font-semibold">ÄÆ¡n giÃ¡</th>
-                                            <th className="text-center font-semibold">Thao tÃ¡c</th>
+                                            <th className="text-left font-semibold">Đơn giá</th>
+                                            <th className="text-center font-semibold">Thao tác</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -134,7 +134,7 @@ export default function WishlistPage() {
                                                             <div className="flex gap-2">
                                                                 <img
                                                                     className="w-16 h-16 rounded mt-1"
-                                                                    src={`${API_URL}${obj.Product?.imageUrl}`}
+                                                                    src={utils.resolveImage(obj.Product?.imageUrl)}
                                                                     alt="" />
                                                                 <div className="">
                                                                     <p className="font-semibold">
@@ -143,12 +143,12 @@ export default function WishlistPage() {
                                                                     <div>
                                                                         <div className="flex items-center gap-2 mt-1">
                                                                             <h2 className="text-sm opacity-80">
-                                                                                MÃ u sáº¯c: <span className="text-bold">Theo hÃ¬nh</span>
+                                                                                Màu sắc: <span className="text-bold">Theo hình</span>
                                                                             </h2>
 
                                                                         </div>
                                                                         <h2 className="text-sm mt-1 opacity-80">
-                                                                            KÃ­ch cá»¡: <span className="text-bold">Tá»± do</span>
+                                                                            Kích cỡ: <span className="text-bold">Tự do</span>
                                                                         </h2>
                                                                     </div>
                                                                 </div>
@@ -196,7 +196,7 @@ export default function WishlistPage() {
                                     <button
                                         onClick={() => { }}
                                         className="text-indigo-500 w-full py-4 px-4 border border-indigo-500 rounded-lg hover:bg-indigo-600 hover:border-indigo-600 hover:text-gray-100">
-                                        KhÃ¡m phÃ¡ thÃªm
+                                        Khám phá thêm
                                     </button>
                                 </Link>
 
@@ -204,7 +204,7 @@ export default function WishlistPage() {
                                     disabled={items.length === 0}
                                     onClick={() => { handleAddToCartAll() }}
                                     className="bg-indigo-700 text-white py-4 px-4 rounded-lg mt-4 w-full hover:opacity-[0.9]">
-                                    ThÃªm vÃ o giá» hÃ ng
+                                    Thêm vào giỏ hàng
                                 </button>
                             </div>
                         </div>

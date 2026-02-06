@@ -28,7 +28,7 @@ export default function BillPage() {
             (async () => {
                 const res = await Api.Get(`/bill/find-all/${user.userId}`);
                 if (!res.isSuccess) {
-                    toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
+                    toast.error("Đã có lỗi xảy ra");
                     return;
                 }
 
@@ -42,11 +42,11 @@ export default function BillPage() {
     }, []);
 
     return (
-        <PageLayout title="ÄÆ¡n hÃ ng">
+        <PageLayout title="Đơn hàng">
             <section className="mx-auto max-w-screen-xl py-10">
                 <div className="px-4">
                     <h1 class="text-center mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900">
-                        ÄÆ¡n hÃ ng
+                        Đơn hàng
                     </h1>
                     <div className="mt-10" align="center">
                         {
@@ -57,9 +57,9 @@ export default function BillPage() {
                                         key={index}
                                         className="mb-4 p-4 border rounded shadow flex justify-between items-center max-w-3xl cursor-pointer"
                                     >
-                                        <h2 className="text-xl font-bold">MÃ£ hÃ³a Ä‘Æ¡n: #{obj.id}</h2>
+                                        <h2 className="text-xl font-bold">Mã hóa đơn: #{obj.id}</h2>
                                         <div className="" align="left">
-                                            <p className="mt-2">Tá»•ng tiá»n: {utils.formatVND(obj.totalPrice)}</p>
+                                            <p className="mt-2">Tổng tiền: {utils.formatVND(obj.totalPrice)}</p>
                                             <p className="mt-2">Phương thức thanh toán: {obj.paymentMethod}</p>
                                         </div>
                                     </Link>

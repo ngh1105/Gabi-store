@@ -39,7 +39,7 @@ export default function ProductDetailPage() {
             let res = await Api.Get(`/product/${id}`);
 
             if (!res.isSuccess) {
-                toast.error("CÃ³ lá»—i khi xem trang");
+                toast.error("Có lỗi khi xem trang");
                 navigate("/product");
                 return;
             }
@@ -58,7 +58,7 @@ export default function ProductDetailPage() {
 
             res = await Api.Get(`/product/find-related/${id}`);
             if (!res.isSuccess) {
-                toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
+                toast.error("Đã có lỗi xảy ra");
                 return;
             }
 
@@ -67,7 +67,7 @@ export default function ProductDetailPage() {
             if (user && user.userId) {
                 res = await Api.Get(`/product/is-bought/${user.userId}/${id}`);
                 if (!res.isSuccess) {
-                    toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
+                    toast.error("Đã có lỗi xảy ra");
                     return;
                 }
 
@@ -79,8 +79,8 @@ export default function ProductDetailPage() {
     }, [id, user]);
 
     const [count, setCount] = useState(1);
-    const [color, setColor] = useState("NhÆ° hÃ¬nh");
-    const [size, setSize] = useState("Tá»± do");
+    const [color, setColor] = useState("Như hình");
+    const [size, setSize] = useState("Tự do");
 
     const handleDecreaseCount = () => setCount((c) => count > 1 ? c - 1 : 1);
     const handleIncreaseCount = () => setCount((c) => c + 1);
@@ -101,7 +101,7 @@ export default function ProductDetailPage() {
             size: size,
         }));
 
-        toast.success("ÄÃ£ thÃªm vÃ o giá» hÃ ng", {
+        toast.success("Đã thêm vào giỏ hàng", {
             position: "bottom-right",
             autoClose: 1000,
             hideProgressBar: true,
@@ -114,7 +114,7 @@ export default function ProductDetailPage() {
     const fetchRatingData = async () => {
         let res = await Api.Get(`/rating/count-rating/${id}`);
         if (!res.isSuccess) {
-            toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
+            toast.error("Đã có lỗi xảy ra");
             return;
         }
 
@@ -122,7 +122,7 @@ export default function ProductDetailPage() {
 
         res = await Api.Get(`/rating/get-score/${id}`);
         if (!res.isSuccess) {
-            toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
+            toast.error("Đã có lỗi xảy ra");
             return;
         }
 
@@ -152,14 +152,14 @@ export default function ProductDetailPage() {
 
             await fetchRatingData();
 
-            toast.success("ÄÃ¡nh giÃ¡ cá»§a báº¡n Ä‘Ã£ Ä‘Æ°á»£c lÆ°u", {
+            toast.success("Đánh giá của bạn đã được lưu", {
                 position: "top-right",
                 autoClose: 1000,
                 hideProgressBar: true,
             });
         }
         catch (err) {
-            toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra", {
+            toast.error("Đã có lỗi xảy ra", {
                 position: "top-right",
                 autoClose: 1000,
                 hideProgressBar: true,
@@ -178,7 +178,7 @@ export default function ProductDetailPage() {
             userId: user.userId
         });
 
-        toast.success("ÄÃ£ thÃªm vÃ o yÃªu thÃ­ch", {
+        toast.success("Đã thêm vào yêu thích", {
             position: "bottom-right",
             autoClose: 1000,
             hideProgressBar: true,
@@ -186,14 +186,14 @@ export default function ProductDetailPage() {
     }
 
     return (
-        <PageLayout title="Sản phẩm chi tiáº¿t">
+        <PageLayout title="Sản phẩm chi tiết">
             <section className="overflow-hidden bg-white py-11 font-poppins dark:bg-gray-800">
                 <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
                     <div className="flex flex-wrap -mx-4">
                         <div className="w-full px-4 md:w-1/2 ">
                             <div className="sticky top-0 overflow-hidden ">
                                 <div className="relative mb-6 lg:mb-10 lg:h-2/4 ">
-                                    <img src={`${API_URL}${currProduct.imageUrl}`} alt="" className="object-cover w-full lg:h-full " />
+                                    <img src={utils.resolveImage(currProduct.imageUrl)} alt="" className="object-cover w-full lg:h-full " />
                                 </div>
                             </div>
                         </div>
@@ -219,7 +219,7 @@ export default function ProductDetailPage() {
                                                 activeColor="#ffd700"
                                             />
                                         </div>
-                                        <p className="text-sm dark:text-gray-400 ">({ratingCount} lÆ°á»£t Ä‘Ã¡nh giÃ¡)</p>
+                                        <p className="text-sm dark:text-gray-400 ">({ratingCount} lượt đánh giá)</p>
                                     </div>
                                     <p className="max-w-md mb-8 text-gray-700 dark:text-gray-400">
                                         {currProduct.description}
@@ -230,13 +230,13 @@ export default function ProductDetailPage() {
                                 </div>
                                 <div className="flex items-center mb-8">
                                     <h2 className="mr-6 text-xl font-bold dark:text-gray-400">
-                                        MÃ u sáº¯c:</h2>
+                                        Màu sắc:</h2>
                                     <div className="flex flex-wrap -mx-2 -mb-2">
                                         {
                                             (!currProduct.colors || currProduct.colors.length <= 0)
                                                 ? (
                                                     <button className="px-3 py-1 mb-2 mr-1 border border-indigo-400 text-indigo-600">
-                                                        Theo hÃ¬nh
+                                                        Theo hình
                                                     </button>
                                                 )
                                                 : (
@@ -259,13 +259,13 @@ export default function ProductDetailPage() {
                                 </div>
                                 <div className="flex items-center mb-8">
                                     <h2 className="mr-6 text-xl font-bold dark:text-gray-400">
-                                        KÃ­ch cá»¡:</h2>
+                                        Kích cỡ:</h2>
                                     <div className="flex flex-wrap -mx-2 -mb-2">
                                         {
                                             (!currProduct.sizes || currProduct.sizes.length <= 0)
                                                 ? (
                                                     <button className="px-3 py-1 mb-2 mr-1 border border-indigo-400 text-indigo-600">
-                                                        Tá»± do
+                                                        Tự do
                                                     </button>
                                                 )
                                                 : (
@@ -309,14 +309,14 @@ export default function ProductDetailPage() {
                                         <button
                                             onClick={handleAddToCart}
                                             className="flex items-center justify-center w-full p-4 rounded-md bg-indigo-700 text-white hover:opacity-[0.9]">
-                                            ThÃªm vÃ o giá» hÃ ng
+                                            Thêm vào giỏ hàng
                                         </button>
                                     </div>
                                     <div className="w-full px-4 mb-4 lg:mb-0 lg:w-1/2">
                                         <button
                                             onClick={handleAddToWishlist}
                                             className="flex items-center justify-center w-full p-4 text-indigo-500 border border-indigo-500 rounded-md hover:bg-indigo-600 hover:border-indigo-600 hover:text-gray-100">
-                                            ThÃªm vÃ o yÃªu thÃ­ch
+                                            Thêm vào yêu thích
                                         </button>
                                     </div>
                                 </div>
@@ -327,7 +327,7 @@ export default function ProductDetailPage() {
                 <div className="mx-auto max-w-screen-xl px-4 py-4 mx-auto lg:py-8 md:px-6">
                     <div className="px-4">
                         <h2 className="pb-2 mt-4 text-2xl font-bold text-gray-900 dark:text-gray-400 font-poppins">
-                            CÃ³ thá»ƒ báº¡n quan tÃ¢m
+                            Có thể bạn quan tâm
                         </h2>
                         <div className="w-16 mb-3 border-b-2 border-indigo-500 dark:border-gray-400 inset-px" />
 

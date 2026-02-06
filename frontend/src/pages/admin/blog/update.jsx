@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useImageUpload } from "hooks/use-image-upload";
 import { toast } from "react-toastify";
 import { API_URL } from "app/config";
+import utils from "utils";
 import { useAuth } from "hooks/use-auth";
 
 export default function UpdatePage({ id, fetchData }) {
@@ -32,7 +33,7 @@ export default function UpdatePage({ id, fetchData }) {
         const res = await Api.Get(`/blog/${id}`);
 
         if (!res.isSuccess) {
-            toast.error("ID khÃ´ng tá»“n táº¡i");
+            toast.error("ID không tồn tại");
             setOpenModal(false);
         }
 
@@ -42,7 +43,7 @@ export default function UpdatePage({ id, fetchData }) {
             content: res.response.content,
         });
 
-        setImageFromUrl(`${API_URL}${res.response.thumbnail}`);
+        setImageFromUrl(utils.resolveImage(res.response.thumbnail));
     }
 
     const handleOpenButton = async () => {
@@ -127,7 +128,7 @@ export default function UpdatePage({ id, fetchData }) {
 
             fetchData();
 
-            toast.success("Sá»­a thÃ nh cÃ´ng");
+            toast.success("Sửa thành công");
             resetForm();
             setOpenModal(false);
         },
@@ -140,11 +141,11 @@ export default function UpdatePage({ id, fetchData }) {
                 <button
                     onClick={() => handleOpenButton()}
                     className="block text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-2 py-2 text-center " type="button">
-                    Sá»­a
+                    Sửa
                 </button>
             </div>
             <Modal show={openModal} onClose={() => setOpenModal(false)}>
-                <Modal.Header className="pb-4">Sá»­a bÃ i viáº¿t</Modal.Header>
+                <Modal.Header className="pb-4">Sửa bài viết</Modal.Header>
                 <Modal.Body className="pt-2">
                     <form onSubmit={formik.handleSubmit}>
                         <div className="grid gap-4 mb-6 sm:grid-cols-2">
@@ -166,7 +167,7 @@ export default function UpdatePage({ id, fetchData }) {
                                 )}
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">MÃ´ táº£</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mô tả</label>
                                 <input
                                     type="text"
                                     name="description"
@@ -183,7 +184,7 @@ export default function UpdatePage({ id, fetchData }) {
                                 )}
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">áº¢nh bÃ¬a</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ảnh bìa</label>
                                 <input
                                     type="file"
                                     name="image"
@@ -192,7 +193,7 @@ export default function UpdatePage({ id, fetchData }) {
                             </div>
                         </div>
                         <div className="mb-4">
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ná»™i dung</label>
+                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nội dung</label>
                             <textarea
                                 rows="6"
                                 type="text"
@@ -213,7 +214,7 @@ export default function UpdatePage({ id, fetchData }) {
                             disabled={status.isSubmit}
                             type="submit"
                             className="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
-                            XÃ¡c nháº­n
+                            Xác nhận
                         </button>
                     </form>
                 </Modal.Body>

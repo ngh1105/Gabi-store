@@ -7,6 +7,7 @@ import Api from "app/api";
 import { API_URL } from "app/config";
 import PageLayout from "components/page-layout";
 import { toast } from "react-toastify";
+import utils from "utils";
 
 export default function BlogPage() {
 
@@ -15,14 +16,14 @@ export default function BlogPage() {
     async function fetchData() {
         const res = await Api.Get("/blog");
         if (!res.isSuccess) {
-            toast.error("ÄÃ£ cÃ³ lá»—i xáº£y ra");
+            toast.error("Đã có lỗi xảy ra");
             return;
         }
 
         const newData = res.response.map((obj, index) => {
             return {
                 title: obj.title,
-                thumbnail: <img className="w-10 h-10 rounded-full" src={`${API_URL}${obj.thumbnail}`} alt="." />,
+                thumbnail: <img className="w-10 h-10 rounded-full" src={utils.resolveImage(obj.thumbnail)} alt="." />,
                 description: (<p className="text-ellipsis overflow-hidden line-clamp-2">{obj.description}</p>),
                 actions: (
                     <div className="w-full flex justify-end items-center gap-2 text-right">
@@ -42,19 +43,19 @@ export default function BlogPage() {
 
     const columns = useMemo(() => [
         {
-            Header: "TiÃªu Ä‘á»",
+            Header: "Tiêu đề",
             accessor: "title",
         },
         {
-            Header: "áº¢nh bÃ¬a",
+            Header: "Ảnh bìa",
             accessor: "thumbnail",
         },
         {
-            Header: "MÃ´ táº£",
+            Header: "Mô tả",
             accessor: "description",
         },
         {
-            Header: () => <div className="text-right">Thao tÃ¡c</div>,
+            Header: () => <div className="text-right">Thao tác</div>,
             accessor: "actions",
             disableSortBy: true,
             disableFilters: true,
@@ -96,7 +97,7 @@ export default function BlogPage() {
     const { globalFilter, pageIndex, pageSize } = state;
 
     return (
-        <PageLayout title="NgÆ°á»i dÃ¹ng" >
+        <PageLayout title="Người dùng" >
             <section className="bg-gray-50 p-3 sm:p-5">
                 <div className="mx-auto max-w-screen-xl px-4 lg:px-12">
                     {/* Start coding here */}
@@ -104,7 +105,7 @@ export default function BlogPage() {
                         <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                             <div className="w-full md:w-1/2">
                                 <form className="flex justify-center items-center mt-0" onSubmit={e => e.preventDefault()} >
-                                    <label className="sr-only">TÃ¬m kiáº¿m</label>
+                                    <label className="sr-only">Tìm kiếm</label>
                                     <div className="relative w-full">
                                         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                             <svg aria-hidden="true" className="w-5 h-5 text-gray-500 " fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -114,7 +115,7 @@ export default function BlogPage() {
                                         <input
                                             type="text"
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 "
-                                            placeholder="TÃ¬m kiáº¿m"
+                                            placeholder="Tìm kiếm"
                                             value={globalFilter || ""}
                                             onChange={e => setGlobalFilter(e.target.value)}
                                         />
@@ -175,9 +176,9 @@ export default function BlogPage() {
 
                         <nav className="flex justify-between items-center space-y-3 md:space-y-0 p-4">
                             <span className="text-sm font-normal text-gray-500 ">
-                                Hiá»ƒn thá»‹
+                                Hiển thị
                                 <span className="font-semibold text-gray-900  px-1">{pageIndex + 1}</span>
-                                cá»§a
+                                của
                                 <span className="font-semibold text-gray-900  px-1">{pageOptions.length}</span>
                             </span>
                             <ul className="inline-flex items-stretch -space-x-px">

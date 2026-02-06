@@ -3,6 +3,7 @@ import styles from "./Slider.module.scss";
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 import { Carousel } from 'flowbite-react';
+import utils from "utils";
 
 const cx = classNames.bind(styles);
 
@@ -52,9 +53,9 @@ export default function SliderSection() {
                     </div>
                     <div className="hidden lg:mt-0 lg:col-span-5 lg:flex h-72">
                         <Carousel>
-                            <img src={`${API_URL}/upload/banner/banner.jpg`} className="w-full h-full" alt="..." />
-                            <img src={`${API_URL}/upload/banner/banner2.jfif`} alt="..." />
-                            <img src={`${API_URL}/upload/banner/banner3.jfif`} alt="..." />
+                            <img src={utils.resolveImage("/upload/banner/banner.jpg")} className="w-full h-full" alt="..." />
+                            <img src={utils.resolveImage("/upload/banner/banner2.jfif")} alt="..." />
+                            <img src={utils.resolveImage("/upload/banner/banner3.jfif")} alt="..." />
                         </Carousel>
                     </div>
                 </div>

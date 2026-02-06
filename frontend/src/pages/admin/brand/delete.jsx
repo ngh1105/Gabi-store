@@ -59,14 +59,14 @@ export default function DeletePage({ id, fetchData }) {
                     <div className="text-center">
                         <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
                         <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                            Báº¡n cÃ³ cháº¯c lÃ  muá»‘n xÃ³a ?
+                            Bạn có chắc là muốn xóa ?
                         </h3>
                         <div className="flex justify-center gap-4">
                             <Button className="min-w-[100px]" color="gray" onClick={() => setOpenModal(false)}>
-                                KhÃ´ng
+                                Không
                             </Button>
                             <Button className="min-w-[100px]" color="failure" onClick={() => deleteCategory()}>
-                                CÃ³
+                                Có
                             </Button>
                         </div>
                     </div>

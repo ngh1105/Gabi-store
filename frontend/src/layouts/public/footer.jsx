@@ -1,10 +1,10 @@
 import { Footer as FbFooter } from "flowbite-react";
 import { BsDribbble, BsFacebook, BsInstagram } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import Logo from "images/logo.png";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Api from "app/api";
+import utils from "utils";
 
 export default function Footer() {
 
@@ -50,7 +50,7 @@ export default function Footer() {
                                 }}
                                 to="/"
                                 className="flex items-center">
-                                <img src={Logo} className="w-auto h-8 me-3" alt="Logo" />
+                                <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" className="w-auto h-8 me-3" alt="Logo" />
                                 <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">E-Shop</span>
                             </Link>
                         </div>

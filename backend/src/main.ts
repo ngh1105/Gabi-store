@@ -26,6 +26,8 @@ async function bootstrap() {
             "http://localhost:8000",
             "https://localhost:3000",
             "https://localhost:8000",
+            "http://localhost:3001",
+            "https://localhost:3001",
             "http://gabi-store.xyz",
             "https://gabi-store.xyz",
             "http://api.gabi-store.xyz",

@@ -100,7 +100,7 @@ export default function AddPage({ fetchData }) {
 
             fetchData();
 
-            toast.success("ThÃªm thÃ nh cÃ´ng");
+            toast.success("Thêm thành công");
             resetForm();
             setOpenModal(false);
         },
@@ -114,11 +114,11 @@ export default function AddPage({ fetchData }) {
                     onClick={() => setOpenModal(true)}
                     className="w-full md:w-auto block text-white w-24 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 >
-                    ThÃªm
+                    Thêm
                 </button>
             </div>
             <Modal show={openModal} onClose={() => setOpenModal(false)}>
-                <Modal.Header className="pb-4">ThÃªm ngÆ°á»i dÃ¹ng</Modal.Header>
+                <Modal.Header className="pb-4">Thêm người dùng</Modal.Header>
                 <Modal.Body className="pt-2">
                     <form onSubmit={formik.handleSubmit}>
                         <div className="grid gap-4 mb-6 sm:grid-cols-2">
@@ -157,7 +157,7 @@ export default function AddPage({ fetchData }) {
                                 )}
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Há» tÃªn</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Họ tên</label>
                                 <input
                                     type="text"
                                     name="fullName"
@@ -174,7 +174,7 @@ export default function AddPage({ fetchData }) {
                                 )}
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">áº¢nh Ä‘áº¡i diá»‡n</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ảnh đại diện</label>
                                 <input
                                     type="file"
                                     name="image"
@@ -182,7 +182,7 @@ export default function AddPage({ fetchData }) {
                                 />
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vai trÃ²</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vai trò</label>
                                 <select 
                                     name="role"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
@@ -203,7 +203,7 @@ export default function AddPage({ fetchData }) {
                             disabled={status.isSubmit}
                             type="submit"
                             className="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
-                            XÃ¡c nháº­n
+                            Xác nhận
                         </button>
                     </form>
                 </Modal.Body>

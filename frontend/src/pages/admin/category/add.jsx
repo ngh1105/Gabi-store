@@ -84,7 +84,7 @@ export default function AddPage({ fetchData }) {
 
             fetchData();
 
-            toast.success("ThÃªm thÃ nh cÃ´ng");
+            toast.success("Thêm thành công");
             resetForm();
             setOpenModal(false);
         },
@@ -98,16 +98,16 @@ export default function AddPage({ fetchData }) {
                     onClick={() => setOpenModal(true)}
                     className="w-full md:w-auto block text-white w-24 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 >
-                    ThÃªm
+                    Thêm
                 </button>
             </div>
             <Modal show={openModal} onClose={() => setOpenModal(false)}>
-                <Modal.Header className="pb-4">ThÃªm loáº¡i hÃ ng</Modal.Header>
+                <Modal.Header className="pb-4">Thêm loại hàng</Modal.Header>
                 <Modal.Body className="pt-2">
                     <form onSubmit={formik.handleSubmit}>
                         <div className="grid gap-4 mb-6 sm:grid-cols-2">
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">TÃªn</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tên</label>
                                 <input
                                     type="text"
                                     name="name"
@@ -124,7 +124,7 @@ export default function AddPage({ fetchData }) {
                                 )}
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">HÃ¬nh áº£nh</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hình ảnh</label>
                                 <input
                                     type="file"
                                     name="image"
@@ -136,7 +136,7 @@ export default function AddPage({ fetchData }) {
                             disabled={status.isSubmit}
                             type="submit"
                             className="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
-                            XÃ¡c nháº­n
+                            Xác nhận
                         </button>
                     </form>
                 </Modal.Body>
